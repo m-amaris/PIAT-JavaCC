@@ -1,0 +1,316 @@
+/**
+ * Esta clase JSONParser se encarga de analizar un archivo JSON y reconoce su estructura para imprimirlo por pantalla.
+ */
+options
+{
+  STATIC = false;
+  UNICODE_INPUT = true; // Esta opcion permite que el intérpreta sea capaz de reconocer caracterers Unicode extendidos
+}
+
+PARSER_BEGIN(JSONParser)
+import java.io.*;
+import java.util.*;
+import com.google.gson.*;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+/**
+ * Clase principal JSONParser.
+ */
+public class JSONParser
+{
+  private static File file;
+  /**
+     * Método principal para ejecutar el analizador JSON.
+     * @param args Argumentos de línea de comandos.
+     * @throws ParseException Excepción en caso de error de análisis.
+     */
+  public static void main(String args []) throws ParseException
+  {
+    JSONParser.getFile();
+    if (file == null)
+    {
+      System.out.println("Archivo no valido o ningun archivo selecionado");
+      System.exit(- 1);
+    }
+    try
+    {
+      JSONParser parser = new JSONParser(new JSONParserTokenManager(new SimpleCharStream(new FileReader(JSONParser.file))));
+      Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+      JsonElement json = parser.json();
+      JsonObject jsonObject = new JsonObject();
+      if (json != null && json.isJsonObject())
+      {
+        jsonObject = json.getAsJsonObject();
+        if (jsonObject.has("@graph"))
+        {
+          JsonArray graphArray = jsonObject.getAsJsonArray("@graph");
+          jsonObject = new JsonObject();// Creamos un nuevo objeto JSON vacío por si hay objetos antes del array
+          JsonArray processedArray = processGraphArray(graphArray);
+          jsonObject.add("@graph", processedArray);
+        }
+        else
+        {
+          jsonObject = new JsonObject(); // Creamos un nuevo objeto JSON vacío
+        }
+      }
+      
+      String jsonOutput = gson.toJson(jsonObject);
+      System.out.println(jsonOutput);
+     
+      //printJsonObject(jsonObject); // Imprime de todos los elementos de un objeto Json accediendo de forma recursiva
+    }
+    catch (ParseException e)
+    {
+      System.out.println(e.getMessage());
+    }
+    catch (IOException e)
+    {
+      System.out.println("Error al leer el archivo JSON: " + e.getMessage());
+    }
+  }
+
+  /**
+     * Obtiene el archivo JSON seleccionado por el usuario.
+     */
+  private final static void getFile()
+  {
+    JFileChooser search = new JFileChooser();
+    FileNameExtensionFilter filter1 = new FileNameExtensionFilter("Archivo de texto (.txt)", "txt");
+    FileNameExtensionFilter filter2 = new FileNameExtensionFilter("Archivo JSON (.json)", "json");
+    search.setFileFilter(filter1);
+    search.setFileFilter(filter2);
+    int option = search.showOpenDialog(null);
+    if (option == JFileChooser.APPROVE_OPTION)
+    {
+      file = search.getSelectedFile();
+    }
+  }
+
+	  /**
+   * Procesa el array @graph y retorna un nuevo array con los primeros cinco objetos.
+   */
+  private static JsonArray processGraphArray(JsonArray graphArray)
+  {
+    JsonArray processedArray = new JsonArray();
+    int processedObjects = 0;
+    for (JsonElement element : graphArray)
+    {
+      if (processedObjects >= 5)
+      {
+        break;
+      }
+      if (element.isJsonObject())
+      {
+        processedArray.add(element);
+        processedObjects++;
+      }
+    }
+    return processedArray;
+  }
+
+	
+  // Función para imprimir un objeto JSON como pares clave-valor
+    private static void printJsonObject(JsonObject jsonObject) {
+        for (Map.Entry<String, JsonElement> entry : jsonObject.entrySet()) {
+            String key = entry.getKey();
+            JsonElement value = entry.getValue();
+            if (value.isJsonObject()) {
+                System.out.println("Objeto: " + key);
+                printJsonObject(value.getAsJsonObject());
+            } else if (value.isJsonArray()) {
+                System.out.println("Array: " + key);
+                printJsonArray(value.getAsJsonArray());
+            } else {
+                System.out.println("Clave: " + key + ", Valor: " + value);
+            }
+        }
+    }
+
+    // Función para imprimir una array JSON
+    private static void printJsonArray(JsonArray jsonArray) {
+        for (JsonElement element : jsonArray) {
+            if (element.isJsonObject()) {
+                printJsonObject(element.getAsJsonObject());
+            } else if (element.isJsonArray()) {
+                printJsonArray(element.getAsJsonArray());
+            } else {
+                System.out.println("Valor en Array: " + element);
+            }
+        }
+    }
+  
+}
+
+PARSER_END(JSONParser)
+
+/**
+ * Definición de tokens a omitir.
+ */
+SKIP :
+{
+  " "
+| "\t"
+| "\r"
+| "\n"
+}
+
+/**
+ * Definición de tokens JSON.
+ */
+TOKEN :
+{
+  < OBJECT_START : "{" >
+| < OBJECT_END : "}" >
+| < ARRAY_START : "[" >
+| < ARRAY_END : "]" >
+| < STRING : "\"" (~[ "\"", "\n", "\r" ])* "\"" >
+| < INTEGER : ("-")? ([ "0"-"9" ])+ >
+| < DOUBLE :
+    ("-")? ([ "0"-"9" ])+
+    (
+      "." ([ "0"-"9" ])+
+    ) >
+| < TRUE : "true" >
+| < FALSE : "false" >
+| < NULL : "null" >
+| < COMMA : "," >
+| < COLON : ":" >
+}
+
+/**
+ * Método para analizar un elemento JSON.
+ * @return Elemento JSON analizado.
+ */
+JsonElement json() :
+{
+  JsonElement j;
+}
+{
+  (
+    j = object()
+  | j = array()
+  )
+  {
+    return j;
+  }
+}
+
+/**
+ * Método para analizar un objeto JSON.
+ * @return Objeto JSON analizado.
+ */
+JsonObject object() :
+{
+  AbstractMap.SimpleEntry < String, JsonElement > p;
+  JsonObject o = new JsonObject();
+}
+{
+  < OBJECT_START >
+  (
+    p = pair()
+    {
+      o.add(p.getKey(), p.getValue()); // Obtener la pareja clave-valor JSON y añadirlo al objeto JSON
+    }
+    (
+      < COMMA > p = pair()
+      {
+        o.add(p.getKey(), p.getValue());
+      }
+    )*
+  )?
+  < OBJECT_END >
+  {
+    return o;
+  }
+}
+
+/**
+ * Método para analizar un array JSON.
+ * @return Array JSON analizado.
+ */
+JsonArray array() :
+{
+  JsonObject o;
+  JsonArray a = new JsonArray();
+}
+{
+  < ARRAY_START >
+  (
+    o = object()
+    {
+      a.add(o); // Obtener el objeto JSON y añadirlo al array JSON
+    }
+    (
+      < COMMA > o = object()
+      {
+        a.add(o);
+      }
+    )*
+  )?
+  < ARRAY_END >
+  {
+    return a;
+  }
+}
+
+/**
+ * Método para analizar una pareja clave-valor JSON.
+ * @return Pareja clave-valor analizada.
+ */
+AbstractMap.SimpleEntry < String, JsonElement > pair() :
+{
+  JsonElement e;
+  Token t;
+}
+{
+  t = < STRING > < COLON > e = value()
+  {
+	    return new AbstractMap.SimpleEntry < String, JsonElement > (t.image.substring(1, t.image.length() - 1), e); // Obtener los elementos JSON y añadirlos a la pareja clave-valor JSON 
+  }
+}
+
+/**
+ * Método para analizar un valor JSON.
+ * @return Valor JSON analizado.
+ */
+JsonElement value() :
+{
+  Token t;
+  JsonElement e;
+}
+{
+  (
+    t = < STRING >
+    {
+      return new JsonPrimitive(t.image.substring(1, t.image.length() - 1));
+    }
+  | t = < INTEGER >
+    {
+      return new JsonPrimitive(Integer.parseInt(t.image));
+    }
+  | t = < DOUBLE >
+    {
+      return new JsonPrimitive(Double.parseDouble(t.image));
+    }
+  | < TRUE >
+    {
+      return new JsonPrimitive(true);
+    }
+  | < FALSE >
+    {
+      return new JsonPrimitive(false);
+    }
+  | t = < NULL >
+    {
+      return JsonNull.INSTANCE;
+    }
+  | e = object()
+    {
+      return e;
+    }
+  | e = array()
+    {
+      return e;
+    }
+  )
+}
