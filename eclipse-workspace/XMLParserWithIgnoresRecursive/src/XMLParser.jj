@@ -134,28 +134,6 @@ Dataset dataset() :
   List < Concept > idConcepts = new ArrayList < Concept > ();
 }
 {
-  /** < OPEN_DATASET > < ID > idDataset = < STRING > < END_ELEMENT > 
-  < OPEN_TITLE > title = getValue() < CLOSE_TITLE >
-  (< OPEN_DESCRIPTION > description = getValue() < CLOSE_DESCRIPTION >)?
-  (< OPEN_KEYWORD > keyword = getValue() < CLOSE_KEYWORD >)?
-  (< OPEN_THEME > theme = getValue() < CLOSE_THEME >)?
-  (< OPEN_PUBLISHER > publisher = getValue() < CLOSE_PUBLISHER >)?
-  (
-    < OPEN_CONCEPTS >
-    (
-      < OPEN_CONCEPT > < ID > idConcept = < STRING > < END_ELEMENT >
-      {
-        idConcepts.add(new Concept(idConcept.image));
-      }
-    )+
-    < CLOSE_CONCEPTS >
-  )?
-  < CLOSE_DATASET >
-  {
-    return new Dataset(idDataset.image, title, description, keyword, theme, publisher, idConcepts);
-  }
-  */
-
 < OPEN_DATASET > < ID > idDataset = < STRING > < END_ELEMENT > 
   < OPEN_TITLE > title = getValue() < CLOSE_TITLE > 
   (< OPEN_DESCRIPTION > description = getValue() < CLOSE_DESCRIPTION >)?
