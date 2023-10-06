@@ -22,7 +22,7 @@ public class Dataset {
 
 	@Override
 	public String toString() {
-		String s = "Dataset: id=" + id + " title= " + title;
+		String s = "Dataset{ id=" + id + " title= " + title;
 		if (description != null) {
 			s = s.concat(" description=" + description);
 		}
