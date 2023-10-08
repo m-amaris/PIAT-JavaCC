@@ -92,7 +92,7 @@ datasetsList.add(d);
       }
     }
     jj_consume_token(CLOSE_CATALOG);
-//System.out.println(conceptsList);
+System.out.println(conceptsList);
     System.out.println(datasetsList);
 }
 
