@@ -89,7 +89,7 @@ void document() :
   (< OPEN_DATASETS >(d = dataset(){datasetsList.add(d);})+< CLOSE_DATASETS >)+
   < CLOSE_CATALOG >
   {
-    //System.out.println(conceptsList);
+    System.out.println(conceptsList);
     System.out.println(datasetsList);    
   }
 }
@@ -132,9 +132,9 @@ Dataset dataset() :
   String publisher = "";
   Concept concept;
   List < Concept > idConcepts = new ArrayList < Concept > ();
-}
+} 
 {
-< OPEN_DATASET > < ID > idDataset = < STRING > < END_ELEMENT > 
+  < OPEN_DATASET > < ID > idDataset = < STRING > < END_ELEMENT > 
   < OPEN_TITLE > title = getValue() < CLOSE_TITLE > 
   (< OPEN_DESCRIPTION > description = getValue() < CLOSE_DESCRIPTION >)?
   (< OPEN_KEYWORD >  keyword = getValue() < CLOSE_KEYWORD >)?

@@ -22,21 +22,21 @@ public class Dataset {
 
 	@Override
 	public String toString() {
-		String s = "Dataset{ id=" + id + " title= " + title;
+		String s = "dataset:{ \n id=" + id + "\n title= " + title;
 		if (description != null) {
-			s = s.concat(" description=" + description);
+			s = s.concat("\n description=" + description);
 		}
 		if (keyword != "") {
-			s = s.concat(" keyword=" + keyword);
+			s = s.concat("\n keyword=" + keyword);
 		}
 		if (theme != "") {
-			s = s.concat(" theme=" + theme);
+			s = s.concat("\n theme=" + theme);
 		}
 		if (publisher != "") {
-			s = s.concat(" publisher=" + publisher);
+			s = s.concat("\n publisher=" + publisher);
 		}
 		if (idConcepts != null) {
-			s = s.concat(" idConcepts=" + idConcepts);
+			s = s.concat("\n idConcepts=" + idConcepts);
 		}
 		s = s.concat("}\n");
 		return s;
