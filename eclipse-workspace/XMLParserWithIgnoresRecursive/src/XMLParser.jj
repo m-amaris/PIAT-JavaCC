@@ -131,7 +131,7 @@ Dataset dataset() :
   String theme = "";
   String publisher = "";
   Concept concept;
-  List < Concept > idConcepts = new ArrayList < Concept > ();
+  List < IdConcept > idConcepts = new ArrayList < IdConcept > ();
 } 
 {
   < OPEN_DATASET > < ID > idDataset = < STRING > < END_ELEMENT > 
@@ -145,7 +145,8 @@ Dataset dataset() :
     (
        < OPEN_CONCEPT > < ID > idConcept = < STRING > < END_ELEMENT >
       {
-        idConcepts.add(new Concept(idConcept.image));
+        //idConcepts.add(new Concept(idConcept.image));
+        idConcepts.add(new IdConcept(idConcept.image));
       }
     )+
     < CLOSE_CONCEPTS >

@@ -146,7 +146,7 @@ concepts.add(concept);
   String theme = "";
   String publisher = "";
   Concept concept;
-  List < Concept > idConcepts = new ArrayList < Concept > ();
+  List < IdConcept > idConcepts = new ArrayList < IdConcept > ();
     jj_consume_token(OPEN_DATASET);
     jj_consume_token(ID);
     idDataset = jj_consume_token(STRING);
@@ -207,7 +207,8 @@ concepts.add(concept);
         jj_consume_token(ID);
         idConcept = jj_consume_token(STRING);
         jj_consume_token(END_ELEMENT);
-idConcepts.add(new Concept(idConcept.image));
+//idConcepts.add(new Concept(idConcept.image));
+        idConcepts.add(new IdConcept(idConcept.image));
         switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
         case OPEN_CONCEPT:{
           ;
