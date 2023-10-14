@@ -23,23 +23,23 @@ public class Dataset {
 
 	@Override
 	public String toString() {
-		String s = "dataset:{ \n id:" + id + ",\n title: " + title+",";
+		String s = "\n{\n \"dataset\" : { \n \"id\" : " + id + ",\n \"title\" : \"" + title+"\"";
 		if (description != null) {
-			s = s.concat("\n description:" + description+",");
+			s = s.concat(",\n \"description\" : \"" + description+"\"");
 		}
 		if (keyword != "") {
-			s = s.concat("\n keyword:" + keyword+",");
+			s = s.concat(",\n \"keyword\" : \"" + keyword+"\"");
 		}
 		if (theme != "") {
-			s = s.concat("\n theme:" + theme+",");
+			s = s.concat(",\n \"theme\" : \"" + theme+"\"");
 		}
 		if (publisher != "") {
-			s = s.concat("\n publisher:" + publisher+",");
+			s = s.concat(",\n \"publisher\" : \"" + publisher+"\"");
 		}
-		if (idConcepts != null) {
-			s = s.concat("\n idConcepts:" + idConcepts+",");
+		if (!(idConcepts.isEmpty())) {
+			s = s.concat(",\n \"idConcepts\" : " + idConcepts);
 		}
-		s = s.concat("}\n");
+		s = s.concat("}\n}");
 		return s;
 	}
 
@@ -50,5 +50,30 @@ public class Dataset {
 	public List<IdConcept> getIdConcepts() {
 		return idConcepts;
 	}
+
+	public String getId() {
+		return id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public String getTheme() {
+		return theme;
+	}
+
+	public String getPublisher() {
+		return publisher;
+	}
+	
 	
 }

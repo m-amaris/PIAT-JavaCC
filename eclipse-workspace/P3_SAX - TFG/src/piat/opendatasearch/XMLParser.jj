@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.ArrayList;
 public class XMLParser{
 	static List < Concept > conceptsList;
+	static List < Dataset > datasetsList;
 	static String conceptLabel;
+	static String nombreCategoria;
 }
 PARSER_END(XMLParser) 
 
@@ -59,32 +61,25 @@ SKIP :
   < ~[ ] >
 }
 
-ManejadorXML document(String nombreCategoria) :
+ManejadorXML document(String code) :
 {
   conceptsList = new ArrayList < Concept > ();
-  List < Dataset > datasetsList = new ArrayList < Dataset > ();
-  Concept conceptPadre;
-  Dataset datasetPadre;
+  datasetsList = new ArrayList < Dataset > ();
+  nombreCategoria = code;
   String conceptLabel = "";
 }
 {
   < HEADER > 
   < CATALOG > < XMLNS > < STRING > < XMNLNS_XSI > < STRING > < XSI_SCHEMA_LOCATION > < STRING > < END_ELEMENT >
-  (< OPEN_CONCEPTS > (concept(nombreCategoria){/*conceptsList.add(conceptPadre);*/})+ < CLOSE_CONCEPTS >)+
-  (< OPEN_DATASETS > (datasetPadre = dataset(){/*
-    for(IdConcept idConcept : datasetPadre.getIdConcepts()) {
-      if(idConcept.getId().equals(conceptLabel)) {
-    	datasetsList.add(datasetPadre);
-      }
-    }
-    */})+ < CLOSE_DATASETS >)+
+  (< OPEN_CONCEPTS > (concept(){})+ < CLOSE_CONCEPTS >)+
+  (< OPEN_DATASETS > (dataset(){})+ < CLOSE_DATASETS >)+
   < CLOSE_CATALOG >
   {
     return new ManejadorXML(datasetsList,conceptsList);
   }
 }
 
-Concept concept(String nombreCategoria) :
+Concept concept() :
 {
   Token id;
   String code, label;
@@ -98,7 +93,7 @@ Concept concept(String nombreCategoria) :
   (
     < OPEN_CONCEPTS >
     (
-      concept = concept(nombreCategoria)
+      concept = concept()
       {
         concepts.add(concept);
       }
@@ -107,12 +102,11 @@ Concept concept(String nombreCategoria) :
   )?
   < CLOSE_CONCEPT >
   {
-    /*if(code.equals(nombreCategoria)) {
+    if(code.equals(nombreCategoria)) {
       conceptLabel = id.image;
-	}*/
-	concept = new Concept(id.image, code, label, concepts);
-    conceptsList.add(concept);
-	return concept;
+      conceptsList.add(new Concept(id.image, code, label, concepts));
+	}
+	return new Concept(id.image, code, label, concepts);
   }
 }
 
@@ -147,6 +141,11 @@ Dataset dataset() :
   )?
   < CLOSE_DATASET >
   {
+    for(IdConcept ic : idConcepts) {
+      if(ic.getId().equals(conceptLabel)) {
+    	datasetsList.add(new Dataset(idDataset.image, title, description, keyword,theme,publisher,idConcepts));
+      }
+    }
     return new Dataset(idDataset.image, title, description, keyword,theme,publisher,idConcepts);
   }
 

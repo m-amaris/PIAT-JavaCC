@@ -6,12 +6,13 @@ import java.util.List;
 import java.util.ArrayList;
 public class XMLParser implements XMLParserConstants {
         static List < Concept > conceptsList;
+        static List < Dataset > datasetsList;
         static String conceptLabel;
+        static String nombreCategoria;
 
-  static final public ManejadorXML document(String nombreCategoria) throws ParseException {conceptsList = new ArrayList < Concept > ();
-  List < Dataset > datasetsList = new ArrayList < Dataset > ();
-  Concept conceptPadre;
-  Dataset datasetPadre;
+  static final public ManejadorXML document(String code) throws ParseException {conceptsList = new ArrayList < Concept > ();
+  datasetsList = new ArrayList < Dataset > ();
+  nombreCategoria = code;
   String conceptLabel = "";
     jj_consume_token(HEADER);
     jj_consume_token(CATALOG);
@@ -27,7 +28,7 @@ public class XMLParser implements XMLParserConstants {
       jj_consume_token(OPEN_CONCEPTS);
       label_2:
       while (true) {
-        concept(nombreCategoria);
+        concept();
 
         switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
         case OPEN_CONCEPT:{
@@ -55,7 +56,7 @@ public class XMLParser implements XMLParserConstants {
       jj_consume_token(OPEN_DATASETS);
       label_4:
       while (true) {
-        datasetPadre = dataset();
+        dataset();
 
         switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
         case OPEN_DATASET:{
@@ -83,7 +84,7 @@ public class XMLParser implements XMLParserConstants {
     throw new Error("Missing return statement in function");
 }
 
-  static final public Concept concept(String nombreCategoria) throws ParseException {Token id;
+  static final public Concept concept() throws ParseException {Token id;
   String code, label;
   Concept concept;
   List < Concept > concepts = new ArrayList < Concept > ();
@@ -102,7 +103,7 @@ public class XMLParser implements XMLParserConstants {
       jj_consume_token(OPEN_CONCEPTS);
       label_5:
       while (true) {
-        concept = concept(nombreCategoria);
+        concept = concept();
 concepts.add(concept);
         switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
         case OPEN_CONCEPT:{
@@ -122,12 +123,11 @@ concepts.add(concept);
       ;
     }
     jj_consume_token(CLOSE_CONCEPT);
-/*if(code.equals(nombreCategoria)) {
+if(code.equals(nombreCategoria)) {
       conceptLabel = id.image;
-	}*/
-        concept = new Concept(id.image, code, label, concepts);
-    conceptsList.add(concept);
-        {if ("" != null) return concept;}
+      conceptsList.add(new Concept(id.image, code, label, concepts));
+        }
+        {if ("" != null) return new Concept(id.image, code, label, concepts);}
     throw new Error("Missing return statement in function");
 }
 
@@ -218,7 +218,12 @@ idConcepts.add(new IdConcept(idConcept.image));
       ;
     }
     jj_consume_token(CLOSE_DATASET);
-{if ("" != null) return new Dataset(idDataset.image, title, description, keyword,theme,publisher,idConcepts);}
+for(IdConcept ic : idConcepts) {
+      if(ic.getId().equals(conceptLabel)) {
+        datasetsList.add(new Dataset(idDataset.image, title, description, keyword,theme,publisher,idConcepts));
+      }
+    }
+    {if ("" != null) return new Dataset(idDataset.image, title, description, keyword,theme,publisher,idConcepts);}
     throw new Error("Missing return statement in function");
 }
 

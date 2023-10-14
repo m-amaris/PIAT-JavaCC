@@ -34,32 +34,32 @@ public class GenerarXML {
 		this.datasets = datasets;
 	}
 
-	private static String conceptsToXML(List<String> lConcepts) {
+	private static String conceptsToXML(List<Concept> lConcepts) {
 		StringBuilder sbSalida = new StringBuilder();
 		sbSalida.append("\n\t\t<concepts>");
-		for (String unConcepto : lConcepts) {
-			sbSalida.append(conceptPattern.replace("#ID#", unConcepto));
+		for (Concept unConcepto : lConcepts) {
+			sbSalida.append(conceptPattern.replace("#ID#", unConcepto.getId()));
 		}
 		sbSalida.append("\n\t\t</concepts>");
 		return sbSalida.toString();
 	}
 
-	private String summaryToXML(String codigoCategoria, List<String> concepts,
-			Map<String, HashMap<String, String>> datasets) {
+	private String summaryToXML(String codigoCategoria, List<Concept> concepts,
+			List<Dataset> datasets) {
 		String summary = "\n\t<summary>\n\t\t<query>" + codigoCategoria + "</query>\n\t\t<numConcepts>" + concepts.size()
 				+ "</numConcepts>\n\t\t<numDatasets>" + datasets.size() + "</numDatasets>\n\t</summary>";
 
 		return summary;
 	}
 	
-	private String datasetsToXML(Map<String, HashMap<String, String>> datasets) {
+	private String datasetsToXML(List <Dataset> datasets) {
 		StringBuilder sbSalida = new StringBuilder();
 		sbSalida.append("\n\t\t<datasets>");
-		for (Map.Entry<String, HashMap<String, String>> unDataset : datasets.entrySet()) {
-			sbSalida.append(datasetPattern.replace("#ID#", unDataset.getKey()));
-			sbSalida.append(titlePattern.replace("#TITLE#", unDataset.getValue().get("title")));
-			sbSalida.append(descriptionPattern.replace("#DESC#", unDataset.getValue().get("description")));
-			sbSalida.append(themePattern.replace("#THEME#", unDataset.getValue().get("theme")));
+		for (Dataset unDataset : datasets) {
+			sbSalida.append(datasetPattern.replace("#ID#", unDataset.getId()));
+			sbSalida.append(titlePattern.replace("#TITLE#", unDataset.getTitle()));
+			sbSalida.append(descriptionPattern.replace("#DESC#", unDataset.getDescription()));
+			sbSalida.append(themePattern.replace("#THEME#", unDataset.getTheme()));
 			sbSalida.append("\n\t\t\t</dataset>");
 		}
 		sbSalida.append("\n\t\t</datasets>");
@@ -69,8 +69,8 @@ public class GenerarXML {
 	private String resultsToXML() {
 		StringBuilder sbResults = new StringBuilder();
 		sbResults.append("\n\t<results>");
-		//sbResults.append(conceptsToXML(concepts));
-		//sbResults.append(datasetsToXML(datasets));
+		sbResults.append(conceptsToXML(concepts));
+		sbResults.append(datasetsToXML(datasets));
 		sbResults.append("\n\t</results>");
 		
 		return sbResults.toString();
@@ -80,7 +80,7 @@ public class GenerarXML {
 		StringBuilder sbSalida = new StringBuilder();
 
 		sbSalida.append(cabeceraXML);
-		//sbSalida.append(summaryToXML(codigoCategoria, concepts, datasets));
+		sbSalida.append(summaryToXML(codigoCategoria, concepts, datasets));
 		sbSalida.append(resultsToXML());
 		sbSalida.append("\n</searchResults>");
 		return sbSalida.toString();

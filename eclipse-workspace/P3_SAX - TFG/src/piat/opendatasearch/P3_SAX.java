@@ -60,27 +60,28 @@ public class P3_SAX {
 		ManejadorXML handler;
 		try {
 			handler = parser.document(args[1]);
-			System.out.println(handler.getConcepts());
-			System.out.println(handler.getDatasets());
+//			System.out.println(handler.getConcepts());
+//			System.out.println(handler.getDatasets());
 			// Invocar al método getConcepts() del objeto ManejadorXML para obtener un
 			// List<String> con las uris de los elementos <concept> cuyo elemento <code>
 			// contiene el código de la categoría buscado
-			//concepts = handler.getConcepts();
+			concepts = handler.getConcepts();
+			System.out.println(concepts);
 			// Invocar al método getLabel() del objeto ManejadorXML para obtener el nombre
 			// de la categoría buscada
-//			nombreCategoria = handler.getLabel();
+			nombreCategoria = handler.getLabel();
 			// Invocar al método getDatasets() del objeto ManejadorXML para obtener un mapa
 			// con los datasets de la categoría buscada
-//			datasets = handler.getDatasets();
+			datasets = handler.getDatasets();
 			// Crear el fichero de salida con el nombre recibido en el tercer argumento de
 			// main()
 			// Volcar al fichero de salida los datos en el formato XML especificado por
 			// ResultadosBusquedaP3.xsd
-//			GenerarXML gen = new GenerarXML(concepts, nombreCategoria, args[1], datasets);
-//			ficheroSalida = new FileWriter(args[2]);
-//			ficheroSalida.write(gen.generarXML());
-//			ficheroSalida.close();
-//			System.out.println("Fichero generado.");
+			GenerarXML gen = new GenerarXML(concepts, nombreCategoria, args[1], datasets);
+			ficheroSalida = new FileWriter(args[2]);
+			ficheroSalida.write(gen.generarXML());
+			ficheroSalida.close();
+			System.out.println("Fichero generado.");
 
 			System.exit(0);
 		} catch (ParseException e) {
