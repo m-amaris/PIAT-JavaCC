@@ -9,4 +9,9 @@ public class IdConcept {
 	public String toString() {
 		return "idConcept:{ id=" + id+"}\n";
 	}
+
+	public String getId() {
+		return id;
+	}
+	
 }

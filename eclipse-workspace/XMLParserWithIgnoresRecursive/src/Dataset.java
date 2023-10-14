@@ -45,4 +45,10 @@ public class Dataset {
 	public void addIdConcept(IdConcept idConcept) {
 		idConcepts.add(idConcept);
 	}
+
+	public List<IdConcept> getIdConcepts() {
+		return idConcepts;
+	}
+	
+	
 }

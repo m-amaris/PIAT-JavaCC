@@ -21,4 +21,14 @@ public class Concept {
 	public void addConcept(Concept concept) {
 		concepts.add(concept);
 	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public String getId() {
+		return id;
+	}
+	
+	
 }
