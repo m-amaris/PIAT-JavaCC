@@ -13,15 +13,6 @@ public class Concept {
 		this.concepts = concepts;
 	}
 
-	@Override
-	public String toString() {
-		return "concept:{ \n \tid:" + id+",\n"+"\tcode:" + code+",\n"+"\tlabel:" + label+",\n"+"\tconcepts:" + concepts+"\n"+"}\n";
-	}
-
-	public void addConcept(Concept concept) {
-		concepts.add(concept);
-	}
-
 	public String getCode() {
 		return code;
 	}
@@ -30,5 +21,14 @@ public class Concept {
 		return id;
 	}
 	
+	@Override
+	public String toString() {
+		String s = "\n{\n \"concept\" : { \n \"id\" : " + id + ",\n \"code\" : \"" + code + "\",\n \"label\" : \"" + label + "\"";
+		if (!(concepts.isEmpty())) {
+			s = s.concat(",\n \"concepts\" : " + concepts + ",");
+		}
+		s = s.concat("}\n}");
+		return s;
+	}
 	
 }

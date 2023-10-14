@@ -7,7 +7,7 @@ public class IdConcept {
 	
 	@Override
 	public String toString() {
-		return "idConcept:{ id=" + id+"}\n";
+		return "{ \"idConcept\" : { \n \"id\" : " + id + "}\n}";
 	}
 
 	public String getId() {
