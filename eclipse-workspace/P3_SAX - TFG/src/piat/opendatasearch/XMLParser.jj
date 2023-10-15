@@ -1,13 +1,28 @@
+options
+{
+  STATIC = false;
+  JAVA_TEMPLATE_TYPE = "modern";
+}
+
 PARSER_BEGIN(XMLParser)
 package piat.opendatasearch;
-import java.io.*;
 import java.util.List;
 import java.util.ArrayList;
 public class XMLParser{
-	static List < Concept > conceptsList;
-	static List < Dataset > datasetsList;
-	static String conceptLabel;
-	static String nombreCategoria;
+	private static List < Concept > conceptsList;
+	private static List < Dataset > datasetsList;
+	private static String conceptLabel;
+	private  static String nombreCategoria;
+
+	public List< Concept > getConcepts() {
+		return conceptsList;
+	}
+	public List < Dataset > getDatasets() {
+		return datasetsList;
+	}
+	public String getLabel() {
+		return nombreCategoria;
+	}
 }
 PARSER_END(XMLParser) 
 
@@ -66,13 +81,12 @@ ManejadorXML document(String code) :
   conceptsList = new ArrayList < Concept > ();
   datasetsList = new ArrayList < Dataset > ();
   nombreCategoria = code;
-  String conceptLabel = "";
 }
 {
   < HEADER > 
   < CATALOG > < XMLNS > < STRING > < XMNLNS_XSI > < STRING > < XSI_SCHEMA_LOCATION > < STRING > < END_ELEMENT >
-  (< OPEN_CONCEPTS > (concept(){})+ < CLOSE_CONCEPTS >)+
-  (< OPEN_DATASETS > (dataset(){})+ < CLOSE_DATASETS >)+
+  (< OPEN_CONCEPTS > (concept())+ < CLOSE_CONCEPTS >)+
+  (< OPEN_DATASETS > (dataset())+ < CLOSE_DATASETS >)+
   < CLOSE_CATALOG >
   {
     return new ManejadorXML(datasetsList,conceptsList);
@@ -119,7 +133,6 @@ Dataset dataset() :
   String keyword = "";
   String theme = "";
   String publisher = "";
-  Concept concept;
   List < IdConcept > idConcepts = new ArrayList < IdConcept > ();
 } 
 {

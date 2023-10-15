@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -15,7 +14,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 
 /**
- * @author 
+ * @author
  *
  */
 
@@ -26,7 +25,6 @@ public class P3_SAX {
 	private static List<Concept> concepts;
 	private static String nombreCategoria;
 	private static List<Dataset> datasets;
-
 	/**
 	 * Clase principal de la aplicación de extracción de información del Portal de
 	 * Datos Abiertos del Ayuntamiento de Madrid
@@ -48,31 +46,25 @@ public class P3_SAX {
 			System.exit(1);
 		}
 
-		// TODO
 		// Validar los argumentos recibidos en main()
 		validarArgumentos(args);
 		// Instanciar un objeto ManejadorXML pasando como parámetro el código de la
 		// categoría recibido en el segundo argumento de main()
-		
-		XMLParser parser = new XMLParser(new XMLParserTokenManager(
-				new SimpleCharStream(new InputStreamReader(new FileInputStream(args[0]), "UTF-8"))));
 
-		ManejadorXML handler;
+		XMLParser parser = new XMLParser(new XMLParserTokenManager(new SimpleCharStream(new StreamProvider(new FileInputStream(args[0]), "UTF-8"))));
 		try {
-			handler = parser.document(args[1]);
-//			System.out.println(handler.getConcepts());
-//			System.out.println(handler.getDatasets());
+			parser.document(args[1]);
 			// Invocar al método getConcepts() del objeto ManejadorXML para obtener un
 			// List<String> con las uris de los elementos <concept> cuyo elemento <code>
 			// contiene el código de la categoría buscado
-			concepts = handler.getConcepts();
-			System.out.println(concepts);
+			concepts = parser.getConcepts();
 			// Invocar al método getLabel() del objeto ManejadorXML para obtener el nombre
 			// de la categoría buscada
-			nombreCategoria = handler.getLabel();
+			nombreCategoria = parser.getLabel();
 			// Invocar al método getDatasets() del objeto ManejadorXML para obtener un mapa
 			// con los datasets de la categoría buscada
-			datasets = handler.getDatasets();
+			datasets = parser.getDatasets();
+			System.out.println(datasets);
 			// Crear el fichero de salida con el nombre recibido en el tercer argumento de
 			// main()
 			// Volcar al fichero de salida los datos en el formato XML especificado por

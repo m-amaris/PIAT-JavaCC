@@ -22,6 +22,10 @@ public class Concept {
 		return id;
 	}
 	
+	public List<Concept> getConcepts() {
+		return concepts;
+	}
+
 	@Override
 	public String toString() {
 		String s = "\n{\n \"concept\" : { \n \"id\" : " + id + ",\n \"code\" : \"" + code + "\",\n \"label\" : \"" + label + "\"";
