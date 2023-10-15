@@ -7,10 +7,10 @@ public class Dataset {
 	private String keyword = "";
 	private String theme = "";
 	private String publisher = "";
-	private List<Concept> idConcepts = null;
+	private List<IdConcept> idConcepts = null;
 
 	public Dataset(String id, String title, String description, String keyword, String theme, String publisher,
-			List<Concept> idConcepts) {
+			List<IdConcept> idConcepts) {
 		this.id = id;
 		this.title = title;
 		this.description = description;
@@ -22,27 +22,33 @@ public class Dataset {
 
 	@Override
 	public String toString() {
-		String s = "dataset:{ \n id=" + id + "\n title= " + title;
+		String s = "\n{\n \"dataset\" : { \n \"id\" : " + id + ",\n \"title\" : \"" + title+"\"";
 		if (description != null) {
-			s = s.concat("\n description=" + description);
+			s = s.concat(",\n \"description\" : \"" + description+"\"");
 		}
 		if (keyword != "") {
-			s = s.concat("\n keyword=" + keyword);
+			s = s.concat(",\n \"keyword\" : \"" + keyword+"\"");
 		}
 		if (theme != "") {
-			s = s.concat("\n theme=" + theme);
+			s = s.concat(",\n \"theme\" : \"" + theme+"\"");
 		}
 		if (publisher != "") {
-			s = s.concat("\n publisher=" + publisher);
+			s = s.concat(",\n \"publisher\" : \"" + publisher+"\"");
 		}
-		if (idConcepts != null) {
-			s = s.concat("\n idConcepts=" + idConcepts);
+		if (!(idConcepts.isEmpty())) {
+			s = s.concat(",\n \"idConcepts\" : " + idConcepts);
 		}
-		s = s.concat("}\n");
+		s = s.concat("}\n}");
 		return s;
 	}
 
-	public void addIdConcept(Concept concept) {
-		idConcepts.add(concept);
+	public void addIdConcept(IdConcept idConcept) {
+		idConcepts.add(idConcept);
 	}
+
+	public List<IdConcept> getIdConcepts() {
+		return idConcepts;
+	}
+	
+	
 }

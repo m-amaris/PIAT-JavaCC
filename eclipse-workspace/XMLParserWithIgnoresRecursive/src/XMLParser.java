@@ -10,7 +10,9 @@ public class XMLParser implements XMLParserConstants {
     try
     {
       parser = new XMLParser(new XMLParserTokenManager(new SimpleCharStream(new InputStreamReader(new FileInputStream(args [0]), "UTF-8"))));
-      parser.document();
+      ManejadorXML handler = parser.document();
+      System.out.println(handler.getConcepts());
+      System.out.println(handler.getDatasets());
     }
     catch (FileNotFoundException e)
     {
@@ -18,11 +20,11 @@ public class XMLParser implements XMLParserConstants {
     }
     catch (UnsupportedEncodingException e)
     {
-                      e.printStackTrace();
-            }
+          e.printStackTrace();
+        }
   }
 
-  static final public void document() throws ParseException {List < Concept > conceptsList = new ArrayList < Concept > ();
+  static final public ManejadorXML document() throws ParseException {List < Concept > conceptsList = new ArrayList < Concept > ();
   List < Dataset > datasetsList = new ArrayList < Dataset > ();
   Concept c;
   Dataset d;
@@ -92,8 +94,8 @@ datasetsList.add(d);
       }
     }
     jj_consume_token(CLOSE_CATALOG);
-System.out.println(conceptsList);
-    System.out.println(datasetsList);
+{if ("" != null) return new ManejadorXML(datasetsList,conceptsList);}
+    throw new Error("Missing return statement in function");
 }
 
   static final public Concept concept() throws ParseException {Token id;
@@ -146,7 +148,7 @@ concepts.add(concept);
   String theme = "";
   String publisher = "";
   Concept concept;
-  List < Concept > idConcepts = new ArrayList < Concept > ();
+  List < IdConcept > idConcepts = new ArrayList < IdConcept > ();
     jj_consume_token(OPEN_DATASET);
     jj_consume_token(ID);
     idDataset = jj_consume_token(STRING);
@@ -207,7 +209,7 @@ concepts.add(concept);
         jj_consume_token(ID);
         idConcept = jj_consume_token(STRING);
         jj_consume_token(END_ELEMENT);
-idConcepts.add(new Concept(idConcept.image));
+idConcepts.add(new IdConcept(idConcept.image));
         switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
         case OPEN_CONCEPT:{
           ;

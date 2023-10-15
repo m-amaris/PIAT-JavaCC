@@ -10,7 +10,9 @@ public class XMLParser
     try
     {
       parser = new XMLParser(new XMLParserTokenManager(new SimpleCharStream(new InputStreamReader(new FileInputStream(args [0]), "UTF-8"))));
-      parser.document();
+      ManejadorXML handler = parser.document();
+      System.out.println(handler.getConcepts());
+      System.out.println(handler.getDatasets());
     }
     catch (FileNotFoundException e)
     {
@@ -18,11 +20,10 @@ public class XMLParser
     }
     catch (UnsupportedEncodingException e)
     {
-		      e.printStackTrace();
-	    }
+	  e.printStackTrace();
+	}
   }
 }
-
 PARSER_END(XMLParser)
 
 SKIP :
@@ -75,7 +76,7 @@ SKIP :
   < ~[ ] >
 }
 
-void document() :
+ManejadorXML document() :
 {
   List < Concept > conceptsList = new ArrayList < Concept > ();
   List < Dataset > datasetsList = new ArrayList < Dataset > ();
@@ -85,12 +86,11 @@ void document() :
 {
   < HEADER > 
   < CATALOG > < XMLNS > < STRING > < XMNLNS_XSI > < STRING > < XSI_SCHEMA_LOCATION > < STRING > < END_ELEMENT >
-  (< OPEN_CONCEPTS >(c = concept(){conceptsList.add(c);})+< CLOSE_CONCEPTS >)+
-  (< OPEN_DATASETS >(d = dataset(){datasetsList.add(d);})+< CLOSE_DATASETS >)+
+  (< OPEN_CONCEPTS > (c = concept(){conceptsList.add(c);})+ < CLOSE_CONCEPTS >)+
+  (< OPEN_DATASETS > (d = dataset(){datasetsList.add(d);})+ < CLOSE_DATASETS >)+
   < CLOSE_CATALOG >
   {
-    System.out.println(conceptsList);
-    System.out.println(datasetsList);    
+    return new ManejadorXML(datasetsList,conceptsList);
   }
 }
 
@@ -131,7 +131,7 @@ Dataset dataset() :
   String theme = "";
   String publisher = "";
   Concept concept;
-  List < Concept > idConcepts = new ArrayList < Concept > ();
+  List < IdConcept > idConcepts = new ArrayList < IdConcept > ();
 } 
 {
   < OPEN_DATASET > < ID > idDataset = < STRING > < END_ELEMENT > 
@@ -145,7 +145,7 @@ Dataset dataset() :
     (
        < OPEN_CONCEPT > < ID > idConcept = < STRING > < END_ELEMENT >
       {
-        idConcepts.add(new Concept(idConcept.image));
+        idConcepts.add(new IdConcept(idConcept.image));
       }
     )+
     < CLOSE_CONCEPTS >

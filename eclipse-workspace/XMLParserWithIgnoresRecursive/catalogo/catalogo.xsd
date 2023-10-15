@@ -70,7 +70,7 @@
 </xsd:element>
 
 <xsd:complexType name="tDataset">
-	<xsd:sequence>
+	<xsd:all>
 		<xsd:element name="title" type="xsd:string" />
 		<xsd:element name="description" type="xsd:string" minOccurs="0" />
 		<xsd:element name="keyword" type="xsd:string" minOccurs="0"/>
@@ -92,7 +92,7 @@
 				<xsd:field xpath="@id"/>
 			</xsd:key>
 		</xsd:element>		
-	</xsd:sequence>
+	</xsd:all>
 	<xsd:attribute name="id" type="xsd:anyURI"/>
 </xsd:complexType>
 
