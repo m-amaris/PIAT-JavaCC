@@ -29,39 +29,39 @@ xsi:schemaLocation="http://www.piat.dte.upm.es/practica4 ./ResultadosBusquedaP4.
 			</dataset>
 		</datasets>
 		<resources>
-			<resource id="https://datos.madrid.es/egob/catalogo/tipo/evento/12086659-babu-shankar.json">
+			<resource id="https://datos.madrid.es/egob/catalogo/tipo/evento/12112925-akai-vida-cuatro-haikus.json">
 				<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile"/>
-				<link><![CDATA[http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=af3928b48056a810VgnVCM1000001d4a900aRCRD]]></link>
-				<title>Babu Shankar</title>
+				<link><![CDATA[http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=79ab4d3febada810VgnVCM1000001d4a900aRCRD]]></link>
+				<title>Akai- Vida en cuatro haikus</title>
 				<location>
-						<eventLocation>Centro Sociocultural Montecarmelo (Fuencarral - El Pardo)</eventLocation>
-						<area>https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Fuencarral-ElPardo/Barrio/ElGoloso</area>
+						<eventLocation>Centro Cultural el Torito (Moratalaz)</eventLocation>
+						<area>https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Moratalaz/Barrio/Vinateros</area>
 						<timetable>
-							<start>2023-09-30 18:30:00.0</start>
-							<end>2023-09-30 23:59:00.0</end></timetable>
-						<georeference>40.51635495615339 -3.685946562681175</georeference>
+							<start>2023-12-05 19:00:00.0</start>
+							<end>2023-12-05 23:59:00.0</end></timetable>
+						<georeference>40.40609591857167 -3.646536107063507</georeference>
 				</location>
 				<organization>
 						<accesibility>1</accesibility>
-						<organizationName>Centro Sociocultural Montecarmelo (Fuencarral - El Pardo)</organizationName>
+						<organizationName>Centro Cultural el Torito (Moratalaz)</organizationName>
 				</organization>
-				<description>Magia, danza y humor. Cía Patachicle. Producciones y Ana Serzo. Desde la lejana India y esperando por sus principales seguidores, va a llegar el gran Faquir y mago Babu Shankar. El renombrado Faquir Hindú va a exponer una lección de levitación. Magia, danza y humor con un ritmo trepidante, sorpresas, música... ¡seremos testigos de una proeza mundial! Un pasaporte a los Misterios Exóticos de la India.  Edad recomendada: a partir de 3 años.</description>
+				<description>Circo  Miscelánea Circo   Es un montaje se combina la manipulación de objetos, la danza, la acrobacia en aro aéreo y la poesía en forma de haiku. Se expresa la rebelión contra lo impuesto, las etapas de la vida y la vuelta a lo más primitivo, teniendo como hilo conductor las estaciones. Duración 1 hora</description>
 			</resource>
-			<resource id="https://datos.madrid.es/egob/catalogo/tipo/evento/12095342-bailar-patios-2023-2024.json">
+			<resource id="https://datos.madrid.es/egob/catalogo/tipo/evento/12119914-compania-algarabia.json">
 				<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile"/>
-				<link><![CDATA[http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=4ec0f84fe188a810VgnVCM1000001d4a900aRCRD]]></link>
-				<title>Bailar los patios 2023 - 2024</title>
+				<link><![CDATA[http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=c6882892905fa810VgnVCM1000001d4a900aRCRD]]></link>
+				<title>Compañía Algarabía</title>
 				<location>
-						<eventLocation>Centro de Cultura Contemporánea Conde Duque</eventLocation>
-						<area>https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Centro/Barrio/Universidad</area>
+						<eventLocation>Centro Cultural Juan Genovés (Moncloa - Aravaca)</eventLocation>
+						<area>https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Moncloa-Aravaca/Barrio/Aravaca</area>
 						<timetable>
-							<start>2023-10-07 12:00:00.0</start>
-							<end>2023-10-08 23:59:00.0</end></timetable>
-						<georeference>40.42739911262292 -3.710589286287491</georeference>
+							<start>2023-10-28 19:00:00.0</start>
+							<end>2023-10-28 23:59:00.0</end></timetable>
+						<georeference>40.45866721398762 -3.786129575145957</georeference>
 				</location>
 				<organization>
 						<accesibility>1</accesibility>
-						<organizationName>Centro de Cultura Contemporánea Conde Duque</organizationName>
+						<organizationName>Centro Cultural Juan Genovés (Moncloa - Aravaca)</organizationName>
 				</organization>
 				<description></description>
 			</resource>
@@ -83,41 +83,77 @@ xsi:schemaLocation="http://www.piat.dte.upm.es/practica4 ./ResultadosBusquedaP4.
 				</organization>
 				<description></description>
 			</resource>
-			<resource id="https://datos.madrid.es/egob/catalogo/tipo/evento/12095606-danza-iii-festival-peruano-musica-danza-pueblo-que-baila-raices-peru.json">
+			<resource id="https://datos.madrid.es/egob/catalogo/tipo/evento/12131507-coordenadas-fest-nosotros.json">
 				<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile"/>
-				<link><![CDATA[http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=615f41199488a810VgnVCM1000001d4a900aRCRD]]></link>
-				<title>Danza: III Festival Peruano de Música y Danza, 'PUEBLO QUE BAILA'. Raíces del Perú</title>
+				<link><![CDATA[http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=7295c8a94982b810VgnVCM1000001d4a900aRCRD]]></link>
+				<title>Coordenadas fest. Entre nosotros</title>
 				<location>
-						<eventLocation>Centro Sociocultural Tetuán</eventLocation>
-						<area>https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Tetuan/Barrio/Berruguete</area>
+						<eventLocation>Centro Cultural Casa de Vacas (Retiro)</eventLocation>
+						<area>https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Retiro/Barrio/LosJeronimos</area>
 						<timetable>
-							<start>2023-10-21 19:00:00.0</start>
-							<end>2023-10-21 23:59:00.0</end></timetable>
-						<georeference>40.45907130615822 -3.700271645324868</georeference>
+							<start>2023-11-04 18:00:00.0</start>
+							<end>2023-11-04 23:59:00.0</end></timetable>
+						<georeference>40.41906024374356 -3.6840615387926956</georeference>
 				</location>
 				<organization>
 						<accesibility>1</accesibility>
-						<organizationName>Centro Sociocultural Tetuán</organizationName>
+						<organizationName>Centro Cultural Casa de Vacas (Retiro)</organizationName>
 				</organization>
-				<description>Revalorizando nuestras culturas y tradiciones peruanas Duración: 1 hora 30 min. Edad recomendada: todos los públicos</description>
+				<description></description>
 			</resource>
-			<resource id="https://datos.madrid.es/egob/catalogo/tipo/evento/12062518-danza-encuentro-culturas-musica-danza-madrid-cargo-asociacion-social-cultural-artistica-ecuatoriana-s-c-e.json">
+			<resource id="https://datos.madrid.es/egob/catalogo/tipo/evento/12131509-coordenadas-fest-que-levita.json">
 				<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile"/>
-				<link><![CDATA[http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=e36cb3a602879810VgnVCM1000001d4a900aRCRD]]></link>
-				<title>Danza: 'Encuentro de culturas, música y danza en Madrid'. A cargo de la Asociación Social Cultural y Artística Ecuatoriana, A.S.C.A.E</title>
+				<link><![CDATA[http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=7ee5c8a94982b810VgnVCM1000001d4a900aRCRD]]></link>
+				<title>Coordenadas fest. La que levita</title>
 				<location>
-						<eventLocation>Centro Cultural Eduardo Úrculo (Tetuán)</eventLocation>
-						<area>https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Tetuan/Barrio/Almenara</area>
+						<eventLocation>Centro Cultural Casa de Vacas (Retiro)</eventLocation>
+						<area>https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Retiro/Barrio/LosJeronimos</area>
 						<timetable>
-							<start>2023-09-30 18:00:00.0</start>
-							<end>2023-09-30 23:59:00.0</end></timetable>
-						<georeference>40.46903299144094 -3.6976620067964996</georeference>
+							<start>2023-11-04 19:00:00.0</start>
+							<end>2023-11-04 23:59:00.0</end></timetable>
+						<georeference>40.41906024374356 -3.6840615387926956</georeference>
 				</location>
 				<organization>
 						<accesibility>1</accesibility>
-						<organizationName>Centro Cultural Eduardo Úrculo (Tetuán)</organizationName>
+						<organizationName>Centro Cultural Casa de Vacas (Retiro)</organizationName>
 				</organization>
-				<description>El objetivo es difundir la cultura latinoamericana con un evento lleno de música tradicional y danzas. Duración aproximada: 180 minutos Edad recomendada: todos los públicos.</description>
+				<description></description>
+			</resource>
+			<resource id="https://datos.madrid.es/egob/catalogo/tipo/evento/12106357-aires-oriente.json">
+				<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile"/>
+				<link><![CDATA[http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=0e6bd280f6bca810VgnVCM1000001d4a900aRCRD]]></link>
+				<title>Aires de Oriente</title>
+				<location>
+						<eventLocation>Centro Cultural José Luis López Vázquez (San Blas - Canillejas)</eventLocation>
+						<area>https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/SanBlas-Canillejas/Barrio/Rejas</area>
+						<timetable>
+							<start>2023-10-14 19:00:00.0</start>
+							<end>2023-10-14 23:59:00.0</end></timetable>
+						<georeference>40.446826729909155 -3.5727382893523254</georeference>
+				</location>
+				<organization>
+						<accesibility>2</accesibility>
+						<organizationName>Centro Cultural José Luis López Vázquez (San Blas - Canillejas)</organizationName>
+				</organization>
+				<description></description>
+			</resource>
+			<resource id="https://datos.madrid.es/egob/catalogo/tipo/evento/12112925-akai-vida-cuatro-haikus.json">
+				<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile"/>
+				<link><![CDATA[http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=79ab4d3febada810VgnVCM1000001d4a900aRCRD]]></link>
+				<title>Akai- Vida en cuatro haikus</title>
+				<location>
+						<eventLocation>Centro Cultural el Torito (Moratalaz)</eventLocation>
+						<area>https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Moratalaz/Barrio/Vinateros</area>
+						<timetable>
+							<start>2023-12-05 19:00:00.0</start>
+							<end>2023-12-05 23:59:00.0</end></timetable>
+						<georeference>40.40609591857167 -3.646536107063507</georeference>
+				</location>
+				<organization>
+						<accesibility>1</accesibility>
+						<organizationName>Centro Cultural el Torito (Moratalaz)</organizationName>
+				</organization>
+				<description>Circo  Miscelánea Circo   Es un montaje se combina la manipulación de objetos, la danza, la acrobacia en aro aéreo y la poesía en forma de haiku. Se expresa la rebelión contra lo impuesto, las etapas de la vida y la vuelta a lo más primitivo, teniendo como hilo conductor las estaciones. Duración 1 hora</description>
 			</resource>
 			<resource id="https://datos.madrid.es/egob/catalogo/tipo/evento/12042044-archipielago-desastres.json">
 				<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile"/>
@@ -137,42 +173,6 @@ xsi:schemaLocation="http://www.piat.dte.upm.es/practica4 ./ResultadosBusquedaP4.
 				</organization>
 				<description>Jueves a domingo / 19:30 horas</description>
 			</resource>
-			<resource id="https://datos.madrid.es/egob/catalogo/tipo/evento/12086659-babu-shankar.json">
-				<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile"/>
-				<link><![CDATA[http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=af3928b48056a810VgnVCM1000001d4a900aRCRD]]></link>
-				<title>Babu Shankar</title>
-				<location>
-						<eventLocation>Centro Sociocultural Montecarmelo (Fuencarral - El Pardo)</eventLocation>
-						<area>https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Fuencarral-ElPardo/Barrio/ElGoloso</area>
-						<timetable>
-							<start>2023-09-30 18:30:00.0</start>
-							<end>2023-09-30 23:59:00.0</end></timetable>
-						<georeference>40.51635495615339 -3.685946562681175</georeference>
-				</location>
-				<organization>
-						<accesibility>1</accesibility>
-						<organizationName>Centro Sociocultural Montecarmelo (Fuencarral - El Pardo)</organizationName>
-				</organization>
-				<description>Magia, danza y humor. Cía Patachicle. Producciones y Ana Serzo. Desde la lejana India y esperando por sus principales seguidores, va a llegar el gran Faquir y mago Babu Shankar. El renombrado Faquir Hindú va a exponer una lección de levitación. Magia, danza y humor con un ritmo trepidante, sorpresas, música... ¡seremos testigos de una proeza mundial! Un pasaporte a los Misterios Exóticos de la India.  Edad recomendada: a partir de 3 años.</description>
-			</resource>
-			<resource id="https://datos.madrid.es/egob/catalogo/tipo/evento/12095342-bailar-patios-2023-2024.json">
-				<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile"/>
-				<link><![CDATA[http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=4ec0f84fe188a810VgnVCM1000001d4a900aRCRD]]></link>
-				<title>Bailar los patios 2023 - 2024</title>
-				<location>
-						<eventLocation>Centro de Cultura Contemporánea Conde Duque</eventLocation>
-						<area>https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Centro/Barrio/Universidad</area>
-						<timetable>
-							<start>2023-10-07 12:00:00.0</start>
-							<end>2023-10-08 23:59:00.0</end></timetable>
-						<georeference>40.42739911262292 -3.710589286287491</georeference>
-				</location>
-				<organization>
-						<accesibility>1</accesibility>
-						<organizationName>Centro de Cultura Contemporánea Conde Duque</organizationName>
-				</organization>
-				<description></description>
-			</resource>
 			<resource id="https://datos.madrid.es/egob/catalogo/tipo/evento/12081015-biodanza-espacio-igualdad-nieves-torres.json">
 				<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile"/>
 				<link><![CDATA[http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=e0fb615955c3a810VgnVCM2000001f4a900aRCRD]]></link>
@@ -181,8 +181,8 @@ xsi:schemaLocation="http://www.piat.dte.upm.es/practica4 ./ResultadosBusquedaP4.
 						<eventLocation>Espacio de Igualdad Nieves Torres. Chamartín</eventLocation>
 						<area>https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Chamartin/Barrio/NuevaEspana</area>
 						<timetable>
-							<start>2023-09-07 12:00:00.0</start>
-							<end>2023-09-28 23:59:00.0</end></timetable>
+							<start>2023-10-05 12:00:00.0</start>
+							<end>2023-10-26 23:59:00.0</end></timetable>
 						<georeference>40.46088981165102 -3.6700689174427326</georeference>
 				</location>
 				<organization>

@@ -4,6 +4,7 @@
 options
 {
   STATIC = false;
+  JAVA_TEMPLATE_TYPE = "modern";
   UNICODE_INPUT = true; // Esta opcion permite que el intérpreta sea capaz de reconocer caracteres Unicode extendidos
 }
 
@@ -47,8 +48,8 @@ public class JSONParser implements Runnable
         System.out.println(nombreHilo + "Empezar a descargar de internet el JSON");
         try
         {
-            InputStreamReader inputStream = new InputStreamReader(new URL(fichero).openStream(), "UTF-8");
-            JSONParser parser = new JSONParser(new JSONParserTokenManager(new SimpleCharStream(inputStream)));
+            InputStream inputStream = new URL(fichero).openStream();
+            JSONParser parser = new JSONParser(new JSONParserTokenManager(new SimpleCharStream(new StreamProvider(inputStream, "UTF-8"))));
             JsonElement json = parser.json();
             if (json != null && json.isJsonObject())
             {
@@ -255,35 +256,38 @@ JsonElement value() :
   (
     t = < STRING >
     {
-      return new JsonPrimitive(t.image.substring(1, t.image.length() - 1));
+      e = new JsonPrimitive(t.image.substring(1, t.image.length() - 1));
     }
   | t = < INTEGER >
     {
-      return new JsonPrimitive(Integer.parseInt(t.image));
+      e = new JsonPrimitive(Integer.parseInt(t.image));
     }
   | t = < DOUBLE >
     {
-      return new JsonPrimitive(Double.parseDouble(t.image));
+      e = new JsonPrimitive(Double.parseDouble(t.image));
     }
   | < TRUE >
     {
-      return new JsonPrimitive(true);
+      e = new JsonPrimitive(true);
     }
   | < FALSE >
     {
-      return new JsonPrimitive(false);
+      e = new JsonPrimitive(false);
     }
   | t = < NULL >
     {
-      return JsonNull.INSTANCE;
+      e = JsonNull.INSTANCE;
     }
   | e = object()
     {
-      return e;
+      //return e;
     }
   | e = array()
     {
-      return e;
+      //return e;
     }
   )
+  {
+    return e;
+  }
 }
