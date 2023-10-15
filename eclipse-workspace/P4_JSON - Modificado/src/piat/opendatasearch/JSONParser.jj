@@ -160,10 +160,7 @@ JsonElement json() :
   JsonElement j;
 }
 {
-  (
-    j = object()
-  | j = array()
-  )
+  (j = object()| j = array())
   {
     return j;
   }
