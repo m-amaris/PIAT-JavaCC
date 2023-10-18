@@ -76,7 +76,7 @@ r.setLink(t.image);
       jj_consume_token(AREA);
       jj_consume_token(IDAREA);
       t = jj_consume_token(STRING);
-r.setEventLocation(t.image);
+r.setArea(t.image);
       break;
       }
     default:

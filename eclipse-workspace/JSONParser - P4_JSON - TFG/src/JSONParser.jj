@@ -151,7 +151,7 @@ Resource resource() :
   (< IDCONCEPT >  t = < STRING >){r.setConceptId(t.image);}
   (< TITLE >  t = < STRING >){r.setTitle(t.image);}
   (< LINK >  t = < STRING >){r.setLink(t.image);}
-  (< AREA>(< IDAREA > t = < STRING >){r.setEventLocation(t.image);})?
+  (< AREA>(< IDAREA > t = < STRING >){r.setArea(t.image);})?
   (< EVENT_LOCATION >  t = < STRING >){r.setEventLocation(t.image);}
   (< LATITUDE >  t = < DOUBLE >){r.setLatitude(Double.parseDouble(t.image));}
   (< LONGITUDE >  t = < DOUBLE >){r.setLongitude(Double.parseDouble(t.image));}
