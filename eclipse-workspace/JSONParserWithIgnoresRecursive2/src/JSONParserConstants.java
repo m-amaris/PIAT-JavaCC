@@ -9,47 +9,51 @@ public interface JSONParserConstants {
   /** End of File. */
   int EOF = 0;
   /** RegularExpression Id. */
-  int GRAPHS = 7;
+  int GRAPHS = 14;
   /** RegularExpression Id. */
-  int CONCEPT_ID = 8;
+  int CONCEPT_ID = 15;
   /** RegularExpression Id. */
-  int TITLE = 9;
+  int TITLE = 16;
   /** RegularExpression Id. */
-  int LINK = 10;
+  int LINK = 17;
   /** RegularExpression Id. */
-  int EVENT_LOCATION = 11;
+  int EVENT_LOCATION = 18;
   /** RegularExpression Id. */
-  int AREA = 12;
+  int AREA = 19;
   /** RegularExpression Id. */
-  int LATITUDE = 13;
+  int LATITUDE = 20;
   /** RegularExpression Id. */
-  int LONGITUDE = 14;
+  int LONGITUDE = 21;
   /** RegularExpression Id. */
-  int ACCESIBILITY = 15;
+  int ACCESIBILITY = 22;
   /** RegularExpression Id. */
-  int ORGANIZATION_NAME = 16;
+  int ORGANIZATION_NAME = 23;
   /** RegularExpression Id. */
-  int DESCRIPTION = 17;
+  int DESCRIPTION = 24;
   /** RegularExpression Id. */
-  int ID_RESOURCE = 18;
+  int COMMA = 25;
   /** RegularExpression Id. */
-  int ARRAY_START = 19;
+  int ORGANIZATION_STRING = 26;
   /** RegularExpression Id. */
-  int ARRAY_END = 20;
+  int ID_RESOURCE = 27;
   /** RegularExpression Id. */
-  int STRING = 21;
+  int ARRAY_START = 28;
   /** RegularExpression Id. */
-  int INTEGER = 22;
+  int ARRAY_END = 29;
   /** RegularExpression Id. */
-  int DOUBLE = 23;
+  int STRING = 30;
   /** RegularExpression Id. */
-  int TRUE = 24;
+  int INTEGER = 31;
   /** RegularExpression Id. */
-  int FALSE = 25;
+  int DOUBLE = 32;
   /** RegularExpression Id. */
-  int NULL = 26;
+  int TRUE = 33;
   /** RegularExpression Id. */
-  int ID_AREA = 27;
+  int FALSE = 34;
+  /** RegularExpression Id. */
+  int NULL = 35;
+  /** RegularExpression Id. */
+  int ID_AREA = 36;
 
   /** Lexical state. */
   int ARRAYGRAPH = 0;
@@ -58,11 +62,13 @@ public interface JSONParserConstants {
   /** Lexical state. */
   int INRESOURCE = 2;
   /** Lexical state. */
-  int DEFAULT = 3;
+  int ENDOFRESOURCE = 3;
   /** Lexical state. */
-  int GRAPH = 4;
+  int DEFAULT = 4;
   /** Lexical state. */
-  int INAREA = 5;
+  int GRAPH = 5;
+  /** Lexical state. */
+  int INAREA = 6;
 
   /** Literal token values. */
   String[] tokenImage = {
@@ -73,6 +79,13 @@ public interface JSONParserConstants {
     "\"\\n\"",
     "\",\"",
     "\":\"",
+    "\" \"",
+    "\"\\t\"",
+    "\"\\r\"",
+    "\"\\n\"",
+    "\":\"",
+    "\"}\"",
+    "\"]\"",
     "\"\\\"@graph\\\"\"",
     "\"\\\"@type\\\"\"",
     "\"\\\"title\\\"\"",
@@ -84,6 +97,8 @@ public interface JSONParserConstants {
     "\"\\\"accesibility\\\"\"",
     "\"\\\"organization-name\\\"\"",
     "\"\\\"services\\\"\"",
+    "\",\"",
+    "<ORGANIZATION_STRING>",
     "\"\\\"@id\\\"\"",
     "\"[\"",
     "\"]\"",
@@ -94,7 +109,7 @@ public interface JSONParserConstants {
     "\"false\"",
     "\"null\"",
     "\"\\\"@id\\\"\"",
-    "<token of kind 28>",
+    "<token of kind 37>",
   };
 
 }

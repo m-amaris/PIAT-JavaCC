@@ -43,7 +43,6 @@ return resourceList;
       r = resource();
 resourceList.add(r);
     }
-    jj_consume_token(ARRAY_END);
 return resourceList;
 }
 
@@ -51,38 +50,55 @@ return resourceList;
   Token t;
     jj_consume_token(ID_RESOURCE);
     t = jj_consume_token(STRING);
-System.out.println("@id : "+t.image);/*r.setResourceId(t.image);*/
+System.out.println("@id : "+t.image);r.setResourceId(t.image);
     jj_consume_token(CONCEPT_ID);
     t = jj_consume_token(STRING);
-System.out.println("@type : "+t.image);/*r.setConceptId(t.image);*/
+System.out.println("@type : "+t.image);r.setConceptId(t.image);
     jj_consume_token(TITLE);
     t = jj_consume_token(STRING);
-System.out.println("title : "+t.image);/*r.setTitle(t.image);*/
+System.out.println("title : "+t.image);r.setTitle(t.image);
     jj_consume_token(LINK);
     t = jj_consume_token(STRING);
-System.out.println("relation : "+t.image);/*r.setLink(t.image);*/
-    jj_consume_token(AREA);
-    jj_consume_token(ID_AREA);
-    t = jj_consume_token(STRING);
-System.out.println("area : "+t.image);/*r.setEventLocation(t.image);*/
+System.out.println("relation : "+t.image);r.setLink(t.image);
+    switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
+    case AREA:{
+      jj_consume_token(AREA);
+      jj_consume_token(ID_AREA);
+      t = jj_consume_token(STRING);
+System.out.println("area : "+t.image);r.setEventLocation(t.image);
+      break;
+      }
+    default:
+      jj_la1[1] = jj_gen;
+      ;
+    }
     jj_consume_token(EVENT_LOCATION);
     t = jj_consume_token(STRING);
-System.out.println("street-address : "+t.image);/*r.setEventLocation(t.image);*/
+System.out.println("street-address : "+t.image);r.setEventLocation(t.image);
     jj_consume_token(LATITUDE);
     t = jj_consume_token(DOUBLE);
-System.out.println("latitude : "+Double.parseDouble(t.image));/*r.setLatitude(Double.parseDouble(t.image));*/
+System.out.println("latitude : "+Double.parseDouble(t.image));r.setLatitude(Double.parseDouble(t.image));
     jj_consume_token(LONGITUDE);
     t = jj_consume_token(DOUBLE);
-System.out.println("longitude : "+Double.parseDouble(t.image));/*r.setLongitude(Double.parseDouble(t.image));*/
+System.out.println("longitude : "+Double.parseDouble(t.image));r.setLongitude(Double.parseDouble(t.image));
     jj_consume_token(ACCESIBILITY);
     t = jj_consume_token(STRING);
-System.out.println("accesibility : "+t.image);/*r.setAccesibility(t.image);*/
+System.out.println("accesibility : "+t.image);r.setAccesibility(t.image);
     jj_consume_token(DESCRIPTION);
     t = jj_consume_token(STRING);
-System.out.println("services : "+t.image);/*r.setDescription(t.image);*/
+System.out.println("services : "+t.image);r.setDescription(t.image);
     jj_consume_token(ORGANIZATION_NAME);
-    t = jj_consume_token(STRING);
-System.out.println("organization-name : "+t.image);/*r.setOrganizationName(t.image);*/
+    t = jj_consume_token(ORGANIZATION_STRING);
+System.out.println("organization-name : "+t.image);r.setOrganizationName(t.image);
+    switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
+    case COMMA:{
+      jj_consume_token(COMMA);
+      break;
+      }
+    default:
+      jj_la1[2] = jj_gen;
+      ;
+    }
 return r;
 }
 
@@ -95,13 +111,18 @@ return r;
   public Token jj_nt;
   private int jj_ntk;
   private int jj_gen;
-  final private int[] jj_la1 = new int[1];
+  final private int[] jj_la1 = new int[3];
   static private int[] jj_la1_0;
+  static private int[] jj_la1_1;
   static {
 	   jj_la1_init_0();
+	   jj_la1_init_1();
 	}
 	private static void jj_la1_init_0() {
-	   jj_la1_0 = new int[] {0x40000,};
+	   jj_la1_0 = new int[] {0x8000000,0x80000,0x2000000,};
+	}
+	private static void jj_la1_init_1() {
+	   jj_la1_1 = new int[] {0x0,0x0,0x0,};
 	}
 
   /** Constructor. */
@@ -111,7 +132,7 @@ return r;
 	 token = new Token();
 	 jj_ntk = -1;
 	 jj_gen = 0;
-	 for (int i = 0; i < 1; i++) jj_la1[i] = -1;
+	 for (int i = 0; i < 3; i++) jj_la1[i] = -1;
   }
 
   /** Constructor. */
@@ -137,7 +158,7 @@ return r;
 	 token = new Token();
 	 jj_ntk = -1;
 	 jj_gen = 0;
-	 for (int i = 0; i < 1; i++) jj_la1[i] = -1;
+	 for (int i = 0; i < 3; i++) jj_la1[i] = -1;
   }
 
   /** Constructor with generated Token Manager. */
@@ -146,7 +167,7 @@ return r;
 	 token = new Token();
 	 jj_ntk = -1;
 	 jj_gen = 0;
-	 for (int i = 0; i < 1; i++) jj_la1[i] = -1;
+	 for (int i = 0; i < 3; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -155,7 +176,7 @@ return r;
 	 token = new Token();
 	 jj_ntk = -1;
 	 jj_gen = 0;
-	 for (int i = 0; i < 1; i++) jj_la1[i] = -1;
+	 for (int i = 0; i < 3; i++) jj_la1[i] = -1;
   }
 
   private Token jj_consume_token(int kind) throws ParseException {
@@ -206,21 +227,24 @@ return r;
   /** Generate ParseException. */
   public ParseException generateParseException() {
 	 jj_expentries.clear();
-	 boolean[] la1tokens = new boolean[29];
+	 boolean[] la1tokens = new boolean[38];
 	 if (jj_kind >= 0) {
 	   la1tokens[jj_kind] = true;
 	   jj_kind = -1;
 	 }
-	 for (int i = 0; i < 1; i++) {
+	 for (int i = 0; i < 3; i++) {
 	   if (jj_la1[i] == jj_gen) {
 		 for (int j = 0; j < 32; j++) {
 		   if ((jj_la1_0[i] & (1<<j)) != 0) {
 			 la1tokens[j] = true;
 		   }
+		   if ((jj_la1_1[i] & (1<<j)) != 0) {
+			 la1tokens[32+j] = true;
+		   }
 		 }
 	   }
 	 }
-	 for (int i = 0; i < 29; i++) {
+	 for (int i = 0; i < 38; i++) {
 	   if (la1tokens[i]) {
 		 jj_expentry = new int[1];
 		 jj_expentry[0] = i;

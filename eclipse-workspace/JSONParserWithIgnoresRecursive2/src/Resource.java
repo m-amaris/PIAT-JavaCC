@@ -4,8 +4,8 @@ public class Resource {
 	private String conceptId;//@type
 	private String title;
 	private String link; //relation
-	private String eventLocation; //street-address
 	private String area;
+	private String eventLocation; //street-address
 	private String startDate;
 	private String startTime;
 	private String endDate;
@@ -13,9 +13,8 @@ public class Resource {
 	private double latitude;
 	private double longitude;
 	private String accesibility;
-	private String organizationName;
 	private String description;//services
-	
+	private String organizationName;
 	public String getResourceId() {
 		return resourceId;
 	}
@@ -28,29 +27,29 @@ public class Resource {
 	public void setConceptId(String conceptId) {
 		this.conceptId = conceptId;
 	}
-	public String getLink() {
-		return link;
-	}
-	public void setLink(String link) {
-		this.link = link;
-	}
 	public String getTitle() {
 		return title;
 	}
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getEventLocation() {
-		return eventLocation;
+	public String getLink() {
+		return link;
 	}
-	public void setEventLocation(String eventLocation) {
-		this.eventLocation = eventLocation;
+	public void setLink(String link) {
+		this.link = link;
 	}
 	public String getArea() {
 		return area;
 	}
 	public void setArea(String area) {
 		this.area = area;
+	}
+	public String getEventLocation() {
+		return eventLocation;
+	}
+	public void setEventLocation(String eventLocation) {
+		this.eventLocation = eventLocation;
 	}
 	public String getStartDate() {
 		return startDate;
@@ -94,18 +93,28 @@ public class Resource {
 	public void setAccesibility(String accesibility) {
 		this.accesibility = accesibility;
 	}
-	public String getOrganizationName() {
-		return organizationName;
-	}
-	public void setOrganizationName(String organizationName) {
-		this.organizationName = organizationName;
-	}
 	public String getDescription() {
 		return description;
 	}
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	public String getOrganizationName() {
+		return organizationName;
+	}
+	public void setOrganizationName(String organizationName) {
+		this.organizationName = organizationName;
+	}
+	@Override
+	public String toString() {
+		return "Resource [resourceId=" + resourceId + ", conceptId=" + conceptId + ", title=" + title + ", link=" + link
+				+ ", area=" + area + ", eventLocation=" + eventLocation + ", startDate=" + startDate + ", startTime="
+				+ startTime + ", endDate=" + endDate + ", endTime=" + endTime + ", latitude=" + latitude
+				+ ", longitude=" + longitude + ", accesibility=" + accesibility + ", description=" + description
+				+ ", organizationName=" + organizationName + "]";
+	}
+	
+	
 	
 	
 	

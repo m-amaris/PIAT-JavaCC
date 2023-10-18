@@ -18,7 +18,7 @@ public class JSONParser
       List < Resource > json = parser.document();
 	  System.out.println(json);
     }
-    catch (IOException e)
+    catch (IOException e) 
     {
       e.printStackTrace();
     }
@@ -39,7 +39,17 @@ SKIP :
 | ","
 | ":"
 }
-
+< ENDOFRESOURCE>
+SKIP :
+{
+  " " 
+| "\t" 
+| "\r" 
+| "\n"
+| ":"
+| "}"
+| "]" : DEFAULT
+}
 
 TOKEN :
 {
@@ -59,9 +69,16 @@ TOKEN:
 | < LATITUDE : "\"latitude\"">: DETECT
 | < LONGITUDE : "\"longitude\"">: DETECT
 | < ACCESIBILITY : "\"accesibility\"">: DETECT
-| < ORGANIZATION_NAME : "\"organization-name\"">: DETECT
+| < ORGANIZATION_NAME : "\"organization-name\""> : ENDOFRESOURCE
 | < DESCRIPTION : "\"services\"">: DETECT
 
+}
+
+< ENDOFRESOURCE >
+TOKEN:
+{
+   < COMMA : "," > :GRAPH
+|  < ORGANIZATION_STRING : "\"" (~["\"", "\n", "\r"]) * "\"">
 }
 
 < GRAPH > 
@@ -84,7 +101,7 @@ TOKEN:
 | < TRUE : "true" > :INRESOURCE
 | < FALSE : "false" > :INRESOURCE
 | < NULL : "null" >:INRESOURCE
-//| < OBJECT_END : "}" > :GRAPH
+
 }
 
 < INAREA>
@@ -105,6 +122,7 @@ List < Resource > document() :
 }
 {
   (< GRAPHS > resourceList = arrayGraph())
+  
   {return resourceList;}
 }
 
@@ -118,7 +136,8 @@ List < Resource > arrayGraph() :
 {
   < ARRAY_START > 
   (r = resource(){resourceList.add(r);})*
-  < ARRAY_END >
+  //< ARRAY_END >
+  
   {return resourceList;}
 }
 
@@ -129,19 +148,21 @@ Resource resource() :
 }
 {
   //< OBJECT_START >
-  (< ID_RESOURCE > t = < STRING >){System.out.println("@id : "+t.image);/*r.setResourceId(t.image);*/}
-  (< CONCEPT_ID >  t = < STRING >){System.out.println("@type : "+t.image);/*r.setConceptId(t.image);*/}
-  (< TITLE >  t = < STRING >){System.out.println("title : "+t.image);/*r.setTitle(t.image);*/}
-  (< LINK >  t = < STRING >){System.out.println("relation : "+t.image);/*r.setLink(t.image);*/}
+  (< ID_RESOURCE > t = < STRING >){System.out.println("@id : "+t.image);r.setResourceId(t.image);}
+  (< CONCEPT_ID >  t = < STRING >){System.out.println("@type : "+t.image);r.setConceptId(t.image);}
+  (< TITLE >  t = < STRING >){System.out.println("title : "+t.image);r.setTitle(t.image);}
+  (< LINK >  t = < STRING >){System.out.println("relation : "+t.image);r.setLink(t.image);}
   
-  < AREA>(< ID_AREA > t = < STRING >){System.out.println("area : "+t.image);/*r.setEventLocation(t.image);*/}
-  (< EVENT_LOCATION >  t = < STRING >){System.out.println("street-address : "+t.image);/*r.setEventLocation(t.image);*/}
-  (< LATITUDE >  t = < DOUBLE >){System.out.println("latitude : "+Double.parseDouble(t.image));/*r.setLatitude(Double.parseDouble(t.image));*/}
-  (< LONGITUDE >  t = < DOUBLE >){System.out.println("longitude : "+Double.parseDouble(t.image));/*r.setLongitude(Double.parseDouble(t.image));*/}
-  (< ACCESIBILITY >  t = < STRING >){System.out.println("accesibility : "+t.image);/*r.setAccesibility(t.image);*/}
-  (< DESCRIPTION >  t = < STRING >){System.out.println("services : "+t.image);/*r.setDescription(t.image);*/}
-  (< ORGANIZATION_NAME >  t = < STRING >){System.out.println("organization-name : "+t.image);/*r.setOrganizationName(t.image);*/}
-  //< OBJECT_END >
+  (< AREA>(< ID_AREA > t = < STRING >){System.out.println("area : "+t.image);r.setEventLocation(t.image);})?
+  (< EVENT_LOCATION >  t = < STRING >){System.out.println("street-address : "+t.image);r.setEventLocation(t.image);}
+  (< LATITUDE >  t = < DOUBLE >){System.out.println("latitude : "+Double.parseDouble(t.image));r.setLatitude(Double.parseDouble(t.image));}
+  (< LONGITUDE >  t = < DOUBLE >){System.out.println("longitude : "+Double.parseDouble(t.image));r.setLongitude(Double.parseDouble(t.image));}
+  (< ACCESIBILITY >  t = < STRING >){System.out.println("accesibility : "+t.image);r.setAccesibility(t.image);}
+  (< DESCRIPTION >  t = < STRING >){System.out.println("services : "+t.image);r.setDescription(t.image);}
+  (< ORGANIZATION_NAME >t = < ORGANIZATION_STRING >){System.out.println("organization-name : "+t.image);r.setOrganizationName(t.image);}
+  (< COMMA > )?
+  
+//< OBJECT_END >
   {return r;}
 }
 
