@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>JSONParserWithIgnoresRecursive</name>
+	<name>JSONParser - Pila de Estados</name>
 	<comment>JavaCC Nature</comment>
 	<projects>
 	</projects>
