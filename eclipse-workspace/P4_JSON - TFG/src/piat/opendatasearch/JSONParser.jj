@@ -162,6 +162,7 @@ JsonElement json() :
 {
   (j = object()| j = array())
   {
+    System.out.println(j);
     return j;
   }
 }

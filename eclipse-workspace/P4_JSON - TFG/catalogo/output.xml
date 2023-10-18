@@ -119,24 +119,6 @@ xsi:schemaLocation="http://www.piat.dte.upm.es/practica4 ./ResultadosBusquedaP4.
 				</organization>
 				<description></description>
 			</resource>
-			<resource id="https://datos.madrid.es/egob/catalogo/tipo/evento/12106357-aires-oriente.json">
-				<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile"/>
-				<link><![CDATA[http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=0e6bd280f6bca810VgnVCM1000001d4a900aRCRD]]></link>
-				<title>Aires de Oriente</title>
-				<location>
-						<eventLocation>Centro Cultural José Luis López Vázquez (San Blas - Canillejas)</eventLocation>
-						<area>https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/SanBlas-Canillejas/Barrio/Rejas</area>
-						<timetable>
-							<start>2023-10-14 19:00:00.0</start>
-							<end>2023-10-14 23:59:00.0</end></timetable>
-						<georeference>40.446826729909155 -3.5727382893523254</georeference>
-				</location>
-				<organization>
-						<accesibility>2</accesibility>
-						<organizationName>Centro Cultural José Luis López Vázquez (San Blas - Canillejas)</organizationName>
-				</organization>
-				<description></description>
-			</resource>
 			<resource id="https://datos.madrid.es/egob/catalogo/tipo/evento/12112925-akai-vida-cuatro-haikus.json">
 				<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile"/>
 				<link><![CDATA[http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=79ab4d3febada810VgnVCM1000001d4a900aRCRD]]></link>
@@ -206,6 +188,24 @@ xsi:schemaLocation="http://www.piat.dte.upm.es/practica4 ./ResultadosBusquedaP4.
 				<organization>
 						<accesibility>1</accesibility>
 						<organizationName>Espacio de Igualdad Lourdes Hernández. Carabanchel</organizationName>
+				</organization>
+				<description></description>
+			</resource>
+			<resource id="https://datos.madrid.es/egob/catalogo/tipo/evento/12119914-compania-algarabia.json">
+				<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile"/>
+				<link><![CDATA[http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=c6882892905fa810VgnVCM1000001d4a900aRCRD]]></link>
+				<title>Compañía Algarabía</title>
+				<location>
+						<eventLocation>Centro Cultural Juan Genovés (Moncloa - Aravaca)</eventLocation>
+						<area>https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Moncloa-Aravaca/Barrio/Aravaca</area>
+						<timetable>
+							<start>2023-10-28 19:00:00.0</start>
+							<end>2023-10-28 23:59:00.0</end></timetable>
+						<georeference>40.45866721398762 -3.786129575145957</georeference>
+				</location>
+				<organization>
+						<accesibility>1</accesibility>
+						<organizationName>Centro Cultural Juan Genovés (Moncloa - Aravaca)</organizationName>
 				</organization>
 				<description></description>
 			</resource>
