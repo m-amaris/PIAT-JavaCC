@@ -69,14 +69,16 @@ TOKEN:
 {
   < IDCONCEPT : "\"@type\"" > : GETVALUE
 | < TITLE : "\"title\"">: GETVALUE
-| < LINK : "\"relation\"">: GETVALUE
-| < EVENT_LOCATION : "\"street-address\"">: GETVALUE
+| < DESCRIPTION : "\"description\"">: GETVALUE
+| < TIME_START : "\"dtstart\"">: GETVALUE
+| < TIME_END : "\"dtend\"">: GETVALUE
+| < LINK : "\"link\"">: GETVALUE
+| < EVENT_LOCATION : "\"event-location\"">: GETVALUE
 | < AREA : "\"area\""> : INAREA 
 | < LATITUDE : "\"latitude\"">: GETVALUE
 | < LONGITUDE : "\"longitude\"">: GETVALUE
-| < ACCESIBILITY : "\"accesibility\"">: GETVALUE
-| < DESCRIPTION : "\"services\"">: GETVALUE
-| < ORGANIZATION_NAME : "\"organization-name\""> : RESOURCE_END
+| < ORGANIZATION_NAME : "\"organization-name\""> :GETVALUE 
+| < ACCESIBILITY : "\"accesibility\"">: RESOURCE_END
 }
 
 
@@ -88,7 +90,7 @@ TOKEN:
 	When the token is detected, it exits the resource, and gets back to the graph.
 	Skips everything but the ORGANIZATION_STRING token. **/
 < RESOURCE_END>
-TOKEN: {< ORGANIZATION_STRING : "\"" (~["\"", "\n", "\r"]) * "\""> : GRAPH}
+TOKEN: {< ACCESIBILITY_STRING : "\"" (~["\"", "\n", "\r"]) * "\""> : GRAPH}
 
 
 /**	Estado léxico que recoge el valor del los tokens dentro del recurso.
@@ -158,14 +160,16 @@ Resource resource() :
   (< IDRESOURCE > t = < STRING >){r.setResourceId(t.image);}
   (< IDCONCEPT >  t = < STRING >){r.setConceptId(t.image);}
   (< TITLE >  t = < STRING >){r.setTitle(t.image);}
+  (< DESCRIPTION >  t = < STRING >){r.setDescription(t.image);}
+  (< TIME_START > t = < STRING > {r.setStartDate(t.image); })
+  (< TIME_END > t = < STRING > {r.setEndDate(t.image); })
   (< LINK >  t = < STRING >){r.setLink(t.image);}
-  (< AREA>(< IDAREA > t = < STRING >){r.setArea(t.image);})?
   (< EVENT_LOCATION >  t = < STRING >){r.setEventLocation(t.image);}
+  (< AREA>(< IDAREA > t = < STRING >){r.setArea(t.image);})
   (< LATITUDE >  t = < DOUBLE >){r.setLatitude(Double.parseDouble(t.image));}
   (< LONGITUDE >  t = < DOUBLE >){r.setLongitude(Double.parseDouble(t.image));}
-  (< ACCESIBILITY >  t = < STRING >){r.setAccesibility(t.image);}
-  (< DESCRIPTION >  t = < STRING >){r.setDescription(t.image);}
-  (< ORGANIZATION_NAME >t = < ORGANIZATION_STRING >){r.setOrganizationName(t.image);}
+  (< ORGANIZATION_NAME >t = < STRING >){r.setOrganizationName(t.image);}
+  (< ACCESIBILITY >  t = < ACCESIBILITY_STRING >){r.setAccesibility(t.image);}
   
   {return r;}
 }

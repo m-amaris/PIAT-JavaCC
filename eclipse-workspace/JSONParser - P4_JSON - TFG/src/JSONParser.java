@@ -54,39 +54,37 @@ r.setConceptId(t.image);
     jj_consume_token(TITLE);
     t = jj_consume_token(STRING);
 r.setTitle(t.image);
+    jj_consume_token(DESCRIPTION);
+    t = jj_consume_token(STRING);
+r.setDescription(t.image);
+    jj_consume_token(TIME_START);
+    t = jj_consume_token(STRING);
+r.setStartDate(t.image);
+    jj_consume_token(TIME_END);
+    t = jj_consume_token(STRING);
+r.setEndDate(t.image);
     jj_consume_token(LINK);
     t = jj_consume_token(STRING);
 r.setLink(t.image);
-    switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
-    case AREA:{
-      jj_consume_token(AREA);
-      jj_consume_token(IDAREA);
-      t = jj_consume_token(STRING);
-r.setArea(t.image);
-      break;
-      }
-    default:
-      jj_la1[1] = jj_gen;
-      ;
-    }
     jj_consume_token(EVENT_LOCATION);
     t = jj_consume_token(STRING);
 r.setEventLocation(t.image);
+    jj_consume_token(AREA);
+    jj_consume_token(IDAREA);
+    t = jj_consume_token(STRING);
+r.setArea(t.image);
     jj_consume_token(LATITUDE);
     t = jj_consume_token(DOUBLE);
 r.setLatitude(Double.parseDouble(t.image));
     jj_consume_token(LONGITUDE);
     t = jj_consume_token(DOUBLE);
 r.setLongitude(Double.parseDouble(t.image));
-    jj_consume_token(ACCESIBILITY);
-    t = jj_consume_token(STRING);
-r.setAccesibility(t.image);
-    jj_consume_token(DESCRIPTION);
-    t = jj_consume_token(STRING);
-r.setDescription(t.image);
     jj_consume_token(ORGANIZATION_NAME);
-    t = jj_consume_token(ORGANIZATION_STRING);
+    t = jj_consume_token(STRING);
 r.setOrganizationName(t.image);
+    jj_consume_token(ACCESIBILITY);
+    t = jj_consume_token(ACCESIBILITY_STRING);
+r.setAccesibility(t.image);
 return r;
 }
 
@@ -99,13 +97,13 @@ return r;
   public Token jj_nt;
   private int jj_ntk;
   private int jj_gen;
-  final private int[] jj_la1 = new int[2];
+  final private int[] jj_la1 = new int[1];
   static private int[] jj_la1_0;
   static {
 	   jj_la1_init_0();
 	}
 	private static void jj_la1_init_0() {
-	   jj_la1_0 = new int[] {0x4,0x200,};
+	   jj_la1_0 = new int[] {0x4,};
 	}
 
   /** Constructor. */
@@ -115,7 +113,7 @@ return r;
 	 token = new Token();
 	 jj_ntk = -1;
 	 jj_gen = 0;
-	 for (int i = 0; i < 2; i++) jj_la1[i] = -1;
+	 for (int i = 0; i < 1; i++) jj_la1[i] = -1;
   }
 
   /** Constructor. */
@@ -141,7 +139,7 @@ return r;
 	 token = new Token();
 	 jj_ntk = -1;
 	 jj_gen = 0;
-	 for (int i = 0; i < 2; i++) jj_la1[i] = -1;
+	 for (int i = 0; i < 1; i++) jj_la1[i] = -1;
   }
 
   /** Constructor with generated Token Manager. */
@@ -150,7 +148,7 @@ return r;
 	 token = new Token();
 	 jj_ntk = -1;
 	 jj_gen = 0;
-	 for (int i = 0; i < 2; i++) jj_la1[i] = -1;
+	 for (int i = 0; i < 1; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -159,7 +157,7 @@ return r;
 	 token = new Token();
 	 jj_ntk = -1;
 	 jj_gen = 0;
-	 for (int i = 0; i < 2; i++) jj_la1[i] = -1;
+	 for (int i = 0; i < 1; i++) jj_la1[i] = -1;
   }
 
   private Token jj_consume_token(int kind) throws ParseException {
@@ -210,12 +208,12 @@ return r;
   /** Generate ParseException. */
   public ParseException generateParseException() {
 	 jj_expentries.clear();
-	 boolean[] la1tokens = new boolean[24];
+	 boolean[] la1tokens = new boolean[26];
 	 if (jj_kind >= 0) {
 	   la1tokens[jj_kind] = true;
 	   jj_kind = -1;
 	 }
-	 for (int i = 0; i < 2; i++) {
+	 for (int i = 0; i < 1; i++) {
 	   if (jj_la1[i] == jj_gen) {
 		 for (int j = 0; j < 32; j++) {
 		   if ((jj_la1_0[i] & (1<<j)) != 0) {
@@ -224,7 +222,7 @@ return r;
 		 }
 	   }
 	 }
-	 for (int i = 0; i < 24; i++) {
+	 for (int i = 0; i < 26; i++) {
 	   if (la1tokens[i]) {
 		 jj_expentry = new int[1];
 		 jj_expentry[0] = i;

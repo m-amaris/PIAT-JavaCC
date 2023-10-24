@@ -1,11 +1,8 @@
-/JSONParser.java
-/JSONParserConstants.java
-/JSONParserTokenManager.java
 /ParseException.java
-/Provider.java
 /SimpleCharStream.java
-/StreamProvider.java
 /Token.java
 /TokenMgrError.java
-/TokenMgrError.java
+/XMLParser.java
+/XMLParserConstants.java
+/XMLParserTokenManager.java
 
