@@ -76,7 +76,7 @@ SKIP :
   < ~[ ] >
 }
 
-ManejadorXML document(String code) :
+ManejadorXML processFile(String code) :
 {
   conceptsList = new ArrayList < Concept > ();
   datasetsList = new ArrayList < Dataset > ();
