@@ -9,20 +9,10 @@ package piat.opendatasearch;
 import java.util.List;
 import java.util.ArrayList;
 public class XMLParser{
-	private static List < Concept > conceptsList;
-	private static List < Dataset > datasetsList;
-	private static String conceptLabel;
-	private  static String nombreCategoria;
-
-	public List< Concept > getConcepts() {
-		return conceptsList;
-	}
-	public List < Dataset > getDatasets() {
-		return datasetsList;
-	}
-	public String getLabel() {
-		return nombreCategoria;
-	}
+	private List < Concept > conceptsList;
+	private List < Dataset > datasetsList;
+	private String conceptLabel;
+	private String nombreCategoria;
 }
 PARSER_END(XMLParser) 
 
@@ -95,37 +85,37 @@ ManejadorXML processFile(String code) :
 
 Concept concept() :
 {
-  Token id;
-  String code, label;
-  Concept concept; 
+  Token idValue;
+  String codeValue, labelValue;
+  Concept childConcept; 
   List < Concept > concepts = new ArrayList < Concept > ();
 }
 {
-  < OPEN_CONCEPT > < ID > id = < STRING > < END_ELEMENT > 
-  < OPEN_CODE > code = getCode() < CLOSE_CODE > 
-  < OPEN_LABEL > label = getValue() < CLOSE_LABEL >
+  < OPEN_CONCEPT > < ID > idValue = < STRING > < END_ELEMENT > 
+  < OPEN_CODE > codeValue = getCode() < CLOSE_CODE > 
+  < OPEN_LABEL > labelValue = getValue() < CLOSE_LABEL >
   (
     < OPEN_CONCEPTS >
     (
-      concept = concept()
+      childConcept = concept()
       {
-        concepts.add(concept);
+        concepts.add(childConcept);
       }
     )+
     < CLOSE_CONCEPTS >
   )?
   < CLOSE_CONCEPT >
   {
-    if(code.equals(nombreCategoria)) {
-      conceptLabel = id.image;
-      conceptsList.add(new Concept(id.image, code, label, concepts));
+    if(codeValue.equals(nombreCategoria)) {
+      conceptLabel = idValue.image;
+      conceptsList.add(new Concept(idValue.image, codeValue, labelValue, concepts));
 	}
-	return new Concept(id.image, code, label, concepts);
+	return new Concept(idValue.image, codeValue, labelValue, concepts);
   }
 }
 
 
-Dataset dataset() :
+void dataset() :
 {
   Token idDataset, idConcept;
   String title;
@@ -159,7 +149,7 @@ Dataset dataset() :
     	datasetsList.add(new Dataset(idDataset.image, title, description, keyword,theme,publisher,idConcepts));
       }
     }
-    return new Dataset(idDataset.image, title, description, keyword,theme,publisher,idConcepts);
+    //return new Dataset(idDataset.image, title, description, keyword,theme,publisher,idConcepts);
   }
 
 }

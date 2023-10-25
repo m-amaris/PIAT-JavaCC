@@ -1,39 +1,69 @@
 package piat.opendatasearch;
 import java.util.List;
 
+/**
+ * A Java class that represents a concept.
+ */
 public class Concept {
-	private String id;
-	private String code;
-	private String label;
-	private List<Concept> concepts;
+    private final String id;
+	private final String code;
+	private final String label;
+    private final List<Concept> concepts;
 
-	public Concept(String id, String code, String label, List<Concept> concepts) {
-		this.id = id;
-		this.code = code;
-		this.label = label;
-		this.concepts = concepts;
-	}
+    /**
+     * Constructs a new Concept object.
+     *
+     * @param id        the unique identifier of the concept
+     * @param code      the code of the concept
+     * @param label     the label of the concept
+     * @param concepts  the list of nested concepts
+     */
+    public Concept(String id, String code, String label, List<Concept> concepts) {
+        this.id = id;
+        this.code = code;
+        this.label = label;
+        this.concepts = concepts;
+    }
 
-	public String getCode() {
-		return code;
-	}
+    /**
+     * Returns the code of the concept.
+     *
+     * @return the code of the concept
+     */
+    public final String getCode() {
+        return code;
+    }
 
-	public String getId() {
-		return id;
-	}
-	
-	public List<Concept> getConcepts() {
-		return concepts;
-	}
+    /**
+     * Returns the unique identifier of the concept.
+     *
+     * @return the unique identifier of the concept
+     */
+    public final String getId() {
+        return id;
+    }
 
-	@Override
-	public String toString() {
-		String s = "\n{\n \"concept\" : { \n \"id\" : " + id + ",\n \"code\" : \"" + code + "\",\n \"label\" : \"" + label + "\"";
-		if (!(concepts.isEmpty())) {
-			s = s.concat(",\n \"concepts\" : " + concepts + ",");
-		}
-		s = s.concat("}\n}");
-		return s;
-	}
-	
+    /**
+     * Returns the list of nested concepts.
+     *
+     * @return the list of nested concepts
+     */
+    public final List<Concept> getConcepts() {
+        return concepts;
+    }
+
+    @Override
+    public final String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("{\n");
+        builder.append(" \"concept\" : {\n");
+        builder.append("   \"id\" : ").append(id).append(",\n");
+        builder.append("   \"code\" : \"").append(code).append("\",\n");
+        builder.append("   \"label\" : \"").append(label).append("\"");
+        if (!(concepts.isEmpty())) {
+            builder.append(",\n \"concepts\" : ").append(concepts).append(",");
+        }
+        builder.append("\n}\n}");
+        return builder.toString();
+    }
 }
