@@ -108,9 +108,9 @@ Concept concept() :
   {
     if(codeValue.equals(nombreCategoria)) {
       conceptLabel = idValue.image;
-      conceptsList.add(new Concept(idValue.image, codeValue, labelValue, concepts));
+      conceptsList.add(new Concept(idValue.image.replace("\"", ""), codeValue, labelValue, concepts));
 	}
-	return new Concept(idValue.image, codeValue, labelValue, concepts);
+	return new Concept(idValue.image.replace("\"", ""), codeValue, labelValue, concepts);
   }
 }
 
@@ -146,7 +146,7 @@ void dataset() :
   {
     for(IdConcept ic : idConcepts) {
       if(ic.getId().equals(conceptLabel)) {
-    	datasetsList.add(new Dataset(idDataset.image, title, description, keyword,theme,publisher,idConcepts));
+    	datasetsList.add(new Dataset(idDataset.image.replace("\"", ""), title, description, keyword,theme,publisher,idConcepts));
       }
     }
     //return new Dataset(idDataset.image, title, description, keyword,theme,publisher,idConcepts);

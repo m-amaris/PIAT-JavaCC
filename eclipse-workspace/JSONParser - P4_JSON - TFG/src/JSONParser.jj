@@ -1,7 +1,8 @@
 options
 {
   STATIC = false;
-  JAVA_TEMPLATE_TYPE = "modern";
+  JAVA_TEMPLATE_TYPE = "modern"; // Para que no salgan errores guarros en el .java (DEAD CODE)
+  UNICODE_INPUT=true; // Permite reconocer caracteres Unicode sin que todo explote :) Especificar el encoding (UTF-8)
 }
 
 PARSER_BEGIN(JSONParser)
@@ -16,7 +17,6 @@ public class JSONParser
     {
       parser = new JSONParser(new JSONParserTokenManager(new SimpleCharStream(new StreamProvider(new FileInputStream(args[0]), "UTF-8"))));
       List < Resource > resourceList = parser.document();
-	  System.out.println(resourceList);
     }
     catch (IOException e) 
     {
@@ -51,7 +51,6 @@ TOKEN :
 {
   < IDRESOURCE: "\"@id\"" > : GETVALUE
 | < ARRAY_START : "[" > 
-
 }
 
 
@@ -84,7 +83,7 @@ TOKEN:
 < RESOURCE>
 SKIP:
 {
-< END_LAST_OBJECT: "},\n\t\t{"  > { System.out.println("nuevo recurso: ");} : GRAPH
+< END_LAST_OBJECT: "},\n	{"  > : GRAPH
 }
 
 /**	Analiza el string del token "organization-name", que es el último token que nos interesa del recurso.
@@ -94,8 +93,8 @@ SKIP:
 	Analyze the string of the "organization-name" token, which is the last token we are interested on inside the resource.
 	When the token is detected, it exits the resource, and gets back to the graph.
 	Skips everything but the ORGANIZATION_STRING token. **/
-< RESOURCE_END>
-TOKEN: {< ACCESIBILITY_STRING : "\"" (~["\"", "\n", "\r"]) * "\""> : GRAPH}
+//< RESOURCE_END>
+//TOKEN: {< ACCESIBILITY_STRING : "\"" (~["\"", "\n", "\r"]) * "\""> : GRAPH}
 
 
 /**	Estado léxico que recoge el valor del los tokens dentro del recurso.
@@ -165,11 +164,10 @@ Resource resource() :
   (< AREA>(< IDAREA > t = < STRING >){r.setArea(t.image);})?
   (< LATITUDE >  t = < DOUBLE >)?{if(!t.image.toString().equals("\"\""))r.setLatitude(Double.parseDouble(t.image));}
   (< LONGITUDE >  t = < DOUBLE >)?{if(!t.image.toString().equals("\"\""))r.setLongitude(Double.parseDouble(t.image));}
-  (< ORGANIZATION_NAME >t = < STRING >)?{r.setOrganizationName(t.image);}
+  (< ORGANIZATION_NAME > t = < STRING >)?{r.setOrganizationName(t.image);}
   (< ACCESIBILITY >  t = < STRING >)?{r.setAccesibility(t.image);}
   
   {
-	System.out.println(r);
     return r;}
 }
 

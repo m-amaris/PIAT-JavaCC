@@ -10,7 +10,6 @@ public class JSONParser implements JSONParserConstants {
     {
       parser = new JSONParser(new JSONParserTokenManager(new SimpleCharStream(new StreamProvider(new FileInputStream(args[0]), "UTF-8"))));
       List < Resource > resourceList = parser.document();
-          System.out.println(resourceList);
     }
     catch (IOException e)
     {
@@ -133,8 +132,7 @@ r.setOrganizationName(t.image);
       ;
     }
 r.setAccesibility(t.image);
-System.out.println(r);
-    return r;
+return r;
 }
 
   /** Generated Token Manager. */
@@ -257,7 +255,7 @@ System.out.println(r);
   /** Generate ParseException. */
   public ParseException generateParseException() {
 	 jj_expentries.clear();
-	 boolean[] la1tokens = new boolean[27];
+	 boolean[] la1tokens = new boolean[26];
 	 if (jj_kind >= 0) {
 	   la1tokens[jj_kind] = true;
 	   jj_kind = -1;
@@ -271,7 +269,7 @@ System.out.println(r);
 		 }
 	   }
 	 }
-	 for (int i = 0; i < 27; i++) {
+	 for (int i = 0; i < 26; i++) {
 	   if (la1tokens[i]) {
 		 jj_expentry = new int[1];
 		 jj_expentry[0] = i;

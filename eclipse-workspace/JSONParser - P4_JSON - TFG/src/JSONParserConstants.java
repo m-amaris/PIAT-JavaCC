@@ -43,21 +43,19 @@ public interface JSONParserConstants {
   /** RegularExpression Id. */
   int END_LAST_OBJECT = 17;
   /** RegularExpression Id. */
-  int ACCESIBILITY_STRING = 18;
+  int STRING = 18;
   /** RegularExpression Id. */
-  int STRING = 19;
+  int INTEGER = 19;
   /** RegularExpression Id. */
-  int INTEGER = 20;
+  int DOUBLE = 20;
   /** RegularExpression Id. */
-  int DOUBLE = 21;
+  int TRUE = 21;
   /** RegularExpression Id. */
-  int TRUE = 22;
+  int FALSE = 22;
   /** RegularExpression Id. */
-  int FALSE = 23;
+  int NULL = 23;
   /** RegularExpression Id. */
-  int NULL = 24;
-  /** RegularExpression Id. */
-  int IDAREA = 25;
+  int IDAREA = 24;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -66,11 +64,9 @@ public interface JSONParserConstants {
   /** Lexical state. */
   int RESOURCE = 2;
   /** Lexical state. */
-  int RESOURCE_END = 3;
+  int GETVALUE = 3;
   /** Lexical state. */
-  int GETVALUE = 4;
-  /** Lexical state. */
-  int INAREA = 5;
+  int INAREA = 4;
 
   /** Literal token values. */
   String[] tokenImage = {
@@ -91,8 +87,7 @@ public interface JSONParserConstants {
     "\"\\\"organization-name\\\"\"",
     "\"\\\"accesibility\\\"\"",
     "\"]\"",
-    "\"},\\n\\t\\t{\"",
-    "<ACCESIBILITY_STRING>",
+    "\"},\\n\\t{\"",
     "<STRING>",
     "<INTEGER>",
     "<DOUBLE>",
@@ -100,7 +95,7 @@ public interface JSONParserConstants {
     "\"false\"",
     "\"null\"",
     "\"\\\"@id\\\"\"",
-    "<token of kind 26>",
+    "<token of kind 25>",
   };
 
 }

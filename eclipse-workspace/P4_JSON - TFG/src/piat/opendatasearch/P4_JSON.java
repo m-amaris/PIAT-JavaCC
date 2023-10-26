@@ -37,42 +37,22 @@ public class P4_JSON {
 	 */
 
 	public static void main(String[] args) {
-		validarArgumentos(args);
 		try {
-			
-			File outputFile = new File(args[2]);
-			if (!outputFile.exists()) {
-				try {
-					outputFile.createNewFile();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			} else {
-				if (!outputFile.canWrite()) {
-					System.err.println("The file does not have write permissions...");
-					System.exit(1);
-				}
-			}
-			
+			validarArgumentos(args);
+
 			final XMLParser parser = new XMLParser(new XMLParserTokenManager(
 					new SimpleCharStream(new StreamProvider(new FileInputStream(args[0]), "UTF-8"))));
-			final ManejadorXML man = parser.processFile(args[1]); // Pending of changing name
-			final List<Concept> lConcepts = man.getConcepts();
-			final List<Dataset> mDatasets = man.getDatasets();
+			final ManejadorXML man = parser.processFile(args[1]);
 
-			List<String> conceptIds = getIdList(lConcepts);
-			
 			// Added code of P4
-			Map<String, List<Resource>> resourceList = getResources(conceptIds,mDatasets);
-			
-			final GenerarXML gen = new GenerarXML(lConcepts, man.getLabel(), args[1], mDatasets,resourceList);
-			
+			Map<String, List<Resource>> resourceList = getResources(getIdList(man.getConcepts()), man.getDatasets());
+			final GenerarXML gen = new GenerarXML(man.getConcepts(), args[1], man.getDatasets(), resourceList);
 			try (final FileWriter ficheroSalida = new FileWriter(args[2]);) {
 				ficheroSalida.write(gen.generarXML());
 			}
 			System.out.println("Fichero generado...");
 			System.exit(0);
-		} catch (ParseException | IOException e) {
+		} catch (ParseException | IOException | InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
@@ -86,13 +66,15 @@ public class P4_JSON {
 	private static void mostrarUso(StringBuilder mensaje) {
 		Class<? extends Object> thisClass = P4_JSON.class;
 
-		if (mensaje != null)
+		if (mensaje != null) {
 			System.err.println(mensaje + "\n");
+		}
 		System.err.println("Uso: " + thisClass.getEnclosingClass().getCanonicalName()
 				+ " <ficheroCatalogo> <códigoCategoría> <ficheroSalida>\n" + "donde:\n"
 				+ "\t ficheroCatalogo:\t path al fichero XML con el catálogo de datos\n"
 				+ "\t códigoCategoría:\t código de la categoría de la que se desea obtener datos\n"
 				+ "\t ficheroSalida:\t\t nombre del fichero XML de salida\n");
+
 	}
 
 	/**
@@ -101,7 +83,7 @@ public class P4_JSON {
 	 *
 	 * @param args Argumentos a analizar
 	 */
-	private static void validarArgumentos(String[] args) {
+	private static void validarArgumentos(String[] args) throws IOException {
 
 		if (args.length != 3) {
 			StringBuilder mensaje = new StringBuilder("ERROR: Argumentos incorrectos.");
@@ -135,40 +117,44 @@ public class P4_JSON {
 			System.exit(-1);
 		}
 
-		
-		
-		
+		final File outputFile = new File(args[2]);
+		if (!outputFile.exists()) {
+			outputFile.createNewFile();
+		} else {
+			if (!outputFile.canWrite()) {
+				System.err.println("The file does not have write permissions...");
+				System.exit(1);
+			}
+		}
+
 	}
 
-	private static Map<String, List <Resource>> getResources(List<String> lConcepts,
-			List<Dataset> mDatasets) {
-		Map<String, List <Resource>> mDatasetConcepts = new ConcurrentHashMap<>();
+	private static Map<String, List<Resource>> getResources(List<String> lConcepts, List<Dataset> mDatasets)
+			throws InterruptedException {
+		Map<String, List<Resource>> mDatasetConcepts = new ConcurrentHashMap<>();
 		int numDeNucleos = Runtime.getRuntime().availableProcessors();
 		ExecutorService ejecutor = Executors.newFixedThreadPool(numDeNucleos);
 
-		for(Dataset d : mDatasets) {
+		for (Dataset d : mDatasets) {
 			ejecutor.execute(new JSONParser(d.getId(), lConcepts, mDatasetConcepts));
 		}
 		// wait for threads to end
 		ejecutor.shutdown(); // close executor when last thread ends
-		try {
-			while (!ejecutor.awaitTermination(10, TimeUnit.SECONDS)) {
-				System.out.print("\nEsperar a que termine ");
-			}
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+
+		while (!ejecutor.awaitTermination(10, TimeUnit.SECONDS)) {
+			System.out.print("\nEsperar a que termine ");
 		}
+
 		return mDatasetConcepts;
 	}
-	
+
 	private static List<String> getIdList(List<Concept> concepts) {
-	    List<String> idList = new ArrayList<>();
-	    for (Concept concept : concepts) {
-	        idList.add(concept.getId());
-	        idList.addAll(getIdList(concept.getConcepts()));
-	    }
-	    return idList;
+		List<String> idList = new ArrayList<>();
+		for (Concept concept : concepts) {
+			idList.add(concept.getId());
+			idList.addAll(getIdList(concept.getConcepts()));
+		}
+		return idList;
 	}
-	
 
 }

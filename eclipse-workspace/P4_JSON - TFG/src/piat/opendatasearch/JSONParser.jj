@@ -2,6 +2,7 @@ options
 {
   STATIC = false;
   JAVA_TEMPLATE_TYPE = "modern";
+  UNICODE_INPUT=true; // Permite reconocer caracteres Unicode sin que todo explote :) Especificar el encoding (UTF-8)
 }
 
 PARSER_BEGIN(JSONParser)
@@ -72,7 +73,6 @@ TOKEN :
 {
   < IDRESOURCE : "\"@id\"" > : GETVALUE
 | < ARRAY_START : "[" >
-| < ARRAY_END : "]" > : DEFAULT
 }
 
 /** Analiza los tokens que nos interesan dentro del recurso.
@@ -98,9 +98,14 @@ TOKEN :
 | < LATITUDE : "\"latitude\"" > : GETVALUE
 | < LONGITUDE : "\"longitude\"" > : GETVALUE
 | < ORGANIZATION_NAME : "\"organization-name\"" > : GETVALUE
-| < ACCESIBILITY : "\"accesibility\"" > : RESOURCE_END
+| < ACCESIBILITY : "\"accesibility\"" > : GETVALUE
+| < ARRAY_END : "]" > : DEFAULT
 }
-
+< RESOURCE>
+SKIP:
+{
+< END_LAST_OBJECT: "},\n	{"  > : GRAPH
+}
 /**	Analiza el string del token "organization-name", que es el último token que nos interesa del recurso.
 	Cuando el token es detectado, sale del recurso, y vuelve al graph.
 	Obvia todo excepto el token ORGANIZATION_STRING
@@ -108,11 +113,11 @@ TOKEN :
 	Analyze the string of the "organization-name" token, which is the last token we are interested on inside the resource.
 	When the token is detected, it exits the resource, and gets back to the graph.
 	Skips everything but the ORGANIZATION_STRING token. **/
-< RESOURCE_END >
-TOKEN :
-{
-  < ACCESIBILITY_STRING : "\"" (~[ "\"", "\n", "\r" ])* "\"" > : GRAPH
-}
+//< RESOURCE_END >
+//TOKEN :
+//{
+//  < ACCESIBILITY_STRING : "\"" (~[ "\"", "\n", "\r" ])* "\"" > : GRAPH
+//}
 
 /**	Estado léxico que recoge el valor del los tokens dentro del recurso.
 	Cuando cualquier token es detectado, vuelve al estado de análisis del recurso.
@@ -126,12 +131,7 @@ TOKEN :
 {
   < STRING : "\"" (~[ "\"", "\n", "\r" ])* "\"" > : RESOURCE
 | < INTEGER : ("-")? ([ "0"-"9" ])+ > : RESOURCE
-| < DOUBLE :
-    ("-")? ([ "0"-"9" ])+
-    (
-      "." ([ "0"-"9" ])+
-    ) >
-  : RESOURCE
+| < DOUBLE : ("-")? ([ "0"-"9" ])+("." ([ "0"-"9" ])+) >: RESOURCE
 | < TRUE : "true" > : RESOURCE
 | < FALSE : "false" > : RESOURCE
 | < NULL : "null" > : RESOURCE
@@ -163,7 +163,7 @@ List < Resource > document(List < String > conceptsList) :
 {
   List < Resource > resourceList = new ArrayList < Resource > ();
   Resource r;
-  int maxObjects = 9999;
+  int maxObjects = 5;
 }
 {
   (
@@ -171,7 +171,10 @@ List < Resource > document(List < String > conceptsList) :
     (
       r = resource()
       {
-        resourceList.add(r);
+			if (conceptsList.contains(r.getConceptId())) {
+			  resourceList.add(r);
+        }
+        
         if (resourceList.size() >= maxObjects)
         {
 		          token_source.SwitchTo(DEFAULT); // No es muy seguro, es posible que el TokenManager vaya muy por delante del analizador.
@@ -193,64 +196,20 @@ Resource resource() :
   Token t;
 }
 {
-  (< IDRESOURCE > t = < STRING >)
-  {
-    r.setResourceId(t.image);
-  }
-  (< IDCONCEPT > t = < STRING >)
-  {
-    r.setConceptId(t.image);
-  }
-  (< TITLE > t = < STRING >)
-  {
-    r.setTitle(t.image);
-  }
-  (< DESCRIPTION > t = < STRING >)
-  {
-    r.setDescription(t.image);
-  }
-  (
-    < TIME_START > t = < STRING >
-    {
-      r.setStartDate(t.image);
-    }
-  )
-  (
-    < TIME_END > t = < STRING >
-    {
-      r.setEndDate(t.image);
-    }
-  )
-  (< LINK > t = < STRING >)
-  {
-    r.setLink(t.image);
-  }
-  (< EVENT_LOCATION > t = < STRING >)
-  {
-    r.setEventLocation(t.image);
-  }
-  (
-    < AREA > (< IDAREA > t = < STRING >)
-    {
-      r.setArea(t.image);
-    }
-  )
-  (< LATITUDE > t = < DOUBLE >)
-  {
-    r.setLatitude(Double.parseDouble(t.image));
-  }
-  (< LONGITUDE > t = < DOUBLE >)
-  {
-    r.setLongitude(Double.parseDouble(t.image));
-  }
-  (< ORGANIZATION_NAME > t = < STRING >)
-  {
-    r.setOrganizationName(t.image);
-  }
-  (< ACCESIBILITY > t = < ACCESIBILITY_STRING >)
-  {
-    r.setAccesibility(t.image);
-  }
+  (< IDRESOURCE > t = < STRING >){r.setResourceId(t.image.replace("\"", ""));}
+  (< IDCONCEPT >  t = < STRING >)?{r.setConceptId(t.image.replace("\"", ""));}
+  (< TITLE >  t = < STRING >){r.setTitle(t.image.replace("\"", ""));}
+  (< DESCRIPTION >  t = < STRING >){r.setDescription(t.image.replace("\"", ""));}
+  (< TIME_START > t = < STRING > {r.setStartDate(t.image.replace("\"", "")); })
+  (< TIME_END > t = < STRING > {r.setEndDate(t.image.replace("\"", "")); })
+  (< LINK >  t = < STRING >){r.setLink(t.image.replace("\"", ""));}
+  (< EVENT_LOCATION >  t = < STRING >){r.setEventLocation(t.image.replace("\"", ""));}
+  (< AREA>(< IDAREA > t = < STRING >){r.setArea(t.image.replace("\"", ""));})?
+  (< LATITUDE >  t = < DOUBLE >)?{if(!t.image.toString().equals("\"\""))r.setLatitude(Double.parseDouble(t.image));}
+  (< LONGITUDE >  t = < DOUBLE >)?{if(!t.image.toString().equals("\"\""))r.setLongitude(Double.parseDouble(t.image));}
+  (< ORGANIZATION_NAME > t = < STRING >)?{r.setOrganizationName(t.image.replace("\"", ""));}
+  (< ACCESIBILITY >  t = < STRING >)?{r.setAccesibility(t.image.replace("\"", ""));}
+  
   {
     return r;
   }
