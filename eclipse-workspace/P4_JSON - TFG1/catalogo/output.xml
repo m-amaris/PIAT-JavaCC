@@ -47,6 +47,42 @@ xsi:schemaLocation="http://www.piat.dte.upm.es/practica4 ./ResultadosBusquedaP4.
 				</organization>
 				<description>Circo  Miscelánea Circo   Es un montaje se combina la manipulación de objetos, la danza, la acrobacia en aro aéreo y la poesía en forma de haiku. Se expresa la rebelión contra lo impuesto, las etapas de la vida y la vuelta a lo más primitivo, teniendo como hilo conductor las estaciones. Duración 1 hora</description>
 			</resource>
+			<resource id="https://datos.madrid.es/egob/catalogo/tipo/evento/12139293-ballet-ara-madrid.json">
+				<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile"/>
+				<link><![CDATA[http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=9746ab0d3b56b810VgnVCM1000001d4a900aRCRD]]></link>
+				<title>Ballet Ara de Madrid</title>
+				<location>
+						<eventLocation>Centro Cultural la Elipa (Ciudad Lineal)</eventLocation>
+						<area>https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/CiudadLineal/Barrio/Ventas</area>
+						<timetable>
+							<start>2023-11-04 19:00:00.0</start>
+							<end>2023-11-04 23:59:00.0</end></timetable>
+						<georeference>40.42446957496409 -3.6504201407465917</georeference>
+				</location>
+				<organization>
+						<accesibility>1</accesibility>
+						<organizationName>Centro Cultural la Elipa (Ciudad Lineal)</organizationName>
+				</organization>
+				<description>'Recorriendo el mundo a través de la danza'    Dirección de Carmina Villar   Espectáculo de gran colorido y variedad,en el que se presentan las másimportantes danzas del mundo enunión con danzas de España.  75 minutos</description>
+			</resource>
+			<resource id="https://datos.madrid.es/egob/catalogo/tipo/evento/12136271-cirque-du-soleil-alegria.json">
+				<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile"/>
+				<link><![CDATA[http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=27ac53eea1c4b810VgnVCM1000001d4a900aRCRD]]></link>
+				<title>Cirque du Soleil. Alegría</title>
+				<location>
+						<eventLocation>Escenario Puerta del Ángel</eventLocation>
+						<area>https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Moncloa-Aravaca/Barrio/CasaCampo</area>
+						<timetable>
+							<start>2023-12-04 00:00:00.0</start>
+							<end>2024-01-06 23:59:00.0</end></timetable>
+						<georeference>40.418195444686226 -3.728187626421456</georeference>
+				</location>
+				<organization>
+						<accesibility>1</accesibility>
+						<organizationName>Escenario Puerta del Ángel</organizationName>
+				</organization>
+				<description></description>
+			</resource>
 			<resource id="https://datos.madrid.es/egob/catalogo/tipo/evento/12119914-compania-algarabia.json">
 				<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile"/>
 				<link><![CDATA[http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=c6882892905fa810VgnVCM1000001d4a900aRCRD]]></link>
@@ -80,42 +116,6 @@ xsi:schemaLocation="http://www.piat.dte.upm.es/practica4 ./ResultadosBusquedaP4.
 				<organization>
 						<accesibility>1,6</accesibility>
 						<organizationName>Naves Español en Matadero</organizationName>
-				</organization>
-				<description></description>
-			</resource>
-			<resource id="https://datos.madrid.es/egob/catalogo/tipo/evento/12131507-coordenadas-fest-nosotros.json">
-				<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile"/>
-				<link><![CDATA[http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=7295c8a94982b810VgnVCM1000001d4a900aRCRD]]></link>
-				<title>Coordenadas fest. Entre nosotros</title>
-				<location>
-						<eventLocation>Centro Cultural Casa de Vacas (Retiro)</eventLocation>
-						<area>https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Retiro/Barrio/LosJeronimos</area>
-						<timetable>
-							<start>2023-11-04 18:00:00.0</start>
-							<end>2023-11-04 23:59:00.0</end></timetable>
-						<georeference>40.41906024374356 -3.6840615387926956</georeference>
-				</location>
-				<organization>
-						<accesibility>1</accesibility>
-						<organizationName>Centro Cultural Casa de Vacas (Retiro)</organizationName>
-				</organization>
-				<description></description>
-			</resource>
-			<resource id="https://datos.madrid.es/egob/catalogo/tipo/evento/12131509-coordenadas-fest-que-levita.json">
-				<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile"/>
-				<link><![CDATA[http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=7ee5c8a94982b810VgnVCM1000001d4a900aRCRD]]></link>
-				<title>Coordenadas fest. La que levita</title>
-				<location>
-						<eventLocation>Centro Cultural Casa de Vacas (Retiro)</eventLocation>
-						<area>https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Retiro/Barrio/LosJeronimos</area>
-						<timetable>
-							<start>2023-11-04 19:00:00.0</start>
-							<end>2023-11-04 23:59:00.0</end></timetable>
-						<georeference>40.41906024374356 -3.6840615387926956</georeference>
-				</location>
-				<organization>
-						<accesibility>1</accesibility>
-						<organizationName>Centro Cultural Casa de Vacas (Retiro)</organizationName>
 				</organization>
 				<description></description>
 			</resource>
@@ -155,6 +155,24 @@ xsi:schemaLocation="http://www.piat.dte.upm.es/practica4 ./ResultadosBusquedaP4.
 				</organization>
 				<description>Jueves a domingo / 19:30 horas</description>
 			</resource>
+			<resource id="https://datos.madrid.es/egob/catalogo/tipo/evento/12139293-ballet-ara-madrid.json">
+				<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile"/>
+				<link><![CDATA[http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=9746ab0d3b56b810VgnVCM1000001d4a900aRCRD]]></link>
+				<title>Ballet Ara de Madrid</title>
+				<location>
+						<eventLocation>Centro Cultural la Elipa (Ciudad Lineal)</eventLocation>
+						<area>https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/CiudadLineal/Barrio/Ventas</area>
+						<timetable>
+							<start>2023-11-04 19:00:00.0</start>
+							<end>2023-11-04 23:59:00.0</end></timetable>
+						<georeference>40.42446957496409 -3.6504201407465917</georeference>
+				</location>
+				<organization>
+						<accesibility>1</accesibility>
+						<organizationName>Centro Cultural la Elipa (Ciudad Lineal)</organizationName>
+				</organization>
+				<description>'Recorriendo el mundo a través de la danza'    Dirección de Carmina Villar   Espectáculo de gran colorido y variedad,en el que se presentan las másimportantes danzas del mundo enunión con danzas de España.  75 minutos</description>
+			</resource>
 			<resource id="https://datos.madrid.es/egob/catalogo/tipo/evento/12081015-biodanza-espacio-igualdad-nieves-torres.json">
 				<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile"/>
 				<link><![CDATA[http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=e0fb615955c3a810VgnVCM2000001f4a900aRCRD]]></link>
@@ -173,39 +191,21 @@ xsi:schemaLocation="http://www.piat.dte.upm.es/practica4 ./ResultadosBusquedaP4.
 				</organization>
 				<description></description>
 			</resource>
-			<resource id="https://datos.madrid.es/egob/catalogo/tipo/evento/11999803-biodanzando-nosotras-conoce-biodanza-srt-grupo-i.json">
+			<resource id="https://datos.madrid.es/egob/catalogo/tipo/evento/12137826-biodanza-espacio-igualdad-nieves-torres.json">
 				<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile"/>
-				<link><![CDATA[http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=2066e63ec0eb7810VgnVCM2000001f4a900aRCRD]]></link>
-				<title>Biodanzando entre nosotras. Conoce Biodanza SRT. Grupo I</title>
+				<link><![CDATA[http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=6b5e41f384c5b810VgnVCM2000001f4a900aRCRD]]></link>
+				<title>Biodanza en el Espacio de Igualdad Nieves Torres</title>
 				<location>
-						<eventLocation>Espacio de Igualdad Lourdes Hernández. Carabanchel</eventLocation>
-						<area>https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Carabanchel/Barrio/SanIsidro</area>
+						<eventLocation>Espacio de Igualdad Nieves Torres. Chamartín</eventLocation>
+						<area>https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Chamartin/Barrio/NuevaEspana</area>
 						<timetable>
-							<start>2023-09-25 12:30:00.0</start>
-							<end>2023-12-18 23:59:00.0</end></timetable>
-						<georeference>40.395326406887946 -3.721622686264932</georeference>
+							<start>2023-11-02 12:00:00.0</start>
+							<end>2023-11-30 23:59:00.0</end></timetable>
+						<georeference>40.46088981165102 -3.6700689174427326</georeference>
 				</location>
 				<organization>
 						<accesibility>1</accesibility>
-						<organizationName>Espacio de Igualdad Lourdes Hernández. Carabanchel</organizationName>
-				</organization>
-				<description></description>
-			</resource>
-			<resource id="https://datos.madrid.es/egob/catalogo/tipo/evento/12119914-compania-algarabia.json">
-				<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile"/>
-				<link><![CDATA[http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=c6882892905fa810VgnVCM1000001d4a900aRCRD]]></link>
-				<title>Compañía Algarabía</title>
-				<location>
-						<eventLocation>Centro Cultural Juan Genovés (Moncloa - Aravaca)</eventLocation>
-						<area>https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Moncloa-Aravaca/Barrio/Aravaca</area>
-						<timetable>
-							<start>2023-10-28 19:00:00.0</start>
-							<end>2023-10-28 23:59:00.0</end></timetable>
-						<georeference>40.45866721398762 -3.786129575145957</georeference>
-				</location>
-				<organization>
-						<accesibility>1</accesibility>
-						<organizationName>Centro Cultural Juan Genovés (Moncloa - Aravaca)</organizationName>
+						<organizationName>Espacio de Igualdad Nieves Torres. Chamartín</organizationName>
 				</organization>
 				<description></description>
 			</resource>

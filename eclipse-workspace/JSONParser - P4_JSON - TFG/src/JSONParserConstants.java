@@ -15,47 +15,49 @@ public interface JSONParserConstants {
   /** RegularExpression Id. */
   int ARRAY_START = 3;
   /** RegularExpression Id. */
-  int ARRAY_END = 4;
+  int IDCONCEPT = 4;
   /** RegularExpression Id. */
-  int IDCONCEPT = 5;
+  int TITLE = 5;
   /** RegularExpression Id. */
-  int TITLE = 6;
+  int DESCRIPTION = 6;
   /** RegularExpression Id. */
-  int DESCRIPTION = 7;
+  int TIME_START = 7;
   /** RegularExpression Id. */
-  int TIME_START = 8;
+  int TIME_END = 8;
   /** RegularExpression Id. */
-  int TIME_END = 9;
+  int LINK = 9;
   /** RegularExpression Id. */
-  int LINK = 10;
+  int EVENT_LOCATION = 10;
   /** RegularExpression Id. */
-  int EVENT_LOCATION = 11;
+  int AREA = 11;
   /** RegularExpression Id. */
-  int AREA = 12;
+  int LATITUDE = 12;
   /** RegularExpression Id. */
-  int LATITUDE = 13;
+  int LONGITUDE = 13;
   /** RegularExpression Id. */
-  int LONGITUDE = 14;
+  int ORGANIZATION_NAME = 14;
   /** RegularExpression Id. */
-  int ORGANIZATION_NAME = 15;
+  int ACCESIBILITY = 15;
   /** RegularExpression Id. */
-  int ACCESIBILITY = 16;
+  int ARRAY_END = 16;
   /** RegularExpression Id. */
-  int ACCESIBILITY_STRING = 17;
+  int END_LAST_OBJECT = 17;
   /** RegularExpression Id. */
-  int STRING = 18;
+  int ACCESIBILITY_STRING = 18;
   /** RegularExpression Id. */
-  int INTEGER = 19;
+  int STRING = 19;
   /** RegularExpression Id. */
-  int DOUBLE = 20;
+  int INTEGER = 20;
   /** RegularExpression Id. */
-  int TRUE = 21;
+  int DOUBLE = 21;
   /** RegularExpression Id. */
-  int FALSE = 22;
+  int TRUE = 22;
   /** RegularExpression Id. */
-  int NULL = 23;
+  int FALSE = 23;
   /** RegularExpression Id. */
-  int IDAREA = 24;
+  int NULL = 24;
+  /** RegularExpression Id. */
+  int IDAREA = 25;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -76,7 +78,6 @@ public interface JSONParserConstants {
     "\"\\\"@graph\\\"\"",
     "\"\\\"@id\\\"\"",
     "\"[\"",
-    "\"]\"",
     "\"\\\"@type\\\"\"",
     "\"\\\"title\\\"\"",
     "\"\\\"description\\\"\"",
@@ -89,6 +90,8 @@ public interface JSONParserConstants {
     "\"\\\"longitude\\\"\"",
     "\"\\\"organization-name\\\"\"",
     "\"\\\"accesibility\\\"\"",
+    "\"]\"",
+    "\"},\\n\\t\\t{\"",
     "<ACCESIBILITY_STRING>",
     "<STRING>",
     "<INTEGER>",
@@ -97,7 +100,7 @@ public interface JSONParserConstants {
     "\"false\"",
     "\"null\"",
     "\"\\\"@id\\\"\"",
-    "<token of kind 25>",
+    "<token of kind 26>",
   };
 
 }

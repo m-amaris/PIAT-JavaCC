@@ -34,15 +34,7 @@
 			<xsd:element name="concept" type="tns:tConcept" maxOccurs="unbounded"/>
 		</xsd:sequence>
 	</xsd:complexType>
-	
-<!-- 
-	<xsd:key name="keyConceptCod">
-		<xsd:selector xpath=" ./tns:concept/tns:concepts/tns:concept/tns:concepts/tns:concept/tns:concepts/tns:concept | ./tns:concept/tns:concepts/tns:concept/tns:concepts/tns:concept  | ./tns:concept/tns:concepts/tns:concept | ./tns:concept   "/>
-		<xsd:field xpath="./tns:code"/>
-	</xsd:key>
-	-->
-
-	
+		
 </xsd:element>
 		
 <xsd:complexType name="tConcept">
@@ -70,7 +62,7 @@
 </xsd:element>
 
 <xsd:complexType name="tDataset">
-	<xsd:all>
+	<xsd:sequence>
 		<xsd:element name="title" type="xsd:string" />
 		<xsd:element name="description" type="xsd:string" minOccurs="0" />
 		<xsd:element name="keyword" type="xsd:string" minOccurs="0"/>
@@ -92,7 +84,7 @@
 				<xsd:field xpath="@id"/>
 			</xsd:key>
 		</xsd:element>		
-	</xsd:all>
+	</xsd:sequence>
 	<xsd:attribute name="id" type="xsd:anyURI"/>
 </xsd:complexType>
 

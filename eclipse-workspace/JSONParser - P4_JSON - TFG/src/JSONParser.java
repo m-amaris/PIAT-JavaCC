@@ -48,8 +48,16 @@ return resourceList;
     jj_consume_token(IDRESOURCE);
     t = jj_consume_token(STRING);
 r.setResourceId(t.image);
-    jj_consume_token(IDCONCEPT);
-    t = jj_consume_token(STRING);
+    switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
+    case IDCONCEPT:{
+      jj_consume_token(IDCONCEPT);
+      t = jj_consume_token(STRING);
+      break;
+      }
+    default:
+      jj_la1[1] = jj_gen;
+      ;
+    }
 r.setConceptId(t.image);
     jj_consume_token(TITLE);
     t = jj_consume_token(STRING);
@@ -69,23 +77,64 @@ r.setLink(t.image);
     jj_consume_token(EVENT_LOCATION);
     t = jj_consume_token(STRING);
 r.setEventLocation(t.image);
-    jj_consume_token(AREA);
-    jj_consume_token(IDAREA);
-    t = jj_consume_token(STRING);
+    switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
+    case AREA:{
+      jj_consume_token(AREA);
+      jj_consume_token(IDAREA);
+      t = jj_consume_token(STRING);
 r.setArea(t.image);
-    jj_consume_token(LATITUDE);
-    t = jj_consume_token(DOUBLE);
-r.setLatitude(Double.parseDouble(t.image));
-    jj_consume_token(LONGITUDE);
-    t = jj_consume_token(DOUBLE);
-r.setLongitude(Double.parseDouble(t.image));
-    jj_consume_token(ORGANIZATION_NAME);
-    t = jj_consume_token(STRING);
+      break;
+      }
+    default:
+      jj_la1[2] = jj_gen;
+      ;
+    }
+    switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
+    case LATITUDE:{
+      jj_consume_token(LATITUDE);
+      t = jj_consume_token(DOUBLE);
+      break;
+      }
+    default:
+      jj_la1[3] = jj_gen;
+      ;
+    }
+if(!t.image.toString().equals("\"\""))r.setLatitude(Double.parseDouble(t.image));
+    switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
+    case LONGITUDE:{
+      jj_consume_token(LONGITUDE);
+      t = jj_consume_token(DOUBLE);
+      break;
+      }
+    default:
+      jj_la1[4] = jj_gen;
+      ;
+    }
+if(!t.image.toString().equals("\"\""))r.setLongitude(Double.parseDouble(t.image));
+    switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
+    case ORGANIZATION_NAME:{
+      jj_consume_token(ORGANIZATION_NAME);
+      t = jj_consume_token(STRING);
+      break;
+      }
+    default:
+      jj_la1[5] = jj_gen;
+      ;
+    }
 r.setOrganizationName(t.image);
-    jj_consume_token(ACCESIBILITY);
-    t = jj_consume_token(ACCESIBILITY_STRING);
+    switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
+    case ACCESIBILITY:{
+      jj_consume_token(ACCESIBILITY);
+      t = jj_consume_token(STRING);
+      break;
+      }
+    default:
+      jj_la1[6] = jj_gen;
+      ;
+    }
 r.setAccesibility(t.image);
-return r;
+System.out.println(r);
+    return r;
 }
 
   /** Generated Token Manager. */
@@ -97,13 +146,13 @@ return r;
   public Token jj_nt;
   private int jj_ntk;
   private int jj_gen;
-  final private int[] jj_la1 = new int[1];
+  final private int[] jj_la1 = new int[7];
   static private int[] jj_la1_0;
   static {
 	   jj_la1_init_0();
 	}
 	private static void jj_la1_init_0() {
-	   jj_la1_0 = new int[] {0x4,};
+	   jj_la1_0 = new int[] {0x4,0x10,0x800,0x1000,0x2000,0x4000,0x8000,};
 	}
 
   /** Constructor. */
@@ -113,7 +162,7 @@ return r;
 	 token = new Token();
 	 jj_ntk = -1;
 	 jj_gen = 0;
-	 for (int i = 0; i < 1; i++) jj_la1[i] = -1;
+	 for (int i = 0; i < 7; i++) jj_la1[i] = -1;
   }
 
   /** Constructor. */
@@ -139,7 +188,7 @@ return r;
 	 token = new Token();
 	 jj_ntk = -1;
 	 jj_gen = 0;
-	 for (int i = 0; i < 1; i++) jj_la1[i] = -1;
+	 for (int i = 0; i < 7; i++) jj_la1[i] = -1;
   }
 
   /** Constructor with generated Token Manager. */
@@ -148,7 +197,7 @@ return r;
 	 token = new Token();
 	 jj_ntk = -1;
 	 jj_gen = 0;
-	 for (int i = 0; i < 1; i++) jj_la1[i] = -1;
+	 for (int i = 0; i < 7; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -157,7 +206,7 @@ return r;
 	 token = new Token();
 	 jj_ntk = -1;
 	 jj_gen = 0;
-	 for (int i = 0; i < 1; i++) jj_la1[i] = -1;
+	 for (int i = 0; i < 7; i++) jj_la1[i] = -1;
   }
 
   private Token jj_consume_token(int kind) throws ParseException {
@@ -208,12 +257,12 @@ return r;
   /** Generate ParseException. */
   public ParseException generateParseException() {
 	 jj_expentries.clear();
-	 boolean[] la1tokens = new boolean[26];
+	 boolean[] la1tokens = new boolean[27];
 	 if (jj_kind >= 0) {
 	   la1tokens[jj_kind] = true;
 	   jj_kind = -1;
 	 }
-	 for (int i = 0; i < 1; i++) {
+	 for (int i = 0; i < 7; i++) {
 	   if (jj_la1[i] == jj_gen) {
 		 for (int j = 0; j < 32; j++) {
 		   if ((jj_la1_0[i] & (1<<j)) != 0) {
@@ -222,7 +271,7 @@ return r;
 		 }
 	   }
 	 }
-	 for (int i = 0; i < 26; i++) {
+	 for (int i = 0; i < 27; i++) {
 	   if (la1tokens[i]) {
 		 jj_expentry = new int[1];
 		 jj_expentry[0] = i;

@@ -51,7 +51,7 @@ TOKEN :
 {
   < IDRESOURCE: "\"@id\"" > : GETVALUE
 | < ARRAY_START : "[" > 
-| < ARRAY_END : "]" > : DEFAULT
+
 }
 
 
@@ -78,9 +78,14 @@ TOKEN:
 | < LATITUDE : "\"latitude\"">: GETVALUE
 | < LONGITUDE : "\"longitude\"">: GETVALUE
 | < ORGANIZATION_NAME : "\"organization-name\""> :GETVALUE 
-| < ACCESIBILITY : "\"accesibility\"">: RESOURCE_END
+| < ACCESIBILITY : "\"accesibility\"">: GETVALUE
+| < ARRAY_END : "]" > : DEFAULT
 }
-
+< RESOURCE>
+SKIP:
+{
+< END_LAST_OBJECT: "},\n\t\t{"  > { System.out.println("nuevo recurso: ");} : GRAPH
+}
 
 /**	Analiza el string del token "organization-name", que es el último token que nos interesa del recurso.
 	Cuando el token es detectado, sale del recurso, y vuelve al graph.
@@ -150,19 +155,21 @@ Resource resource() :
 }
 {
   (< IDRESOURCE > t = < STRING >){r.setResourceId(t.image);}
-  (< IDCONCEPT >  t = < STRING >){r.setConceptId(t.image);}
+  (< IDCONCEPT >  t = < STRING >)?{r.setConceptId(t.image);}
   (< TITLE >  t = < STRING >){r.setTitle(t.image);}
   (< DESCRIPTION >  t = < STRING >){r.setDescription(t.image);}
   (< TIME_START > t = < STRING > {r.setStartDate(t.image); })
   (< TIME_END > t = < STRING > {r.setEndDate(t.image); })
   (< LINK >  t = < STRING >){r.setLink(t.image);}
   (< EVENT_LOCATION >  t = < STRING >){r.setEventLocation(t.image);}
-  (< AREA>(< IDAREA > t = < STRING >){r.setArea(t.image);})
-  (< LATITUDE >  t = < DOUBLE >){r.setLatitude(Double.parseDouble(t.image));}
-  (< LONGITUDE >  t = < DOUBLE >){r.setLongitude(Double.parseDouble(t.image));}
-  (< ORGANIZATION_NAME >t = < STRING >){r.setOrganizationName(t.image);}
-  (< ACCESIBILITY >  t = < ACCESIBILITY_STRING >){r.setAccesibility(t.image);}
+  (< AREA>(< IDAREA > t = < STRING >){r.setArea(t.image);})?
+  (< LATITUDE >  t = < DOUBLE >)?{if(!t.image.toString().equals("\"\""))r.setLatitude(Double.parseDouble(t.image));}
+  (< LONGITUDE >  t = < DOUBLE >)?{if(!t.image.toString().equals("\"\""))r.setLongitude(Double.parseDouble(t.image));}
+  (< ORGANIZATION_NAME >t = < STRING >)?{r.setOrganizationName(t.image);}
+  (< ACCESIBILITY >  t = < STRING >)?{r.setAccesibility(t.image);}
   
-  {return r;}
+  {
+	System.out.println(r);
+    return r;}
 }
 

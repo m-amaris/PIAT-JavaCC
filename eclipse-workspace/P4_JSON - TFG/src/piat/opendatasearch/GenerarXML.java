@@ -1,179 +1,127 @@
 package piat.opendatasearch;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 
 /**
- * @author Miguel Amarís Martos 54022315F
- *
+ * @author
+ * 
  */
+
 public class GenerarXML {
-	private static final String conceptPattern = "\n\t\t\t<concept id=\"#ID#\"/>";
-	private static final String datasetPattern = "\n\t\t\t<dataset id=\"#ID#\">\n\t\t\t\t<title>#TITLE#</title>"
-			+ "\n\t\t\t\t<description>#DESCRIPTION#</description>\n\t\t\t\t<theme>#THEME#</theme>\n\t\t\t</dataset>";
+
+	private List<Concept> concepts;
+	private String codigoCategoria;
+	private List<Dataset> datasets;
+	private static int conceptsSize;
+	private Map<String, List<Resource>> resourceList;
+
+	private static final String conceptPattern = "\n\t\t\t<concept id=#ID#/>";
+	private static final String cabeceraXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+			+ "<searchResults xmlns=\"http://www.piat.dte.upm.es/practica3\"\n"
+			+ "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n"
+			+ "xsi:schemaLocation=\"http://www.piat.dte.upm.es/practica3 ResultadosBusquedaP3.xsd\">";
+	private static final String datasetPattern = "\n\t\t\t<dataset id=#ID#>";
+	private static final String titlePattern = "\n\t\t\t\t<title>#TITLE#</title>";
+	private static final String descriptionPattern = "\n\t\t\t\t<description>#DESC#</description>";
+	private static final String themePattern = "\n\t\t\t\t<theme>#THEME#</theme>";
 	private static final String resourcePattern = "\n\t\t\t<resource id=\"#ID#\">\n\t\t\t\t<concept id=\"#CONCEPTID#\"/>\n\t\t\t\t<link>#LINK#</link>\n\t\t\t\t<title>#TITLE#</title>"
 			+ "\n\t\t\t\t<location>\n\t\t\t\t\t\t<eventLocation>#EVENTLOCATION#</eventLocation>\n\t\t\t\t\t\t<area>#AREA#</area>\n\t\t\t\t\t\t<timetable>\n\t\t\t\t\t\t\t<start>#START#</start>\n\t\t\t\t\t\t\t<end>#END#</end></timetable>\n\t\t\t\t\t\t<georeference>#LATITUDE# #LONGITUDE#</georeference>\n\t\t\t\t</location>\n\t\t\t\t<organization>\n\t\t\t\t\t\t<accesibility>#ACCESIBILITY#</accesibility>\n\t\t\t\t\t\t<organizationName>#ORGANIZATIONNAME#</organizationName>\n\t\t\t\t</organization>\n\t\t\t\t<description>#DESCRIPTION#</description>\n\t\t\t</resource>";
 
+		
+	public GenerarXML(List<Concept> concepts, String nombreCategoria, String codigoCategoria, List<Dataset> datasets,Map<String, List<Resource>> resourceList) {
+		this.concepts = concepts;
+		this.codigoCategoria = codigoCategoria;
+		this.datasets = datasets;
+		conceptsSize = 0;
+		this.resourceList = resourceList;
+	}
 
-	private static String genConcepts(List<String> lConcepts) {
+	public static int recursiveConcept(List<Concept> concepts, StringBuilder sbSalida) {
+		for (Concept c : concepts) {
+			sbSalida.append(conceptPattern.replace("#ID#", c.getId()));
+			conceptsSize++;
+			recursiveConcept(c.getConcepts(), sbSalida);
+		}
+		return conceptsSize;
+	}
+
+	private static String conceptsToXML(List<Concept> lConcepts) {
 		StringBuilder sbSalida = new StringBuilder();
 		sbSalida.append("\n\t\t<concepts>");
-
-		for (String unConcepto : lConcepts) {
-			sbSalida.append(conceptPattern.replace("#ID#", unConcepto));
-		}
+		recursiveConcept(lConcepts, sbSalida);
 		sbSalida.append("\n\t\t</concepts>");
 		return sbSalida.toString();
 	}
 
-	private static String genDatasets(Map<String, HashMap<String, String>> hDatasets) {
-		StringBuilder sbSalida = new StringBuilder();
-		sbSalida.append("\n\t\t<datasets>");
+	private String summaryToXML(String codigoCategoria, List<Concept> concepts, List<Dataset> datasets) {
+		String summary = "\n\t<summary>\n\t\t<query>" + codigoCategoria + "</query>\n\t\t<numConcepts>"
+				+ recursiveConcept(concepts, new StringBuilder()) + "</numConcepts>\n\t\t<numDatasets>"
+				+ datasets.size() + "</numDatasets>\n\t</summary>";
 
-		for (Map.Entry<String, HashMap<String, String>> entry : hDatasets.entrySet()) {
-			String s = datasetPattern.replace("#ID#", entry.getKey());
-			s = s.replace("#TITLE#", entry.getValue().get("title"));
-			s = s.replace("#DESCRIPTION#", entry.getValue().get("description"));
-			s = s.replace("#THEME#", entry.getValue().get("theme"));
-			sbSalida.append(s);
-		}
-		sbSalida.append("\n\t\t</datasets>");
-		return sbSalida.toString();
+		return summary;
 	}
 
-	private static String genResources(Map<String, JsonArray> mDatasetConcepts) {
+	private static String genResources(Map<String, List<Resource>> mDatasetConcepts) {
 		StringBuilder sbSalida = new StringBuilder();
 		sbSalida.append("\n\t\t<resources>");
-		for (Map.Entry<String, JsonArray> entry : mDatasetConcepts.entrySet()) {
-			JsonArray array = entry.getValue(); // Array graphs
+		for (Map.Entry<String, List<Resource>> entry : mDatasetConcepts.entrySet()) {
+			List<Resource> array = entry.getValue(); // Array graphs
 
-			for (int i = 0; i < array.size(); i++) {
-				String s = resourcePattern;
-				JsonObject obj = array.get(i).getAsJsonObject(); // Un objeto dentro del array @graphs
-				s = processJsonObject(obj, "", s);
+			for(Resource r : array) {
+				String s = resourcePattern.replace("#ID#", entry.getKey());
+				s = s.replace("#CONCEPTID#", r.getConceptId());
+				s = s.replace("#LINK#", "<![CDATA[" + r.getLink() + "]]>");
+				s = s.replace("#TITLE#", r.getTitle());
+				s = s.replace("#EVENTLOCATION#", r.getEventLocation());
+				s = s.replace("#AREA#", r.getArea());
+				s = s.replace("#START#", r.getStartDate());
+				s = s.replace("#END#", r.getEndDate());
+				s = s.replace("#LATITUDE#", Double.toString(r.getLatitude()));
+				s = s.replace("#LONGITUDE#", Double.toString(r.getLongitude())); 
+				s = s.replace("#ACCESIBILITY#", r.getAccesibility());
+				s = s.replace("#ORGANIZATIONNAME#", r.getOrganizationName());
+				s = s.replace("#DESCRIPTION#", r.getDescription());
 				sbSalida.append(s);
 			}
 		}
 		sbSalida.append("\n\t\t</resources>");
 		return sbSalida.toString();
 	}
-
-	// Función recursiva para procesar objetos JSON
-	private static String processJsonObject(JsonObject jsonObject, String parentKey, String s) {
-		for (Entry<String, JsonElement> entry : jsonObject.entrySet()) {
-
-			String key = entry.getKey();
-			JsonElement value = entry.getValue();
-
-			// Combina la clave con la clave del padre si es necesario
-			String fullKey = parentKey.isEmpty() ? key : parentKey + "." + key;
-			if (value.isJsonObject()) {
-				// Si el valor es un objeto JSON, llama recursivamente a la función
-				s = processJsonObject(value.getAsJsonObject(), fullKey, s);
-			} else if (value.isJsonArray()) {
-				// Si el valor es un array JSON, llama a la función para procesar cada elemento
-				// del array
-				s = processJsonArray(value.getAsJsonArray(), fullKey, s);
-			} else {
-				// Si el valor no es un objeto ni un array, imprime la clave y el valor
-				switch (fullKey) {
-				case "@id":
-					s = s.replace("#ID#", value.toString().replaceAll("\"", ""));
-					break;
-				case "@type":
-					s = s.replace("#CONCEPTID#", value.toString().replaceAll("\"", ""));
-					break;
-				case "title":
-					s = s.replace("#TITLE#", value.toString().replaceAll("\"", ""));
-					break;
-				case "link":
-					s = s.replace("#LINK#", "<![CDATA[" + value.toString().replaceAll("\"", "") + "]]>");
-					break;
-				case "address.area.@id":
-					s = s.replace("#AREA#", value.toString().replaceAll("\"", ""));
-					break;
-				case "address":
-					s = s.replace("#START#", value.toString().replaceAll("\"", ""));
-					break;
-				case "dtstart":
-					s = s.replace("#START#", value.toString().replaceAll("\"", ""));
-					break;
-				case "dtend":
-					s = s.replace("#END#", value.toString().replaceAll("\"", ""));
-					break;
-				case "location.latitude":
-					s = s.replace("#LATITUDE#", value.toString().replaceAll("\"", ""));
-					break;
-				case "location.longitude":
-					s = s.replace("#LONGITUDE#", value.toString().replaceAll("\"", ""));
-					break;
-				case "organization.organization-name":
-					s = s.replace("#ORGANIZATIONNAME#", value.toString().replaceAll("\"", ""));
-					break;
-				case "organization.accesibility":
-					s = s.replace("#ACCESIBILITY#", value.toString().replaceAll("\"", ""));
-					break;
-				case "event-location":
-					s = s.replace("#EVENTLOCATION#", value.toString().replaceAll("\"", ""));
-					break;
-				case "description":
-					s = s.replace("#DESCRIPTION#", value.toString().replaceAll("\"", ""));
-					break;
-				default:
-					break;
-				}
-			}
-		}
-		return s;
-	}
-
-	// Función para procesar arrays JSON
-	private static String processJsonArray(JsonArray jsonArray, String parentKey, String s) {
-		for (int i = 0; i < jsonArray.size(); i++) {
-			JsonElement element = jsonArray.get(i);
-
-			if (element.isJsonObject()) {
-				// Si el elemento del array es un objeto JSON, llama recursivamente a la función
-				s = processJsonObject(element.getAsJsonObject(), parentKey + "[" + i + "]", s);
-			} else if (element.isJsonArray()) {
-				// Si el elemento del array es un array JSON, llama a la función para procesar
-				// el array
-				s = processJsonArray(element.getAsJsonArray(), parentKey + "[" + i + "]", s);
-			} else {
-				// Si el elemento no es un objeto ni un array, imprime el valor
-				System.out.println(parentKey + "[" + i + "]: " + element);
-			}
-		}
-		return s;
-	}
-
-	public static void genXML(String query, int numConcepts, int numDatasets, List<String> lConcepts,
-			Map<String, HashMap<String, String>> hDatasets, Map<String, JsonArray> mDatasetConcepts, Path path) {
+	
+	private String datasetsToXML(List<Dataset> datasets) {
 		StringBuilder sbSalida = new StringBuilder();
-		sbSalida.append(
-				"<?xml version = \"1.0\" encoding=\"UTF-8\"?>\n<searchResults xmlns=\"http://www.piat.dte.upm.es/practica4\""
-						+ "\nxmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\nxsi:schemaLocation=\"http://www.piat.dte.upm.es/practica4 ./ResultadosBusquedaP4.xsd\">");
-		sbSalida.append("\n\t<summary>" + "\n\t\t<query>" + query + "</query>" + "\n\t\t<numConcepts>" + numConcepts
-				+ "</numConcepts>" + "\n\t\t<numDatasets>" + numDatasets + "</numDatasets>"
-				+ "\n\t</summary>\n\t<results>");
-		sbSalida.append(genConcepts(lConcepts));
-		sbSalida.append(genDatasets(hDatasets));
-		sbSalida.append(genResources(mDatasetConcepts));
-		sbSalida.append("\n\t</results>\n</searchResults>");
-
-		try {
-			Files.write(path, sbSalida.toString().getBytes());
-		} catch (IOException e) {
-			e.printStackTrace();
+		sbSalida.append("\n\t\t<datasets>");
+		for (Dataset unDataset : datasets) {
+			sbSalida.append(datasetPattern.replace("#ID#", unDataset.getId()));
+			sbSalida.append(titlePattern.replace("#TITLE#", unDataset.getTitle()));
+			sbSalida.append(descriptionPattern.replace("#DESC#", unDataset.getDescription()));
+			sbSalida.append(themePattern.replace("#THEME#", unDataset.getTheme()));
+			sbSalida.append("\n\t\t\t</dataset>");
 		}
+		sbSalida.append("\n\t\t</datasets>");
+		return sbSalida.toString();
+	}
+
+	private String resultsToXML() {
+		StringBuilder sbResults = new StringBuilder();
+		sbResults.append("\n\t<results>");
+		sbResults.append(conceptsToXML(concepts));
+		sbResults.append(datasetsToXML(datasets));
+		sbResults.append(genResources(resourceList));
+		sbResults.append("\n\t</results>");
+
+		return sbResults.toString();
+	}
+
+	public String generarXML() {
+		StringBuilder sbSalida = new StringBuilder();
+
+		sbSalida.append(cabeceraXML);
+		sbSalida.append(summaryToXML(codigoCategoria, concepts, datasets));
+		sbSalida.append(resultsToXML());
+		sbSalida.append("\n</searchResults>");
+		return sbSalida.toString();
+
 	}
 }

@@ -1,291 +1,257 @@
-/**
- * Esta clase JSONParser se encarga de analizar un archivo JSON y reconocer su estructura para imprimirlo por pantalla.
- */
 options
 {
   STATIC = false;
   JAVA_TEMPLATE_TYPE = "modern";
-  UNICODE_INPUT = true; // Esta opcion permite que el intérpreta sea capaz de reconocer caracteres Unicode extendidos
 }
 
 PARSER_BEGIN(JSONParser)
 package piat.opendatasearch;
 import java.io.*;
 import java.util.*;
-import com.google.gson.*;
-import java.net.URL;
-
-/**
- * Esta clase implementa un analizador de archivos JSON para descargarlos de internet y procesarlos.
- */
+import java.net.URI;
+import java.net.URISyntaxException;
 public class JSONParser implements Runnable
 {
-    private String fichero;
-    private List<String> lConcepts;
-    private Map<String, JsonArray> mDatasetConcepts;
-    private String nombreHilo;
-
-    /**
-     * Constructor de la clase JSONParser.
-     *
-     * @param fichero          La URL del archivo JSON que se va a descargar y analizar.
-     * @param lConcepts        Lista de conceptos a buscar en los objetos JSON.
-     * @param mDatasetConcepts Mapa donde se almacenan los resultados del análisis.
-     */
-    public JSONParser(String fichero, List<String> lConcepts, Map<String, JsonArray> mDatasetConcepts)
+  private String fichero;
+  private List < String > conceptsList;
+	  private Map<String, List <Resource>> datasetsList;
+  private String nombreHilo;
+  public JSONParser(String fichero, List < String > conceptsList, Map<String, List <Resource>> datasetsList)
+  {
+    this.fichero = fichero;
+    this.conceptsList = conceptsList;
+    this.datasetsList = datasetsList;
+  }
+  @Override 
+  public void run()
+  {
+    Thread.currentThread().setName("JSON " + fichero);
+    nombreHilo = "[" + Thread.currentThread().getName() + "] ";
+    System.out.println(nombreHilo + "Empezar a descargar de internet el JSON");
+    JSONParser parser;
+    try
     {
-        this.fichero = fichero;
-        this.lConcepts = lConcepts;
-        this.mDatasetConcepts = mDatasetConcepts;
+      InputStream inputStream = new URI(fichero.replace("\"", "")).toURL().openStream();
+      parser = new JSONParser(new JSONParserTokenManager(new SimpleCharStream(new StreamProvider(inputStream, "UTF-8"))));
+	  
+      
+      List < Resource > resourceList = parser.document(conceptsList);
+      datasetsList.put(fichero, resourceList);
+	  inputStream.close();
     }
-
-    @Override
-    public void run()
+    catch (IOException | ParseException | URISyntaxException  e )
     {
-        JsonArray jsonArray = new JsonArray();
-        Thread.currentThread().setName("JSON " + fichero);
-        nombreHilo = "[" + Thread.currentThread().getName() + "] ";
-        System.out.println(nombreHilo + "Empezar a descargar de internet el JSON");
-        try
-        {
-            InputStream inputStream = new URL(fichero).openStream();
-            JSONParser parser = new JSONParser(new JSONParserTokenManager(new SimpleCharStream(new StreamProvider(inputStream, "UTF-8"))));
-            JsonElement json = parser.json();
-            if (json != null && json.isJsonObject())
-            {
-                JsonObject jsonObject = json.getAsJsonObject();
-                if (jsonObject.has("@graph"))
-                {
-                    jsonArray = jsonObject.getAsJsonArray("@graph");
-                    jsonArray = processGraphArray(jsonArray, lConcepts);
-                }
-                else
-                {
-                    jsonArray = new JsonArray();
-                }
-            }
-            inputStream.close();
-        }
-        catch (ParseException e)
-        {
-            System.out.println(e.getMessage());
-        }
-        catch (FileNotFoundException e)
-        {
-            System.out.println(nombreHilo + "El fichero no existe. Ignorándolo");
-        }
-        catch (IOException e)
-        {
-            System.out.println(nombreHilo + "Hubo un problema al abrir el fichero. Ignorándolo" + e);
-        }
-        mDatasetConcepts.put(fichero, jsonArray);
+      e.printStackTrace();
     }
-
-    /**
-     * Procesa el array @graph y retorna un nuevo array con los primeros cinco objetos.
-     *
-     * @param graphArray  El array JSON a procesar.
-     * @param lConcepts   Lista de conceptos a buscar en los objetos JSON.
-     * @return Un nuevo array con los primeros cinco objetos que cumplen con las condiciones.
-     */
-    private static JsonArray processGraphArray(JsonArray graphArray, List<String> lConcepts)
-    {
-        JsonArray processedArray = new JsonArray();
-        int maxObjects = 5;
-        for (JsonElement element : graphArray)
-        {
-            if (element.isJsonObject())
-            {
-                JsonObject jsonObject = element.getAsJsonObject();
-                if (jsonObject.has("@type"))
-                {
-                    String type = jsonObject.get("@type").getAsString();
-                    if (lConcepts.contains(type) && processedArray.size() < maxObjects)
-                    {
-                        processedArray.add(jsonObject);
-                    }
-                }
-            }
-            if (processedArray.size() >= maxObjects)
-            {
-                break;
-            }
-        }
-        return processedArray;
-    }
+  }
 }
 
 PARSER_END(JSONParser)
 
-/**
- * Definicion de tokens a omitir.
- */
-SKIP :
-{
-  " "
-| "\t"
-| "\r"
-| "\n"
-}
+/******************************  ANALIZADOR LÉXICO  ******************************/
 
-/**
- * Definicion de tokens JSON.
- */
+/**	Cuando el token @graph es detectado, empieza a analizar el graph.
+	Obvia todo excepto el token @graph.
+	---------------------------------------------------------------
+	When a @graph token is detected, it starts to analyze the graph.
+	Skips everything but the @graph token. **/
 TOKEN :
 {
-  < OBJECT_START : "{" >
-| < OBJECT_END : "}" >
+  < GRAPHS : "\"@graph\"" > : GRAPH
+}
+
+/** Cuando el token @id es detectado, empieza a analizar el recurso.
+	Cuando el token "]" es detectado, sale del graph.
+	Obvia todo excepto los tokens @id, "[" y "]".
+	---------------------------------------------------------------
+	When the @id token is detected, it starts to analyze the resource.
+	When the "]" token is detected, it exits the graph.
+	Skips everything but the @id, "[", "]" tokens. **/
+< GRAPH >
+TOKEN :
+{
+  < IDRESOURCE : "\"@id\"" > : GETVALUE
 | < ARRAY_START : "[" >
-| < ARRAY_END : "]" >
-| < STRING : "\"" (~[ "\"", "\n", "\r" ])* "\"" >
-| < INTEGER : ("-")? ([ "0"-"9" ])+ >
+| < ARRAY_END : "]" > : DEFAULT
+}
+
+/** Analiza los tokens que nos interesan dentro del recurso.
+	Cuando el token "organization-name" es detectado, le dice al analizador léxico que el recurso va a terminar (RESOURCE_END).
+	Cuando el token "area" es detectado, cambia el estado léxico para detectar el token @id dentro de "area" (INAREA).
+	Obvia todo excepto los tokens que nos interesan.
+	---------------------------------------------------------------
+	Analyzes every token of the resource that we are interested on.
+	When the "organization-name" token is detected, it tells the lexical analyzer that the resource is about to end (RESOURCE_END).
+	When the "area" token is detected, it changes the lexical state to detect the @id token inside the "area" (INAREA).
+	Skips everything but the tokens we are interested on. **/
+< RESOURCE >
+TOKEN :
+{
+  < IDCONCEPT : "\"@type\"" > : GETVALUE
+| < TITLE : "\"title\"" > : GETVALUE
+| < DESCRIPTION : "\"description\"" > : GETVALUE
+| < TIME_START : "\"dtstart\"" > : GETVALUE
+| < TIME_END : "\"dtend\"" > : GETVALUE
+| < LINK : "\"link\"" > : GETVALUE
+| < EVENT_LOCATION : "\"event-location\"" > : GETVALUE
+| < AREA : "\"area\"" > : INAREA
+| < LATITUDE : "\"latitude\"" > : GETVALUE
+| < LONGITUDE : "\"longitude\"" > : GETVALUE
+| < ORGANIZATION_NAME : "\"organization-name\"" > : GETVALUE
+| < ACCESIBILITY : "\"accesibility\"" > : RESOURCE_END
+}
+
+/**	Analiza el string del token "organization-name", que es el último token que nos interesa del recurso.
+	Cuando el token es detectado, sale del recurso, y vuelve al graph.
+	Obvia todo excepto el token ORGANIZATION_STRING
+	---------------------------------------------------------------
+	Analyze the string of the "organization-name" token, which is the last token we are interested on inside the resource.
+	When the token is detected, it exits the resource, and gets back to the graph.
+	Skips everything but the ORGANIZATION_STRING token. **/
+< RESOURCE_END >
+TOKEN :
+{
+  < ACCESIBILITY_STRING : "\"" (~[ "\"", "\n", "\r" ])* "\"" > : GRAPH
+}
+
+/**	Estado léxico que recoge el valor del los tokens dentro del recurso.
+	Cuando cualquier token es detectado, vuelve al estado de análisis del recurso.
+	Obvia todo excepto los tokens que nos interesan.
+	---------------------------------------------------------------
+	Lexical state that gets the value of tokens in the resource.
+	When any token is detected, it jumps back to the analyzing state of the resource .
+	Skips everything but the tokens we are interested on. **/
+< GETVALUE >
+TOKEN :
+{
+  < STRING : "\"" (~[ "\"", "\n", "\r" ])* "\"" > : RESOURCE
+| < INTEGER : ("-")? ([ "0"-"9" ])+ > : RESOURCE
 | < DOUBLE :
     ("-")? ([ "0"-"9" ])+
     (
       "." ([ "0"-"9" ])+
     ) >
-| < TRUE : "true" >
-| < FALSE : "false" >
-| < NULL : "null" >
-| < COMMA : "," >
-| < COLON : ":" >
+  : RESOURCE
+| < TRUE : "true" > : RESOURCE
+| < FALSE : "false" > : RESOURCE
+| < NULL : "null" > : RESOURCE
 }
 
-/**
- * Metodo para analizar un elemento JSON.
- * @return Elemento JSON analizado.
- */
-JsonElement json() :
+/**	Cuando el token @id es detectado dentro del area, recoge su valor.
+	Obvia todo excepto el token @id.
+	---------------------------------------------------------------
+	When the @id token is detected inside the area, it gets the value.
+	Skips everything but the @id token. **/
+< INAREA >
+TOKEN :
 {
-  JsonElement j;
-}
-{
-  (j = object()| j = array())
-  {
-    System.out.println(j);
-    return j;
-  }
+  < IDAREA : "\"@id\"" > : GETVALUE
 }
 
-/**
- * Metodo para analizar un objeto JSON.
- * @return Objeto JSON analizado.
- */
-JsonObject object() :
+/**	Todo carácter que no es un token, es obviado.
+	---------------------------------------------------------------
+	Any character that is not a token, it is skipped. **/
+<* >
+SKIP :
 {
-  AbstractMap.SimpleEntry<String, JsonElement> p;
-  JsonObject o = new JsonObject();
+  < ~[ ] >
+}
+
+/****************************  ANALIZADOR SINTÁCTICO  ****************************/
+
+List < Resource > document(List < String > conceptsList) :
+{
+  List < Resource > resourceList = new ArrayList < Resource > ();
+  Resource r;
+  int maxObjects = 9999;
 }
 {
-  < OBJECT_START >
   (
-    p = pair()
-    {
-      o.add(p.getKey(), p.getValue()); // Obtener la pareja clave-valor JSON y añadirlo al objeto JSON
-    }
+    < GRAPHS > < ARRAY_START >
     (
-      < COMMA > p = pair()
+      r = resource()
       {
-        o.add(p.getKey(), p.getValue());
+        resourceList.add(r);
+        if (resourceList.size() >= maxObjects)
+        {
+		          token_source.SwitchTo(DEFAULT); // No es muy seguro, es posible que el TokenManager vaya muy por delante del analizador.
+										          // Pero dado que no queremos analizar nada mas, se puede utilizar sin problemas.
+		          break;
+        }
       }
     )*
-  )?
-  < OBJECT_END >
-  {
-    return o;
-  }
-}
-
-/**
- * Metodo para analizar un array JSON.
- * @return Array JSON analizado.
- */
-JsonArray array() :
-{
-  JsonObject o;
-  JsonArray a = new JsonArray();
-}
-{
-  < ARRAY_START >
-  (
-    o = object()
-    {
-      a.add(o); // Obtener el objeto JSON y añadirlo al array JSON
-    }
-    (
-      < COMMA > o = object()
-      {
-        a.add(o);
-      }
-    )*
-  )?
-  < ARRAY_END >
-  {
-    return a;
-  }
-}
-
-/**
- * Metodo para analizar una pareja clave-valor JSON.
- * @return Pareja clave-valor analizada.
- */
-AbstractMap.SimpleEntry<String, JsonElement> pair() :
-{
-  JsonElement e;
-  Token t;
-}
-{
-  t = < STRING > < COLON > e = value()
-  {
-        return new AbstractMap.SimpleEntry<String, JsonElement>(t.image.substring(1, t.image.length() - 1), e); // Obtener los elementos JSON y añadirlos a la pareja clave-valor JSON 
-  }
-}
-
-/**
- * Metodo para analizar un valor JSON.
- * @return Valor JSON analizado.
- */
-JsonElement value() :
-{
-  Token t;
-  JsonElement e;
-}
-{
-  (
-    t = < STRING >
-    {
-      e = new JsonPrimitive(t.image.substring(1, t.image.length() - 1));
-    }
-  | t = < INTEGER >
-    {
-      e = new JsonPrimitive(Integer.parseInt(t.image));
-    }
-  | t = < DOUBLE >
-    {
-      e = new JsonPrimitive(Double.parseDouble(t.image));
-    }
-  | < TRUE >
-    {
-      e = new JsonPrimitive(true);
-    }
-  | < FALSE >
-    {
-      e = new JsonPrimitive(false);
-    }
-  | t = < NULL >
-    {
-      e = JsonNull.INSTANCE;
-    }
-  | e = object()
-    {
-      //return e;
-    }
-  | e = array()
-    {
-      //return e;
-    }
+    (< ARRAY_END >)?
   )
   {
-    return e;
+    return resourceList;
+  }
+}
+
+Resource resource() :
+{
+  Resource r = new Resource();
+  Token t;
+}
+{
+  (< IDRESOURCE > t = < STRING >)
+  {
+    r.setResourceId(t.image);
+  }
+  (< IDCONCEPT > t = < STRING >)
+  {
+    r.setConceptId(t.image);
+  }
+  (< TITLE > t = < STRING >)
+  {
+    r.setTitle(t.image);
+  }
+  (< DESCRIPTION > t = < STRING >)
+  {
+    r.setDescription(t.image);
+  }
+  (
+    < TIME_START > t = < STRING >
+    {
+      r.setStartDate(t.image);
+    }
+  )
+  (
+    < TIME_END > t = < STRING >
+    {
+      r.setEndDate(t.image);
+    }
+  )
+  (< LINK > t = < STRING >)
+  {
+    r.setLink(t.image);
+  }
+  (< EVENT_LOCATION > t = < STRING >)
+  {
+    r.setEventLocation(t.image);
+  }
+  (
+    < AREA > (< IDAREA > t = < STRING >)
+    {
+      r.setArea(t.image);
+    }
+  )
+  (< LATITUDE > t = < DOUBLE >)
+  {
+    r.setLatitude(Double.parseDouble(t.image));
+  }
+  (< LONGITUDE > t = < DOUBLE >)
+  {
+    r.setLongitude(Double.parseDouble(t.image));
+  }
+  (< ORGANIZATION_NAME > t = < STRING >)
+  {
+    r.setOrganizationName(t.image);
+  }
+  (< ACCESIBILITY > t = < ACCESIBILITY_STRING >)
+  {
+    r.setAccesibility(t.image);
+  }
+  {
+    return r;
   }
 }

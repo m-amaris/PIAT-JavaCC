@@ -134,7 +134,7 @@ List < Resource > document() :
 {
   List < Resource > resourceList = new ArrayList < Resource >();
   Resource r;
-  int maxObjects = 5;
+  int maxObjects = 9999;
 }
 {
   (< GRAPHS > < ARRAY_START > 

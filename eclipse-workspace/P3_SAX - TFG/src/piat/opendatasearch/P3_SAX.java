@@ -30,20 +30,19 @@ public class P3_SAX {
 	 */
 
 	public static void main(String[] args) {
-
 		validarArgumentos(args);
 		try {
 			final XMLParser parser = new XMLParser(new XMLParserTokenManager(
 					new SimpleCharStream(new StreamProvider(new FileInputStream(args[0]), "UTF-8"))));
 			final ManejadorXML man = parser.processFile(args[1]); // Pending of changing name
-//			System.out.println(man.getDatasets());
+//			System.out.println(man.getConcepts());
 			final GenerarXML gen = new GenerarXML(man.getConcepts(), man.getLabel(), args[1], man.getDatasets());
-			try(final FileWriter ficheroSalida = new FileWriter(args[2]);){
+			try (final FileWriter ficheroSalida = new FileWriter(args[2]);) {
 				ficheroSalida.write(gen.generarXML());
 			}
 			System.out.println("Fichero generado...");
 			System.exit(0);
-		} catch (ParseException | IOException e ) {
+		} catch (ParseException | IOException e) {
 			e.printStackTrace();
 		}
 	}

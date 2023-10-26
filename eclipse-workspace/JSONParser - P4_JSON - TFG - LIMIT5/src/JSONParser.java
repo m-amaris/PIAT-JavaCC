@@ -23,7 +23,7 @@ public class JSONParser implements JSONParserConstants {
   final public 
 List < Resource > document() throws ParseException {List < Resource > resourceList = new ArrayList < Resource >();
   Resource r;
-  int maxObjects = 5;
+  int maxObjects = 9999;
     jj_consume_token(GRAPHS);
     jj_consume_token(ARRAY_START);
     label_1:
