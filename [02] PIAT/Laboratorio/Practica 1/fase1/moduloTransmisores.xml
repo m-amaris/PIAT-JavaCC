@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- MODULO-MIGUEL-AMARÍS -->
+<modulo idmodulo="MODt10001">
+	<tipoModulo>
+		transmisor
+	</tipoModulo>
+	<funcionalidad>
+		Este modulo se encarga de analizar parametros de la capa
+		de ozono, como su
+		nivel de ozono, temperatura y la radiacion infrarroja
+		en diversos
+		puntos
+	</funcionalidad>
+	<componentes>
+		<transmisores>
+			<numeroTransmisores>
+				2
+			</numeroTransmisores>
+			<transmisor idTransmisor="TR1mfm">
+				<parametrosTransmision>
+					<tipoModulacion>
+					16QAM
+					</tipoModulacion>
+					<tiempoVida>
+					2022-01-27 2022-01-28
+					</tiempoVida>
+				</parametrosTransmision>
+			</transmisor>
+			<transmisor idTransmisor="TR2lfm">
+				<parametrosTransmision>
+					<tipoModulacion>
+					BPSK
+					</tipoModulacion>
+					<tiempoVida>
+					2022-01-01 2022-01-15
+					</tiempoVida>
+				</parametrosTransmision> 
+			</transmisor>
+		</transmisores>
+
+	</componentes>
+
+</modulo>

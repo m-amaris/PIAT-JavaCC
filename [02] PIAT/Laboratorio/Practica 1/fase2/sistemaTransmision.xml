@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- SISTEMA-TRANSMISION-MIGUEL-AMARÍS -->
+<tx:sistemaTx
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns:tx="http://www.piat.upm.es/sistemaTransmision" 
+xmlns:mod="http://www.piat.upm.es/modulo"
+xsi:schemaLocation="http://www.piat.upm.es/sistemaTransmision sistemaTransmision.xsd" 
+idSistemaTX="TX001">
+
+    <tx:subsistemaTX>
+        <tx:nombreSusbsistemaTX>Susbs2</tx:nombreSusbsistemaTX>
+        <tx:nubeInformatica>
+            <tx:acronimo>ASD</tx:acronimo>
+            <tx:uri>http://nubeinformatica1.com</tx:uri>
+        </tx:nubeInformatica>
+        <tx:modulosTXpIntegrados>
+            MODt0001 MODt0002
+        </tx:modulosTXpIntegrados>
+    </tx:subsistemaTX>
+
+    <tx:subsistemaTX>
+        <tx:nombreSusbsistemaTX>Susbs2</tx:nombreSusbsistemaTX>
+        <tx:modulosTXpIntegrados>
+            MODt0003 MODt0004
+        </tx:modulosTXpIntegrados>
+    </tx:subsistemaTX>
+    
+</tx:sistemaTx>

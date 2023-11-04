@@ -6,6 +6,8 @@
 bin/
 tmp/
 *.tmp
+*.zip
+*.7z
 *.bak
 *.swp
 *~.nib

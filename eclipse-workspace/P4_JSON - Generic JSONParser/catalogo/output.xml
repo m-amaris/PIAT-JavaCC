@@ -1,0 +1,214 @@
+<?xml version = "1.0" encoding="UTF-8"?>
+<searchResults xmlns="http://www.piat.dte.upm.es/practica4"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.piat.dte.upm.es/practica4 ./ResultadosBusquedaP4.xsd">
+	<summary>
+		<query>0016-018</query>
+		<numConcepts>6</numConcepts>
+		<numDatasets>2</numDatasets>
+	</summary>
+	<results>
+		<concepts>
+			<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile"/>
+			<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile/ClasicaEspanola"/>
+			<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile/ContemporaneaBreakdanceHipHop"/>
+			<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile/Flamenco"/>
+			<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile/FolcloreEtnica"/>
+			<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile/SalonTango"/>
+		</concepts>
+		<datasets>
+			<dataset id="https://datos.madrid.es/egob/catalogo/206974-0-agenda-eventos-culturales-100.json">
+				<title>Actividades Culturales y de Ocio Municipal en los próximos 100 días</title>
+				<description>Relación de actividades de carácter cultural y de ocio, que se van a celebrar en los próximos 100 días y/o que se están celebrando, en centros Municipales . Podrá encontrar así las actividades de Centros Culturales, Socioculturales, Centros Juveniles, Bibliotecas, Centros de Mayores, Museos, Juntas de Distrito, etc. En este Portal, existen otros conjuntos de datos donde puede ver la relación de los diversos centros anteriores. Tenga en cuenta que hay ciertas actividades que aunque son gratuitas , requieren inscripción previa. En el campo 'CONTENT-URL', esta la url donde puede obtener información adicional de la actividad y donde se especifica si se requiere inscripción y como realizarla . Hay otras actividades, que si tienen un coste asociado, igualmente tiene la información en la url anterior. En el apartado 'Documentación asociada', hay un documento con la estructura del fichero y las recomendaciones y/o advertencias, que le permitirá usar y comprender mejor los datos.</description>
+				<theme>http://datos.gob.es/kos/sector-publico/sector/cultura-ocio</theme>
+			</dataset>
+			<dataset id="https://datos.madrid.es/egob/catalogo/300107-0-agenda-actividades-eventos.json">
+				<title>Agenda de actividades y eventos</title>
+				<description>Relación de actividades de distinto tipo que se van a celebrar o que se están celebrando, en centros municipales o asociados la actividad gestionada por el Ayuntamiento. Podrá encontrar así las actividades de Centros Culturales, Socioculturales, Centros Juveniles, Bibliotecas, Centros de Mayores, Museos, Juntas de Distrito, etc. En la columna P del fichero descargable, puede ver en que centro se realiza dicha actividad (puede ser en centros del ayuntamiento o no) No se trata de una relación exhaustiva de toda la actividad del Ayuntamiento de Madrid, sino solamente de aquellos que ya se encuentran incluidos en la página web www.madrid.es . Asi mismo pueden existir eventos, que por motivos de temática, pueden incluso estar duplicados. En este Portal, existen otros conjuntos de datos donde puede ver la relación de los diversos centros anteriores. Tenga en cuenta que hay ciertas actividades que aunque son gratuitas , requieren inscripción previa. En el campo 'CONTENT-URL', esta la url donde puede obtener información adicional de la actividad y donde se especifica si se requiere inscripción y como realizarla . Hay otras actividades, que si tienen un coste asociado, igualmente tiene la información en la url anterior. En la página siguiente tiene un buscador para poder encontrar una actividad en particular. En el apartado 'Documentación asociada', hay un documento con la estructura del fichero y las recomendaciones y/o advertencias, que le permitirá usar y comprender mejor los datos.</description>
+				<theme>http://datos.gob.es/kos/sector-publico/sector/cultura-ocio</theme>
+			</dataset>
+		</datasets>
+		<resources>
+			<resource id="https://datos.madrid.es/egob/catalogo/tipo/evento/12112925-akai-vida-cuatro-haikus.json">
+				<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile"/>
+				<link><![CDATA[http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=79ab4d3febada810VgnVCM1000001d4a900aRCRD]]></link>
+				<title>Akai- Vida en cuatro haikus</title>
+				<location>
+						<eventLocation>Centro Cultural el Torito (Moratalaz)</eventLocation>
+						<area>https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Moratalaz/Barrio/Vinateros</area>
+						<timetable>
+							<start>2023-12-05 19:00:00.0</start>
+							<end>2023-12-05 23:59:00.0</end></timetable>
+						<georeference>40.40609591857167 -3.646536107063507</georeference>
+				</location>
+				<organization>
+						<accesibility>1</accesibility>
+						<organizationName>Centro Cultural el Torito (Moratalaz)</organizationName>
+				</organization>
+				<description>Circo  Miscelánea Circo   Es un montaje se combina la manipulación de objetos, la danza, la acrobacia en aro aéreo y la poesía en forma de haiku. Se expresa la rebelión contra lo impuesto, las etapas de la vida y la vuelta a lo más primitivo, teniendo como hilo conductor las estaciones. Duración 1 hora</description>
+			</resource>
+			<resource id="https://datos.madrid.es/egob/catalogo/tipo/evento/12119914-compania-algarabia.json">
+				<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile"/>
+				<link><![CDATA[http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=c6882892905fa810VgnVCM1000001d4a900aRCRD]]></link>
+				<title>Compañía Algarabía</title>
+				<location>
+						<eventLocation>Centro Cultural Juan Genovés (Moncloa - Aravaca)</eventLocation>
+						<area>https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Moncloa-Aravaca/Barrio/Aravaca</area>
+						<timetable>
+							<start>2023-10-28 19:00:00.0</start>
+							<end>2023-10-28 23:59:00.0</end></timetable>
+						<georeference>40.45866721398762 -3.786129575145957</georeference>
+				</location>
+				<organization>
+						<accesibility>1</accesibility>
+						<organizationName>Centro Cultural Juan Genovés (Moncloa - Aravaca)</organizationName>
+				</organization>
+				<description></description>
+			</resource>
+			<resource id="https://datos.madrid.es/egob/catalogo/tipo/evento/12041997-compania-nacional-danza.json">
+				<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile"/>
+				<link><![CDATA[http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=398232617b2e8810VgnVCM1000001d4a900aRCRD]]></link>
+				<title>Compañía Nacional de Danza</title>
+				<location>
+						<eventLocation>Naves Español en Matadero</eventLocation>
+						<area>https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Arganzuela/Barrio/Chopera</area>
+						<timetable>
+							<start>2023-11-04 00:00:00.0</start>
+							<end>2023-11-12 23:59:00.0</end></timetable>
+						<georeference>40.39245798191536 -3.6972067902718897</georeference>
+				</location>
+				<organization>
+						<accesibility>1,6</accesibility>
+						<organizationName>Naves Español en Matadero</organizationName>
+				</organization>
+				<description></description>
+			</resource>
+			<resource id="https://datos.madrid.es/egob/catalogo/tipo/evento/12131507-coordenadas-fest-nosotros.json">
+				<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile"/>
+				<link><![CDATA[http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=7295c8a94982b810VgnVCM1000001d4a900aRCRD]]></link>
+				<title>Coordenadas fest. Entre nosotros</title>
+				<location>
+						<eventLocation>Centro Cultural Casa de Vacas (Retiro)</eventLocation>
+						<area>https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Retiro/Barrio/LosJeronimos</area>
+						<timetable>
+							<start>2023-11-04 18:00:00.0</start>
+							<end>2023-11-04 23:59:00.0</end></timetable>
+						<georeference>40.41906024374356 -3.6840615387926956</georeference>
+				</location>
+				<organization>
+						<accesibility>1</accesibility>
+						<organizationName>Centro Cultural Casa de Vacas (Retiro)</organizationName>
+				</organization>
+				<description></description>
+			</resource>
+			<resource id="https://datos.madrid.es/egob/catalogo/tipo/evento/12131509-coordenadas-fest-que-levita.json">
+				<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile"/>
+				<link><![CDATA[http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=7ee5c8a94982b810VgnVCM1000001d4a900aRCRD]]></link>
+				<title>Coordenadas fest. La que levita</title>
+				<location>
+						<eventLocation>Centro Cultural Casa de Vacas (Retiro)</eventLocation>
+						<area>https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Retiro/Barrio/LosJeronimos</area>
+						<timetable>
+							<start>2023-11-04 19:00:00.0</start>
+							<end>2023-11-04 23:59:00.0</end></timetable>
+						<georeference>40.41906024374356 -3.6840615387926956</georeference>
+				</location>
+				<organization>
+						<accesibility>1</accesibility>
+						<organizationName>Centro Cultural Casa de Vacas (Retiro)</organizationName>
+				</organization>
+				<description></description>
+			</resource>
+			<resource id="https://datos.madrid.es/egob/catalogo/tipo/evento/12106357-aires-oriente.json">
+				<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile"/>
+				<link><![CDATA[http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=0e6bd280f6bca810VgnVCM1000001d4a900aRCRD]]></link>
+				<title>Aires de Oriente</title>
+				<location>
+						<eventLocation>Centro Cultural José Luis López Vázquez (San Blas - Canillejas)</eventLocation>
+						<area>https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/SanBlas-Canillejas/Barrio/Rejas</area>
+						<timetable>
+							<start>2023-10-14 19:00:00.0</start>
+							<end>2023-10-14 23:59:00.0</end></timetable>
+						<georeference>40.446826729909155 -3.5727382893523254</georeference>
+				</location>
+				<organization>
+						<accesibility>2</accesibility>
+						<organizationName>Centro Cultural José Luis López Vázquez (San Blas - Canillejas)</organizationName>
+				</organization>
+				<description></description>
+			</resource>
+			<resource id="https://datos.madrid.es/egob/catalogo/tipo/evento/12112925-akai-vida-cuatro-haikus.json">
+				<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile"/>
+				<link><![CDATA[http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=79ab4d3febada810VgnVCM1000001d4a900aRCRD]]></link>
+				<title>Akai- Vida en cuatro haikus</title>
+				<location>
+						<eventLocation>Centro Cultural el Torito (Moratalaz)</eventLocation>
+						<area>https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Moratalaz/Barrio/Vinateros</area>
+						<timetable>
+							<start>2023-12-05 19:00:00.0</start>
+							<end>2023-12-05 23:59:00.0</end></timetable>
+						<georeference>40.40609591857167 -3.646536107063507</georeference>
+				</location>
+				<organization>
+						<accesibility>1</accesibility>
+						<organizationName>Centro Cultural el Torito (Moratalaz)</organizationName>
+				</organization>
+				<description>Circo  Miscelánea Circo   Es un montaje se combina la manipulación de objetos, la danza, la acrobacia en aro aéreo y la poesía en forma de haiku. Se expresa la rebelión contra lo impuesto, las etapas de la vida y la vuelta a lo más primitivo, teniendo como hilo conductor las estaciones. Duración 1 hora</description>
+			</resource>
+			<resource id="https://datos.madrid.es/egob/catalogo/tipo/evento/12042044-archipielago-desastres.json">
+				<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile"/>
+				<link><![CDATA[http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=929432617b2e8810VgnVCM1000001d4a900aRCRD]]></link>
+				<title>Archipiélago de los desastres</title>
+				<location>
+						<eventLocation>Teatro Español</eventLocation>
+						<area>https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Centro/Barrio/Cortes</area>
+						<timetable>
+							<start>2024-05-02 19:30:00.0</start>
+							<end>2024-05-05 23:59:00.0</end></timetable>
+						<georeference>40.414828532240946 -3.700164949543688</georeference>
+				</location>
+				<organization>
+						<accesibility>1,6</accesibility>
+						<organizationName>Teatro Español</organizationName>
+				</organization>
+				<description>Jueves a domingo / 19:30 horas</description>
+			</resource>
+			<resource id="https://datos.madrid.es/egob/catalogo/tipo/evento/12081015-biodanza-espacio-igualdad-nieves-torres.json">
+				<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile"/>
+				<link><![CDATA[http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=e0fb615955c3a810VgnVCM2000001f4a900aRCRD]]></link>
+				<title>Biodanza en el Espacio de Igualdad Nieves Torres</title>
+				<location>
+						<eventLocation>Espacio de Igualdad Nieves Torres. Chamartín</eventLocation>
+						<area>https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Chamartin/Barrio/NuevaEspana</area>
+						<timetable>
+							<start>2023-10-05 12:00:00.0</start>
+							<end>2023-10-26 23:59:00.0</end></timetable>
+						<georeference>40.46088981165102 -3.6700689174427326</georeference>
+				</location>
+				<organization>
+						<accesibility>1</accesibility>
+						<organizationName>Espacio de Igualdad Nieves Torres. Chamartín</organizationName>
+				</organization>
+				<description></description>
+			</resource>
+			<resource id="https://datos.madrid.es/egob/catalogo/tipo/evento/11999803-biodanzando-nosotras-conoce-biodanza-srt-grupo-i.json">
+				<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile"/>
+				<link><![CDATA[http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=2066e63ec0eb7810VgnVCM2000001f4a900aRCRD]]></link>
+				<title>Biodanzando entre nosotras. Conoce Biodanza SRT. Grupo I</title>
+				<location>
+						<eventLocation>Espacio de Igualdad Lourdes Hernández. Carabanchel</eventLocation>
+						<area>https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Carabanchel/Barrio/SanIsidro</area>
+						<timetable>
+							<start>2023-09-25 12:30:00.0</start>
+							<end>2023-12-18 23:59:00.0</end></timetable>
+						<georeference>40.395326406887946 -3.721622686264932</georeference>
+				</location>
+				<organization>
+						<accesibility>1</accesibility>
+						<organizationName>Espacio de Igualdad Lourdes Hernández. Carabanchel</organizationName>
+				</organization>
+				<description></description>
+			</resource>
+		</resources>
+	</results>
+</searchResults>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- MODULO-MIGUEL-AMARÍS -->
+<mod:modulo xmlns:mod="http://www.piat.upm.es/modulo" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.piat.upm.es/modulo modulo.xsd" 
+idModulo="MODt0001">
+
+    <mod:tipoModulo>transmisor</mod:tipoModulo>
+    <mod:funcionalidad></mod:funcionalidad>
+    <mod:componentes>
+        <mod:transmisores>
+            <mod:numeroTransmisores>2</mod:numeroTransmisores>
+            <mod:transmisor idTransmisor="TR1mfm">
+                <mod:parametrosTransmision>
+                    <mod:tipoModulacion>BPSK</mod:tipoModulacion>
+                    <mod:tiempoVida>
+                        2022-01-27
+                       2022-01-29
+                    </mod:tiempoVida>
+                </mod:parametrosTransmision>
+            </mod:transmisor>
+            <mod:transmisor idTransmisor="TR1mfn">
+                <mod:parametrosTransmision>
+                    <mod:tipoModulacion>BPSK</mod:tipoModulacion>
+                    <mod:tiempoVida>
+                       2001-01-12
+                       2001-12-12
+                    </mod:tiempoVida>
+                </mod:parametrosTransmision>
+            </mod:transmisor>
+        </mod:transmisores>
+    </mod:componentes>
+</mod:modulo>

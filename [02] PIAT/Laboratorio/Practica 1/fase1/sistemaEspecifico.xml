@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SISTEMA-ESPECIFICO-MIGUEL-AMARÍS -->
+<sistemaEspecifico idSistemaEsp="Sist-001">
+	<descripcionSistemaEsp>
+	Este sistema especifico se encuentra en la capa de ozono y se encarga de obtener diversos parametros en estas condiciones
+	</descripcionSistemaEsp>
+	<dimensionSistemaEsp altura = "437" anchura = "345" longitud = "3245" peso = "2000">
+	</dimensionSistemaEsp>
+	<moduloEspIntegrados>
+	MODe0001 MODe0002 MODe0003 
+	</moduloEspIntegrados>
+</sistemaEspecifico>

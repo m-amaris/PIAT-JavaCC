@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SATELITE.XSD-MIGUEL-AMARÍS -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+targetNamespace="http://www.piat.upm.es/satelite" 
+xmlns:tns="http://www.piat.upm.es/satelite" 
+xmlns:mod="http://www.piat.upm.es/modulo" 
+xmlns:esp="http://www.piat.upm.es/sistemaEspecifico" 
+xmlns:tf="http://www.piat.upm.es/sistemaTransformacion" 
+xmlns:tx="http://www.piat.upm.es/sistemaTransmision" 
+elementFormDefault="qualified">
+
+    <xsd:import namespace="http://www.piat.upm.es/modulo" schemaLocation=".//modulo.xsd" />
+    <xsd:import namespace="http://www.piat.upm.es/sistemaEspecifico" schemaLocation=".//sistemaEspecifico.xsd" />
+    <xsd:import namespace="http://www.piat.upm.es/sistemaTransformacion" schemaLocation=".//sistemaTransformacion.xsd" />
+    <xsd:import namespace="http://www.piat.upm.es/sistemaTransmision" schemaLocation=".//sistemaTransmision.xsd" />
+
+    <xsd:element name="satelite" type="tns:tipoIdSatelite" >
+        <xsd:keyref name="modulosEspecificosKey" refer="tns:modulosKey">
+                <xsd:selector xpath=".//tns:satelite"/>
+                <xsd:field xpath="esp:modulosEspIntegrados"/>
+         </xsd:keyref>
+         <xsd:keyref name="modulosEspecificospKey" refer="tns:modulosKey">
+                <xsd:selector xpath=".//tns:satelite"/>
+                <xsd:field xpath="tx:modulosTXpIntegrados"/>
+         </xsd:keyref>
+    </xsd:element>
+
+    <xsd:complexType name="tipoIdSatelite">
+        <xsd:sequence>
+            <xsd:element name="fechaLanzamiento" type="xsd:dateTime" />
+            <xsd:element name="orbita" type="tns:tipoOrbita" />
+            <xsd:element name="descripcionFuncionalidades" type="tns:tipodescripcionFuncionalidades" />
+            <xsd:element name="modulos" type="tns:tipoListaModulos">
+                <xsd:key name="modulosKey">
+                    <xsd:selector xpath=".//tns:modulo" />
+                    <xsd:field xpath="@idModulo" />
+                </xsd:key>
+            </xsd:element>
+            <xsd:element name="sistemasEsp" type="tns:tipoListaSistemaEsp">
+                <xsd:key name="sistemaEspKey">
+                    <xsd:selector xpath=".//tns:sistemaEsp" />
+                    <xsd:field xpath="@idSistemaEsp" />
+                </xsd:key>
+            </xsd:element>
+            <xsd:element name="sistemaTF" type="tf:tipoSistemaTF" />
+            <xsd:element name="sistemaTX" type="tx:tipoSistemaTX" />
+        </xsd:sequence>
+        <xsd:attribute name="idSatelite" />
+    </xsd:complexType>
+
+    <xsd:simpleType name="tipoTString">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="T" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="tipoOrbita">
+        <xsd:restriction base="xsd:decimal">
+            <xsd:minInclusive value="200" />
+            <xsd:maxInclusive value="3600" />
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:complexType name="tipodescripcionFuncionalidades" mixed="true">
+        <xsd:sequence>
+            <xsd:element name="key" type="xsd:string" minOccurs="1" maxOccurs="unbounded"/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="tipoListaModulos">
+        <xsd:sequence>
+            <xsd:element name="modulo" type="mod:tipoModulo" minOccurs="1" maxOccurs="unbounded" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="tipoListaSistemaEsp">
+        <xsd:sequence>
+            <xsd:element name="sistemaEsp" type="esp:tipoSistemaEspecifico" minOccurs="1" maxOccurs="unbounded" />
+        </xsd:sequence>
+    </xsd:complexType>
+
+</xsd:schema>

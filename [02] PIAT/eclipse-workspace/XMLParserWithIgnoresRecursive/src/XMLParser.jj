@@ -1,0 +1,147 @@
+options
+{
+  STATIC = true;
+  //UNICODE_INPUT = true;
+}
+
+PARSER_BEGIN(XMLParser)
+import java.io.*;
+import java.util.*;
+public class XMLParser
+{
+  public static void main(String [] args) throws ParseException
+  {
+    XMLParser parser;
+            try
+    {
+                      parser = new XMLParser(new XMLParserTokenManager(new SimpleCharStream(new InputStreamReader(new FileInputStream(args [0]), "UTF-8"))));
+                      parser.document();
+            }
+    catch (FileNotFoundException e)
+    {
+                      e.printStackTrace();
+            } catch (UnsupportedEncodingException e) {
+		e.printStackTrace();
+	}
+  }
+}
+
+PARSER_END(XMLParser)
+
+TOKEN_MGR_DECLS :
+{
+  static Stack lexicalStateStack = new Stack();
+}
+
+< CONCEPTS, CONCEPT > 
+SKIP :
+{
+  " " 
+| "\t" 
+| "\r" 
+| "\n"
+}
+
+< DEFAULT, CONCEPT > 
+TOKEN :
+{
+  < OPEN_CONCEPTS : "<concepts>" >
+  {
+    lexicalStateStack.push(curLexState);
+  }
+  : CONCEPTS
+}
+
+< CONCEPTS > 
+TOKEN :
+{
+  < OPEN_CONCEPT : "<concept" > : CONCEPT 
+| < CLOSE_CONCEPTS : "</concepts>" >
+  {
+    SwitchTo((int) lexicalStateStack.pop() == 2 ? DEFAULT : CONCEPT);
+  }
+}
+
+< CONCEPT > 
+TOKEN :
+{
+  < CLOSE_CONCEPT : "</concept>" > : CONCEPTS 
+| < OPEN_CODE : "<code" > 
+| < CLOSE_CODE : "/code>" > 
+| < OPEN_LABEL : "<label" > 
+| < CLOSE_LABEL : "/label>" > 
+| < VALUE : ">" (~["\"", "\n", "\r"]) * "<" > 
+| < ID : "id=" > 
+| < STRING : "\"" (~["\"", "\n", "\r"]) * "\"" > 
+| < END_ELEMENT : ">" >
+  //| < TAG_CONTENT : ~[ ] > : CONCEPT
+	}
+
+< DEFAULT > 
+TOKEN :
+{
+  < ANYTHING : ~[] >
+}
+
+void document() :
+{
+}
+{
+  (
+  (< ANYTHING >) 
+| 
+  (
+  concepts()
+  )
+  ) *
+}
+
+void concepts() :
+{
+}
+{
+  < OPEN_CONCEPTS > 
+  (
+  concept()
+  ) * 
+  < CLOSE_CONCEPTS >
+}
+
+void concept() :
+{
+  Token t;
+}
+{
+  < OPEN_CONCEPT > < ID > t = < STRING >
+  {
+    System.out.println(t.image);
+  }
+  < END_ELEMENT > 
+  element()  //code
+  element()  //label
+  (
+  concepts()
+  ) ? 
+  < CLOSE_CONCEPT >
+}
+
+void element() :
+{
+  Token t;
+}
+{
+  (
+  < OPEN_CODE > 
+| < OPEN_LABEL >
+  ) 
+  (
+  t = < VALUE >
+  {
+    System.out.println(t.image.substring(1, t.image.length() - 1));
+  }
+  ) * 
+  (
+  < CLOSE_CODE > 
+| < CLOSE_LABEL >
+  )
+}

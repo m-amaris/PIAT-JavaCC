@@ -1,0 +1,117 @@
+<portada>
+<tituloPeriodico>
+<nombre> EL PAIS </nombre>
+<url> www.elpais.com </url>
+<subTitulo> EL PERIODICO GLOBAL </subTitulo>
+<lineaDivisoria/>
+<datos>
+<fecha>Domingo 31 de Enero de 2021</fecha>
+<annio>XLVI</annio>
+<numero>15.903 </numero>
+<edicion>MADRID</edicion>
+<precio>2,80 </precio>
+</datos>
+</tituloPeriodico>
+<noticiasPortada>
+<noticiaPortada id="1" tipo="noticia" coorInicio="x1 y1" coorFinal="x2 y2">
+<contenidoInterior>
+<foto coorInicioFoto="ximci1 yimci1" coorFinalFoto="ximcif2 yimcif2" tipoFoto="gif">
+<URLFoto>http://...</URLFoto>
+</foto>
+<seccion> PERIODISMO</seccion>
+<titular> Marty Baron: ... </titular>
+<paginas>P30</paginas>
+</contenidoInterior>
+<contenidoInterior>
+<foto coorInicioFoto="ximci3 yimci" coorFinalFoto="ximcif yimcif4" tipoFoto="gif">
+<URLFoto>http://...</URLFoto>
+</foto>
+<seccion> EL PAÍS SEMANAL</seccion>
+<titular> Anya Taylor-Joy: ...</titular>
+</contenidoInterior>
+</noticiaPortada>
+<noticiaPortada id="2" tipo="noticia" coorInicio="x3 y3" coorFinal="x4 y4">
+<supertitularNoticia> EL PSOE Y PODEMOS ...</supertitularNoticia>
+<titularNoticia>"No podéis ser ..."</titularNoticia>
+<subtitularNoticia>Los socialistas piden ...</subtitularNoticia>
+<autor>CARLOS E. CUÉ </autor>
+<lugar>Madrid</lugar>
+<texto>Miércoles, 27 de enero ...</texto>
+<paginas> 12 y 13</paginas>
+</noticiaPortada>
+<noticiaPortada id="3" tipo="noticia" coorInicio="x5 y5" coorFinal="x6 y6">
+<supertitular>UN DÍA VACUNANDO ...</supertitular>
+<foto coorInicioFoto="ximnp1 yimvn1" coorFinalFoto="ximnp2 y5imnp2" tipoFoto="gif">
+<URLFoto>http://...</URLFoto>
+<pieDeFoto> 8.16 La enfermera Miriam Ureña ...</pieDeFoto>
+</foto>
+<foto coorInicioFoto="ximnp3 yimnp3" coorFinalFoto="ximnp4 yimnp4" tipoFoto="jpg">
+<URLFoto>http://...</URLFoto>
+<pieDeFoto> 11.05 La policia escolta a Ureña ...</pieDeFoto>
+</foto>
+<foto coorInicioFoto="ximnp5 yimnp5" coorFinalFoto="ximnp6 yimnp6" tipoFoto="jpg">
+<URLFoto>http://...</URLFoto>
+<pieDeFoto> 13.32 "No es nada", repite ...</pieDeFoto>
+</foto>
+<foto coorInicioFoto="ximnp7 yimnp7" coorFinalFoto="ximnp8 yimnp8" tipoFoto="png">
+<URLFoto>http://...</URLFoto>
+<pieDeFoto> 16.54 Ureña regresa a casa ...</pieDeFoto>
+</foto>
+</noticiaPortada>
+<noticiaPortada id="4" tipo="noticia" coorInicio="x7 y7" coorFinal="x8 y8">
+<titularNoticia>Europa defiende que ...</titularNoticia>
+<pagina> 24 </pagina>
+<titularNoticia>3,4 dosis por ...</titularNoticia>
+<pagina> 26 </pagina>
+</noticiaPortada>
+<noticiaPortada id="5" tipo="noticia" coorInicio="x9 y9" coorFinal="x10 y10">
+<supertitular> Miriam Ureña, una de ...</supertitular>
+<titularNoticia>"No se puede desperdiciar ..."</titularNoticia>
+<autor>JUAN DIEGO QUESADA</autor>
+<lugar>Toledo</lugar>
+<texto>Miriam Ureña no imagino ...</texto>
+<paginas> 28 y 29</paginas>
+</noticiaPortada>
+<noticiaPortada id="6" tipo="noticia" coorInicio="x11 y11" coorFinal="x12 y12">
+<titularNoticia>Los retrasos en ...</titularNoticia>
+<pagina> 29 </pagina>
+<titularNoticia>Las defensas humanas ...</titularNoticia>
+<pagina> 25 </pagina>
+</noticiaPortada>
+</noticiasPortada>
+<noticiasDestacadas>
+<noticiaDestacada id="1">
+<supertitularNoticia> Elecciones en Cataluña</supertitularNoticia>
+<titularNoticia>Junts asegura que ...</titularNoticia>
+<subtitularNoticia>El PSC pide ...</subtitularNoticia>
+<autor>C. S. BAQUERO</autor>
+<autor>J. MARCOSO</autor>
+<lugar>Barcelona</lugar>
+<lugar>Tarragona</lugar>
+<texto>La candidata de ...</texto>
+<paginas> 14 </paginas>
+</noticiaDestacada>
+<noticiaDestacada id="2">
+<supertitularNoticia>Crece la tensión ... </supertitularNoticia>
+<titularNoticia>Las Palmas es ...</titularNoticia>
+<autor>MARÍA MARTÍN</autor>
+<lugar>Las Palmas de Gran Canaria</lugar>
+<texto>La concentración de ...</texto>
+<paginas> 21 </paginas>
+</noticiaDestacada>
+<noticiaDestacada id="3">
+<titularNoticia>La semana en que ...</titularNoticia>
+<autor>M. A. S.-VALLEJO</autor>
+<lugar>Nueva York</lugar>
+<texto>Reconstrucción de ...</texto>
+<paginas> 42 y 43 </paginas>
+</noticiaDestacada>
+<noticiaDestacada id="4">
+<titularNoticia>El ' caso Navalni' ...</titularNoticia>
+<autor>MARIA R. SAHUQUILLO</autor>
+<lugar>Moscú</lugar>
+<texto>la detención, hace ...</texto>
+<paginas> 2 y 3 </paginas>
+</noticiaDestacada>
+</noticiasDestacadas>
+</portada>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.piat.upm.es/modulo"
+xmlns:tns="http://www.piat.upm.es/modulo" elementFormDefault="qualified">
+<xsd:element name="modulo" type="tns:tipoModuloGlobal"/>
+
+<xsd:complexType name="tipoModuloGlobal">
+    <xsd:sequence>
+        <xsd:element name="tipoModulo" type="tns:tTipoModulo"/>
+        <xsd:element name="funcionalidad" type="tns:tFuncionalidad"/>
+        <xsd:element name="componentes" type="tns:tipoComponentes"/>       
+    </xsd:sequence>
+    <xsd:attribute name="idModulo" type="tns:tIdModulo" use="required"/>    
+</xsd:complexType>
+
+<xsd:simpleType name="tIdModulo">
+    <xsd:restriction base="xsd:token">
+        <xsd:pattern value="[A-Z]{3}(e|t)[0-9]{4}"/>
+    </xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="tTipoModulo">
+    <xsd:restriction base="xsd:token">
+        <xsd:enumeration value="específico"/>
+        <xsd:enumeration value="transmisor"/>
+    </xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="tFuncionalidad">
+    <xsd:restriction base="xsd:string">
+        <xsd:maxLength value="512"/>
+    </xsd:restriction>
+</xsd:simpleType>
+
+<xsd:complexType name="tipoComponentes">
+    <xsd:choice>
+        <xsd:element name="captadores" type="tns:tipoCaptadores">
+            <xsd:key name="capatadorKey">
+                <xsd:selector xpath="tns:captador"/>
+                <xsd:field xpath="@idCaptador"/>
+            </xsd:key>
+        </xsd:element>
+        <xsd:element name="transmisores" type="tns:tipoTransmisores">
+            <xsd:key name="transmisorKey">
+                <xsd:selector xpath="tns:transmisor"/>
+                <xsd:field xpath="@idTransmisor"/>
+            </xsd:key>
+        </xsd:element>
+    </xsd:choice>
+</xsd:complexType>
+
+<xsd:complexType name="tipoCaptadores">
+    <xsd:sequence>
+        <xsd:element name="numeroCaptadores" type="xsd:integer"/>
+        <xsd:element name="captador" type="tns:tipoCaptador" minOccurs="1" maxOccurs="unbounded"/>
+    </xsd:sequence>
+</xsd:complexType>
+
+<xsd:complexType name="tipoCaptador">
+    <xsd:sequence>
+        <xsd:element name="parametro" type="tns:tParametro"/>
+        <xsd:element name="medida" type="tns:tMedida" minOccurs="0" maxOccurs="1"/>
+    </xsd:sequence>
+    <xsd:attribute name="idCaptador" type="tns:tIdCaptador" use="required"/>
+</xsd:complexType>
+
+<xsd:simpleType name="tIdCaptador">
+    <xsd:restriction base="xsd:token">
+        <xsd:pattern value="[A-Z][a-z]{2}[0-9]{3}"/>
+    </xsd:restriction>
+</xsd:simpleType>
+
+<xsd:complexType name="tipoTransmisores">
+    <xsd:sequence>
+        <xsd:element name="numeroTransmisores" type="xsd:integer"/>
+        <xsd:element name="transmisor" type="tns:tipoTransmisor" minOccurs="1" maxOccurs="unbounded"/>
+    </xsd:sequence>
+</xsd:complexType>
+
+<xsd:complexType name="tipoTransmisor">
+    <xsd:all>
+        <xsd:element name="parametrosTransmision" type="tns:tParamTX"/>
+    </xsd:all>
+    <xsd:attribute name="idTransmisor" type="tns:tIdTransmisor" use="required"/>
+</xsd:complexType>
+
+<xsd:simpleType name="tIdTransmisor">
+    <xsd:restriction base="xsd:token">
+        <xsd:pattern value="TR[0-9][a-z]{3}"/>
+    </xsd:restriction>
+</xsd:simpleType>
+
+<xsd:complexType name="tParamTX">
+    <xsd:sequence>
+        <xsd:element name="tipoModulacion" type="tns:tTipoModulacion"/>
+        <xsd:element name="tiempoVida" type="tns:tTiempoVida"/>
+    </xsd:sequence>
+</xsd:complexType>
+
+<xsd:simpleType name="tTipoModulacion">
+    <xsd:restriction base="xsd:token">
+        <xsd:enumeration value="BPSK"/>
+        <xsd:enumeration value="QPSK"/>
+        <xsd:enumeration value="16QAM"/>
+    </xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="tTiempoVida">
+    <xsd:restriction base="tns:listaFechas">
+       <xsd:length value="2"/>
+    </xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="listaFechas">
+    <xsd:list itemType="xsd:date"/> 
+</xsd:simpleType>
+
+<xsd:simpleType name="tParametro">
+    <xsd:restriction base="xsd:string">
+        <xsd:minLength value="5"/>
+        <xsd:maxLength value="25"/>
+    </xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="realOrToken">
+    <xsd:union memberTypes="xsd:double xsd:token"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="tMedida">
+    <xsd:list itemType="tns:realOrToken"/>
+</xsd:simpleType>
+</xsd:schema>
