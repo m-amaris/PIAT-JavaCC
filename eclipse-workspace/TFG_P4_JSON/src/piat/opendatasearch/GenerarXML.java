@@ -26,7 +26,7 @@ public class GenerarXML {
 	private static final String DESCRIPTION_PATTERN = "\n\t\t\t\t<description>#DESC#</description>";
 	private static final String THEME_PATTERN = "\n\t\t\t\t<theme>#THEME#</theme>";
 	private static final String RESOURCE_PATTERN = "\n\t\t\t<resource id=\"#ID#\">\n\t\t\t\t<concept id=\"#CONCEPTID#\"/>\n\t\t\t\t<link>#LINK#</link>\n\t\t\t\t<title>#TITLE#</title>"
-			+ "\n\t\t\t\t<location>\n\t\t\t\t\t\t<eventLocation>#EVENTLOCATION#</eventLocation>\n\t\t\t\t\t\t<area>#AREA#</area>\n\t\t\t\t\t\t<timetable>\n\t\t\t\t\t\t\t<start>#START#</start>\n\t\t\t\t\t\t\t<end>#END#</end></timetable>\n\t\t\t\t\t\t<georeference>#LATITUDE# #LONGITUDE#</georeference>\n\t\t\t\t</location>\n\t\t\t\t<organization>\n\t\t\t\t\t\t<accesibility>#ACCESIBILITY#</accesibility>\n\t\t\t\t\t\t<organizationName>#ORGANIZATIONNAME#</organizationName>\n\t\t\t\t</organization>\n\t\t\t\t<description>#DESCRIPTION#</description>\n\t\t\t</resource>";
+			+ "\n\t\t\t\t<location>\n\t\t\t\t\t<eventLocation>#EVENTLOCATION#</eventLocation>\n\t\t\t\t\t<area>#AREA#</area>\n\t\t\t\t\t<timetable>\n\t\t\t\t\t\t<start>#START#</start>\n\t\t\t\t\t\t<end>#END#</end></timetable>\n\t\t\t\t\t<georeference>#LATITUDE# #LONGITUDE#</georeference>\n\t\t\t\t</location>\n\t\t\t\t<organization>\n\t\t\t\t\t<accesibility>#ACCESIBILITY#</accesibility>\n\t\t\t\t\t<organizationName>#ORGANIZATIONNAME#</organizationName>\n\t\t\t\t</organization>\n\t\t\t\t<description>#DESCRIPTION#</description>\n\t\t\t</resource>";
 
 	public GenerarXML(List<Concept> concepts, String codigoCategoria, List<Dataset> datasets,
 			Map<String, List<Resource>> resourceList) {

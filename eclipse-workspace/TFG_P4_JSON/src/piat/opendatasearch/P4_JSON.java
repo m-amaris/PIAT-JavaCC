@@ -6,18 +6,15 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.xml.sax.SAXException;
 
 /**
  * @author
@@ -30,14 +27,14 @@ public class P4_JSON {
 	 * Clase principal de la aplicación de extracción de información del Portal de
 	 * Datos Abiertos del Ayuntamiento de Madrid
 	 * 
-	 * @throws ParserConfigurationException
-	 * @throws SAXException
+	 * @throws ParseException
+	 * @throws InterruptedException
 	 * @throws IOException
 	 *
 	 */
 
-	public static void main(String[] args) {
-		try {
+	public static void main(String[] args) throws ParseException,IOException,InterruptedException {
+		
 			validarArgumentos(args);
 
 			final XMLParser parser = new XMLParser(new XMLParserTokenManager(
@@ -52,9 +49,7 @@ public class P4_JSON {
 			}
 			System.out.println("Fichero generado...");
 			System.exit(0);
-		} catch (ParseException | IOException | InterruptedException e) {
-			e.printStackTrace();
-		}
+		
 	}
 
 	/**
@@ -79,7 +74,7 @@ public class P4_JSON {
 
 	/**
 	 * Verifica que se ha pasado un argumento con el nombre del directorio y que
-	 * este existe y se puede leer. En caso contrario aborta la aplicaciÃ³n.
+	 * este existe y se puede leer. En caso contrario aborta la aplicación.
 	 *
 	 * @param args Argumentos a analizar
 	 */
@@ -96,20 +91,20 @@ public class P4_JSON {
 		if (args[0].endsWith(".xml")) {
 			final File ficheroCatalogo = new File(args[0]);
 			if (!ficheroCatalogo.canRead()) {
-				mostrarUso(new StringBuilder("ERROR: El archivo '" + args[0] + "' no tiene permiso de lectura."));
+				mostrarUso(new StringBuilder(args[0] + "' no tiene permiso de lectura."));
 				System.exit(-1);
 			}
 		} else {
-			mostrarUso(new StringBuilder("ERROR: El archivo '" + args[0] + "' no termina en \".xml\""));
+			mostrarUso(new StringBuilder(args[0] + "' no termina en \".xml\""));
 			System.exit(-1);
 		}
 
 		if (!args[2].endsWith(".xml")) {
-			mostrarUso(new StringBuilder("ERROR: El archivo '" + args[2] + "' no termina en \".xml\""));
+			mostrarUso(new StringBuilder(args[2] + "' no termina en \".xml\""));
 			System.exit(-1);
 		}
 
-		Pattern p = Pattern.compile("^[0-9]{3,4}(-[A-Z0-9]{3,8})?");
+		Pattern p = Pattern.compile("^\\d{3,4}(-[A-Z0-9]{3,8})?");
 		Matcher m = p.matcher(args[1]);
 
 		if (!m.matches()) {
@@ -131,14 +126,13 @@ public class P4_JSON {
 
 	private static Map<String, List<Resource>> getResources(List<String> lConcepts, List<Dataset> mDatasets)
 			throws InterruptedException {
-		Map<String, List<Resource>> mDatasetConcepts = new ConcurrentHashMap<>();
+		Map<String, List<Resource>> mDatasetConcepts = new HashMap<>();
 		int numDeNucleos = Runtime.getRuntime().availableProcessors();
 		ExecutorService ejecutor = Executors.newFixedThreadPool(numDeNucleos);
 
 		for (Dataset d : mDatasets) {
-			final List<Resource> resourceList = new ArrayList<Resource>();
+			final List<Resource> resourceList = new ArrayList<>();
 			mDatasetConcepts.put(d.getId(), resourceList);
-			//
 			ejecutor.execute(new ProcessURL(d.getId(), lConcepts, resourceList));
 		}
 		// wait for threads to end

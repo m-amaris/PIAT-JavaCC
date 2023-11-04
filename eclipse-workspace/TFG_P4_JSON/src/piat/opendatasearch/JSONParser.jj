@@ -7,17 +7,8 @@ options
 
 PARSER_BEGIN(JSONParser)
 package piat.opendatasearch;
-import java.io.*;
-import java.util.*;
-import java.net.URI;
-import java.net.URISyntaxException;
-public class JSONParser 
-{
-  private List < String > conceptsList;
-  private List <Resource> resourceList;
-  
-}
-
+import java.util.List;
+public class JSONParser {}
 PARSER_END(JSONParser)
 
 /******************************  ANALIZADOR LÉXICO  ******************************/
@@ -72,23 +63,19 @@ TOKEN :
 | < ACCESIBILITY : "\"accesibility\"" > : GETVALUE
 | < ARRAY_END : "]" > : DEFAULT
 }
+
+/**	Analiza cuando es el final de un rescurso, y comienza el siguiente.
+	Cuando el token es detectado, sale del recurso, y vuelve al graph.
+	Obvia todo excepto el token ORGANIZATION_STRING
+	---------------------------------------------------------------
+	Analyze the end of the resource and the beginning of a new one.
+	When the token is detected, it exits the resource, and gets back to the graph.
+	Skips everything but the ORGANIZATION_STRING token. **/
 < RESOURCE>
 SKIP:
 {
 < END_LAST_OBJECT: "},\n	{"  > : GRAPH
 }
-/**	Analiza el string del token "organization-name", que es el último token que nos interesa del recurso.
-	Cuando el token es detectado, sale del recurso, y vuelve al graph.
-	Obvia todo excepto el token ORGANIZATION_STRING
-	---------------------------------------------------------------
-	Analyze the string of the "organization-name" token, which is the last token we are interested on inside the resource.
-	When the token is detected, it exits the resource, and gets back to the graph.
-	Skips everything but the ORGANIZATION_STRING token. **/
-//< RESOURCE_END >
-//TOKEN :
-//{
-//  < ACCESIBILITY_STRING : "\"" (~[ "\"", "\n", "\r" ])* "\"" > : GRAPH
-//}
 
 /**	Estado léxico que recoge el valor del los tokens dentro del recurso.
 	Cuando cualquier token es detectado, vuelve al estado de análisis del recurso.
@@ -130,7 +117,7 @@ SKIP :
 
 /****************************  ANALIZADOR SINTÁCTICO  ****************************/
 
-List < Resource > document(List < String > conceptsList, List < Resource> resourceList) :
+void processFile(List < String > conceptsList, List < Resource> resourceList) :
 {
   //List < Resource > resourceList = new ArrayList < Resource > ();
   Resource r;
@@ -156,9 +143,7 @@ List < Resource > document(List < String > conceptsList, List < Resource> resour
     )*
     (< ARRAY_END >)?
   )
-  {
-    return resourceList;
-  }
+  
 }
 
 Resource resource() :
