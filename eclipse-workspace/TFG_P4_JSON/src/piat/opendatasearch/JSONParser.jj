@@ -11,40 +11,11 @@ import java.io.*;
 import java.util.*;
 import java.net.URI;
 import java.net.URISyntaxException;
-public class JSONParser implements Runnable
+public class JSONParser 
 {
-  private String fichero;
   private List < String > conceptsList;
-	  private Map<String, List <Resource>> datasetsList;
-  private String nombreHilo;
-  public JSONParser(String fichero, List < String > conceptsList, Map<String, List <Resource>> datasetsList)
-  {
-    this.fichero = fichero;
-    this.conceptsList = conceptsList;
-    this.datasetsList = datasetsList;
-  }
-  @Override 
-  public void run()
-  {
-    Thread.currentThread().setName("JSON " + fichero);
-    nombreHilo = "[" + Thread.currentThread().getName() + "] ";
-    System.out.println(nombreHilo + "Empezar a descargar de internet el JSON");
-    JSONParser parser;
-    try
-    {
-      InputStream inputStream = new URI(fichero.replace("\"", "")).toURL().openStream();
-      parser = new JSONParser(new JSONParserTokenManager(new SimpleCharStream(new StreamProvider(inputStream, "UTF-8"))));
-	  
-      
-      List < Resource > resourceList = parser.document(conceptsList);
-      datasetsList.put(fichero, resourceList);
-	  inputStream.close();
-    }
-    catch (IOException | ParseException | URISyntaxException  e )
-    {
-      e.printStackTrace();
-    }
-  }
+  private List <Resource> resourceList;
+  
 }
 
 PARSER_END(JSONParser)
@@ -159,9 +130,9 @@ SKIP :
 
 /****************************  ANALIZADOR SINTÁCTICO  ****************************/
 
-List < Resource > document(List < String > conceptsList) :
+List < Resource > document(List < String > conceptsList, List < Resource> resourceList) :
 {
-  List < Resource > resourceList = new ArrayList < Resource > ();
+  //List < Resource > resourceList = new ArrayList < Resource > ();
   Resource r;
   int maxObjects = 5;
 }

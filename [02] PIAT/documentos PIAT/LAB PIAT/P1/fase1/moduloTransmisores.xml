@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modulo idModulo="MODe0001">
+    <tipoModulo>
+        transmisor
+    </tipoModulo>
+    <funcionalidad>
+        aqui se describe la funcionalidad
+    </funcionalidad>
+    <componentes>
+        <transmisores>
+            <numeroTransmisores>
+                3
+            </numeroTransmisores>
+            <transmisor idTransmisor="TR1mfm">
+                <parametrosTransmision>
+                    <tipoModulacion>
+                        BPSK
+                    </tipoModulacion>
+                    <tiempoVida>
+                        2005-11-12 2021-02-02
+                    </tiempoVida>
+                </parametrosTransmision>
+            </transmisor>
+            <transmisor idTransmisor="TR2mfm">
+                <parametrosTransmision>
+                    <tipoModulacion>
+                        QPSK
+                    </tipoModulacion>
+                    <tiempoVida>
+                        2008-08-21 2012-09-17
+                    </tiempoVida>
+                </parametrosTransmision>
+            </transmisor>
+            <transmisor idTransmisor="TR3mfm">
+                <parametrosTransmision>
+                    <tipoModulacion>
+                        16QAM
+                    </tipoModulacion>
+                    <tiempoVida>
+                        2014-01-31 2019-10-03
+                    </tiempoVida>
+                </parametrosTransmision>
+            </transmisor>
+        </transmisores>
+    </componentes>
+</modulo>

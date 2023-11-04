@@ -1,0 +1,2 @@
+https://docs.oracle.com/javase/tutorial/jaxp/intro/index.html
+https://docs.microsoft.com/es-es/previous-versions/bb972258(v=msdn.10)?redirectedfrom=MSDN

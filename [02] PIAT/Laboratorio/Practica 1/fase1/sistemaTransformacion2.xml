@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SISTEMA-TRANSFORMACION-MIGUEL-AMARÍS -->
+<sistemaTF idSistemaTF="TF001">
+	<informacionEntrada>
+		<valor>
+			<parametro>
+			nivel de ozono
+			</parametro>
+			<medida>
+			45 µg/m3
+			</medida>
+		</valor>
+		<informacionSalida>
+			<texto formato = ".txt" longitud ="34785">
+			</texto>
+		</informacionSalida>
+	</informacionEntrada>
+</sistemaTF>

@@ -136,13 +136,17 @@ public class P4_JSON {
 		ExecutorService ejecutor = Executors.newFixedThreadPool(numDeNucleos);
 
 		for (Dataset d : mDatasets) {
-			ejecutor.execute(new JSONParser(d.getId(), lConcepts, mDatasetConcepts));
+			final List<Resource> resourceList = new ArrayList<Resource>();
+			mDatasetConcepts.put(d.getId(), resourceList);
+			//
+			ejecutor.execute(new ProcessURL(d.getId(), lConcepts, resourceList));
 		}
 		// wait for threads to end
 		ejecutor.shutdown(); // close executor when last thread ends
 
 		while (!ejecutor.awaitTermination(10, TimeUnit.SECONDS)) {
 			System.out.print("\nEsperar a que termine ");
+
 		}
 
 		return mDatasetConcepts;

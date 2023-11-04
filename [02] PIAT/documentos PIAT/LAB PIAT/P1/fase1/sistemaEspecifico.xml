@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sistemaEspecifico idSistemaEsp="Sist-01">
+    <descripcionSistemaEsp>
+        descripcion del sistema
+    </descripcionSistemaEsp>
+    <dimensionSistemaEsp altura="430" anchura="120" longitud="250" peso="500"/>
+    <modulosEspIntegrados>
+        MODe0001 MODe0002
+    </modulosEspIntegrados>
+
+</sistemaEspecifico>

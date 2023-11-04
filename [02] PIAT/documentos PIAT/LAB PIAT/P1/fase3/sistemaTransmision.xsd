@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+ targetNamespace="http://www.piat.upm.es/sistemaTransmision"
+ xmlns:tns="http://www.piat.upm.es/sistemaTransmision"
+ xmlns:mod="http://www.piat.upm.es/modulo"
+ xmlns:esp="http://www.piat.upm.es/sistemaEspecifico"
+ elementFormDefault="qualified">
+ 
+ <xsd:import namespace="http://www.piat.upm.es/modulo" schemaLocation="./modulo.xsd"/>
+ <xsd:import namespace="http://www.piat.upm.es/sistemaEspecifico" schemaLocation="./sistemaEspecifico.xsd"/>
+
+ <xsd:element name="sistemaTX" type="tns:tipoSistemaTX"/>
+
+<xsd:complexType name="tipoSistemaTX">
+    <xsd:sequence>
+        <xsd:element name="subsistemaTX" type="tns:tipoSubSistemaTX" minOccurs="1" maxOccurs="unbounded"/>
+    </xsd:sequence>
+    <xsd:attribute name="idSistemaTX" type="tns:tIdSistemaTX" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="tipoSubSistemaTX">
+    <xsd:sequence>
+        <xsd:element name="NombreSubsistemaTX" type="tns:tNombreSubsistemaTX"/>
+        <xsd:element name="nubeInformatica" type="tns:tNubeInformatica"/>
+        <xsd:element name="modulosTXIntegrados" type="tns:tModulosTXInt"/>
+    </xsd:sequence>
+    
+</xsd:complexType>
+
+<xsd:simpleType name="tIdSistemaTX">
+    <xsd:restriction base="xsd:token">
+        <xsd:pattern value="TX[0-9]{3}"/>
+    </xsd:restriction>
+</xsd:simpleType>
+
+<xsd:simpleType name="tNombreSubsistemaTX">
+    <xsd:union memberTypes="tns:cadena6 xsd:integer"/>
+</xsd:simpleType>
+
+<xsd:simpleType name="cadena6">
+    <xsd:restriction base="xsd:string">
+        <xsd:maxLength value="6"/>
+    </xsd:restriction>
+</xsd:simpleType>
+
+<xsd:complexType name="tNubeInformatica">
+    <xsd:sequence>
+        <xsd:choice>
+            <xsd:element name="nombreCompleto" type="xsd:string"/>
+            <xsd:element name="acronimo" type="xsd:token"/>
+        </xsd:choice>
+        <xsd:element name="uri" type="xsd:anyURI"/>  
+    </xsd:sequence>
+</xsd:complexType>
+
+<xsd:simpleType name="tModulosTXInt">
+    <xsd:list itemType="esp:listaIdModulo"/>
+</xsd:simpleType>
+
+</xsd:schema>

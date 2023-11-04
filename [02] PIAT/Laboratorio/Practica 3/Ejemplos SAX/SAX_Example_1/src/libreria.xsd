@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+			targetNamespace="http://www.example.org/libreria" 
+			xmlns:tns="http://www.example.org/libreria" 
+			elementFormDefault="qualified">
+
+<xsd:element name="libro">
+    <xsd:complexType>
+        <xsd:sequence>
+            <xsd:element name="titulo" type="xsd:string"/>
+            <xsd:element name="autor" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:element>
+
+<xsd:element name="libreria" >
+    <xsd:complexType>
+        <xsd:sequence>
+            <xsd:element ref="tns:libro" maxOccurs="unbounded" />
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:element>
+			
+
+</xsd:schema>

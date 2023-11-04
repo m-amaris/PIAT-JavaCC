@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- MODULO-MIGUEL-AMARÍS -->
+<modulo idmodulo="MODe0001">
+	<tipoModulo>
+	específico
+	</tipoModulo>
+	<funcionalidad>
+		Este modulo se encarga de analizar parametros de la capa de ozono, como su
+		nivel de ozono, temperatura y la radiacion infrarroja en diversos
+		puntos
+	</funcionalidad>
+	<componentes>
+		<captadores>
+			<numeroCaptadores>3</numeroCaptadores>
+			<captador idCaptador="Cap001">
+				<parametro>
+					nivel de ozono
+				</parametro>
+				<medida>
+				45 µg/m3
+				</medida>
+			</captador>
+			<captador idCaptador="Cap002">
+				<parametro>
+					temperatura
+				</parametro>
+				<medida>
+				300 K
+				</medida>
+			</captador>
+			<captador idCaptador="Cap003">
+				<parametro>
+					radiación infrarroja
+				</parametro>
+				<medida>
+				47 J
+				</medida>
+			</captador>
+		</captadores>
+	</componentes>
+</modulo>

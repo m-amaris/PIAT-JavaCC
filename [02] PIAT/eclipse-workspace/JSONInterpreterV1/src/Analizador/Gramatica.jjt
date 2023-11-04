@@ -1,0 +1,141 @@
+options
+{
+    IGNORE_CASE = true; // Ignorar mayúsculas y minúsculas
+    BUILD_NODE_FILES = true; // Habilitar la generación de nodos AST
+    STATIC = false;
+}
+
+PARSER_BEGIN(Gramatica)
+package Analizador;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+public class Gramatica{
+
+    private static JsonObject jsonObject = new JsonObject();
+    private JsonArray jsonArray = new JsonArray();
+
+    // Métodos para obtener el objeto JSON resultante
+    public JsonObject getJsonObject() {
+        return jsonObject;
+    }
+
+    // Método para obtener el array JSON resultante
+    public JsonArray getJsonArray() {
+        return jsonArray;
+    }
+}
+
+PARSER_END(Gramatica)
+
+SKIP :
+{
+    " "
+    | "\t"
+    | "\r"
+    | "\n"
+}
+
+// Definición de tokens
+TOKEN:
+{
+    <OBJECT_START: "{" >
+  | <OBJECT_END: "}" >
+  | <ARRAY_START: "[" >
+  | <ARRAY_END: "]" >
+  | <STRING: "\"" (~["\"","\n","\r"])* "\"" >
+  | <NUMBER: (["0"-"9"])+ >
+  | <TRUE: "true" >
+  | <FALSE: "false" >
+  | <NULL: "null" >
+  | <COMMA: "," >
+  | <COLON: ":" >
+}
+
+// Producción principal para JSON
+void json() :
+{}
+{
+    ( object() | array() )
+}
+
+// Producción para objeto JSON
+void object() :
+{}
+{
+    <OBJECT_START>
+    ( pair()
+        {
+            // Construir pareja con clave y valor
+            // Añadirlo a un objeto Json
+        }
+    (<COMMA> pair()
+       {
+           // Construir pareja con clave y valor
+           // Añadirlo a un objeto Json
+       }
+    )*)?
+    <OBJECT_END>
+    {
+        // Retornar el objeto JSON
+    }
+}
+
+// Producción para array JSON
+void array() :
+{}
+{
+    <ARRAY_START>
+    ( value()
+        {
+          // Construir objeto JSON
+          // Añadirlo al array
+        }
+	(<COMMA> value()
+        {
+          // Contruir objeto
+          // Añadirlo al array
+        }
+    )*)?
+    <ARRAY_END>
+    {
+        // Retornar el array JSON
+    }
+}
+
+// Producción para par clave-valor
+void pair() :
+{}
+{
+    <STRING> <COLON> value()
+    {
+        // Retornar la clave (cadena)
+    }
+}
+
+// Producción para valor JSON
+void value() :
+{
+	Token t;
+}
+{
+    (t=<STRING>
+        {
+            // Retornar el valor (cadena)
+        }
+    | <NUMBER>
+        {
+            // Retornar el valor (número)
+        }
+    | <TRUE>
+        {
+            // Retornar el valor (true)
+        }
+    | <FALSE>
+        {
+        }
+    | <NULL>
+        {
+        }
+    | object()
+    | array())
+}

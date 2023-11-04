@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--MODULO-MIGUEL-AMARÍS -->
+<mod:modulo xmlns:mod="http://www.piat.upm.es/modulo" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.piat.upm.es/modulo modulo.xsd" 
+idModulo="MODt0001">
+
+    <mod:tipoModulo>específico</mod:tipoModulo>
+    <mod:funcionalidad>
+        Este modulo se encarga de analizar parametros de la capa de ozono, como su
+		nivel de ozono y temperatura 
+    </mod:funcionalidad>
+    <mod:componentes>
+        <mod:captadores>
+            <mod:numeroCaptadores>2</mod:numeroCaptadores>
+            <mod:captador idCaptador="Cap001">
+                <mod:parametro>nivel de ozono</mod:parametro>
+                <mod:medida>
+                    <mod:valor>45 </mod:valor>
+                    <mod:unidades>µg/m3</mod:unidades>
+                </mod:medida>
+            </mod:captador>
+            <mod:captador idCaptador="Cap002">
+                <mod:parametro>temperatura</mod:parametro>
+            </mod:captador>
+        </mod:captadores>
+    </mod:componentes>
+</mod:modulo>

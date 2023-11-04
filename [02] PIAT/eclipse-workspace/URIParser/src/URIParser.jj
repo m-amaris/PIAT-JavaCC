@@ -1,0 +1,27 @@
+options {
+  STATIC = false; // Si deseas que los métodos sean estáticos, establece esto en true.
+}
+
+PARSER_BEGIN(UriParser)
+public class UriParser {
+  public static void main(String[] args) throws ParseException {
+    UriParser parser = new UriParser(System.in);
+    parser.parse();
+  }
+}
+PARSER_END(UriParser)
+
+SKIP : {
+  " " | "\t" | "\n" | "\r"
+}
+
+TOKEN:
+{
+  < URI : "\"http://" (["a"-"z", "A"-"Z", "0"-"9", ".", "-", "_","/"])+ "\"" >
+}
+ 
+void parse() :
+{}
+{
+  <URI>
+}

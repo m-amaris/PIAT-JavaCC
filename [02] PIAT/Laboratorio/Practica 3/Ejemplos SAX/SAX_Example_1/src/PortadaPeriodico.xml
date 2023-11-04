@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<portada>
+
+  <tituloPeriodico>
+        <nombre>
+             EL PAIS
+        </nombre>
+        <url>
+            www.elpais.com
+        </url>
+        <subTitulo>
+           EL PERIODICO GLOBAL
+        </subTitulo>
+        <lineaDivisoria/>
+        <datos>
+            <fecha>Domingo 29 de Enero de 2017</fecha>
+            <annio>XLI</annio>
+            <numero>14.451 </numero>
+            <edicion>MADRID</edicion>
+            <precio>2,50 </precio>
+        </datos>
+  </tituloPeriodico>
+
+  <noticiasDestacadas>
+        <noticiaDestacada posicionFoto="ninguna">
+            <titularND> <negrita>Pedro Sánchez anuncia ...</negrita> </titularND>
+            <autorND>RAÚL LIMÓN</autorND>
+            <lugarND>Sevilla</lugarND>
+            <subtitularND>El exlider socialista ... </subtitularND>
+            <contenidoND>Pedro Sánchez quiere ... </contenidoND>
+        </noticiaDestacada>
+        <noticiaDestacada posicionFoto="ninguna">
+            <titularND>La revolución sobre ruedas</titularND>
+            <autorND>Manuel Gómez Blanco</autorND>
+            <autorND> Manuel Planelles</autorND>
+            <subtitularND>El coche eléctrico y ...</subtitularND>
+        </noticiaDestacada>
+        <noticiaDestacada posicionFoto="ninguna">
+            <titularND>Lee Jae-yong, el ...</titularND>
+        </noticiaDestacada>
+        <noticiaDestacada posicionFoto="ninguna">
+            <titularND>¿Quién gobernará un mundo roto?</titularND>
+        </noticiaDestacada>
+        <noticiaDestacada posicionFoto="ninguna">
+            <titularND> <especialND>OPINIÓN</especialND> </titularND>
+            <autorND>Antonio Caño</autorND>
+            <subtitularND> Amenazas a la ...</subtitularND>
+            <paginaND>P13</paginaND>
+        </noticiaDestacada>
+  </noticiasDestacadas>
+
+  <noticiasPortada>
+        <espacio id= "arriba" tipo="noticia" coorInicio="x1 y1" coorFinal="x2 y2">       
+            <titularNoticia>La Generalitat elabora ...</titularNoticia>
+            <subtitularNoticia>El secretario de Hacienda ...</subtitularNoticia>
+            <autor>CHRISTIAN SEGURA </autor>
+            <lugar>Barcelona </lugar>
+            <texto>El secretario de Hacienda ...</texto>
+            <pagina>17</pagina>
+         </espacio>
+         
+        <espacio id="centro" tipo="noticia" coorInicio="x3 y3" coorFinal="x4 y4">          
+            <foto coorInicioFoto="xf1 yf1" coorFinalFoto="xf2 yf2" tipoFoto="gif">
+                <URLFoto>http://...</URLFoto>
+                <pieDeFoto>
+                	<textoPieDeFoto>Una mujer abraza a su madre ...</textoPieDeFoto>
+                </pieDeFoto>
+            </foto>
+            <autor>A. KELLY (REUTERS)</autor>    
+        </espacio>
+
+        <espacio id= "abajo-izquierda" tipo="noticia" coorInicio="x5 y5" coorFinal="x6 y6">
+            <titularNoticia>El veto migratorio ...</titularNoticia>
+            <subtitularNoticia>Detenidos los primeros ...</subtitularNoticia>
+            <autor>A. F. PEREDA</autor>
+            <autor>M. BASSETS</autor>
+            <lugar>Washington</lugar>
+			<texto>Dos refugiados iraquies ...</texto>        
+        </espacio>
+
+        <espacio id= "abajo--izquierda-abajo" tipo="noticia" coorInicio="x7 y7" coorFinal="x8 y8">
+            <titularNoticia>El giro proteccionista ...</titularNoticia>
+			<pagina>P42</pagina>        
+        </espacio>
+        
+        <espacio id= "abajo-derecha" tipo="publicidad" coorInicio="x9 y9" coorFinal="x10 y10">
+             <foto coorInicioFoto="xf5 yf5" coorFinalFoto="xf6 yf6" tipoFoto="gif">
+              	<URLFoto>http://...</URLFoto>
+            </foto> 
+        </espacio>         
+    </noticiasPortada>
+    
+</portada>
+
