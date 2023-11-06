@@ -15,48 +15,54 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
 /**
- * @author
+ * The main class for extracting information from  "Portal de Datos Abiertos
+ * del Ayuntamiento de Madrid".
  *
+ * This class contains the main method, which handles the runtime of 
+ * the application.
+ *
+ * @author Miguel Amarís Martos
  */
 
 public class P4_JSON {
 
 	/**
-	 * Clase principal de la aplicación de extracción de información del Portal de
-	 * Datos Abiertos del Ayuntamiento de Madrid
+	 * Main entry point for the application.
 	 * 
-	 * @throws ParseException
-	 * @throws InterruptedException
-	 * @throws IOException
-	 *
+	 * @param args Command-line arguments containing input and output file paths.
+	 * @throws ParseException if there is a parsing error.
+	 * @throws IOException if an I/O error occurs.
+	 * @throws InterruptedException if the application is interrupted.
 	 */
+	public static void main(String[] args) throws ParseException, IOException, InterruptedException {
 
-	public static void main(String[] args) throws ParseException,IOException,InterruptedException {
-		
-			validarArgumentos(args);
+		validarArgumentos(args);
 
-			final XMLParser parser = new XMLParser(new XMLParserTokenManager(
-					new SimpleCharStream(new StreamProvider(new FileInputStream(args[0]), "UTF-8"))));
-			final ManejadorXML man = parser.processFile(args[1]);
+		final XMLParser parser = new XMLParser(new XMLParserTokenManager(
+				new SimpleCharStream(new StreamProvider(new FileInputStream(args[0]), "UTF-8"))));
+		final ManejadorXML man = parser.processFile(args[1]);
 
-			// Added code of P4
-			Map<String, List<Resource>> resourceList = getResources(getIdList(man.getConcepts()), man.getDatasets());
-			final GenerarXML gen = new GenerarXML(man.getConcepts(), args[1], man.getDatasets(), resourceList);
-			try (final FileWriter ficheroSalida = new FileWriter(args[2]);) {
-				ficheroSalida.write(gen.generarXML());
-			}
-			System.out.println("Fichero generado...");
-			System.exit(0);
-		
+		// Added code of P4
+		Map<String, List<Resource>> resourceList = getResources(getIdList(man.getConcepts()), man.getDatasets());
+		final GenerarXML gen = new GenerarXML(man.getConcepts(), args[1], man.getDatasets(), resourceList);
+		try (final FileWriter ficheroSalida = new FileWriter(args[2]);) {
+			ficheroSalida.write(gen.generarXML());
+		}
+		System.out.println("Fichero generado...");
+		System.exit(0);
+
 	}
 
+	
+	
 	/**
-	 * Muestra mensaje de los argumentos esperados por la aplicación. Deberá
-	 * invocase en la fase de validación ante la detección de algún fallo
+	 * Displays usage information and an optional additional message in case of
+	 * invalid arguments. This method must be invoked in the validation 
+	 * phase of the main method.
 	 *
-	 * @param mensaje Mensaje adicional informativo (null si no se desea)
+	 * @param mensaje An optional additional informative message 
+	 * (null if not needed).
 	 */
 	private static void mostrarUso(StringBuilder mensaje) {
 		Class<? extends Object> thisClass = P4_JSON.class;
@@ -73,10 +79,11 @@ public class P4_JSON {
 	}
 
 	/**
-	 * Verifica que se ha pasado un argumento con el nombre del directorio y que
-	 * este existe y se puede leer. En caso contrario aborta la aplicación.
+	 * Validates the command-line arguments and checks the existence and readability
+	 * of input files.
 	 *
-	 * @param args Argumentos a analizar
+	 * @param args Command-line arguments to be validated.
+	 * @throws IOException if there is an I/O error.
 	 */
 	private static void validarArgumentos(String[] args) throws IOException {
 
@@ -124,6 +131,14 @@ public class P4_JSON {
 
 	}
 
+	/**
+	 * Retrieves a list of resources for each concept in the dataset.
+	 *
+	 * @param lConcepts   List of concepts.
+	 * @param mDatasets   List of datasets.
+	 * @return A mapping of dataset IDs to lists of resources.
+	 * @throws InterruptedException if the application is interrupted.
+	 */
 	private static Map<String, List<Resource>> getResources(List<String> lConcepts, List<Dataset> mDatasets)
 			throws InterruptedException {
 		Map<String, List<Resource>> mDatasetConcepts = new HashMap<>();
@@ -146,6 +161,12 @@ public class P4_JSON {
 		return mDatasetConcepts;
 	}
 
+	/**
+	 * Retrieves a list of concept IDs recursively from a list of concepts.
+	 *
+	 * @param concepts List of concepts to extract IDs from.
+	 * @return A list of concept IDs.
+	 */
 	private static List<String> getIdList(List<Concept> concepts) {
 		List<String> idList = new ArrayList<>();
 		for (Concept concept : concepts) {

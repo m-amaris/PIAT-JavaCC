@@ -2,17 +2,25 @@ package piat.opendatasearch;
 import java.util.List;
 
 /**
- * @author
+ * A class that implements the ParserCatalogo interface for handling XML data.
  *
+ * This class is responsible for processing XML data related to open data
+ * catalogs. It implements the ParserCatalogo interface, which defines methods
+ * for extracting relevant information from the catalog data.
+ *
+ * @author Miguel Amarís
  */
 
 public class ManejadorXML implements ParserCatalogo {
 	
 
 	/**
-	 * @param sCodigoConcepto código de la categoría a procesar
-	 * @throws ParserConfigurationException
-	 */
+     * Constructs an instance of the ManejadorXML class with the provided datasets
+     * and concepts.
+     *
+     * @param datasets  A list of datasets to be processed.
+     * @param concepts  A list of concepts relevant to the data processing.
+     */
 	private  List < Dataset > datasets;
 	private  List < Concept > concepts;
 	
@@ -26,58 +34,36 @@ public class ManejadorXML implements ParserCatalogo {
 	// ===========================================================
 
 	/**
-	 * <code><b>getLabel</b></code>
-	 * 
-	 * @return Valor de la cadena del elemento <code>label</code> del
-	 *         <code>concept</code> cuyo elemento <code><b>code</b></code> sea
-	 *         <b>igual</b> al criterio a búsqueda. <br>
-	 *         null si no se ha encontrado el concept pertinente o no se dispone de
-	 *         esta información
-	 */
+     * Retrieves the label of the concept that matches the search criteria.
+     *
+     * @return The value of the "label" element of the concept whose "code" matches
+     *         the search criteria, or null if the relevant concept or label
+     *         information is not found.
+     */
 	@Override
 	public String getLabel() {
 		return null;
 	}
 
 	/**
-	 * <code><b>getConcepts</b></code> Devuelve una lista con información de los
-	 * <code><b>concepts</b></code> resultantes de la búsqueda. <br>
-	 * Cada uno de los elementos de la lista contiene la <code><em>URI</em></code>
-	 * del <code>concept</code>
-	 * 
-	 * <br>
-	 * Se considerarán pertinentes el <code><b>concept</b></code> cuyo código sea
-	 * igual al criterio de búsqueda y todos sus <code>concept</code> descendientes.
-	 * 
-	 * @return - List con la <em>URI</em> de los concepts pertinentes. <br>
-	 *         - null si no hay concepts pertinentes.
-	 * 
-	 */
+     * Retrieves a list of concepts that match the search criteria.
+     *
+     * @return A list of URIs representing concepts that match the search criteria,
+     *         or null if no pertinent concepts are found.
+     */
 	@Override
 	public List< Concept > getConcepts() {
 		return this.concepts;
 	}
 
 	/**
-	 * <code><b>getDatasets</b></code>
-	 * 
-	 * @return Mapa con información de los <code>dataset</code> resultantes de la
-	 *         búsqueda. <br>
-	 *         Si no se ha realizado ninguna búsqueda o no hay dataset pertinentes
-	 *         devolverá el valor <code>null</code> <br>
-	 *         Estructura de cada elemento del map: <br>
-	 *         . <b>key</b>: valor del atributo ID del elemento
-	 *         <code>dataset</code>con la cadena de la <code><em>URI</em></code>
-	 *         <br>
-	 *         . <b>value</b>: Mapa con la información a extraer del
-	 *         <code>dataset</code>. Cada <code>key</code> tomará los valores
-	 *         <em>title</em>, <em>description</em> o <em>theme</em>, y
-	 *         <code>value</code> sus correspondientes valores.
-	 * 
-	 * @return - Map con información de los <code>dataset</code> resultantes de la
-	 *         búsqueda. <br>
-	 *         - null si no hay datasets pertinentes.
-	 */
+     * Retrieves information about datasets that match the search criteria.
+     *
+     * @return A list of datasets with information about "title," "description," and
+     *         "theme" based on the search criteria, or null if no pertinent
+     *         datasets are found. Each dataset is represented as a map with its
+     *         unique ID as the key and information as the value.
+     */
 	@Override
 	public List < Dataset > getDatasets() {
 		return this.datasets;

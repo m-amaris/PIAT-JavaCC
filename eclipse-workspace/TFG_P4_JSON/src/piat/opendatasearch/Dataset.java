@@ -2,6 +2,15 @@ package piat.opendatasearch;
 
 import java.util.List;
 
+/**
+ * Represents a dataset entity with various properties related to open data.
+ *
+ * This class encapsulates information about a dataset, including its unique
+ * identifier, title, description, keyword, theme, publisher, and a list of
+ * unique identifier concepts associated with the dataset.
+ * 
+ * @author Miguel Amarís
+ */
 public class Dataset {
 	private final String id;
 	private final String title;
@@ -106,6 +115,12 @@ public class Dataset {
 		return publisher;
 	}
 
+	/**
+	 * Returns a string representation of the Dataset object, including its
+	 * attributes.
+	 *
+	 * @return A string representation of the Dataset object.
+	 */
 	@Override
 	public final String toString() {
 		StringBuilder sb = new StringBuilder();

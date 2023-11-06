@@ -115,7 +115,7 @@ SKIP :
   < ~[ ] >
 }
 
-/****************************  ANALIZADOR SINTÁCTICO  ****************************/
+/****************************  ANALIZADOR SINTACTICO  ****************************/
 
 void processFile(List < String > conceptsList, List < Resource> resourceList) :
 {

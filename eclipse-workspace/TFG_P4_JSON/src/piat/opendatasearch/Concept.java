@@ -52,6 +52,12 @@ public class Concept {
         return concepts;
     }
 
+    /**
+	 * Returns a string representation of the Concept object, including its
+	 * attributes.
+	 *
+	 * @return A string representation of the Concept object.
+	 */
     @Override
     public final String toString() {
         StringBuilder builder = new StringBuilder();

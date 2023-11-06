@@ -2,52 +2,54 @@
 package piat.opendatasearch;
 
 import java.util.List;
-/**
- * Interfaz que debe implementar la clase ManejadorXML.
- *
- */
 
+/**
+ * An interface that should be implemented by the ManejadorXML class.
+ *
+ * This interface defines methods that are required for extracting information
+ * from an open data catalog.
+ * 
+ * @author Miguel Amarís
+ */
 public interface ParserCatalogo {
 
 	/**
-	 * Devuelve el valor de la cadena del elemento <code>label</code> del <code>concept</code> cuyo
-	 * elemento <code><b>code</b></code> sea <b>igual</b> al criterio a búsqueda.
-	 * @return
-	 *  - Valor de la cadena del elemento <code>label</code> del <code>concept</code> cuyo 
-	 * elemento <code><b>code</b></code> sea <b>igual</b> al criterio a búsqueda.
-	 * <br>
-	 *  - null si no se ha encontrado el <code>concept</code> pertinente o no se dispone de esta información.
-	 */
+     * Retrieves the value of the "label" element of the "concept" whose "code" element
+     * matches the search criteria.
+     *
+     * @return The value of the "label" element of the "concept" whose "code" matches
+     *         the search criteria, or null if the pertinent "concept" is not found or
+     *         the information is not available.
+     */
 	public String getLabel();
-	/**
-	 *	Devuelve una lista con información de los <code><b>concepts</b></code> resultantes de la búsqueda. 
-	 * <br> Cada uno de los elementos de la lista contiene el <code><em>URI</em></code> del <code>concept</code>
-	 * 
-	 *  <br>Se considerarán pertinentes el <code><b>concept</b></code> cuyo código (elemento <code>code</code>) coincida 
-	 *  con el criterio de búsqueda y todos los <code>concepts</code> descendientes del mismo.
-	 *  
-	 * @return
-	 * - Lista con el <em>URI</em> de los concepts pertinentes.
-	 * <br>
-	 * - null  si no hay <code>concepts</code> pertinentes.
-	 * 
-	 */
-	public List< Concept > getConcepts();
 
 	/**
-	 * Devuelve un mapa con información de los <code>dataset</code> resultantes de la búsqueda.
-	 * <br> Si no se ha realizado ninguna búsqueda o no hay dataset pertinentes devolverá el valor <code>null</code>
-	 * <br> Estructura de cada elemento del mapa:
-	 * <ul>
-	 * 		<li><b>key</b>: valor del atributo ID del elemento <code>dataset</code>con la cadena del <code><em>URI</em></code>  
-	 * 		<li><b>value</b>: Mapa con la información a extraer del <code>dataset</code>. Cada <code>key</code> tomará los valores <em>title</em>, <em>description</em> o <em>theme</em>, y <code>value</code> sus correspondientes valores.
-	 * </ul>
-   
-	 * @return
-	 *  - Mapa con información de los <code>dataset</code> resultantes de la búsqueda.
-	 *  <br>
-	 *  - null si no hay <code>datasets</code> pertinentes.  
-	 */
-	public  List < Dataset > getDatasets();
+     * Retrieves a list of information about "concepts" resulting from the search.
+     *
+     * Each element in the list contains the URI of the "concept."
+     *
+     * Relevant "concepts" are considered to be the "concept" whose code (the "code" element)
+     * matches the search criteria and all descendant "concepts" under it.
+     *
+     * @return - A list of URIs of pertinent concepts.
+     *         - null if no pertinent concepts are found.
+     */
+	public List<Concept> getConcepts();
+
+	/**
+     * Retrieves a map with information about "datasets" resulting from the search.
+     *
+     * If no search has been performed, or there are no pertinent datasets, it returns null.
+     *
+     * The structure of each map element:
+     * - "key": The value of the ID attribute of the "dataset" element as a URI string.
+     * - "value": A map with information to be extracted from the "dataset." Each "key"
+     *   takes values like "title," "description," or "theme," and "value" holds the
+     *   corresponding values.
+     *
+     * @return - A map with information about pertinent datasets.
+     *         - null if no pertinent datasets are found.
+     */
+	public List<Dataset> getDatasets();
 
 }
