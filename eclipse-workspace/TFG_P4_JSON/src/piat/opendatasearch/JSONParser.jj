@@ -3,6 +3,9 @@ options
   STATIC = false;
   JAVA_TEMPLATE_TYPE = "modern";
   UNICODE_INPUT=true; // Permite reconocer caracteres Unicode sin que todo explote :) Especificar el encoding (UTF-8)
+  //DEBUG_PARSER = true;
+  //DEBUG_LOOKAHEAD = true;
+  //DEBUG_TOKEN_MANAGER = true;
 }
 
 PARSER_BEGIN(JSONParser)
@@ -35,6 +38,7 @@ TOKEN :
 {
   < IDRESOURCE : "\"@id\"" > : GETVALUE
 | < ARRAY_START : "[" >
+| < ARRAY_END : "]" > : DEFAULT
 }
 
 /** Analiza los tokens que nos interesan dentro del recurso.
@@ -61,12 +65,14 @@ TOKEN :
 | < LONGITUDE : "\"longitude\"" > : GETVALUE
 | < ORGANIZATION_NAME : "\"organization-name\"" > : GETVALUE
 | < ACCESIBILITY : "\"accesibility\"" > : GETVALUE
-| < ARRAY_END : "]" > : DEFAULT
+| < ADDRESS : "\"address\"">
+| < LOCATION : "\"location\"">
+| < ORGANIZATION : "\"organization\"">
 }
 
-/**	Analiza cuando es el final de un rescurso, y comienza el siguiente.
-	Cuando el token es detectado, sale del recurso, y vuelve al graph.
-	Obvia todo excepto el token ORGANIZATION_STRING
+/**	Analiza cuando es el final de un recurso, y comienza el siguiente
+	(o no hay más).	Cuando el token es detectado, sale del recurso, y
+	vuelve al graph.Obvia todo excepto los separadores de los objetos JSON.
 	---------------------------------------------------------------
 	Analyze the end of the resource and the beginning of a new one.
 	When the token is detected, it exits the resource, and gets back to the graph.
@@ -74,7 +80,8 @@ TOKEN :
 < RESOURCE>
 SKIP:
 {
-< END_LAST_OBJECT: "},\n	{"  > : GRAPH
+  < "},\n	{"  > : GRAPH
+| < "}\n						\n	}">: GRAPH
 }
 
 /**	Estado léxico que recoge el valor del los tokens dentro del recurso.
@@ -129,20 +136,23 @@ void processFile(List < String > conceptsList, List < Resource> resourceList) :
     (
       r = resource()
       {
-			if (conceptsList.contains(r.getConceptId())) {
-			  resourceList.add(r);
+		if (conceptsList.contains(r.getConceptId())){
+			resourceList.add(r);
+			//System.out.println(r);
         }
         
-        if (resourceList.size() >= maxObjects)
-        {
-		          token_source.SwitchTo(DEFAULT); // No es muy seguro, es posible que el TokenManager vaya muy por delante del analizador.
+        if (resourceList.size() >= maxObjects){
+		     //token_source.SwitchTo(DEFAULT); // No es muy seguro, es posible que el TokenManager vaya muy por delante del analizador.
 										          // Pero dado que no queremos analizar nada mas, se puede utilizar sin problemas.
-		          break;
+		     //break; // Unicamente sale del if, pero sigue analizando
+		     return; // Deja de analizar, termina la funcion proccessFile
         }
       }
     )*
-    (< ARRAY_END >)?
+    {System.out.println("Sigo por aqui...");}
+    < ARRAY_END >
   )
+  < EOF > 
   
 }
 
@@ -160,11 +170,11 @@ Resource resource() :
   (< TIME_END > t = < STRING > {r.setEndDate(t.image.replace("\"", "")); })
   (< LINK >  t = < STRING >){r.setLink(t.image.replace("\"", ""));}
   (< EVENT_LOCATION >  t = < STRING >){r.setEventLocation(t.image.replace("\"", ""));}
-  (< AREA>(< IDAREA > t = < STRING >){r.setArea(t.image.replace("\"", ""));})?
-  (< LATITUDE >  t = < DOUBLE >)?{if(!t.image.toString().equals("\"\""))r.setLatitude(Double.parseDouble(t.image));}
-  (< LONGITUDE >  t = < DOUBLE >)?{if(!t.image.toString().equals("\"\""))r.setLongitude(Double.parseDouble(t.image));}
-  (< ORGANIZATION_NAME > t = < STRING >)?{r.setOrganizationName(t.image.replace("\"", ""));}
-  (< ACCESIBILITY >  t = < STRING >)?{r.setAccesibility(t.image.replace("\"", ""));}
+  (< ADDRESS >(< AREA>(< IDAREA > t = < STRING >){r.setArea(t.image.replace("\"", ""));})?)?
+  (< LOCATION >(< LATITUDE >  t = < DOUBLE >){if(!t.image.toString().equals("\"\""))r.setLatitude(Double.parseDouble(t.image));}
+  (< LONGITUDE >  t = < DOUBLE >){if(!t.image.toString().equals("\"\""))r.setLongitude(Double.parseDouble(t.image));})?
+  (< ORGANIZATION >(< ORGANIZATION_NAME > t = < STRING >){r.setOrganizationName(t.image.replace("\"", ""));}
+  (< ACCESIBILITY >  t = < STRING >){r.setAccesibility(t.image.replace("\"", ""));})?
   
   {
     return r;

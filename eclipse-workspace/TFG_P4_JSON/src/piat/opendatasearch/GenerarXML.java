@@ -68,18 +68,18 @@ public class GenerarXML {
 
 			for (Resource r : array) {
 				String s = RESOURCE_PATTERN.replace("#ID#", entry.getKey());
-				s = s.replace("#CONCEPTID#", r.getConceptId());
-				s = s.replace("#LINK#", "<![CDATA[" + r.getLink() + "]]>");
-				s = s.replace("#TITLE#", r.getTitle());
-				s = s.replace("#EVENTLOCATION#", r.getEventLocation());
-				s = s.replace("#AREA#", r.getArea());
-				s = s.replace("#START#", r.getStartDate());
-				s = s.replace("#END#", r.getEndDate());
+				s = s.replace("#CONCEPTID#", String.valueOf(r.getConceptId()));
+				s = s.replace("#LINK#", "<![CDATA[" + String.valueOf(r.getLink()) + "]]>");
+				s = s.replace("#TITLE#", String.valueOf(r.getTitle()));
+				s = s.replace("#EVENTLOCATION#", String.valueOf(r.getEventLocation()));
+				s = s.replace("#AREA#", String.valueOf(r.getArea()));
+				s = s.replace("#START#", String.valueOf(r.getStartDate()));
+				s = s.replace("#END#", String.valueOf(r.getEndDate()));
 				s = s.replace("#LATITUDE#", Double.toString(r.getLatitude()));
 				s = s.replace("#LONGITUDE#", Double.toString(r.getLongitude()));
-				s = s.replace("#ACCESIBILITY#", r.getAccesibility());
-				s = s.replace("#ORGANIZATIONNAME#", r.getOrganizationName());
-				s = s.replace("#DESCRIPTION#", r.getDescription());
+				s = s.replace("#ACCESIBILITY#", String.valueOf(r.getAccesibility()));
+				s = s.replace("#ORGANIZATIONNAME#", String.valueOf(r.getOrganizationName()));
+				s = s.replace("#DESCRIPTION#", String.valueOf(r.getDescription()));
 				sbSalida.append(s);
 			}
 		}

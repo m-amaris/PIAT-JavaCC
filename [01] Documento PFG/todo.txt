@@ -1,0 +1,4 @@
+Analizador sintactico VS analizador semantico
+estados lexicos
+Anexo de operadores en javacc
+Que es la recursividad?-> recursividad a izquierdas y a derechas

@@ -6,7 +6,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/Users/miguel/Universidad/Áreas/Trabajo y Estudios/2 Grado/PFG/tfg/eclipse-workspace/PIAT_P5_XPATH/lib/gson-2.9.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/miguel/Universidad/Áreas/Trabajo y Estudios/2 Grado/PFG/tfg/eclipse-workspace/PIAT_P5_XPATH/lib/gson-2.9.0-javadoc.jar"/>
+	<classpathentry kind="lib" path="C:/Users/miguel/Universidad/[02] Trabajo/[01] Universidad/[01] PFG/eclipse-workspace/PIAT_P5_XPATH/lib/gson-2.9.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/miguel/Universidad/[02] Trabajo/[01] Universidad/[01] PFG/eclipse-workspace/PIAT_P5_XPATH/lib/gson-2.9.0-javadoc.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
