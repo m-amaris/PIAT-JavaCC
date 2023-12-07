@@ -113,7 +113,8 @@ TOKEN :
   < IDAREA : "\"@id\"" > : GETVALUE
 }
 
-/**	Todo carácter que no es un token, es obviado.
+
+/**	Todo carácter que no es un token que hayamos definido, es obviado.
 	---------------------------------------------------------------
 	Any character that is not a token, it is skipped. **/
 <* >
@@ -126,30 +127,23 @@ SKIP :
 
 void processFile(List < String > conceptsList, List < Resource> resourceList) :
 {
-  //List < Resource > resourceList = new ArrayList < Resource > ();
-  Resource r;
   int maxObjects = 5;
+  Resource r; 
 }
 {
   (
     < GRAPHS > < ARRAY_START >
     (
-      r = resource()
+      r =  resource()
       {
-		if (conceptsList.contains(r.getConceptId())){
-			resourceList.add(r);
-			//System.out.println(r);
+       if (conceptsList.contains(r.getConceptId())){
+          resourceList.add(r);
         }
-        
         if (resourceList.size() >= maxObjects){
-		     //token_source.SwitchTo(DEFAULT); // No es muy seguro, es posible que el TokenManager vaya muy por delante del analizador.
-										          // Pero dado que no queremos analizar nada mas, se puede utilizar sin problemas.
-		     //break; // Unicamente sale del if, pero sigue analizando
-		     return; // Deja de analizar, termina la funcion proccessFile
+		     return; // Deja de analizar, termina la funcion processFile()
         }
       }
     )*
-    {System.out.println("Sigo por aqui...");}
     < ARRAY_END >
   )
   < EOF > 
@@ -163,7 +157,7 @@ Resource resource() :
 }
 {
   (< IDRESOURCE > t = < STRING >){r.setResourceId(t.image.replace("\"", ""));}
-  (< IDCONCEPT >  t = < STRING >)?{r.setConceptId(t.image.replace("\"", ""));}
+  (< IDCONCEPT > t = < STRING >)?{r.setConceptId(t.image.replace("\"", ""));}  
   (< TITLE >  t = < STRING >){r.setTitle(t.image.replace("\"", ""));}
   (< DESCRIPTION >  t = < STRING >){r.setDescription(t.image.replace("\"", ""));}
   (< TIME_START > t = < STRING > {r.setStartDate(t.image.replace("\"", "")); })
@@ -174,9 +168,10 @@ Resource resource() :
   (< LOCATION >(< LATITUDE >  t = < DOUBLE >){if(!t.image.toString().equals("\"\""))r.setLatitude(Double.parseDouble(t.image));}
   (< LONGITUDE >  t = < DOUBLE >){if(!t.image.toString().equals("\"\""))r.setLongitude(Double.parseDouble(t.image));})?
   (< ORGANIZATION >(< ORGANIZATION_NAME > t = < STRING >){r.setOrganizationName(t.image.replace("\"", ""));}
-  (< ACCESIBILITY >  t = < STRING >){r.setAccesibility(t.image.replace("\"", ""));})?
-  
+  (< ACCESIBILITY >  t = < STRING >){r.setAccesibility(t.image.replace("\"", ""));})? 
   {
     return r;
   }
 }
+
+
