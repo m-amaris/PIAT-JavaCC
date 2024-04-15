@@ -1,0 +1,88 @@
+\babel@toc {english}{}\relax 
+\babel@toc {spanish}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {spanish}{}\relax 
+\contentsline {chapter}{\numberline {1}Introducci^^c3^^b3n}{4}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Contexto y motivaci^^c3^^b3n}{4}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Objetivos}{5}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Restricciones}{5}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Estructura del documento}{5}{section.1.4}%
+\contentsline {chapter}{\numberline {2}Estado del arte}{6}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Marco tecnol^^c3^^b3gico}{6}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Analizador L^^c3^^a9xico}{6}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Token}{8}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Analizador Sint^^c3^^a1ctico o Sem^^c3^^a1ntico}{8}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Estados L^^c3^^a9xicos}{9}{section.2.5}%
+\contentsline {section}{\numberline {2.6}Recursividad}{9}{section.2.6}%
+\contentsline {subsection}{\numberline {2.6.1}Recursividad a derechas (LR)}{10}{subsection.2.6.1}%
+\contentsline {subsection}{\numberline {2.6.2}Recursividad a izquierdas (LL)}{10}{subsection.2.6.2}%
+\contentsline {subsection}{\numberline {2.6.3}^^c2^^bfPor qu^^c3^^a9 no se puede utilizar la recursividad a izquierdas en JavaCC?}{10}{subsection.2.6.3}%
+\contentsline {section}{\numberline {2.7}JavaCC}{10}{section.2.7}%
+\contentsline {section}{\numberline {2.8}Funciones principales de JavaCC}{11}{section.2.8}%
+\contentsline {section}{\numberline {2.9}Ejemplo de gram^^c3^^a1tica en JavaCC}{11}{section.2.9}%
+\contentsline {section}{\numberline {2.10}Usos de JavaCC en la actualidad}{14}{section.2.10}%
+\contentsline {section}{\numberline {2.11}Procesamiento de la Informaci^^c3^^b3n en Aplicaciones Telem^^c3^^a1ticas (PIAT)}{15}{section.2.11}%
+\contentsline {subsection}{\numberline {2.11.1}Introducci^^c3^^b3n}{15}{subsection.2.11.1}%
+\contentsline {subsection}{\numberline {2.11.2}Problem^^c3^^a1tica con las pr^^c3^^a1cticas de PIAT}{15}{subsection.2.11.2}%
+\contentsline {chapter}{\numberline {3}Desarrollo}{17}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Introducci^^c3^^b3n}{17}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Implementaci^^c3^^b3n}{17}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Procedimientos}{17}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Entorno}{17}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Objetivos de la implementaci^^c3^^b3n}{18}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Conclusiones}{18}{section.3.6}%
+\contentsline {section}{\numberline {3.7}An^^c3^^a1lisis de archivos XML. Pr^^c3^^a1ctica 3}{18}{section.3.7}%
+\contentsline {subsection}{\numberline {3.7.1}Introducci^^c3^^b3n}{18}{subsection.3.7.1}%
+\contentsline {subsection}{\numberline {3.7.2}SAX}{18}{subsection.3.7.2}%
+\contentsline {subsection}{\numberline {3.7.3}JavaCC vs SAX}{19}{subsection.3.7.3}%
+\contentsline {subsection}{\numberline {3.7.4}Descripci^^c3^^b3n de la pr^^c3^^a1ctica}{20}{subsection.3.7.4}%
+\contentsline {subsection}{\numberline {3.7.5}Desarrollo de la pr^^c3^^a1ctica}{22}{subsection.3.7.5}%
+\contentsline {subsection}{\numberline {3.7.6}Herramienta}{22}{subsection.3.7.6}%
+\contentsline {subsection}{\numberline {3.7.7}Conclusiones}{23}{subsection.3.7.7}%
+\contentsline {subsection}{\numberline {3.7.8}Preguntas Frecuentes}{23}{subsection.3.7.8}%
+\contentsline {subsection}{\numberline {3.7.9}Notas}{23}{subsection.3.7.9}%
+\contentsline {subsection}{\numberline {3.7.10}C^^c3^^b3digo Fuente}{23}{subsection.3.7.10}%
+\contentsline {section}{\numberline {3.8}An^^c3^^a1lisis de archivos JSON. Pr^^c3^^a1ctica 4}{23}{section.3.8}%
+\contentsline {subsection}{\numberline {3.8.1}Introducci^^c3^^b3n}{23}{subsection.3.8.1}%
+\contentsline {subsection}{\numberline {3.8.2}GSON Streaming}{24}{subsection.3.8.2}%
+\contentsline {subsection}{\numberline {3.8.3}JavaCC vs GSON Streaming}{24}{subsection.3.8.3}%
+\contentsline {subsection}{\numberline {3.8.4}Descripci^^c3^^b3n de la pr^^c3^^a1ctica}{24}{subsection.3.8.4}%
+\contentsline {subsection}{\numberline {3.8.5}Desarrollo de la pr^^c3^^a1ctica}{25}{subsection.3.8.5}%
+\contentsline {subsection}{\numberline {3.8.6}Herramienta}{25}{subsection.3.8.6}%
+\contentsline {subsection}{\numberline {3.8.7}Conclusiones}{25}{subsection.3.8.7}%
+\contentsline {subsection}{\numberline {3.8.8}Preguntas Frecuentes}{25}{subsection.3.8.8}%
+\contentsline {subsection}{\numberline {3.8.9}Notas}{25}{subsection.3.8.9}%
+\contentsline {subsection}{\numberline {3.8.10}C^^c3^^b3digo Fuente}{25}{subsection.3.8.10}%
+\contentsline {section}{\numberline {3.9}Evolutivo de las pr^^c3^^a1cticas}{26}{section.3.9}%
+\contentsline {subsection}{\numberline {3.9.1}Introducci^^c3^^b3n}{26}{subsection.3.9.1}%
+\contentsline {subsection}{\numberline {3.9.2}Evolutivo 1. XML}{26}{subsection.3.9.2}%
+\contentsline {subsection}{\numberline {3.9.3}JavaCC vs XPath}{26}{subsection.3.9.3}%
+\contentsline {subsection}{\numberline {3.9.4}Descripci^^c3^^b3n de la pr^^c3^^a1ctica}{27}{subsection.3.9.4}%
+\contentsline {subsection}{\numberline {3.9.5}Desarrollo de la pr^^c3^^a1ctica}{27}{subsection.3.9.5}%
+\contentsline {subsection}{\numberline {3.9.6}Herramienta}{27}{subsection.3.9.6}%
+\contentsline {subsection}{\numberline {3.9.7}Conclusiones}{27}{subsection.3.9.7}%
+\contentsline {subsection}{\numberline {3.9.8}Preguntas Frecuentes}{28}{subsection.3.9.8}%
+\contentsline {subsection}{\numberline {3.9.9}Notas}{28}{subsection.3.9.9}%
+\contentsline {chapter}{\numberline {4}Resultados}{29}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Conclusiones}{30}{chapter.5}%
+\contentsline {chapter}{\numberline {A}Preguntas Frecuentes}{31}{appendix.A}%
+\contentsline {section}{\numberline {A.1}^^c2^^bfQue es una produccion BNF o ENBF?}{31}{section.A.1}%
+\contentsline {subsection}{\numberline {A.1.1}BNF}{31}{subsection.A.1.1}%
+\contentsline {subsection}{\numberline {A.1.2}EBNF}{31}{subsection.A.1.2}%
+\contentsline {section}{\numberline {A.2}^^c2^^bfQue es un no\hyp {}terminal?}{33}{section.A.2}%
+\contentsline {section}{\numberline {A.3}^^c2^^bfC^^c3^^b3mo empiezo a desarrollar en JavaCC?}{33}{section.A.3}%
+\contentsline {section}{\numberline {A.4}^^c2^^bfDonde puedo encontrar informaci^^c3^^b3n adicional?}{33}{section.A.4}%
+\contentsline {chapter}{\numberline {B}Herramientas utilizadas}{35}{appendix.B}%
+\contentsline {section}{\numberline {B.1}Manual de instalaci^^c3^^b3n y configuraci^^c3^^b3n}{35}{section.B.1}%
+\contentsline {subsection}{\numberline {B.1.1}Instalaci^^c3^^b3n de JavaCC}{35}{subsection.B.1.1}%
+\contentsline {subsubsection}{Descarga e Instalaci^^c3^^b3n de JavaCC desde l^^c3^^adnea de comandos}{35}{section*.3}%
+\contentsline {subsubsection}{Descarga e Instalaci^^c3^^b3n de JavaCC desde un IDE}{36}{section*.4}%
+\contentsline {subsubsection}{Configuraci^^c3^^b3n de JavaCC en Eclipse}{36}{section*.5}%
+\contentsline {section}{\numberline {B.2}S^^c3^^admbolos de Expresiones regulares en JavaCC}{37}{section.B.2}%
+\contentsline {chapter}{\numberline {C}C^^c3^^b3digo Fuente}{38}{appendix.C}%
+\contentsline {section}{\numberline {C.1}Mathexp.jj}{39}{section.C.1}%
+\contentsline {section}{\numberline {C.2}NL\_Xlator.jj}{40}{section.C.2}%
+\contentsline {section}{\numberline {C.3}Catalogo.xml (Simplificado)}{43}{section.C.3}%
+\contentsline {section}{\numberline {C.4}Catalogo.xsd }{45}{section.C.4}%
+\contentsline {section}{\numberline {C.5}XMLParser.jj}{48}{section.C.5}%
+\contentsline {section}{\numberline {C.6}JSONParser.jj}{52}{section.C.6}%
