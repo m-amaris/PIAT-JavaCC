@@ -144,7 +144,7 @@ public class EstadisticasLog {
 		}
 		
 		System.out.println("\n\t Numero de ficheros procesados: "+ numeroFicherosProcesados);
-		System.out.println("\t Numero de trazas procesadas: "+ lineasCorrectas.get()+lineasIncorrectas.get());
+		System.out.println("\t Numero de trazas procesadas: "+ (lineasCorrectas.get()+lineasIncorrectas.get()));
 		System.out.println("\t Numero de trazas incorrectas: "+ lineasIncorrectas.get());
 
 		

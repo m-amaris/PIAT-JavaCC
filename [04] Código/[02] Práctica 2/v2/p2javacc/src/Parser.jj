@@ -1,0 +1,312 @@
+options
+{
+  STATIC = false; // para que pueda haber concurrencia (permite entradas de manera dinamica) 
+  // DEBUG_PARSER = true;
+  // DEBUG_TOKEN_MANAGER = true;
+}
+
+PARSER_BEGIN(Parser)
+
+package piat.javacc;
+
+@SuppressWarnings("unused")
+public class Parser {
+  final boolean VERBOSE = true;
+  // private EstUsuario eu = new EstUsuario();
+  // private EstGenerales eg = new EstGenerales();
+  // private EstAgregadasTipoFecha ea = new EstAgregadasTipoFecha();
+  // private static int linea = 0;
+
+  void skipto(EstGenerales eg,int kind, Exception e){
+      if(e!=null){
+        System.out.println("Traza mal formada detectada...");
+        eg.registrarError();
+      }
+		Token t;  
+    	do {
+        	t = getNextToken();
+  		} while (t.kind != kind);
+	}
+
+  private void Registar(EstGenerales eg, EstAgregadasTipoFecha ea,String estadistico, Token tipoServidor, String numeroServidor,String fecha){
+    eg.registrarServidor(tipoServidor.image,numeroServidor);
+		ea.registrarTraza ( tipoServidor.image, fecha, estadistico );
+  }
+
+}
+PARSER_END(Parser)
+
+<*>
+SKIP :
+{
+  " "
+| "\t"
+| "\r"
+| "bounced from:" : DEFAULT // este token se define ya que en los smtp-in hay este token seguido de un remitente y correo, por lo que cuando lo detectemos debemos salir de ese estado lexico y ir al por defecto
+}
+
+/** Los siguientes tokens tienen que ser especificados en todos los estados lexicos (*) ya que en la parte sintactica si ponemos un token a pelo (por ejemplo: "message from"), el parser lo detecta como un token definido el estado léxico DEFAULT, no un token definido en todo estado lexico. Es por ello que el no-terminal CualquierCosa se ponen los tokens definidos a continuación */
+<*>
+TOKEN:
+{
+  < NUMERO : (["0"-"9"])+ > 
+| < LETRA : ["A"-"Z","a"-"z"] >
+| < IDENTIFICADOR_TRAZA : "["(["A"-"Z","0"-"9"])+"]:" > // el id de traza tiene que estar aqui definido porque algunos servidores utilizan estados lexicos propios
+| < PUNTO : "." > 
+| < DOS_PUNTOS : ":" >
+| < GUION : "-" >
+| < GUION_BAJO : "_" >
+| < ARROBA : "@" >
+| < IGUAL : "=" >
+| < ABRE_PARENTESIS : "(" >
+| < CIERRA_PARENTESIS : ")" >
+| < COMA : "," >
+| < MENOR_QUE : "<" >
+| < MAYOR_QUE : ">" >
+| < OVERLOAD : "overload)" > // este token tiene que estar aqui definido ya que puede aparecer en cualquier tipo de servidor
+| < BAD : "(bad destination mailbox address)" > // este token tiene que estar aqui definido ya que puede aparecer en cualquier tipo de servidor
+| < EOL : "\n" > : DEFAULT // se encuentre en el estado lexico que se encuentre, cuando encuentre un EOL pasa a default (siguiente linea)
+}
+
+TOKEN : 
+{
+  < FECHA : (["0"-"9"]){4}"-"(["0"-"9"]){2}"-"(["0"-"9"]){2} >  
+| < HORA : (["0"-"9"]){2}":"(["0"-"9"]){2}":"(["0"-"9"]){2} > : SERVER
+}
+
+/** El estado lexico server se ha definido principalmente por un motivo, y es debido a que en mucho ficheros de log se encuentra tipos de servidor (bounced from: <MAILER-DAEMON@smtp-in2.etsist.upm.es> ) por lo que es necesario definir un estado lexico en el que unicamente queramos detectar el tipo de servidor al que pertenece la traza. */
+<SERVER>
+TOKEN:
+{
+  < MSA : "msa" > : GEN
+| < SMTP_IN : "smtp-in" > : GEN 
+| < SMTP_OUT : "smtp-out" > : OUT
+| < SEC : ("security-in"|"security-out") > : SECURITY
+| < USER_MAILBOX : "user-mailbox" > : DEFAULT
+}
+
+/** Este estado lexico se define ya que hace falta definir los token que queramos que se identifiquen en las trazas security-in/out */
+<SECURITY>
+TOKEN:
+{
+  < INFECTED : "security-antivirus: INFECTED" > : DEFAULT
+| < SEC_PASSED : "SEC-PASSED:" > : PASS
+}
+
+<GEN>
+TOKEN:
+{
+  < REMIT : "<"(["A"-"Z","a"-"z","0"-"9","_",".","-"])+ >
+| < DOM : "@"(["A"-"Z","a"-"z","0"-"9","_"])+ ("."(["A"-"Z","a"-"z","0"-"9","_"])+)+">" >
+| < FROM :  "message from:" >
+}
+
+<OUT>
+TOKEN:
+{
+  <RELAY_TO : "relay to:" > 
+}
+
+/** Este estado se define ya que hay tanto para los mensajes SEC-BLOCKED (infectados) como SEC-PASSED (spam) existe el "token" security-antivirus. En el caso de mensajes infectados es imprescindible que aparezca "security-antivirus", mientras que los de SPAM no. Es por ello por lo que se ha creado un estado lexico para que "obvie" ese token y no haya conflictos a la hora de que el tokenmanager detecte el token. */
+<PASS>
+TOKEN:
+{
+  <SPAM : "security-antispam: SPAM" >
+}
+
+/** Producción principal. */
+// Se pone (<EOL>)? ya que en algunos no-terminales una vez se ha detectado lo que interesa, consume todos los tokens de esa traza hasta llegar al final de línea, consumiendo tambien ese token. Es por eso que en esos casos puede no estar presente el <EOL>
+void Start(EstUsuario eu, EstGenerales eg, EstAgregadasTipoFecha ea) : {}
+{
+  {eg.registrarFichero();}
+  try{
+    documento(eu,eg,ea)
+  } catch (Exception e) {
+    e.printStackTrace();
+    skipto(eg,EOL,e);
+	} 
+}
+
+void documento(EstUsuario eu, EstGenerales eg, EstAgregadasTipoFecha ea) : {}
+{
+  (Traza(eu,eg,ea) (<EOL>)?)*
+  <EOF>
+}
+
+/** Una Traza. */
+void Traza(EstUsuario eu, EstGenerales eg, EstAgregadasTipoFecha ea) : {String f;}
+{
+  try {
+    {eg.registrarTraza();}
+    f=Fecha() Hora() TipoTraza(f, eu, eg,  ea) 
+	} catch (Exception e) {
+    skipto(eg,EOL,e);
+	} 
+}
+
+/** Un tipo de traza. */
+/** El LOOKAHEAD sirve para poder comprobar todas los tipos de trazas que se quieren analizar y ver de todas ellas cual es la que encaja. Concretamente, el LOOKAHEAD tiene como funcion mirar un numero n de tokens hacia delante, para poder determinar que no-terminal es el correcto.*/
+void TipoTraza(String f,EstUsuario eu, EstGenerales eg, EstAgregadasTipoFecha ea) : {}
+{
+  LOOKAHEAD(TrazaGEN())   TrazaGEN(f,eu,eg,ea) 
+| LOOKAHEAD(TrazaIN())    TrazaIN(f,eu,eg,ea)
+| LOOKAHEAD(TrazaOUT())   TrazaOUT(f,eu,eg,ea)    // [HECHO]
+| LOOKAHEAD(TrazaINF())   TrazaINF(f,eu,eg,ea)    // [HECHO]
+| LOOKAHEAD(TrazaSPAM())  TrazaSPAM(f,eu,eg,ea)   // [HECHO]
+| LOOKAHEAD(TrazaOVER())  TrazaOVER(f,eu,eg,ea)   // [HECHO]
+| LOOKAHEAD(TrazaBAD())   TrazaBAD(f,eu,eg,ea)    // [HECHO]
+| LOOKAHEAD(TrazaValida())TrazaValida(f,eu,eg,ea) // [HECHO]
+}
+
+void TrazaGEN(String f,EstUsuario eu, EstGenerales eg, EstAgregadasTipoFecha ea) : { Token t; String u,n; }
+{ t=<MSA> n=Numero() Identificador() u=Intento(t,eg) {Registar(eg,ea,"message from",t, n, f); eu.registrarMensaje(u);} } 
+
+void TrazaIN(String f,EstUsuario eu, EstGenerales eg, EstAgregadasTipoFecha ea) : { Token t; String n; }
+{ 
+  t=<SMTP_IN> n=Numero() Identificador() 
+  Intento(t,eg)
+  {Registar(eg,ea,"message from",t, n, f);}
+  // MessageFrom() MessageTo() MessageId() Size() 
+}
+
+void TrazaOUT(String f,EstUsuario eu, EstGenerales eg, EstAgregadasTipoFecha ea) : { Token t; String n;}
+{ t=<SMTP_OUT> n=Numero() Identificador() RelayTo(t,eg) {Registar(eg,ea,"msgOut",t, n, f);} } 
+
+void TrazaSPAM(String f,EstUsuario eu, EstGenerales eg, EstAgregadasTipoFecha ea) : { Token t; String n;}
+{ t=<SEC> n=Numero() Identificador() SpamNoBloq(t) {Registar(eg,ea,"msgSPAM",t, n, f);} } 
+
+void TrazaINF(String f,EstUsuario eu, EstGenerales eg, EstAgregadasTipoFecha ea) : { Token t; String n;}
+{ t=<SEC> n=Numero() Identificador() Infectado(t,eg) {Registar(eg,ea,"msgINFECTED",t, n, f);}} 
+ 
+void TrazaOVER(String f,EstUsuario eu, EstGenerales eg, EstAgregadasTipoFecha ea) : { Token t; String n;}
+{ t=TipoServidor() n=Numero() Identificador() Sobrecarga(t) {Registar(eg,ea,"code 4.3.2",t, n, f);}} 
+
+void TrazaBAD(String f,EstUsuario eu, EstGenerales eg, EstAgregadasTipoFecha ea) : { Token t;String n;}
+{ t=TipoServidor() n=Numero() Identificador() Nodest(t) {Registar(eg,ea,"code 5.1.1",t, n, f);}} 
+
+void TrazaValida(String f,EstUsuario eu, EstGenerales eg, EstAgregadasTipoFecha ea) : {Token t ;String n;}
+{ t=TipoServidor() n=Numero() Identificador() (CualquierCosa()) { /**linea++; if (VERBOSE)System.out.println("-"+linea+"- Traza valida");*/ eg.registrarServidor(t.image,n);}} 
+
+/* Otras producciones */ 
+ 
+Token TipoServidor() : { Token t; }
+{ ( t=<MSA> | t=<SMTP_IN> | t=<SMTP_OUT> | t=<SEC> | t=<USER_MAILBOX>) {return t;} }
+
+String Fecha() : {Token t;}  
+{ t=<FECHA> {return t.image;} }
+
+void Hora() : {}
+{ <HORA> }
+
+String Numero() : {Token t;}
+{ t=<NUMERO>{return t.image;} }
+ 
+void Identificador() : {}
+{ <IDENTIFICADOR_TRAZA> } 
+
+String Intento(Token t,EstGenerales eg) : { Token u,v; }
+{ 
+  <FROM> u = <REMIT> v = <DOM> {
+    // linea++;
+    // if(VERBOSE) System.out.println("-"+linea+"- ["+t.image+"] message from: "+u.image.substring(1)+"@"+v.image.substring(1, v.image.length() - 1)+" --> msgIn");
+    skipto(eg,EOL,null);
+    return u.image.substring(1);
+  }
+} 
+
+void RelayTo(Token t,EstGenerales eg) : { String s; }
+{
+  <RELAY_TO> s=Relay(){
+    // linea++;
+    // if(VERBOSE)System.out.println("-"+linea+"- ["+t.image+"] relay to: "+s+" --> msgOut");
+    skipto(eg,EOL,null);
+  }
+}
+
+void SpamNoBloq(Token t) : { Token u; }
+{
+  <SEC_PASSED> CualquierCosa() u=<SPAM> 
+  {
+    // linea++;
+    // if(VERBOSE)System.out.println("-"+linea+"- ["+t.image+"] "+u.image+" --> msgSPAM");
+  }
+}
+
+void Infectado(Token t,EstGenerales eg) : { Token u; }
+{
+  CualquierCosa() u=<INFECTED>
+  {
+    // linea++;
+    // if(VERBOSE)System.out.println("-"+linea+"- ["+t.image+"] "+u.image+" --> msgINFECTED");
+    skipto(eg,EOL,null); 
+  }
+}
+
+void Sobrecarga(Token t) : {} 
+{
+  CualquierCosa() <OVERLOAD> 
+  // CualquierCosa() <OVERLOAD>
+  {
+    // linea++;
+    // if(VERBOSE)System.out.println("-"+linea+"- ["+t.image+"] (overload) --> code 4.3.2");
+    // skipto(EOL,null);
+  }
+}
+
+void Nodest(Token t) : {}
+{
+  CualquierCosa() <BAD>
+  // CualquierCosa() <BAD> 
+  {
+    // linea++;
+    // if(VERBOSE)System.out.println("-"+linea+"- ["+t.image+"] (bad destination mailbox address) --> code 5.1.1");
+    // skipto(EOL,null);
+  }
+}
+
+/** Se define el no-terminal CualquierCosa y no un token que recoga cualquier cosa (~[]) , debido a que este ultimo no permitiría reconocer ningun otro token que quisiesemos, aunque estos tuviesen prioridad. Es mas conveniente definir un no-terminal con los cualquier token que puede haber hasta encontrar el token que queramos reconocer. */
+void CualquierCosa() : {}
+{
+  (<SEC_PASSED>)?
+  ( <LETRA> | <NUMERO> | <GUION_BAJO> | <PUNTO> | <GUION> | <DOS_PUNTOS> | <MENOR_QUE> | <MAYOR_QUE> | <IGUAL> | <ABRE_PARENTESIS> | <CIERRA_PARENTESIS> | <COMA> | <ARROBA>)*
+
+}
+
+String Relay() : { Token t; String s = ""; }
+{
+  ( t=<LETRA>{s += t.image;} | t=<NUMERO>{s += t.image;} | t="_"{s += t.image;} | t="."{s += t.image;} | t="-"{s += t.image;} )*
+  {return s;}
+}
+
+/** METODOS NO UTILIZADOS */
+
+// void MessageFrom() : {}
+// { "message from:" CorreoElectronico() } 
+
+// void MessageTo() : {}
+// {  "to:" CorreoElectronico() }
+
+// void MessageId() : {}
+// {  "message-id:" CorreoElectronico() }
+
+// void Size() : {}
+// { "size:"Numero() }
+
+// void CorreoElectronico() : 
+// {
+//   String remitente = "";
+//   String dominio = "";
+//   Token t;
+// }
+// {
+//   "<"
+//   ( t = <LETRA>{remitente += t.image;} | t = <NUMERO>{remitente += t.image;} | t ="_" {remitente += t.image;}| t = "." {remitente += t.image;}| t ="-"{remitente += t.image;} )*
+//   t="@"
+//   ( t = <LETRA>{dominio += t.image;} | t = <NUMERO>{dominio += t.image;} | t ="_" {dominio += t.image;}| t = "." {dominio += t.image;}| t ="-"{dominio += t.image;} )*
+//   ">"{
+//     // System.out.println(remitente+"@"+dominio);
+//   }
+// }
+
+
+<*> TOKEN : { <UNEXPECTED: ~[] > }

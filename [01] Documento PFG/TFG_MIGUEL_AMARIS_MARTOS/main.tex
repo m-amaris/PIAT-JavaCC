@@ -1,0 +1,140 @@
+% \documentclass{article}
+\documentclass[12pt]{report}
+\usepackage{listingsutf8}
+\usepackage[spanish,english]{babel}
+\usepackage{parskip}
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[style=ieee]{biblatex}
+\usepackage{csquotes}
+\usepackage{pdfpages}
+%\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyphenat}
+\usepackage{accsupp}
+\usepackage{amsmath}
+\usepackage[a4paper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+\usepackage[pdfpagelabels,colorlinks=true, allcolors=black]{hyperref}
+\usepackage{applekeys} 
+ 
+% CONFIGURACION DE LA BIBLIOGRAFIA
+\addbibresource{export.bib}
+\setcounter{biburlnumpenalty}{9000} % If you want to break on URL numbers
+\setcounter{biburllcpenalty}{9000} % If you want to break on URL lower case letters
+\setcounter{biburlucpenalty}{9000} % If you want to break on URL UPPER CASE letters
+
+
+% PRESENTACION DEL CODIGO
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+
+
+
+\lstdefinestyle{java}{
+	inputencoding=utf8/latin1,
+	extendedchars=true,
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,    
+    language=Java,                
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,
+    columns=fullflexible,   
+    tabsize=2
+}
+
+\lstset{style=java}
+
+
+% IMAGENES
+
+
+\graphicspath{ {imagenes/} }
+\pdfminorversion=6
+
+\title{Análisis y procesamiento de información textual utilizando generadores de compiladores}\author{Miguel Amarís Martos}
+
+
+\begin{document}
+\selectlanguage{spanish}
+% PRIMERA HOJA (OBLIGATORIO)
+\hypersetup{pageanchor=false}
+\includepdf[]{imagenes/primerapagina.pdf}
+
+% RESUMEN (OBLIGATORIO)
+\begin{abstract}
+En el panorama actual, el procesamiento de información en diversos formatos se ha convertido en una práctica común. Para abordar esta tarea, se emplean diferentes herramientas diseñadas específicamente para analizar datos en diversos lenguajes de programación o formatos como JSON o XML. Sin embargo, la necesidad de una solución genérica que permita el análisis de una amplia variedad de gramáticas se ha vuelto evidente.
+En este contexto, se han desarrollado generadores de reconocedores gramaticales, como Java Compiler Compiler (JavaCC). JavaCC es una herramienta que permite la generación de analizadores léxicos y sintácticos a partir de una gramática definida por el usuario. Su versatilidad y capacidad para adaptarse a diversas gramáticas lo convierten en una elección atractiva para el procesamiento de información estructurada.
+Este proyecto se enfoca en explorar el potencial de JavaCC y su aplicación en la asignatura Procesamiento de la Información en Aplicaciones Telemáticas (PIAT). El objetivo principal es aprender a utilizar JavaCC, aplicarlo en prácticas de PIAT y crear una documentación que respalde su versatilidad para el análisis de gramáticas y el procesamiento de información.
+\end{abstract}
+
+% ABSTRACT (OBLIGATORIO)
+\selectlanguage{english}
+\begin{abstract}
+In the current landscape, processing information in various formats has become a common practice. To address this task, different tools specifically designed to parse data in various programming languages or formats such as JSON or XML are used. However, the need for a generic solution that allows the parsing of a wide variety of grammars has become evident.
+In this context, grammar recogniser generators have been developed, such as Java Compiler Compiler (JavaCC). JavaCC is a tool that allows the generation of lexical and syntactic parsers from a user-defined grammar. Its versatility and ability to adapt to diverse grammars make it an attractive choice for structured information processing.
+This project focuses on exploring the potential of JavaCC and its application in the subject Information Processing in Telematics Applications (PIAT). The main objective is to learn how to use JavaCC, apply it in PIAT practices and create documentation that supports its versatility for grammar parsing and information processing.
+\end{abstract}
+\selectlanguage{spanish}
+
+% AGRADECIMIENTOS
+\chapter*{Agradecimientos}
+Quiero agradecer...
+
+
+% INDICE DE CONTENIDOS (OBLIGATORIO)
+\hypersetup{pageanchor=false}
+\hypersetup{linkcolor=black}
+\tableofcontents
+
+% LISTA DE ACRONIMOS
+
+
+% CONTENIDOS
+\chapter{Introducción}
+\input{capitulos/introduccion}
+\chapter{Estado del arte}
+\input{capitulos/estadodelarte}
+\chapter{Desarrollo}
+\input{capitulos/desarrollo}
+\chapter{Resultados}
+\input{capitulos/resultados}
+\chapter{Conclusiones}
+\input{capitulos/conclusiones}
+
+% APENDICE
+\appendix
+\chapter{Preguntas Frecuentes}
+\input{capitulos/preguntasfrecuentes}
+\chapter{Herramientas utilizadas}
+\input{capitulos/herramientas}
+\chapter{Código Fuente}
+\label{sec:codigofuente}
+\input{capitulos/codigofuente}
+
+
+% BIBLIOGRAFIA (NO REFERENCIADA DIRECTAMENTE)
+\nocite{librodeldragon}
+\nocite{ide}
+\nocite{intro}
+\nocite{primerproyectojavacc}
+\nocite{robertfisher}
+\nocite{xquery}
+\nocite{oracle}
+\nocite{netbeans}
+%\emergencystretch=1em
+\printbibliography
+
+\end{document}

@@ -1,0 +1,41 @@
+<?xml version = "1.0" encoding="UTF-8"?>
+<searchResults xmlns="http://www.piat.dte.upm.es/ResultadosBusquedaP3"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.piat.dte.upm.es/ResultadosBusquedaP3 ResultadosBusquedaP3.xsd">
+	<summary>
+		<query>0119-022</query>
+		<numConcepts>10</numConcepts>
+		<numDatasets>3<datasets><
+	</summary>
+	<results>
+		<concepts>
+			<concept id="https://datos.madrid.es/egob/kos/entidadesYorganismos/TransportePublico#"/>
+			<concept id="https://datos.madrid.es/egob/kos/entidadesYorganismos/TransportePublico/AeropuertosAerodromos#"/>
+			<concept id="https://datos.madrid.es/egob/kos/entidadesYorganismos/TransportePublico/AlquilerTalleresBicicletas#"/>
+			<concept id="https://datos.madrid.es/egob/kos/entidadesYorganismos/TransportePublico/EmpresasAutobuses#"/>
+			<concept id="https://datos.madrid.es/egob/kos/entidadesYorganismos/TransportePublico/EstacionesAutobus#"/>
+			<concept id="https://datos.madrid.es/egob/kos/entidadesYorganismos/TransportePublico/EstacionesTren#"/>
+			<concept id="https://datos.madrid.es/egob/kos/entidadesYorganismos/TransportePublico/InspeccionTecnicaVehiculos#"/>
+			<concept id="https://datos.madrid.es/egob/kos/entidadesYorganismos/TransportePublico/IntercambiadoresTransporte#"/>
+			<concept id="https://datos.madrid.es/egob/kos/entidadesYorganismos/TransportePublico/ServiciosGrua#"/>
+			<concept id="https://datos.madrid.es/egob/kos/entidadesYorganismos/TransportePublico/Taxi#"/>
+		</concepts>
+		<datasets>
+			<dataset id="https://datos.madrid.es/egob/catalogo/202180-0-instalaciones-accesibles-no-muni.json">
+				<title>			Instalaciones accesibles no municipales</title>
+				<description>Relación de todas aquellas instalaciones accesibles no municipales de las que posee conocimiento expreso el Ayuntamiento de Madrid: Hoteles, Centros de Salud, Hospitales, Universidades, Ministerios, Museos. etc.</description>
+				<theme>http://datos.gob.es/kos/sector-publico/sector/sociedad-bienestar</theme>
+			</dataset>
+			<dataset id="https://datos.madrid.es/egob/catalogo/202162-0-instalaciones-accesibles-municip.json">
+				<title>			Instalaciones accesibles municipales</title>
+				<description>Instalaciones accesibles municipales.</description>
+				<theme>http://datos.gob.es/kos/sector-publico/sector/sociedad-bienestar</theme>
+			</dataset>
+			<dataset id="https://datos.madrid.es/egob/catalogo/300227-0-grua-depositos.json">
+				<title>			Depósitos de la grúa del Ayuntamiento de Madrid</title>
+				<description>Relación de depósitos de la grúa municipal con los datos relativos a su ubicación y coordenadas geográficas. En el apartado ' Documentación asociada' está disponible el documento descriptivo de la estructura del fichero y las recomendaciones sobre el uso de los datos. También está disponible en este portal el conjunto de datos relativo a la Retirada de vehículos en vía pública: grúa municipal .</description>
+				<theme>http://datos.gob.es/kos/sector-publico/sector/transporte</theme>
+			</dataset>
+		</datasets>
+	</results>
+</searchResults>
