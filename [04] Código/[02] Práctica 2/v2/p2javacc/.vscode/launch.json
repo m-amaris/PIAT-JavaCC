@@ -8,6 +8,14 @@
             "type": "java",
             "name": "Main",
             "request": "launch",
+            "args": "logfiles",
+            "mainClass": "piat.javacc.Main",
+            "projectName": "p2javacc_5d755834"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
             "args": "test",
             "mainClass": "piat.javacc.Main",
             "projectName": "p2javacc_82363a7c"
