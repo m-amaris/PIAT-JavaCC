@@ -1,0 +1,231 @@
+options
+{
+  STATIC = true;
+  UNICODE_INPUT = true;
+}
+
+PARSER_BEGIN(JSONParser)
+import java.io.*;
+import java.util.*;
+import com.google.gson.*;
+public class JSONParser
+{
+  public static void main(String [] args) throws ParseException
+  {
+    JSONParser parser;
+    try
+    {
+      parser = new JSONParser(new JSONParserTokenManager(new SimpleCharStream(new InputStreamReader(new FileInputStream(args [0]), "UTF-8"))));
+      JsonElement json = parser.document();
+      Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+      String jsonOutput = gson.toJson(json);
+      System.out.println(jsonOutput);
+    }
+    catch (FileNotFoundException e)
+    {
+      e.printStackTrace();
+    }
+    catch (UnsupportedEncodingException e)
+    {
+		      e.printStackTrace();
+	    }
+  }
+}
+
+PARSER_END(JSONParser)
+
+TOKEN_MGR_DECLS :
+{
+  static Stack lexicalStateStack = new Stack();
+}
+
+< ARRAY > 
+SKIP :
+{
+  " " 
+| "\t" 
+| "\r" 
+| "\n"
+}
+
+< DEFAULT, ARRAY > 
+TOKEN :
+{
+  < GRAPHS : "\"@graph\"" >
+  {
+    lexicalStateStack.push(curLexState);
+  }
+  : ARRAY
+}
+
+< ARRAY > 
+TOKEN :
+{
+  < OBJECT_START : "{" > 
+| < OBJECT_END : "}" > 
+| < ARRAY_START : "[" >
+  {
+    lexicalStateStack.push(curLexState);
+  }
+  : ARRAY 
+| < ARRAY_END : "]" >
+  {
+    SwitchTo((int) lexicalStateStack.pop() == 1 ? DEFAULT : ARRAY);
+  }
+| < STRING : "\"" (~["\"", "\n", "\r"]) * "\"" > 
+| < INTEGER : ("-") ? (["0" - "9"]) + > 
+| < DOUBLE : 
+  ("-") ? (["0" - "9"]) + 
+  (
+  "." (["0" - "9"]) +
+  ) > 
+| < TRUE : "true" > 
+| < FALSE : "false" > 
+| < NULL : "null" >
+| < COMMA : "," > 
+| < COLON : ":" >
+}
+
+< DEFAULT > 
+SKIP :
+{
+  < ~[] >
+}
+
+/**
+ * Metodo para analizar un elemento JSON.
+ * @return Elemento JSON analizado.
+ */
+JsonElement document() :
+{
+  JsonElement j = new JsonArray();
+}
+{
+ 
+  (
+  < GRAPHS > < COLON > j = array()
+  )*
+  {
+    return j;
+  }
+}
+
+/**
+ * Metodo para analizar un objeto JSON.
+ * @return Objeto JSON analizado.
+ */
+JsonObject object() :
+{
+  AbstractMap.SimpleEntry < String, JsonElement > p;
+  JsonObject o = new JsonObject();
+}
+{
+  < OBJECT_START > 
+  (
+  p = pair()
+  {
+    o.add(p.getKey(), p.getValue()); // Obtener la pareja clave-valor JSON y añadirlo al objeto JSON
+  }
+  (
+  < COMMA > p = pair()
+  {
+    o.add(p.getKey(), p.getValue());
+  }
+  ) *
+  ) ? 
+  < OBJECT_END >
+  {
+    return o;
+  }
+}
+
+/**
+ * Metodo para analizar un array JSON.
+ * @return Array JSON analizado.
+ */
+JsonArray array() :
+{
+  JsonObject o;
+  JsonArray a = new JsonArray();
+}
+{
+  < ARRAY_START > 
+  (
+  o = object()
+  {
+    a.add(o); // Obtener el objeto JSON y añadirlo al array JSON
+  }
+  (
+  < COMMA > o = object()
+  {
+    a.add(o);
+  }
+  ) *
+  ) ? 
+  < ARRAY_END >
+  {
+    return a;
+  }
+}
+
+/**
+ * Metodo para analizar una pareja clave-valor JSON.
+ * @return Pareja clave-valor analizada.
+ */
+AbstractMap.SimpleEntry < String, JsonElement > pair() :
+{
+  JsonElement e;
+  Token t;
+}
+{
+  t = < STRING > < COLON > e = value()
+  {
+    return new AbstractMap.SimpleEntry < String, JsonElement > (t.image.substring(1, t.image.length() - 1), e); // Obtener los elementos JSON y añadirlos a la pareja clave-valor JSON 
+  }
+}
+
+/**
+ * Metodo para analizar un valor JSON.
+ * @return Valor JSON analizado.
+ */
+JsonElement value() :
+{
+  Token t;
+  JsonElement e;
+}
+{
+  (
+  t = < STRING >
+  {
+    return new JsonPrimitive(t.image.substring(1, t.image.length() - 1));
+  }
+| t = < INTEGER >
+  {
+    return new JsonPrimitive(Integer.parseInt(t.image));
+  }
+| t = < DOUBLE >
+  {
+    return new JsonPrimitive(Double.parseDouble(t.image));
+  }
+| < TRUE >
+  {
+    return new JsonPrimitive(true);
+  }
+| < FALSE >
+  {
+    return new JsonPrimitive(false);
+  }
+| t = < NULL >
+  {
+    return JsonNull.INSTANCE;
+  }
+| e = object()
+  {
+    return e;
+  }
+| e = array()
+  {
+    return e;
+  }
+  )
+}

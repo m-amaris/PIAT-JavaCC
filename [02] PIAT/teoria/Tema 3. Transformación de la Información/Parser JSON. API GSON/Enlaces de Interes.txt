@@ -1,2 +1,0 @@
-https://javadoc.io/doc/com.google.code.gson/gson/latest/com.google.gson/module-summary.html
-https://github.com/google/gson/blob/master/UserGuide.md

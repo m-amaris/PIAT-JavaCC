@@ -1,0 +1,113 @@
+options
+{
+	  IGNORE_CASE = true;
+	  STATIC = false;
+	  BUILD_PARSER = false; 
+}
+
+PARSER_BEGIN(Gramatica)
+/* Analizador de codigo txt*/
+package Analizador;
+public class Gramatica{}
+
+PARSER_END(Gramatica)
+
+/* Analizador léxico */
+
+// Saltar espacios
+SKIP :
+{
+	" "
+	| "\t"
+	| "\r"
+	| "\n"
+}
+
+// Palabras reservadas
+TOKEN :
+{
+	< MAIN : "main" > {System.out.println("MAIN-> "+image+"\n");}
+	| < INT : "int" > {System.out.println("INT-> "+image+"\n");}
+	| < FLOAT : "float" > {System.out.println("FLOAT-> "+image+"\n");}
+	| < DOUBLE : "double" > {System.out.println("DOUBLE-> "+image+"\n");}
+	| < STRING : "string" >{System.out.println("STRING-> "+image+"\n");}
+	| < CHAR : "char" > {System.out.println("CHAR-> "+image+"\n");}
+	| < IF : "if" > {System.out.println("IF-> "+image+"\n");}
+	| < ELSE : "else" > {System.out.println("ELSE-> "+image+"\n");}
+	| < WHILE : "while" > {System.out.println("WHILE-> "+image+"\n");}
+	| < DO : "do" > {System.out.println("DO-> "+image+"\n");}
+	| < FOR : "for" > {System.out.println("FOR-> "+image+"\n");}
+	| < SWITCH : "switch" > {System.out.println("SWITCH-> "+image+"\n");}
+	| < BREAK : "break" > {System.out.println("BREAK-> "+image+"\n");}
+	| < VOID : "void" > {System.out.println("VOID-> "+image+"\n");}
+	| < RETURN : "return" > {System.out.println("RETURN-> "+image+"\n");}
+	| < STRUCT : "struct" > {System.out.println("STRUCT-> "+image+"\n");}
+	| < USING : "using" > {System.out.println("USING-> "+image+"\n");}
+	| < NAMESPACE : "namespace" > {System.out.println("NAMESPACE-> "+image+"\n");}
+	| < CIN : "cin" > {System.out.println("CIN-> "+image+"\n");}
+	| < COUT : "cout" > {System.out.println("COUT-> "+image+"\n");}
+}
+
+// Directivas
+TOKEN :
+{
+	< INCLUDE_LIBRARY : "include" > {System.out.println("INCLUDE_LIBRARY-> "+image+"\n");}
+	| < DEFINE : "define" > {System.out.println("DEFINE-> "+image+"\n");}
+}
+
+// Operadores
+TOKEN :
+{
+	< STRINGIZING : "#" > {System.out.println("STRINGIZING-> "+image+"\n");}
+	| < SUM : "+" > {System.out.println("SUM-> "+image+"\n");}
+	| < MINUS : "-" > {System.out.println("MINUS-> "+image+"\n");}
+	| < MULTIPLY : "*" > {System.out.println("MULTIPLY-> "+image+"\n");}
+	| < DIVIDE : "/" > {System.out.println("DIVIDE-> "+image+"\n");}
+	| < REMAINDER : "%" > {System.out.println("REMAINDER-> "+image+"\n");}
+	| < ASSING : "=" > {System.out.println("ASSING-> "+image+"\n");}
+	| < EQUAL_TO : "==" > {System.out.println("EQUAL_TO-> "+image+"\n");}
+	| < LESS_THAN : "<" > {System.out.println("LESS_THAN-> "+image+"\n");}
+	| < LESS_OR_EQUAL_THAN : "<=" > {System.out.println("LESS_OR_EQUAL_THAN-> "+image+"\n");}
+	| < MORE_THAN : ">" > {System.out.println("MORE_THAN-> "+image+"\n");}
+	| < MORE_OR_EQUAL_THAN : ">=" > {System.out.println("MORE_OR_EQUAL_THAN-> "+image+"\n");}
+	| < AND : "&&" > {System.out.println("AND-> "+image+"\n");}
+	| < OR : "||" > {System.out.println("OR-> "+image+"\n");}
+	| < NOT : "!" > {System.out.println("NOT-> "+image+"\n");}
+	| < DOT : "." > {System.out.println("DOT-> "+image+"\n");}
+	| < COMMA : "," > {System.out.println("COMMA-> "+image+"\n");}
+	| < LEFT_SHIFT : "<<" > {System.out.println("LEFT_SHIFT-> "+image+"\n");}
+	| < RIGHT_SHIFT : ">>" > {System.out.println("RIGHT_SHIFT-> "+image+"\n");}
+	| < SCOPE_RESOLUTION : "::" > {System.out.println("SCOPE_RESOLUTION-> "+image+"\n");}
+	| < INCREMENT : "++" > {System.out.println("INCREMENT-> "+image+"\n");}
+	| < DECREMENT : "--" > {System.out.println("DECREMENT-> "+image+"\n");}
+}
+
+// Puntuación
+TOKEN :
+{
+	< BRACE_LEFT : "{" > {System.out.println("BRACE_LEFT-> "+image+"\n");}
+	| < BRACE_RIGHT : "}" > {System.out.println("BRACE_RIGHT-> "+image+"\n");}
+	| < PARENTHESIS_LEFT : "(" > {System.out.println("PARENTHESIS_LEFT-> "+image+"\n");}
+	| < PARENTHESIS_RIGHT : ")" > {System.out.println("PARENTHESIS_RIGHT-> "+image+"\n");}
+	| < BRACKET_LEFT : "[" > {System.out.println("BRACKET_LEFT-> "+image+"\n");}
+	| < BRACKET_RIGHT : "]" > {System.out.println("BRACKET_RIGHT-> "+image+"\n");}
+	| < SEMICOLON : ";" > {System.out.println("SEMICOLON-> "+image+"\n");}
+}
+
+// Identificadores
+TOKEN :
+{
+	< ID :([ "a"-"z" ]|[ "A"-"Z" ])([ "a"-"z" ]|[ "A"-"Z" ][ "0"-"9" ])* > {System.out.println("ID-> "+image+"\n");}
+}
+
+// Constantes
+TOKEN :
+{
+	< NUMBER : ([ "0"-"9" ])+ > {System.out.println("NUMBER-> "+image+"\n");}
+}
+
+// Cadenas
+TOKEN :
+{
+	< CHAIN :"\""([ "a"-"z" ]|[ "A"-"Z" ]|[ "0"-"9" ]|[ " " ]|(~[ "\n", "\r", "\"" ])*)+"\"" > {System.out.println("CHAIN-> "+image+"\n");}
+}

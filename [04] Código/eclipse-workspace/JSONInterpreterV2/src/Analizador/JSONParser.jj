@@ -1,0 +1,197 @@
+options
+{
+	  STATIC = false;
+}
+
+PARSER_BEGIN(JSONParser)
+package Analizador;
+import java.io.*;
+import java.util.*;
+import com.google.gson.*;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+public class JSONParser
+{
+  private static File file;
+  public static void main(String args []) throws ParseException
+  {
+    JSONParser.getFile();
+	    if (file == null)
+    {
+      System.out.println("Invalid File or no file selected");
+      System.exit(- 1);
+    }
+    try
+    {
+      //FileInputStream fileStream = new FileInputStream("C:\\Users\\miguel\\Documents\\prueba.json");
+      //JSONParser parser = new JSONParser(fileStream);
+      JSONParser parser = new JSONParser(new JSONParserTokenManager(new SimpleCharStream(new FileReader(JSONParser.file))));
+      Gson gson = new GsonBuilder().setPrettyPrinting().create();
+      String jsonOutput = gson.toJson(parser.json());
+      System.out.println(jsonOutput);
+    }
+    catch (ParseException e)
+    {
+      System.out.println(e.getMessage());
+    }
+    catch (IOException e)
+    {
+      System.out.println("Error reading the JSON file: " + e.getMessage());
+    }
+  }
+
+  private final static void getFile()
+  {
+		    JFileChooser search = new JFileChooser();
+		    FileNameExtensionFilter filter1 = new FileNameExtensionFilter("Archivo de texto (.txt)", "txt");
+		    FileNameExtensionFilter filter2 = new FileNameExtensionFilter("Archivo JSON (.json)", "json");
+		    search.setFileFilter(filter1);
+		    search.setFileFilter(filter2);
+		    int option = search.showOpenDialog(null);
+		    if (option == JFileChooser.APPROVE_OPTION)
+    {
+			      file = search.getSelectedFile();
+		    }
+	  }
+}
+
+PARSER_END(JSONParser)
+
+SKIP :
+{
+  " "
+| "\t"
+| "\r"
+| "\n"
+}
+
+TOKEN :
+{
+  < OBJECT_START : "{" >
+| < OBJECT_END : "}" >
+| < ARRAY_START : "[" >
+| < ARRAY_END : "]" >
+| < STRING : "\"" (~[ "\"", "\n", "\r" ])* "\"" >
+| < NUMBER : ([ "0"-"9" ])+ >
+| < TRUE : "true" >
+| < FALSE : "false" >
+| < NULL : "null" >
+| < COMMA : "," >
+| < COLON : ":" >
+}
+
+JsonElement json() :
+{
+  JsonElement j;
+}
+{
+  (
+    j = object()
+  | j = array()
+  )
+  {
+	    return j;
+  }
+}
+
+JsonObject object() :
+{
+	  AbstractMap.SimpleEntry < String, JsonElement > p;
+	  JsonObject o = new JsonObject();
+}
+{
+  < OBJECT_START >
+  (
+    p = pair()
+    {
+      o.add(p.getKey(), p.getValue()); // Construir pareja con clave y valor y añadirlo al objeto Json
+    }
+    (
+      < COMMA > p = pair()
+      {
+        o.add(p.getKey(), p.getValue()); // Construir pareja con clave y valor y añadirlo al objeto Json
+      }
+    )*
+  )?
+  < OBJECT_END >
+  {
+    return o;
+  }
+}
+
+JsonArray array() :
+{
+  JsonObject o;
+  JsonArray a = new JsonArray();
+}
+{
+  < ARRAY_START >
+  (
+    o = object()
+    {
+      a.add(o);
+    }
+	    (
+      < COMMA > o = object()
+      {
+        a.add(o);
+      }
+    )*
+  )?
+  < ARRAY_END >
+  {
+    return a; // Retornar el array JSON
+  }
+}
+
+AbstractMap.SimpleEntry < String, JsonElement > pair() : //HashMap
+{
+  AbstractMap.SimpleEntry < String, JsonElement > p;
+  JsonElement e;
+  Token t;
+}
+{
+  t = < STRING > < COLON > e = value()
+  {
+    p = new AbstractMap.SimpleEntry < String, JsonElement > (t.image.substring(1, t.image.length() - 1), e);
+    return p;
+  }
+}
+
+JsonElement value() :
+{
+	  Token t;
+	  JsonElement e;
+}
+{
+  (
+    t = < STRING >
+    {
+      return new JsonPrimitive(t.image.substring(1, t.image.length() - 1)); // Retornar el valor (cadena)
+    }
+  | t = < NUMBER >
+    {
+      return new JsonPrimitive(t.image.substring(1, t.image.length() - 1)); // Retornar el valor (número)
+    }
+  | < TRUE >
+    {
+      return new JsonPrimitive(true);
+    }
+  | < FALSE >
+    {
+      return new JsonPrimitive(false);
+    }
+  | < NULL >
+    {
+      return null;
+    }
+  | e = object()
+    {
+      return e;
+    }
+  | e = array()
+    {
+      return e;
+    }
+  )
+}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objeto>
+	<concepts>
+		<concept
+			id="https://datos.madrid.es/egob/kos/actividades/1ciudad21distritos">
+			<code>0001-018</code>
+			<label><![CDATA[CiudaDistrito]]></label>
+		</concept>
+		<concept
+			id="https://datos.madrid.es/egob/kos/actividades/ActividadesCalleArteUrbano">
+			<code>0002-018</code>
+			<label><![CDATA[Actividades calle, arte urbano]]></label>
+		</concept>
+	</concepts>
+</objeto>

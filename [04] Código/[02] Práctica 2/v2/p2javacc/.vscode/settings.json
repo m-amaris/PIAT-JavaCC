@@ -1,0 +1,22 @@
+{
+    "java.project.sourcePaths": ["src"],
+    "java.project.outputPath": "bin",
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar"
+    ],
+    "saveAndRunReg": {
+        "commands": [
+            {
+                "match": ".jj$",
+                "cmd": "cd ${fileDirname}&& javacc -output_directory:\"${workspaceFolder}/src/piat/javacc\" ${fileBasename}",
+                "useShortcut": false,
+                "silent": false
+            }
+        ]
+    },
+    "files.watcherExclude": {
+        "**/target": true,
+        "**/logfiles": true,
+        "**/logfiles_original": true
+    }
+}

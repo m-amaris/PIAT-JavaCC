@@ -1,0 +1,77 @@
+options
+{
+  STATIC = false;
+  JAVA_TEMPLATE_TYPE = "modern";
+  UNICODE_INPUT=true; // Permite reconocer caracteres Unicode sin que todo explote :) Especificar el encoding (UTF-8)
+//  DEBUG_PARSER = true;
+//  DEBUG_LOOKAHEAD = true;
+//  DEBUG_TOKEN_MANAGER = true;
+} 
+
+PARSER_BEGIN(Parser)
+package piat.regExp;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.regex.*;
+import java.util.concurrent.atomic.AtomicInteger;
+
+
+
+public class Parser {}
+PARSER_END(Parser)
+
+SKIP :
+{
+  " "
+| "\t" 
+| "\n"
+| "\r"
+}
+
+TOKEN :
+{
+  < FECHA : (["0"-"9"]){4}"-"(["0"-"9"]){2}"-"(["0"-"9"]){2} > 				// [0-9]{4}-[0-9]{2}-[0-9]{2}  
+| < HORA : (["0"-"9"]){2}":"(["0"-"9"]){2}":"(["0"-"9"]){2} > 				//  \s[0-9]{2}:[0-9]{2}:[0-9]{2}
+//| < TIPO_SERVIDOR : " "(~["0"-"9"])+ > 									// \s[^0-9]+
+| < TIPO_SERVIDOR : " "(["A"-"Z","a"-"z","-"])+ > 							
+| < NUMERO_SERVIDOR : (["0"-"9"])+ > 										// [0-9]+
+| < MENSAJE :  " ""["(["a"-"z","A"-"Z","0"-"9","_"])+"]:"(~["\r","\n"])* > 	// \s\[\w+\]:.*
+}
+
+void procesarLinea(ConcurrentHashMap<String, String> hmServidores,ConcurrentHashMap <String,AtomicInteger> hmUsuarios) :
+{
+  Token fecha,hora,tipoServidor,numeroServidor;
+  Token mensaje = new Token();
+  String nombreServidor;
+  String traza = new String();
+  
+  final String regex = ".*\\smsa.*message.*\\sfrom:\\s<([\\w-]+\\.[\\w-]+)@.*"; 
+  Pattern patron;
+}
+{
+  
+    (
+    fecha=<FECHA>
+    hora=<HORA>
+    tipoServidor=<TIPO_SERVIDOR>
+    numeroServidor=<NUMERO_SERVIDOR>
+    mensaje=<MENSAJE> 
+     {
+      // estadisticasServidor
+      nombreServidor = tipoServidor.image+numeroServidor.image;
+      traza = fecha.image+hora.image+nombreServidor+mensaje.image;
+      hmServidores.put(nombreServidor, tipoServidor.image);
+    	
+      // estadisticasUsuarios
+	  patron = Pattern.compile(regex);
+	  Matcher comparador = patron.matcher(traza);
+	  if (comparador.matches()) {
+	    final AtomicInteger contadorAnterior = hmUsuarios.putIfAbsent(comparador.group(1), new AtomicInteger(1));
+	    if (contadorAnterior != null) contadorAnterior.incrementAndGet();
+	    }
+//	  System.out.println(traza);
+      }
+    )*
+  < EOF >
+  
+  
+}
