@@ -5,14 +5,20 @@ package piat.javacc;
 @SuppressWarnings("unused") // quitar warnings en Parser.java
 public class Parser implements ParserConstants {
   final boolean VERBOSE = true;
-  // private EstUsuario eu = new EstUsuario();
-  // private EstGenerales eg = new EstGenerales();
-  // private EstAgregadasTipoFecha ea = new EstAgregadasTipoFecha();
+  private EstUsuario eu ;
+  private EstGenerales eg ;
+  private EstAgregadasTipoFecha ea ;
   // private static int linea = 0;
 
+  public Parser(ParserTokenManager p, EstUsuario eu, EstGenerales eg, EstAgregadasTipoFecha ea){
+    this(p);
+    this.eu = eu;
+    this.eg = eg;
+    this.ea = ea;
+  }
   void skipto(EstGenerales eg,int kind, Exception e){
       if(e!=null){
-        // System.out.println("Traza mal formada detectada..."+e.getMessage());
+        System.out.println("Traza mal formada detectada..."+e.getMessage());
         eg.registrarError();
       }
                 Token t;
@@ -28,14 +34,14 @@ public class Parser implements ParserConstants {
 
 /** Producción principal. */
 // Se pone (<EOL>)? ya que en algunos no-terminales una vez se ha detectado lo que interesa, consume todos los tokens de esa traza hasta llegar al final de línea, consumiendo tambien ese token. Es por eso que en esos casos puede no estar presente el <EOL>
-  final public void Start(EstUsuario eu, EstGenerales eg, EstAgregadasTipoFecha ea) throws ParseException {
+  final public void Start() throws ParseException {
 eg.registrarFichero();
     try {
       label_1:
       while (true) {
         switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
         case FECHA:
-        case NUMERO:{
+        case ANY:{
           ;
           break;
           }
@@ -67,8 +73,9 @@ eg.registrarFichero();
 eg.registrarTraza();
     try {
       switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
-      case NUMERO:{
-        jj_consume_token(NUMERO);
+      case ANY:{
+        jj_consume_token(ANY);
+skipto(eg,EOL,new Exception());
         break;
         }
       default:
@@ -183,7 +190,7 @@ skipto(eg,EOL,null);
 eg.registrarServidor(t.image,n);
 }
 
-/* Otras producciones */
+/** Otras producciones */
   final public  Token TipoServidor() throws ParseException {Token t;
     switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
     case MSA:{
@@ -239,9 +246,7 @@ eg.registrarServidor(t.image,n);
     jj_consume_token(FROM);
     u = jj_consume_token(REMIT);
     v = jj_consume_token(DOM);
-// linea++;
-    // if(VERBOSE) System.out.println("-"+linea+"- ["+t.image+"] message from: "+u.image.substring(1)+"@"+v.image.substring(1, v.image.length() - 1)+" --> msgIn");
-    skipto(eg,EOL,null);
+skipto(eg,EOL,null);
     {if ("" != null) return u.image.substring(1);}
     throw new Error("Missing return statement in function");
 }
@@ -249,36 +254,29 @@ eg.registrarServidor(t.image,n);
   final public void RelayTo(Token t,EstGenerales eg) throws ParseException {String s;
     jj_consume_token(RELAY_TO);
     s = Relay();
-// linea++;
-    // if(VERBOSE)System.out.println("-"+linea+"- ["+t.image+"] relay to: "+s+" --> msgOut");
-    skipto(eg,EOL,null);
+skipto(eg,EOL,null);
 }
 
   final public void SpamNoBloq(Token t) throws ParseException {Token u;
     jj_consume_token(SEC_PASSED);
     CualquierCosa();
     u = jj_consume_token(SPAM);
-
 }
 
   final public void Infectado(Token t,EstGenerales eg) throws ParseException {Token u;
     CualquierCosa();
     u = jj_consume_token(INFECTED);
-// linea++;
-    // if(VERBOSE)System.out.println("-"+linea+"- ["+t.image+"] "+u.image+" --> msgINFECTED");
-    skipto(eg,EOL,null);
+skipto(eg,EOL,null);
 }
 
   final public void Sobrecarga(Token t) throws ParseException {
     CualquierCosa();
     jj_consume_token(OVERLOAD);
-
 }
 
   final public void Nodest(Token t) throws ParseException {
     CualquierCosa();
     jj_consume_token(BAD);
-
 }
 
 /** Se define el no-terminal CualquierCosa y no un token que recoga cualquier cosa (~[]) , debido a que este ultimo no permitiría reconocer ningun otro token que quisiesemos, aunque estos tuviesen prioridad. Es mas conveniente definir un no-terminal con los cualquier token que puede haber hasta encontrar el token que queramos reconocer. */
@@ -492,137 +490,55 @@ s += t.image;
     finally { jj_save(7, xla); }
   }
 
-  private boolean jj_3R_Relay_323_5_25()
+  private boolean jj_3R_Infectado_278_3_15()
  {
-    if (jj_scan_token(LETRA)) return true;
+    if (jj_3R_CualquierCosa_297_3_21()) return true;
+    if (jj_scan_token(INFECTED)) return true;
     return false;
   }
 
-  private boolean jj_3R_Relay_323_5_24()
+  private boolean jj_3R_TrazaOUT_182_3_6()
  {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3R_Relay_323_5_25()) {
-    jj_scanpos = xsp;
-    if (jj_3R_Relay_323_32_26()) {
-    jj_scanpos = xsp;
-    if (jj_3R_Relay_323_60_27()) {
-    jj_scanpos = xsp;
-    if (jj_3R_Relay_323_83_28()) {
-    jj_scanpos = xsp;
-    if (jj_3R_Relay_323_106_29()) return true;
-    }
-    }
-    }
-    }
+    if (jj_scan_token(SMTP_OUT)) return true;
+    if (jj_3R_Numero_243_3_12()) return true;
+    if (jj_scan_token(9)) return true;
+    if (jj_3R_RelayTo_264_3_14()) return true;
     return false;
   }
 
-  private boolean jj_3R_TrazaSPAM_183_3_8()
+  private boolean jj_3R_Relay_305_114_29()
  {
-    if (jj_scan_token(SEC)) return true;
-    if (jj_3R_Numero_238_3_12()) return true;
-    if (jj_scan_token(8)) return true;
-    if (jj_3R_SpamNoBloq_272_3_16()) return true;
+    if (jj_scan_token(GUION)) return true;
     return false;
   }
 
-  private boolean jj_3R_Relay_323_3_22()
+  private boolean jj_3R_Relay_305_64_27()
  {
-    Token xsp;
-    while (true) {
-      xsp = jj_scanpos;
-      if (jj_3R_Relay_323_5_24()) { jj_scanpos = xsp; break; }
-    }
+    if (jj_scan_token(GUION_BAJO)) return true;
     return false;
   }
 
   private boolean jj_3R_SpamNoBloq_272_3_16()
  {
     if (jj_scan_token(SEC_PASSED)) return true;
-    if (jj_3R_CualquierCosa_315_3_21()) return true;
+    if (jj_3R_CualquierCosa_297_3_21()) return true;
     if (jj_scan_token(SPAM)) return true;
     return false;
   }
 
-  private boolean jj_3R_CualquierCosa_316_5_23()
+  private boolean jj_3R_TipoServidor_224_3_17()
  {
     Token xsp;
     xsp = jj_scanpos;
-    if (jj_scan_token(7)) {
-    jj_scanpos = xsp;
-    if (jj_scan_token(6)) {
-    jj_scanpos = xsp;
-    if (jj_scan_token(12)) {
-    jj_scanpos = xsp;
-    if (jj_scan_token(9)) {
-    jj_scanpos = xsp;
-    if (jj_scan_token(11)) {
-    jj_scanpos = xsp;
-    if (jj_scan_token(10)) {
-    jj_scanpos = xsp;
-    if (jj_scan_token(18)) {
-    jj_scanpos = xsp;
-    if (jj_scan_token(19)) {
-    jj_scanpos = xsp;
-    if (jj_scan_token(14)) {
-    jj_scanpos = xsp;
-    if (jj_scan_token(15)) {
-    jj_scanpos = xsp;
-    if (jj_scan_token(16)) {
-    jj_scanpos = xsp;
-    if (jj_scan_token(17)) {
-    jj_scanpos = xsp;
-    if (jj_scan_token(13)) return true;
-    }
-    }
-    }
-    }
-    }
-    }
-    }
-    }
-    }
-    }
-    }
-    }
-    return false;
-  }
-
-  private boolean jj_3R_TrazaOUT_176_3_6()
- {
-    if (jj_scan_token(SMTP_OUT)) return true;
-    if (jj_3R_Numero_238_3_12()) return true;
-    if (jj_scan_token(8)) return true;
-    if (jj_3R_RelayTo_262_3_14()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_CualquierCosa_315_3_21()
- {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_scan_token(30)) jj_scanpos = xsp;
-    while (true) {
-      xsp = jj_scanpos;
-      if (jj_3R_CualquierCosa_316_5_23()) { jj_scanpos = xsp; break; }
-    }
-    return false;
-  }
-
-  private boolean jj_3R_TipoServidor_218_3_17()
- {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_scan_token(24)) {
-    jj_scanpos = xsp;
     if (jj_scan_token(25)) {
     jj_scanpos = xsp;
     if (jj_scan_token(26)) {
     jj_scanpos = xsp;
     if (jj_scan_token(27)) {
     jj_scanpos = xsp;
-    if (jj_scan_token(28)) return true;
+    if (jj_scan_token(28)) {
+    jj_scanpos = xsp;
+    if (jj_scan_token(29)) return true;
     }
     }
     }
@@ -630,117 +546,143 @@ s += t.image;
     return false;
   }
 
-  private boolean jj_3R_TrazaIN_169_3_5()
+  private boolean jj_3R_TrazaIN_175_3_5()
  {
     if (jj_scan_token(SMTP_IN)) return true;
-    if (jj_3R_Numero_238_3_12()) return true;
-    if (jj_scan_token(8)) return true;
-    if (jj_3R_Intento_251_3_13()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_Relay_323_83_28()
- {
-    if (jj_scan_token(PUNTO)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_RelayTo_262_3_14()
- {
-    if (jj_scan_token(RELAY_TO)) return true;
-    if (jj_3R_Relay_323_3_22()) return true;
+    if (jj_3R_Numero_243_3_12()) return true;
+    if (jj_scan_token(9)) return true;
+    if (jj_3R_Intento_255_3_13()) return true;
     return false;
   }
 
   private boolean jj_3_8()
  {
-    if (jj_3R_TrazaValida_211_3_11()) return true;
+    if (jj_3R_TrazaValida_217_3_11()) return true;
     return false;
   }
 
   private boolean jj_3_7()
  {
-    if (jj_3R_TrazaBAD_204_3_10()) return true;
+    if (jj_3R_TrazaBAD_210_3_10()) return true;
     return false;
   }
 
-  private boolean jj_3R_Relay_323_32_26()
+  private boolean jj_3R_RelayTo_264_3_14()
  {
-    if (jj_scan_token(NUMERO)) return true;
+    if (jj_scan_token(RELAY_TO)) return true;
+    if (jj_3R_Relay_305_3_22()) return true;
     return false;
   }
 
   private boolean jj_3_6()
  {
-    if (jj_3R_TrazaOVER_197_3_9()) return true;
+    if (jj_3R_TrazaOVER_203_3_9()) return true;
     return false;
   }
 
-  private boolean jj_3R_TrazaValida_211_3_11()
+  private boolean jj_3R_TrazaValida_217_3_11()
  {
-    if (jj_3R_TipoServidor_218_3_17()) return true;
-    if (jj_3R_Numero_238_3_12()) return true;
-    if (jj_scan_token(8)) return true;
+    if (jj_3R_TipoServidor_224_3_17()) return true;
+    if (jj_3R_Numero_243_3_12()) return true;
+    if (jj_scan_token(9)) return true;
     Token xsp;
     xsp = jj_scanpos;
-    if (jj_3R_TrazaValida_211_48_20()) jj_scanpos = xsp;
-    if (jj_3R_CualquierCosa_315_3_21()) return true;
+    if (jj_3R_TrazaValida_217_48_20()) jj_scanpos = xsp;
+    if (jj_3R_CualquierCosa_297_3_21()) return true;
     return false;
   }
 
   private boolean jj_3_5()
  {
-    if (jj_3R_TrazaSPAM_183_3_8()) return true;
+    if (jj_3R_TrazaSPAM_189_3_8()) return true;
     return false;
   }
 
-  private boolean jj_3R_TrazaValida_211_48_20()
+  private boolean jj_3R_TrazaValida_217_48_20()
  {
     if (jj_scan_token(BOUNCED)) return true;
     return false;
   }
 
-  private boolean jj_3R_Nodest_303_3_19()
- {
-    if (jj_3R_CualquierCosa_315_3_21()) return true;
-    if (jj_scan_token(BAD)) return true;
-    return false;
-  }
-
   private boolean jj_3_4()
  {
-    if (jj_3R_TrazaINF_190_3_7()) return true;
+    if (jj_3R_TrazaINF_196_3_7()) return true;
     return false;
   }
 
-  private boolean jj_3R_TrazaGEN_162_3_4()
+  private boolean jj_3R_TrazaGEN_168_3_4()
  {
     if (jj_scan_token(MSA)) return true;
-    if (jj_3R_Numero_238_3_12()) return true;
-    if (jj_scan_token(8)) return true;
-    if (jj_3R_Intento_251_3_13()) return true;
+    if (jj_3R_Numero_243_3_12()) return true;
+    if (jj_scan_token(9)) return true;
+    if (jj_3R_Intento_255_3_13()) return true;
     return false;
   }
 
   private boolean jj_3_3()
  {
-    if (jj_3R_TrazaOUT_176_3_6()) return true;
+    if (jj_3R_TrazaOUT_182_3_6()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_Relay_305_5_25()
+ {
+    if (jj_scan_token(LETRA)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_Relay_305_5_24()
+ {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3R_Relay_305_5_25()) {
+    jj_scanpos = xsp;
+    if (jj_3R_Relay_305_34_26()) {
+    jj_scanpos = xsp;
+    if (jj_3R_Relay_305_64_27()) {
+    jj_scanpos = xsp;
+    if (jj_3R_Relay_305_89_28()) {
+    jj_scanpos = xsp;
+    if (jj_3R_Relay_305_114_29()) return true;
+    }
+    }
+    }
+    }
     return false;
   }
 
   private boolean jj_3_2()
  {
-    if (jj_3R_TrazaIN_169_3_5()) return true;
+    if (jj_3R_TrazaIN_175_3_5()) return true;
     return false;
   }
 
   private boolean jj_3_1()
  {
-    if (jj_3R_TrazaGEN_162_3_4()) return true;
+    if (jj_3R_TrazaGEN_168_3_4()) return true;
     return false;
   }
 
-  private boolean jj_3R_Intento_251_3_13()
+  private boolean jj_3R_Relay_305_3_22()
+ {
+    Token xsp;
+    while (true) {
+      xsp = jj_scanpos;
+      if (jj_3R_Relay_305_5_24()) { jj_scanpos = xsp; break; }
+    }
+    return false;
+  }
+
+  private boolean jj_3R_TrazaBAD_210_3_10()
+ {
+    if (jj_3R_TipoServidor_224_3_17()) return true;
+    if (jj_3R_Numero_243_3_12()) return true;
+    if (jj_scan_token(9)) return true;
+    if (jj_3R_Nodest_291_3_19()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_Intento_255_3_13()
  {
     if (jj_scan_token(FROM)) return true;
     if (jj_scan_token(REMIT)) return true;
@@ -748,62 +690,118 @@ s += t.image;
     return false;
   }
 
-  private boolean jj_3R_TrazaBAD_204_3_10()
+  private boolean jj_3R_CualquierCosa_298_5_23()
  {
-    if (jj_3R_TipoServidor_218_3_17()) return true;
-    if (jj_3R_Numero_238_3_12()) return true;
-    if (jj_scan_token(8)) return true;
-    if (jj_3R_Nodest_303_3_19()) return true;
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_scan_token(8)) {
+    jj_scanpos = xsp;
+    if (jj_scan_token(7)) {
+    jj_scanpos = xsp;
+    if (jj_scan_token(13)) {
+    jj_scanpos = xsp;
+    if (jj_scan_token(10)) {
+    jj_scanpos = xsp;
+    if (jj_scan_token(12)) {
+    jj_scanpos = xsp;
+    if (jj_scan_token(11)) {
+    jj_scanpos = xsp;
+    if (jj_scan_token(19)) {
+    jj_scanpos = xsp;
+    if (jj_scan_token(20)) {
+    jj_scanpos = xsp;
+    if (jj_scan_token(15)) {
+    jj_scanpos = xsp;
+    if (jj_scan_token(16)) {
+    jj_scanpos = xsp;
+    if (jj_scan_token(17)) {
+    jj_scanpos = xsp;
+    if (jj_scan_token(18)) {
+    jj_scanpos = xsp;
+    if (jj_scan_token(14)) return true;
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    }
     return false;
   }
 
-  private boolean jj_3R_Sobrecarga_292_3_18()
+  private boolean jj_3R_Relay_305_89_28()
  {
-    if (jj_3R_CualquierCosa_315_3_21()) return true;
-    if (jj_scan_token(OVERLOAD)) return true;
+    if (jj_scan_token(PUNTO)) return true;
     return false;
   }
 
-  private boolean jj_3R_TrazaOVER_197_3_9()
+  private boolean jj_3R_CualquierCosa_297_3_21()
  {
-    if (jj_3R_TipoServidor_218_3_17()) return true;
-    if (jj_3R_Numero_238_3_12()) return true;
-    if (jj_scan_token(8)) return true;
-    if (jj_3R_Sobrecarga_292_3_18()) return true;
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_scan_token(31)) jj_scanpos = xsp;
+    while (true) {
+      xsp = jj_scanpos;
+      if (jj_3R_CualquierCosa_298_5_23()) { jj_scanpos = xsp; break; }
+    }
     return false;
   }
 
-  private boolean jj_3R_Relay_323_60_27()
+  private boolean jj_3R_TrazaOVER_203_3_9()
  {
-    if (jj_scan_token(GUION_BAJO)) return true;
+    if (jj_3R_TipoServidor_224_3_17()) return true;
+    if (jj_3R_Numero_243_3_12()) return true;
+    if (jj_scan_token(9)) return true;
+    if (jj_3R_Sobrecarga_286_3_18()) return true;
     return false;
   }
 
-  private boolean jj_3R_Relay_323_106_29()
+  private boolean jj_3R_Nodest_291_3_19()
  {
-    if (jj_scan_token(GUION)) return true;
+    if (jj_3R_CualquierCosa_297_3_21()) return true;
+    if (jj_scan_token(BAD)) return true;
     return false;
   }
 
-  private boolean jj_3R_Numero_238_3_12()
+  private boolean jj_3R_TrazaINF_196_3_7()
+ {
+    if (jj_scan_token(SEC)) return true;
+    if (jj_3R_Numero_243_3_12()) return true;
+    if (jj_scan_token(9)) return true;
+    if (jj_3R_Infectado_278_3_15()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_Numero_243_3_12()
  {
     if (jj_scan_token(NUMERO)) return true;
     return false;
   }
 
-  private boolean jj_3R_TrazaINF_190_3_7()
+  private boolean jj_3R_Relay_305_34_26()
  {
-    if (jj_scan_token(SEC)) return true;
-    if (jj_3R_Numero_238_3_12()) return true;
-    if (jj_scan_token(8)) return true;
-    if (jj_3R_Infectado_282_3_15()) return true;
+    if (jj_scan_token(NUMERO)) return true;
     return false;
   }
 
-  private boolean jj_3R_Infectado_282_3_15()
+  private boolean jj_3R_Sobrecarga_286_3_18()
  {
-    if (jj_3R_CualquierCosa_315_3_21()) return true;
-    if (jj_scan_token(INFECTED)) return true;
+    if (jj_3R_CualquierCosa_297_3_21()) return true;
+    if (jj_scan_token(OVERLOAD)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_TrazaSPAM_189_3_8()
+ {
+    if (jj_scan_token(SEC)) return true;
+    if (jj_3R_Numero_243_3_12()) return true;
+    if (jj_scan_token(9)) return true;
+    if (jj_3R_SpamNoBloq_272_3_16()) return true;
     return false;
   }
 
@@ -826,7 +824,7 @@ s += t.image;
 	   jj_la1_init_1();
 	}
 	private static void jj_la1_init_0() {
-	   jj_la1_0 = new int[] {0x50,0x800000,0x40,0x100000,0x1f000000,0x40000000,0xffec0,0xffec0,0x1ac0,0x1ac0,};
+	   jj_la1_0 = new int[] {0x50,0x1000000,0x40,0x200000,0x3e000000,0x80000000,0x1ffd80,0x1ffd80,0x3580,0x3580,};
 	}
 	private static void jj_la1_init_1() {
 	   jj_la1_1 = new int[] {0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,};
@@ -1042,7 +1040,7 @@ s += t.image;
   /** Generate ParseException. */
   public ParseException generateParseException() {
 	 jj_expentries.clear();
-	 boolean[] la1tokens = new boolean[37];
+	 boolean[] la1tokens = new boolean[38];
 	 if (jj_kind >= 0) {
 	   la1tokens[jj_kind] = true;
 	   jj_kind = -1;
@@ -1059,7 +1057,7 @@ s += t.image;
 		 }
 	   }
 	 }
-	 for (int i = 0; i < 37; i++) {
+	 for (int i = 0; i < 38; i++) {
 	   if (la1tokens[i]) {
 		 jj_expentry = new int[1];
 		 jj_expentry[0] = i;

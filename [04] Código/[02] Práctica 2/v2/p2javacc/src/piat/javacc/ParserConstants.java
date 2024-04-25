@@ -15,67 +15,69 @@ public interface ParserConstants {
   /** RegularExpression Id. */
   int HORA = 5;
   /** RegularExpression Id. */
-  int NUMERO = 6;
+  int ANY = 6;
   /** RegularExpression Id. */
-  int LETRA = 7;
+  int NUMERO = 7;
   /** RegularExpression Id. */
-  int IDENTIFICADOR_TRAZA = 8;
+  int LETRA = 8;
   /** RegularExpression Id. */
-  int PUNTO = 9;
+  int IDENTIFICADOR_TRAZA = 9;
   /** RegularExpression Id. */
-  int DOS_PUNTOS = 10;
+  int PUNTO = 10;
   /** RegularExpression Id. */
-  int GUION = 11;
+  int DOS_PUNTOS = 11;
   /** RegularExpression Id. */
-  int GUION_BAJO = 12;
+  int GUION = 12;
   /** RegularExpression Id. */
-  int ARROBA = 13;
+  int GUION_BAJO = 13;
   /** RegularExpression Id. */
-  int IGUAL = 14;
+  int ARROBA = 14;
   /** RegularExpression Id. */
-  int ABRE_PARENTESIS = 15;
+  int IGUAL = 15;
   /** RegularExpression Id. */
-  int CIERRA_PARENTESIS = 16;
+  int ABRE_PARENTESIS = 16;
   /** RegularExpression Id. */
-  int COMA = 17;
+  int CIERRA_PARENTESIS = 17;
   /** RegularExpression Id. */
-  int MENOR_QUE = 18;
+  int COMA = 18;
   /** RegularExpression Id. */
-  int MAYOR_QUE = 19;
+  int MENOR_QUE = 19;
   /** RegularExpression Id. */
-  int BOUNCED = 20;
+  int MAYOR_QUE = 20;
   /** RegularExpression Id. */
-  int OVERLOAD = 21;
+  int BOUNCED = 21;
   /** RegularExpression Id. */
-  int BAD = 22;
+  int OVERLOAD = 22;
   /** RegularExpression Id. */
-  int EOL = 23;
+  int BAD = 23;
   /** RegularExpression Id. */
-  int MSA = 24;
+  int EOL = 24;
   /** RegularExpression Id. */
-  int SMTP_IN = 25;
+  int MSA = 25;
   /** RegularExpression Id. */
-  int SMTP_OUT = 26;
+  int SMTP_IN = 26;
   /** RegularExpression Id. */
-  int SEC = 27;
+  int SMTP_OUT = 27;
   /** RegularExpression Id. */
-  int USER_MAILBOX = 28;
+  int SEC = 28;
   /** RegularExpression Id. */
-  int INFECTED = 29;
+  int USER_MAILBOX = 29;
   /** RegularExpression Id. */
-  int SEC_PASSED = 30;
+  int INFECTED = 30;
   /** RegularExpression Id. */
-  int REMIT = 31;
+  int SEC_PASSED = 31;
   /** RegularExpression Id. */
-  int DOM = 32;
+  int REMIT = 32;
   /** RegularExpression Id. */
-  int FROM = 33;
+  int DOM = 33;
   /** RegularExpression Id. */
-  int RELAY_TO = 34;
+  int FROM = 34;
   /** RegularExpression Id. */
-  int SPAM = 35;
+  int RELAY_TO = 35;
   /** RegularExpression Id. */
-  int UNEXPECTED = 36;
+  int SPAM = 36;
+  /** RegularExpression Id. */
+  int UNEXPECTED = 37;
 
   /** Lexical state. */
   int PASS = 0;
@@ -98,6 +100,7 @@ public interface ParserConstants {
     "\"\\r\"",
     "<FECHA>",
     "<HORA>",
+    "<ANY>",
     "<NUMERO>",
     "<LETRA>",
     "<IDENTIFICADOR_TRAZA>",
@@ -113,7 +116,7 @@ public interface ParserConstants {
     "\"<\"",
     "\">\"",
     "\"bounced from:\"",
-    "\"overload)\"",
+    "\"(overload)\"",
     "\"(bad destination mailbox address)\"",
     "\"\\n\"",
     "\"msa\"",
