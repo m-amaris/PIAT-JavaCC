@@ -11,43 +11,45 @@ public interface ParserConstants {
   /** End of File. */
   int EOF = 0;
   /** RegularExpression Id. */
-  int NUMERO = 5;
+  int FECHA = 4;
   /** RegularExpression Id. */
-  int LETRA = 6;
+  int HORA = 5;
   /** RegularExpression Id. */
-  int IDENTIFICADOR_TRAZA = 7;
+  int NUMERO = 6;
   /** RegularExpression Id. */
-  int PUNTO = 8;
+  int LETRA = 7;
   /** RegularExpression Id. */
-  int DOS_PUNTOS = 9;
+  int IDENTIFICADOR_TRAZA = 8;
   /** RegularExpression Id. */
-  int GUION = 10;
+  int PUNTO = 9;
   /** RegularExpression Id. */
-  int GUION_BAJO = 11;
+  int DOS_PUNTOS = 10;
   /** RegularExpression Id. */
-  int ARROBA = 12;
+  int GUION = 11;
   /** RegularExpression Id. */
-  int IGUAL = 13;
+  int GUION_BAJO = 12;
   /** RegularExpression Id. */
-  int ABRE_PARENTESIS = 14;
+  int ARROBA = 13;
   /** RegularExpression Id. */
-  int CIERRA_PARENTESIS = 15;
+  int IGUAL = 14;
   /** RegularExpression Id. */
-  int COMA = 16;
+  int ABRE_PARENTESIS = 15;
   /** RegularExpression Id. */
-  int MENOR_QUE = 17;
+  int CIERRA_PARENTESIS = 16;
   /** RegularExpression Id. */
-  int MAYOR_QUE = 18;
+  int COMA = 17;
   /** RegularExpression Id. */
-  int OVERLOAD = 19;
+  int MENOR_QUE = 18;
   /** RegularExpression Id. */
-  int BAD = 20;
+  int MAYOR_QUE = 19;
   /** RegularExpression Id. */
-  int EOL = 21;
+  int BOUNCED = 20;
   /** RegularExpression Id. */
-  int FECHA = 22;
+  int OVERLOAD = 21;
   /** RegularExpression Id. */
-  int HORA = 23;
+  int BAD = 22;
+  /** RegularExpression Id. */
+  int EOL = 23;
   /** RegularExpression Id. */
   int MSA = 24;
   /** RegularExpression Id. */
@@ -94,7 +96,8 @@ public interface ParserConstants {
     "\" \"",
     "\"\\t\"",
     "\"\\r\"",
-    "\"bounced from:\"",
+    "<FECHA>",
+    "<HORA>",
     "<NUMERO>",
     "<LETRA>",
     "<IDENTIFICADOR_TRAZA>",
@@ -109,11 +112,10 @@ public interface ParserConstants {
     "\",\"",
     "\"<\"",
     "\">\"",
+    "\"bounced from:\"",
     "\"overload)\"",
     "\"(bad destination mailbox address)\"",
     "\"\\n\"",
-    "<FECHA>",
-    "<HORA>",
     "\"msa\"",
     "\"smtp-in\"",
     "\"smtp-out\"",
