@@ -1,0 +1,18 @@
+# Ignore everything
+*
+Parser_backup.jj
+# But not these files...
+!.gitignore
+!main.tex
+!main.pdf
+!export.bib
+# etc...
+
+# ...even if they are in subdirectories
+!*/
+
+# if the files to be tracked are in subdirectories
+!/capitulos/*
+!/code/*
+!/imagenes/*
+
