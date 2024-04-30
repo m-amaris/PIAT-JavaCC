@@ -16,6 +16,7 @@
 \usepackage{amsmath}
 \usepackage[a4paper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
 \usepackage[pdfpagelabels,colorlinks=true, allcolors=black]{hyperref}
+% \usepackage[anythingbreaks]{breakurl} % after hyperref package
 \usepackage{applekeys} 
 
 
@@ -38,14 +39,14 @@
 %\usepackage[margin=0in,paperwidth=595pt,paperheight=841pt]{geometry}
 %%%
  
-% CONFIGURACION DE LA BIBLIOGRAFIA
+% CONFIGURACIÓN DE LA BIBLIOGRAFÍA
 \addbibresource{export.bib}
 \setcounter{biburlnumpenalty}{9000} % If you want to break on URL numbers
 \setcounter{biburllcpenalty}{9000} % If you want to break on URL lower case letters
 \setcounter{biburlucpenalty}{9000} % If you want to break on URL UPPER CASE letters
 
 
-% PRESENTACION DEL CODIGO
+% PRESENTACIÓN DEL CÓDIGO
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
@@ -75,7 +76,7 @@
 \lstset{style=java}
 
 
-% IMAGENES
+% IMÁGENES
 \graphicspath{ {imagenes/} }
 \pdfminorversion=6
 \title{Análisis y procesamiento de información textual utilizando generadores de compiladores}
@@ -120,7 +121,7 @@ Quiero agradecer...
 \hypersetup{linkcolor=black}
 \tableofcontents
 
-% LISTA DE ACRONIMOS
+% LISTA DE ACRÓNIMOS
 
 % CONTENIDOS
 \chapter{Introducción}
@@ -134,7 +135,7 @@ Quiero agradecer...
 \chapter{Conclusiones}
 \input{capitulos/conclusiones}
 
-% APENDICE
+% APÉNDICE
 \appendix
 \chapter{Preguntas Frecuentes}
 \input{capitulos/preguntasfrecuentes}
@@ -145,7 +146,7 @@ Quiero agradecer...
 \input{capitulos/codigofuente}
 
 
-% BIBLIOGRAFIA (NO REFERENCIADA DIRECTAMENTE)
+% BIBLIOGRAFÍA (NO REFERENCIADA DIRECTAMENTE)
 \nocite{librodeldragon}
 \nocite{ide}
 \nocite{intro}

@@ -142,7 +142,7 @@ Los operadores aritméticos permitidos son la suma \lstinline|+|, la resta \lsti
 \textbf{Función Factor()}
 \lstset{inputencoding=utf8/latin1}
 \lstinputlisting{code/factor.jj}
-La regla \textit{Factor()} define la estructura de un factor. Un factor puede ser un número o una expresión entre paréntesis. La regla \textit{Factor()} tiene dos opciones. La primera opción es un número. La segunda opción es una expresión entre paréntesis. Si la opción elegida es un número, la regla \textit{Factor()} utiliza la regla \lstinline|<NUMBER>| para especificar que el factor debe ser un número. Si la opción elegida es una expresión entre paréntesis, la regla Factor() utiliza la regla "(" \textit{Expression()} ")" para especificar que la expresión debe estar entre paréntesis.
+La regla \textit{Factor()} define la estructura de un factor. Un factor puede ser un número o una expresión entre paréntesis. La regla \textit{Factor()} tiene dos opciones. La primera opción es un número. La segunda opción es una expresión entre paréntesis. Si la opción elegida es un número, la regla \textit{Factor()} utiliza la regla \lstinline|<NUMBER>| para especificar que el factor debe ser un número. Si la opción elegida es una expresión entre paréntesis, la regla Factor() utiliza la regla ``('' \textit{Expression()} ``)'' para especificar que la expresión debe estar entre paréntesis.
 
 Ejemplos
 Aquí hay algunos ejemplos de expresiones que pueden ser analizadas por esta gramática:
