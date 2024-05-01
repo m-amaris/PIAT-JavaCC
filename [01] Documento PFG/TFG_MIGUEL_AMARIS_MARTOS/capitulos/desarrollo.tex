@@ -15,7 +15,7 @@ El proceso de implementación se ha dividido en las siguientes fases:
 \end{itemize}
 
 \section{Entorno}
-Los desarrollos y las pruebas se han realizado en un entorno de desarrollo integrado (IDE) de Java. En concreto, se ha empleado Eclipse IDE ya que, además de ser el IDE principal con el que se realizan las prácticas de PIAT ---y en general, cualquier práctica relacionada con la programación dentro de la escuela---, existe un plugin de JavaCC que realiza la compilación de los archivos y facilita enormemente el desarrollo. Para la depuración de los analizadores se ha utilizado el debugger del IDE.
+Los desarrollos y las pruebas se han realizado en un entorno de desarrollo integrado (IDE) de Java. En concreto, se ha empleado Eclipse IDE ya que, además de ser el IDE principal con el que se realizan las prácticas de PIAT ---y en general, cualquier práctica relacionada con la programación dentro de la escuela---, existe un plugin de JavaCC que realiza la compilación de los archivos y facilita enormemente el desarrollo. Dicho esto, el lector puede optar por elegir otros editores como Visual Studio Code o Jetbrains, incluso editores de texto como Notepad++, Vim o  nano. Este aspecto queda a gusto del desarrollador. Para la depuración de los analizadores se ha utilizado el debugger del IDE.
 
 Para saber mas acerca de la instalación y configuración de Elipse IDE con JavaCC, puede consultar el anexo \hyperref[sec:instalaciondejavacc]{\textit{Instalación de JavaCC}}.
 
@@ -27,6 +27,31 @@ En esta sección se ha presentado una introducción al desarrollo de la propuest
 
 \section{Análisis de ficheros de \textit{log}. Práctica 2}
 \subsection{Introducción}
+
+La practica 2 de PIAT tiene como objetivo aplicar los conocimientos adquiridos sobre expresiones regulares y su uso en la programación Java para analizar y extraer información de logs de un sistema de correo electrónico.
+
+En concreto, el objetivo de la practica es utilizar expresiones regulares para extraer información estadística y generar informes a partir de los archivos de log del sistema de correo electrónico. La arquitectura del sistema y el formato de los logs se detallan en un documento anexo.
+
+La práctica se divide en tres partes principales: La obtención de estadísticos generales, cuya función es contabilizar el número de servidores procesados, los  archivos procesados, registros procesados y registros con errores de formato; El análisis por tipo de servidor y día, en el que para cada tipo de servidor, se debe calcular y mostrar los siguientes estadísticos por día:
+
+\begin{itemize}
+    \item msgIn: Número de mensajes entrantes.
+    \item msgOut: Número de mensajes salientes.
+    \item msgINFECTED: Número de mensajes infectados con virus.
+    \item msgSPAM: Número de mensajes SPAM no bloqueados.
+    \item code 4.3.2: Número de intentos de entrega con código de estado 4.3.2 (sobrecarga).
+    \item code 5.1.1: Número de intentos de entrega de mensajes  entrantes con código de estado 5.1.1 (dirección de correo electrónico de destino incorrecta).
+\end{itemize}
+
+Y por ultimo, identificar aquellas cuentas de correo internas desde las que se han enviado más de 500 mensajes. Para cada cuenta, se debe mostrar el nombre de usuario y el número de mensajes enviados.
+
+Un ejemplo del resultado a obtener se encuentra en el \textbf{anexo}.
+
+\subsection{Expresiones Regulares. RegEx}
+
+\subsection{Desarrollo de la práctica}
+
+\subsection{Validación de resultados}
 
 \section{Análisis de archivos XML. Práctica 3}
 \subsection{Introducción}

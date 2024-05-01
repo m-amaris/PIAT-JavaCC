@@ -24,11 +24,13 @@ La descarga del código fuente se realiza a través del repositorio oficial de J
 
 Una vez que haya descargado los archivos, navegue hasta el directorio de descarga y descomprima el archivo fuente, creando así el llamado directorio de instalación de JavaCC:
 
-\lstinline|unzip javacc-7.0.13.zip |
+\begin{center}
+    \lstinline|unzip javacc-7.0.13.zip |
 
 o
 
-\lstinline|tar xvf javacc-7.0.13.tar.gz|
+    \lstinline|tar xvf javacc-7.0.13.tar.gz|
+\end{center}
 
 A continuación, mueva el archivo binario bajo el directorio de descarga en un nuevo directorio bajo el directorio de instalación y cámbiele el nombre a \lstinline|javacc-7.0.13.jar target/javacc.jar|
 
@@ -36,11 +38,16 @@ A continuación, mueva el archivo binario bajo el directorio de descarga en un n
 Posteriormente, añada el directorio del directorio de instalación de JavaCC a su archivo . Los scripts/ejecutables de invocación de JavaCC, JJTree y JJDoc residen en este directorio \lstinline|scripts/PATH|
 En los sistemas basados en UNIX, es posible que los scripts no se puedan ejecutar inmediatamente. Esto se puede resolver usando el comando en el directorio \lstinline|javacc-7.0.13/|:
 
-\lstinline|chmod +x scripts/javacc|
+\begin{center}
+    \lstinline|chmod +x scripts/javacc|
+\end{center}
 
-En caso de tener un equipo Mac, la instalacion se puede realizar intalando javacc con brew:
+En caso de tener un sistema operativo macOS, la instalación de javacc se facilita en gran medida, ya que se puede realizar directamente mediante brew:
 
-\lstinline|brew install javacc|
+\begin{center}
+    \lstinline|brew install javacc|
+\end{center}
+
 
 \subsubsection{Descarga e Instalación de JavaCC desde un IDE}
 
@@ -67,7 +74,7 @@ En el caso de utilizar un IDE, deberá descargarse el binario, al igual que si d
 Una vez instalado JavaCC, para poder desarrollar proyectos utilizando la JavaCC en Eclipse hay que seguir los siguientes pasos:
 \begin{enumerate}
     \item Crear un proyecto nuevo o elegir uno existente.
-    \item Abrir las propiedades del proyecto (Alt+Enter) (\cmdkey+Enter)
+    \item Abrir las propiedades del proyecto (Alt+Enter) (cmd+Enter en macOS)
     \item  Ir a \textit{JavaCC} $>$ \textit{Global Options}, y en \textit{Set the default JavaCC jar file}, poner la ruta al binario descargado anteriormente (\lstinline|javacc.jar|)
 \end{enumerate}
 

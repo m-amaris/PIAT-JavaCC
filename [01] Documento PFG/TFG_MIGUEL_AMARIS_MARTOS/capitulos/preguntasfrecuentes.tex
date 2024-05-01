@@ -36,29 +36,35 @@ Aquí hay algunos ejemplos de producciones BNF y EBNF:
 
 BNF
 
-$S \xrightarrow{} E$
-
-$E \xrightarrow{} T + E | T$
-
-$T \xrightarrow{} id | num$
+\begin{center}
+    $S \xrightarrow{} E$
+    
+    $E \xrightarrow{} T + E\: |\: T$
+    
+    $T \xrightarrow{} id\: |\: num$
+\end{center}
 
 Estas producciones definen la sintaxis de una expresión aritmética simple. El símbolo S representa una expresión, el símbolo E representa un término y el símbolo T representa un factor.
 
 EBNF
 
-$S ::= E$
-
-$E ::= T "+" E | T$
-
-$T ::= id | num$
+\begin{center}
+    $S ::= E$
+    
+    $E ::= T "+" E\: |\: T$
+    
+    $T ::= id\: |\: num$
+\end{center}
 
 Estas producciones son equivalentes a las producciones BNF anteriores.
 
 Otro ejemplo
 
-$S -> "(" E ")" | id$
-
-$E -> E "+" E | E "-" E | E "*" E | E "/" E | id$
+\begin{center}
+    $S \xrightarrow{} "(" E ")" | id$
+    
+    $E \xrightarrow{} E "+" E | E "-" E | E "*" E | E "/" E | id$
+\end{center}
 
 Estas producciones definen la sintaxis de una expresión aritmética más compleja. El símbolo S representa una expresión, el símbolo E representa un término y el símbolo id representa un identificador.
 
@@ -80,7 +86,9 @@ Las reglas de una gramática formal definen cómo se pueden generar las cadenas 
 
 Por ejemplo, la siguiente producción define cómo se puede generar el no terminal E:
 
-$E \xrightarrow{} T + E\: |\: T$
+\begin{center}
+    $E \xrightarrow{} T + E\: |\: T$
+\end{center}
 
 Esta producción significa que una expresión aritmética (E) puede ser una suma de dos términos (T + E) o un solo término (T).
 

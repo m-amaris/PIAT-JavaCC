@@ -12,7 +12,7 @@ En el contexto de los analizadores de compiladores, un \textbf{analizador léxic
 
 Adicionalmente, si encuentra tokens inválidos o mal formados, el analizador léxico tiene la capacidad de generar mensajes de error. En última instancia, el analizador léxico \textbf{se encarga de preparar la entrada para} el siguiente paso del proceso de compilación, que es \textbf{el análisis sintáctico}.
 
-%GramaticaTokenManager es literalmente el analizador lexico
+%GramáticaTokenManager es literalmente el analizador lexico
 %SimpleCharStream se usa para leer los tokens. Usa por debajo clases como Reader
 
 
@@ -144,20 +144,24 @@ Los operadores aritméticos permitidos son la suma \lstinline|+|, la resta \lsti
 \lstinputlisting{code/factor.jj}
 La regla \textit{Factor()} define la estructura de un factor. Un factor puede ser un número o una expresión entre paréntesis. La regla \textit{Factor()} tiene dos opciones. La primera opción es un número. La segunda opción es una expresión entre paréntesis. Si la opción elegida es un número, la regla \textit{Factor()} utiliza la regla \lstinline|<NUMBER>| para especificar que el factor debe ser un número. Si la opción elegida es una expresión entre paréntesis, la regla Factor() utiliza la regla ``('' \textit{Expression()} ``)'' para especificar que la expresión debe estar entre paréntesis.
 
-Ejemplos
+\textbf{Ejemplos}
+
 Aquí hay algunos ejemplos de expresiones que pueden ser analizadas por esta gramática:
 
-\begin{itemize}
-	\item 1 + 2
-	\item 3 * 4
-	\item (5 - 6) / 7
-\end{itemize}
+\begin{center}
+	\lstinline|1 + 2|
+
+	\lstinline|3 * 4|
+
+	\lstinline|(5 - 6) / 7|
+\end{center}
 
 Aunque también se puede analizar expresiones más complejas, como:
-\begin{itemize}
-	\item (1 + 2) * (3 - 4)
-	\item (5 * 6) / (7 + 8)
-\end{itemize}
+\begin{center}
+	\lstinline|(1 + 2) * (3 - 4)|
+
+	\lstinline|(5 * 6) / (7 + 8)|
+\end{center}
 
 \textbf{Ampliación de la funcionalidad a Calculadora}
 
