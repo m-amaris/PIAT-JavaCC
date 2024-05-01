@@ -12,7 +12,7 @@ En el contexto de los analizadores de compiladores, un \textbf{analizador léxic
 
 Adicionalmente, si encuentra tokens inválidos o mal formados, el analizador léxico tiene la capacidad de generar mensajes de error. En última instancia, el analizador léxico \textbf{se encarga de preparar la entrada para} el siguiente paso del proceso de compilación, que es \textbf{el análisis sintáctico}.
 
-%GramáticaTokenManager es literalmente el analizador lexico
+%GramáticaTokenManager es literalmente el analizador léxico
 %SimpleCharStream se usa para leer los tokens. Usa por debajo clases como Reader
 
 
@@ -28,7 +28,7 @@ Ahora, consideremos una variante de la misma frase: \lstinline|HowPl easantIs Th
 
 El analizador léxico escanea el código fuente y reconoce los tokens incluso en situaciones más complejas como esta. En este caso, identificaría las palabras como tokens individuales, a pesar de la falta de espacios.
 
-A continuación se va a ilustrar otro ejemplo, mas orientado a analizar archivos de código. Supongamos un fragmento de codigo en en un lenguaje de programación ficticio como este:
+A continuación se va a ilustrar otro ejemplo, mas orientado a analizar archivos de código. Supongamos un fragmento de código en en un lenguaje de programación ficticio como este:
 
 \lstset{inputencoding=utf8/latin1}
 \lstinputlisting{code/lexer.txt}
@@ -38,32 +38,29 @@ En este caso, el analizador léxico se encargaría de escanear este código fuen
 \lstset{inputencoding=utf8/latin1}
 \lstinputlisting{code/lexerresultado.txt}
 
-
-
-
 \section{Token}
 Un token es una unidad léxica o componente básico del código fuente de un programa. Se trata de una cadena de caracteres con un significado específico asignado. Está estructurado como un par que consta de un nombre de token y un valor de token opcional. El nombre del token representa una categoría o tipo de unidad léxica, como palabras clave, identificadores, operadores, entre otros\cite{token}.
 
-En el ejemplo de la sección anterior, el analizador léxico generaba una secuencia de tokens, cada token tenía sus caracteristicas propias, dependiendo de si eran identificadores, operadores o signos de puntuación, u otros ---se pueden especificar token que hagan referencias a comentarios dentro del código, o palabras reservadas del lenguaje, como \lstinline[keywordstyle=\color{black}]|if| o \lstinline[keywordstyle=\color{black}]|while|---.
+En el ejemplo de la sección anterior, el analizador léxico generaba una secuencia de tokens, cada token tenía sus características propias, dependiendo de si eran identificadores, operadores o signos de puntuación, u otros ---se pueden especificar token que hagan referencias a comentarios dentro del código, o palabras reservadas del lenguaje, como \lstinline[keywordstyle=\color{black}]|if| o \lstinline[keywordstyle=\color{black}]|while|---.
 
- 
+
 \section{Analizador Sintáctico o Semántico}
 Un \textbf{analizador sintáctico} es una parte fundamental de un \textbf{compilador} o intérprete. Su función es verificar si un programa fuente ---escrito en un lenguaje de programación--- sigue las reglas gramaticales definidas para ese lenguaje\cite{analizadorsintactico}. En otras palabras, nos indica la disposición correcta de los elementos en el código fuente para que se convierta en un programa válido.
 
 Comúnmente conocido como \textit{parser}, el analizador sintáctico verifica la \textbf{estructura} del programa fuente. Este hace uso de una gramática (generalmente una gramática libre de contexto) para definir las reglas sintácticas del lenguaje. El objetivo del parser es reconocer la secuencia de \textit{tokens} (unidades léxicas como palabras clave, identificadores, operadores) y construir un \textbf{árbol sintáctico} que represente la estructura jerárquica del programa. Si el archivo fuente es válido, el analizador sintáctico proporciona el árbol sintáctico correspondiente.
 
-Además de todas las funciones mencionadas, si encuentra errores sintácticos, como paréntesis desequilibrados o expresiones mal formadas, el analizador sintáctico genera mensajes de error\cite{traductorescompiladoreseinterpretes}. De esta forma ayuda a los programadores a identificar y corregir problemas en el código fuente de una manera sencilla y muy efectiva. Otras funciones que los analizadores sintácticos pueden desempeñar son el acceder a la tabla de símbolos, ya que necesita información sobre variables, funciones y otros símbolos definidos en el programa; el chequeo de tipos, ya que a menudo se verifica la compatibilidad de tipos ---por ejemplo, si se está aplicando un operador a operandos compatibles--- ; y la generación de codigo intermedio, proporcionando así una representación más abstracta y simplificada del programa.
+Además de todas las funciones mencionadas, si encuentra errores sintácticos, como paréntesis desequilibrados o expresiones mal formadas, el analizador sintáctico genera mensajes de error\cite{traductorescompiladoreseinterpretes}. De esta forma ayuda a los programadores a identificar y corregir problemas en el código fuente de una manera sencilla y muy efectiva. Otras funciones que los analizadores sintácticos pueden desempeñar son el acceder a la tabla de símbolos, ya que necesita información sobre variables, funciones y otros símbolos definidos en el programa; el chequeo de tipos, ya que a menudo se verifica la compatibilidad de tipos ---por ejemplo, si se está aplicando un operador a operandos compatibles--- ; y la generación de código intermedio, proporcionando así una representación más abstracta y simplificada del programa.
 
 \begin{figure}[H]
-\centering
-\includegraphics[width=\textwidth]{imagenes/analizadorsintactico.png}
-\caption{\label{fig:analizadorsintactico}Funcionamiento del Analizador Sintáctico en JavaCC\cite{ytanalizadorsintactico}}
+	\centering
+	\includegraphics[width=\textwidth]{imagenes/analizadorsintactico.png}
+	\caption{\label{fig:analizadorsintactico}Funcionamiento del Analizador Sintáctico en JavaCC\cite{ytanalizadorsintactico}}
 \end{figure}
 
 
 
 \section{Estados Léxicos}
-Los estados léxicos permiten efectuar un conjunto diferente de producciones de expresiones regulares en un caso concreto. Dicho de otra manera, los estados léxicos sirven para que un token este definido de una forma, y en cierto momento del análisis, pueda estar definido de otra forma.   
+Los estados léxicos permiten efectuar un conjunto diferente de producciones de expresiones regulares en un caso concreto. Dicho de otra manera, los estados léxicos sirven para que un token este definido de una forma, y en cierto momento del análisis, pueda estar definido de otra forma.
 
 Supongamos que desea escribir un procesador JavaDoc para extraer los comentarios JavaDoc de un documento. La mayor parte de Java está tokenizada de acuerdo con las reglas ordinarias regulares de Java. Pero dentro de los comentarios JavaDoc, se aplica un conjunto diferente de reglas en las que las palabras clave deben ser reconocidas y donde las nuevas líneas son significativas ---como las palabras y símbolos \lstinline|/***/| , \lstinline|@param|, entre otros---.
 
@@ -71,7 +68,7 @@ Para resolver este problema, podríamos usar dos estados léxicos: uno para la t
 
 \section{Recursividad}
 
-En el ámbito de los compiladores, la recursividad es una técnica que se utiliza para definir una estructura gramatical que se repite en sí misma. 
+En el ámbito de los compiladores, la recursividad es una técnica que se utiliza para definir una estructura gramatical que se repite en sí misma.
 
 Esto permite resolver problemas complejos dividiéndolos en subproblemas más pequeños. Este proceso se repite hasta que se llega a subproblemas que son triviales de resolver.
 
@@ -95,7 +92,7 @@ En la recursividad a izquierdas, la llamada recursiva se realiza al principio de
 \subsection{¿Por qué no se puede utilizar la recursividad a izquierdas en JavaCC?}
 La clase de analizador sintáctico producida por JavaCC funciona por descenso recursivo. La recursión a la izquierda está prohibida para evitar que las subrutinas generadas se llamen a sí mismas recursivamente de forma infinita.
 
-Si considerasemos una producción recursiva a la izquierda, en caso de que la  condición fuera verdadera alguna vez, tendríamos una recursión infinita.
+Si considerásemos una producción recursiva a la izquierda, en caso de que la  condición fuera verdadera alguna vez, tendríamos una recursión infinita.
 JavaCC producirá un mensaje de error si tiene producciones recursivas a la izquierda.
 
 \section{JavaCC}
@@ -129,7 +126,7 @@ A continuación, se presenta un ejemplo de cómo JavaCC puede utilizarse para ge
 
 La función \textit{Expression()} define la estructura general de una expresión. Una expresión consiste en un término seguido de cero o más términos conectados por operadores aritméticos. La función Expression() comienza con la función Term(). Esto significa que la primera parte de cualquier expresión debe ser un término. A continuación, la función Expression() utiliza la regla )* para especificar que puede seguir cero o más términos. Esto significa que las expresiones pueden tener cualquier longitud, desde una sola palabra hasta una expresión compleja con muchos términos.
 Los términos están conectados por operadores aritméticos. La regla Expression() utiliza la regla )* para especificar que puede seguir cualquier número de operadores aritméticos. Esto significa que las expresiones pueden tener cualquier cantidad de operadores aritméticos, desde ninguno hasta muchos. Para más información acerca de operadores en JavaCC, vaya al anexo Operadores en JavaCC.
-Los operadores aritméticos permitidos son la suma (+), la resta (-), la multiplicación (*) y la división (/). 
+Los operadores aritméticos permitidos son la suma (+), la resta (-), la multiplicación (*) y la división (/).
 
 \textbf{Función Term()}
 \lstset{inputencoding=utf8/latin1}
@@ -207,15 +204,15 @@ JavaCC es una herramienta muy completa a la hora de construir de analizadores l�
 
 En el contexto de los lenguajes de programación, JavaCC ha tenido varias aplicaciones, como es el caso de Apache. A modo de ejemplo del proyecto Apache, JavaCC se utiliza en el proyecto Apache Ant para analizar archivos  \lstinline|build.xml|, que definen las tareas de construcción de software\cite{apache}, aunque indagaremos en unos momentos en el proyecto Apache. Por otro lado, JavaCC se ha utilizado para construir compiladores e intérpretes para diversos lenguajes de programación, como Python, Ruby, C\#, PHP, y JavaScript\cite{javaccc++preprocessor}.
 
-Otra aplicación en la que JavaCC se puede desenvolver con comodidad es el análisis del lenguaje natural. JavaCC se utiliza para analizar la estructura sintáctica de oraciones en aplicaciones de procesamiento de lenguaje natural\cite{languageprocessing}. También se utiliza para extraer información de documentos de texto, como nombres de entidades, fechas y lugares. 	
+Otra aplicación en la que JavaCC se puede desenvolver con comodidad es el análisis del lenguaje natural. JavaCC se utiliza para analizar la estructura sintáctica de oraciones en aplicaciones de procesamiento de lenguaje natural\cite{languageprocessing}. También se utiliza para extraer información de documentos de texto, como nombres de entidades, fechas y lugares.
 
 Si nos centramos en el marco actual, hay un gran repertorio de aplicaciones comerciales que hacen uso de JavaCC. Un buen ejemplo de ello es el proyecto de Apache.
 
 \textbf{Apache}
 
-Apache Software Foundation es una comunidad descentralizada de desarrolladores que trabajan en sus propios proyectos de código abierto. Los proyectos Apache se caracterizan por un modelo de desarrollo basado en el consenso, la colaboración y una licencia de software abierta y pragmática\cite{apachepaginaoficial}. Uno de los proyectos notables dentro de la Apache Software Foundation es el servidor web Apache HTTP, que consiste en un servidor web HTTP de código abierto utilizado para crear páginas y servicios web. Es multiplataforma, gratuito, robusto y se destaca por su seguridad y rendimiento\cite{apachehttp}. 
+Apache Software Foundation es una comunidad descentralizada de desarrolladores que trabajan en sus propios proyectos de código abierto. Los proyectos Apache se caracterizan por un modelo de desarrollo basado en el consenso, la colaboración y una licencia de software abierta y pragmática\cite{apachepaginaoficial}. Uno de los proyectos notables dentro de la Apache Software Foundation es el servidor web Apache HTTP, que consiste en un servidor web HTTP de código abierto utilizado para crear páginas y servicios web. Es multiplataforma, gratuito, robusto y se destaca por su seguridad y rendimiento\cite{apachehttp}.
 
-Entre los proyectos Apache en los que JavaCC se utiliza, cabe destacar Apache Lucene --- en el que se emplea para procesar consultas, permitiendo interpretar y procesar estructuras gramaticales definidas en lenguajes específicos---, Apache Avro ---que tranforma lenguajes de alto nivel a esquemas Avro--- , o por ejemplo Apache Tomcat ---que parsea expresiones de lenguaje (\textit{Expression Language})\cite{expressionlanguage} y JSON--- \cite{javaccgithub}. 
+Entre los proyectos Apache en los que JavaCC se utiliza, cabe destacar Apache Lucene --- en el que se emplea para procesar consultas, permitiendo interpretar y procesar estructuras gramaticales definidas en lenguajes específicos---, Apache Avro ---que trasforma lenguajes de alto nivel a esquemas Avro--- , o por ejemplo Apache Tomcat ---que parsea expresiones de lenguaje (\textit{Expression Language})\cite{expressionlanguage} y JSON--- \cite{javaccgithub}.
 
 Como se ha mencionado antes, en el proyecto de Apache Ant se utiliza JavaCC para analizar archivos \lstinline|build.xml|. JavaCC se encarga de analizar la sintaxis del archivo y construir un árbol de sintaxis, mientras que Ant coordina y automatiza las tareas de construcción y despliegue.
 
@@ -227,7 +224,7 @@ JFlex es una herramienta para la construcción de analizadores léxicos. Este es
 
 \textbf{ANTLR}
 
-ANTLR (\textit{ANother Tool for Language Recognition}) es una herramienta para la construcción de analizadores léxicos y sintácticos. En términos de funcionalidades, es una herramienta más completa que abarca tanto el análisis léxico como el sintáctico. Sin embargo, JavaCC es más rapido y más fácil de aprender para un desarrollador Java, ya que la sintaxis es muy parecida, ademas de que ofrece una buena integración con IDEs\cite{antlr}. Además de generar analizadores sintácticos, también crea analizadores léxicos (escáneres) y árboles de sintaxis abstracta (AST).
+ANTLR (\textit{ANother Tool for Language Recognition}) es una herramienta para la construcción de analizadores léxicos y sintácticos. En términos de funcionalidades, es una herramienta más completa que abarca tanto el análisis léxico como el sintáctico. Sin embargo, JavaCC es más rápido y más fácil de aprender para un desarrollador Java, ya que la sintaxis es muy parecida, ademas de que ofrece una buena integración con IDEs\cite{antlr}. Además de generar analizadores sintácticos, también crea analizadores léxicos (escáneres) y árboles de sintaxis abstracta (AST).
 ANTLR está escrito en Java y se puede utilizar junto con JavaCC para analizar la sintaxis de las gramáticas.
 
 \section{Procesamiento de la Información en Aplicaciones Telemáticas (PIAT)}
