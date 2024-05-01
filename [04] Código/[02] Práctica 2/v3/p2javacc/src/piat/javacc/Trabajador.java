@@ -24,7 +24,7 @@ public class Trabajador implements Runnable{
         Thread.currentThread().setName(nombre);
         
         try {
-            Parser t = new Parser(new ParserTokenManager(new SimpleCharStream(new FileReader(fichero))),eu,eg,ea,fichero);
+            Parser t = new Parser(new ParserTokenManager(new SimpleCharStream(new FileReader(fichero))),eu,eg,ea);
             t.Start();
         } catch (Exception e) {
             e.printStackTrace();
