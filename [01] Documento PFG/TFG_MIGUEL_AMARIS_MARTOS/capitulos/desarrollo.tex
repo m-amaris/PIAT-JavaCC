@@ -51,6 +51,19 @@ Un ejemplo del resultado a obtener se encuentra en el \textbf{anexo}.
 
 \subsection{Desarrollo de la práctica}
 
+A continuación se presenta la estructura de árbol que sigue el analizador sintáctico para determinar el tipo de traza que esta analizando y las acciones correspondientes a realizar en caso de encontrar un tipo de traza u otra.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{imagenes/arboltraza.png}
+	\caption{\label{fig:arboltraza}Estructura de árbol. Análisis de trazas log.}
+\end{figure}
+
+En esta figura se observa toda la estructura que se ha definido a la hora de reconocer trazas. Se observa como se contemplan cinco tipos de trazas, las \lstinline|msa|, \lstinline|smpt-in|, \lstinline|smpt-out|, \lstinline|security| y otros tipos de servidores. Para cada tipo de traza se definen las distintas posibilidades que puede haber dentro de cada tipo de traza, de tal forma que se describe la estructura de forma detallada. En aquellas ``ramas'' en las que queramos ejecutar alguna acción, como puede ser añadir los valores a un estadístico, se define una acción léxica dentro del no-terminal.
+
+\lstset{inputencoding=utf8/latin1}
+\lstinputlisting{code/overload.jj}
+
 \subsection{Validación de resultados}
 
 \section{Análisis de archivos XML. Práctica 3}
