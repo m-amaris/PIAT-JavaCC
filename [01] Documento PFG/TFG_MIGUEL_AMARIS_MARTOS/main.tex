@@ -1,59 +1,48 @@
 \documentclass[12pt]{report}
 
-\usepackage{listingsutf8}
-\usepackage[spanish]{babel} %Para tener los elementos de texto en español
-\usepackage{float} % Para centrar las imágenes 
+% Paquetes para el manejo de la lengua y la codificación de los caracteres
+\usepackage[spanish]{babel} % Para tener los elementos de texto en español
 \usepackage[T1]{fontenc} % Set the font (output) encodings for español
+
+% Paquetes para el manejo de gráficos e imágenes
 \usepackage{graphicx} % Mejoras sobre el paquete graphics
-\usepackage[style=ieee]{biblatex}
-\usepackage{csquotes} % Facilitar el trabajo con citas
-\usepackage{xcolor} % Mejoras sobre el paquete color
+\graphicspath{ {imagenes/} } % carpeta en la que va a buscar por imágenes
+
+% Paquetes para el manejo de matemáticas
 \usepackage{amsmath} % para poner flechas dentro del código
+
+% Paquetes para el manejo de la geometría del documento y la justificación del texto
 \usepackage[a4paper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry} % para la portada. REVISAR QUE HACE
 \usepackage[protrusion=false, expansion=true]{microtype} % mejora la justificación del documento
+
+% Paquetes para el manejo de hipervínculos
 \usepackage[pdfpagelabels,colorlinks=true, allcolors=black]{hyperref} %pone los links en negro
-\usepackage{parskip} % si no pones esto, el titulo de la portada sale mal
 
-% Paquetes que no se que hacen
-\usepackage{color,pxfonts,fix-cm}
-\usepackage{pict2e}
-\usepackage{wasysym}
-\usepackage{tikz}
-\usepackage{changepage}
-
-% Para poder poner los número en el código y que no se copien al seleccionar el código
-\usepackage{accsupp} 
-\newcommand{\noncopynumber}[1]{%
-\BeginAccSupp{method=escape,ActualText={}}%
-#1%
-\EndAccSupp{}%
-}
-
-
-%% Paquetes deshabilitados
-% \usepackage{latexsym}
-% \usepackage[utf8]{inputenc} % ya no hace falta desde 2018
-% \usepackage{pdfpages} % Para insertar pdf en el documento
-% \usepackage{awesomebox} % Bloques de texto más molones
-% \usepackage[none]{hyphenat} %evitamos que rompa las palabras
-
-% Aquí se aplican las configuraciones globales de parskip y parindent
-% \setlength{\parskip}{0pt} % definimos la separación entre párrafos
-% \setlength{\parindent}{15pt} % definimos la identación de los párrafos
- 
-% CONFIGURACIÓN DE LA BIBLIOGRAFÍA
+% Paquetes para el manejo de la bibliografía
+\usepackage[style=ieee]{biblatex}
+\usepackage{csquotes} % Facilitar el trabajo con citas
 \addbibresource{export.bib}
 \setcounter{biburlnumpenalty}{9000} % If you want to break on URL numbers
 \setcounter{biburllcpenalty}{9000} % If you want to break on URL lower case letters
 \setcounter{biburlucpenalty}{9000} % If you want to break on URL UPPER CASE letters
 
-% PRESENTACIÓN DEL CÓDIGO
+% Paquetes para el manejo de código fuente
+\usepackage{listingsutf8}
+\usepackage{pxfonts,fix-cm}
+\usepackage{accsupp} % Para poder poner los número en el código y que no se copien al seleccionar el código
+\usepackage{xcolor}
+\newcommand{\noncopynumber}[1]{%
+    \BeginAccSupp{method=escape,ActualText={}}%
+    #1%
+    \EndAccSupp{}%
+}
+
+% Configuración de la presentación del código
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 
-% definimos el estilo que queremos que tenga el código
 \lstdefinestyle{java}{
 	inputencoding=utf8/latin1,
 	extendedchars=true,
@@ -80,18 +69,37 @@
 
 \lstset{style=java} % configuramos el estilo creado por defecto
 
+% Paquetes para el manejo de la disposición de los elementos en la página
+\usepackage{float} % Para centrar las imágenes 
+\usepackage{parskip} % si no pones esto, el titulo de la portada sale mal
+\usepackage[all]{hypcap} % Ajusta los enlaces para que apunten a la parte superior de las figuras y tablas
+\usepackage{chngcntr} % Desvincula el contador de las figuras del contador de las secciones
+\counterwithout{figure}{chapter}
 
-\graphicspath{ {imagenes/} } % carpeta en la que va a buscar por imágenes
+% Paquetes que no se que hacen
+\usepackage{pict2e}
+\usepackage{tikz}
+\usepackage{changepage} 
+
+% Paquetes deshabilitados
+% \usepackage{wasysym}
+% \usepackage{latexsym}
+% \usepackage[utf8]{inputenc} % ya no hace falta desde 2018
+% \usepackage{pdfpages} % Para insertar pdf en el documento
+% \usepackage{awesomebox} % Bloques de texto más molones
+% \usepackage[none]{hyphenat} %evitamos que rompa las palabras
+
+% Título y autor del documento
 \title{Análisis y procesamiento de información textual utilizando generadores de compiladores}
 \author{Miguel Amarís Martos}
 
-\begin{document} 
+\begin{document}
 
 \definecolor{color_29791}{rgb}{0,0,0}
 \definecolor{color_104998}{rgb}{0.290196,0.494118,0.733333}
 \selectlanguage{spanish}
 
-% PRIMERA HOJA (OBLIGATORIO)
+% Primera hoja (obligatorio)
 \hypersetup{pageanchor=false}
 \begin{titlepage}
     \thispagestyle{empty}
@@ -99,39 +107,39 @@
 \end{titlepage}
 \pagenumbering{Roman} % para comenzar la numeración de paginas en números romanos
 
-% RESUMEN (OBLIGATORIO)
+% Resumen (obligatorio)
 \begin{abstract}
     En el panorama actual, el procesamiento de información en diversos formatos se ha convertido en una práctica común. Para abordar esta tarea, se emplean diferentes herramientas diseñadas específicamente para analizar datos en diversos lenguajes de programación o formatos como JSON o XML. Sin embargo, la necesidad de una solución genérica que permita el análisis de una amplia variedad de gramáticas se ha vuelto evidente.
     En este contexto, se han desarrollado generadores de reconocedores gramaticales, como Java Compiler Compiler (JavaCC). JavaCC es una herramienta que permite la generación de analizadores léxicos y sintácticos a partir de una gramática definida por el usuario. Su versatilidad y capacidad para adaptarse a diversas gramáticas lo convierten en una elección atractiva para el procesamiento de información estructurada.
     Este proyecto se enfoca en explorar el potencial de JavaCC y su aplicación en la asignatura Procesamiento de la Información en Aplicaciones Telemáticas (PIAT). El objetivo principal es aprender a utilizar JavaCC, aplicarlo en prácticas de PIAT y crear una documentación que respalde su versatilidad para el análisis de gramáticas y el procesamiento de información.
 \end{abstract}
 
-
-% ABSTRACT (OBLIGATORIO)
-% \selectlanguage{english}
-\renewcommand{\abstractname}{Abstract}
+% Abstract (obligatorio)
+\renewcommand{\abstractname}{Abstract} % para poner el nombre que queramos
 \begin{abstract}
     In the current landscape, processing information in various formats has become a common practice. To address this task, different tools specifically designed to parse data in various programming languages or formats such as JSON or XML are used. However, the need for a generic solution that allows the parsing of a wide variety of grammars has become evident.
     In this context, grammar recogniser generators have been developed, such as Java Compiler Compiler (JavaCC). JavaCC is a tool that allows the generation of lexical and syntactic parsers from a user-defined grammar. Its versatility and ability to adapt to diverse grammars make it an attractive choice for structured information processing.
     This project focuses on exploring the potential of JavaCC and its application in the subject Information Processing in Telematics Applications (PIAT). The main objective is to learn how to use JavaCC, apply it in PIAT practices and create documentation that supports its versatility for grammar parsing and information processing.
 \end{abstract}
-% \selectlanguage{spanish}
 
-% AGRADECIMIENTOS
+% Agradecimientos
 \chapter*{Agradecimientos}
 Quiero agradecer...
 
+% Índice de figuras
+\listoffigures
 
-% INDICE DE CONTENIDOS (OBLIGATORIO)
+% Lista de acrónimos
+
+
+% Índice de contenidos (obligatorio)
 \hypersetup{pageanchor=false}
 \hypersetup{linkcolor=black}
 \tableofcontents
 
-% LISTA DE ACRÓNIMOS
-
-% CONTENIDOS
+% Contenidos
 \chapter{Introducción}
-\pagenumbering{arabic}
+\pagenumbering{arabic} % cambiamos la numeración de las páginas
 \input{capitulos/introduccion}
 \chapter{Estado del arte}
 \input{capitulos/estadodelarte}
@@ -142,7 +150,7 @@ Quiero agradecer...
 \chapter{Conclusiones}
 \input{capitulos/conclusiones}
 
-% APÉNDICE
+% Apéndice
 \appendix
 \chapter{Preguntas Frecuentes}
 \input{capitulos/preguntasfrecuentes}
@@ -153,7 +161,7 @@ Quiero agradecer...
 \input{capitulos/codigofuente}
 
 
-% BIBLIOGRAFÍA (NO REFERENCIADA DIRECTAMENTE)
+% Bibliografía (no referenciada directamente)
 \nocite{librodeldragon}
 \nocite{ide}
 \nocite{intro}
@@ -162,7 +170,6 @@ Quiero agradecer...
 \nocite{xquery}
 \nocite{oracle}
 \nocite{netbeans}
-%\emergencystretch=1em
 \printbibliography
 
 \end{document}

@@ -54,9 +54,10 @@ Un ejemplo del resultado a obtener se encuentra en el \textbf{anexo}.
 A continuación se presenta la estructura de árbol que sigue el analizador sintáctico para determinar el tipo de traza que esta analizando y las acciones correspondientes a realizar en caso de encontrar un tipo de traza u otra.
 
 \begin{figure}[H]
-	\centering
-	\includegraphics[width=\textwidth]{imagenes/arboltraza.png}
-	\caption{\label{fig:arboltraza}Estructura de árbol. Análisis de trazas log.}
+    \centering
+    \includegraphics[width=\textwidth]{imagenes/arboltraza.png}
+    \caption{Estructura de árbol. Análisis de trazas log.}
+    \label{fig:arboltraza}
 \end{figure}
 
 En esta figura se observa toda la estructura que se ha definido a la hora de reconocer trazas. Se observa como se contemplan cinco tipos de trazas, las \lstinline|msa|, \lstinline|smpt-in|, \lstinline|smpt-out|, \lstinline|security| y otros tipos de servidores. Para cada tipo de traza se definen las distintas posibilidades que puede haber dentro de cada tipo de traza, de tal forma que se describe la estructura de forma detallada. En aquellas ``ramas'' en las que queramos ejecutar alguna acción, como puede ser añadir los valores a un estadístico, se define una acción léxica dentro del no-terminal.
@@ -100,8 +101,8 @@ JavaCC y SAX son dos API diferentes para procesar documentos XML. JavaCC es una 
 Hay varias razones por las que JavaCC puede ser una mejor opción que SAX para procesar documentos XML:
 \begin{itemize}
     \item Control: JavaCC ofrece un mayor control sobre el proceso de análisis que SAX. Esto permite a los desarrolladores crear analizadores que se adapten a sus necesidades específicas.
-	\item Eficiencia: JavaCC puede generar analizadores que sean más eficientes que los analizadores SAX estándar. Esto se debe a que JavaCC puede aprovechar las características del lenguaje Java para optimizar el proceso de análisis.
-	 \item Flexibilidad: JavaCC permite crear analizadores XML que sean más flexibles que los analizadores SAX estándar. Esto se debe a que JavaCC permite a los desarrolladores definir sus propias reglas de análisis.
+    \item Eficiencia: JavaCC puede generar analizadores que sean más eficientes que los analizadores SAX estándar. Esto se debe a que JavaCC puede aprovechar las características del lenguaje Java para optimizar el proceso de análisis.
+    \item Flexibilidad: JavaCC permite crear analizadores XML que sean más flexibles que los analizadores SAX estándar. Esto se debe a que JavaCC permite a los desarrolladores definir sus propias reglas de análisis.
 \end{itemize}
 En concreto, JavaCC ofrece las siguientes ventajas sobre SAX:
 \begin{itemize}
@@ -139,9 +140,10 @@ La aplicación por desarrollar proporcionará una herramienta de búsqueda que p
 La Figura 1 muestra un ejemplo de presentación de parte de la estructura jerárquica de los concepts del catálogo.
 
 \begin{figure}[H]
-\centering
-\includegraphics[width=\textwidth]{imagenes/Practica3fig1.jpg}
-\caption{\label{fig:Practica3fig1.jpg}Representación de la estructura jerárquica de los concepts del catálogo de datos.}
+    \centering
+    \includegraphics[width=\textwidth]{imagenes/Practica3fig1.jpg}
+    \caption{Representación de la estructura jerárquica de los concepts del catálogo de datos.}
+    \label{fig:Practica3fig1.jpg}
 \end{figure}
 
 
@@ -155,9 +157,10 @@ La aplicación por desarrollar recibirá como argumento el criterio de búsqueda
 La Figura 2 muestra un ejemplo de búsqueda del concept con código 0097-022 y los resultados que se obtendrían.
 
 \begin{figure}[H]
-\centering
-\includegraphics[width=\textwidth]{imagenes/Practica3fig2.jpg}
-\caption{\label{fig:Practica3fig2.jpg}Concepts y datasets pertinentes para el código 0097-022.}
+    \centering
+    \includegraphics[width=\textwidth]{imagenes/Practica3fig2.jpg}
+    \caption{Concepts y datasets pertinentes para el código 0097-022.}
+    \label{fig:Practica3fig2.jpg}
 \end{figure}
 
 \subsection{Desarrollo de la práctica}
@@ -289,10 +292,10 @@ XPath se basa en una sintaxis similar a la de las expresiones regulares. Las exp
 
 Las principales características de XPath son las siguientes:
 
-    Selección de elementos: XPath se puede utilizar para seleccionar elementos individuales o conjuntos de elementos en un documento XML.
-    Selección de atributos: XPath se puede utilizar para seleccionar atributos individuales o conjuntos de atributos de un elemento.
-    Selección de texto: XPath se puede utilizar para seleccionar texto de un elemento o atributo.
-    Selección de datos binarios: XPath se puede utilizar para seleccionar datos binarios de un elemento o atributo.
+Selección de elementos: XPath se puede utilizar para seleccionar elementos individuales o conjuntos de elementos en un documento XML.
+Selección de atributos: XPath se puede utilizar para seleccionar atributos individuales o conjuntos de atributos de un elemento.
+Selección de texto: XPath se puede utilizar para seleccionar texto de un elemento o atributo.
+Selección de datos binarios: XPath se puede utilizar para seleccionar datos binarios de un elemento o atributo.
 
 
 XPath se utiliza en una variedad de aplicaciones, incluyendo el procesamiento de XML, el desarrollo web, y la integración de datos. Esto permite que se utilize para procesar documentos XML, extraer datos, validar documentos y transformar documentos. Además, se utiliza en aplicaciones web para acceder a datos XML, como datos de formularios o datos de un servicio web. Por último, también se puede emplear para integrar datos de diferentes fuentes, como datos XML y datos de bases de datos.
@@ -304,7 +307,7 @@ JavaCC y XPath son dos herramientas que se pueden utilizar para procesar documen
 
 JavaCC es una herramienta de generación de analizadores sintácticos. Se utiliza para generar analizadores sintácticos que pueden analizar documentos XML.
 
-Como ya hemos visto en secciones anteriores, las principales ventajas de JavaCC son su eficiencia en términos de memoria y su gran flexibilidad a los usuarios. Por otra parte, la principal desventaja de JavaCC es su dificultad de uso, 
+Como ya hemos visto en secciones anteriores, las principales ventajas de JavaCC son su eficiencia en términos de memoria y su gran flexibilidad a los usuarios. Por otra parte, la principal desventaja de JavaCC es su dificultad de uso,
 
 XPath es un lenguaje de consulta para documentos XML. Se utiliza para seleccionar partes de un documento XML.
 
