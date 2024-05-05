@@ -7,18 +7,22 @@ La realización de las prácticas y de todos los ejemplos mostrados en este docu
 
 \href{https://github.com/m-amaris/tfg/tree/main/eclipse-workspace}{https://github.com/m-amaris/tfg/tree/main/eclipse-workspace}
 
-\newgeometry{left=1cm,right=1cm}
+% A partir de este punto, no quieres mostrar los números de página
+\pagestyle{empty}
+
+% Definimos los nuevos márgenes de esta sección
+\newgeometry{left=1cm,right=1cm,top=2cm,bottom=1cm}
+
 \section{Mathexp.jj}
 \label{sec:mathexp}
 \lstset{inputencoding=utf8/latin1}
-\lstinputlisting{code/mathexp.jj}
-
+\lstinputlisting[language=java]{code/mathexp.jj}
 
 \newpage
 \section{NL\_Xlator.jj}
 \label{sec:nlxlator}
 \lstset{inputencoding=utf8/latin1}
-\lstinputlisting{code/NL_Xlator.jj}
+\lstinputlisting[language=java]{code/NL_Xlator.jj}
 
 \newpage
 \section{Catalogo.xml (Simplificado)}
@@ -36,14 +40,13 @@ La realización de las prácticas y de todos los ejemplos mostrados en este docu
 \section{XMLParser.jj}
 \label{sec:XMLParser}
 \lstset{inputencoding=utf8/latin1}
-\lstinputlisting{code/XMLParser.jj}
+\lstinputlisting[language=java]{code/XMLParser.jj}
 
 \newpage
 \section{JSONParser.jj}
 \label{sec:JSONParser}
 \lstset{inputencoding=utf8/latin1}
-\lstinputlisting{code/JSONParser.jj}
+\lstinputlisting[language=java]{code/JSONParser.jj}
 
-
-
+% Volvemos a la geometría por defecto del documento
 \restoregeometry

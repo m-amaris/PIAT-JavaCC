@@ -42,6 +42,44 @@
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{sbase03}{HTML}{002B36}
+\definecolor{sbase02}{HTML}{073642}
+\definecolor{sbase01}{HTML}{586E75}
+\definecolor{sbase00}{HTML}{657B83}
+\definecolor{sbase0}{HTML}{839496}
+\definecolor{sbase1}{HTML}{93A1A1}
+\definecolor{sbase2}{HTML}{EEE8D5}
+\definecolor{sbase3}{HTML}{FDF6E3}
+\definecolor{syellow}{HTML}{B58900}
+\definecolor{sorange}{HTML}{CB4B16}
+\definecolor{sred}{HTML}{DC322F}
+\definecolor{smagenta}{HTML}{D33682}
+\definecolor{sviolet}{HTML}{6C71C4}
+\definecolor{sblue}{HTML}{268BD2}
+\definecolor{scyan}{HTML}{2AA198}
+\definecolor{sgreen}{HTML}{859900}
+
+\lstdefinestyle{default}{
+    inputencoding=utf8/latin1,
+    language=Java, 
+    columns=fullflexible, % si lo comentas queda algo mas bonito
+    keepspaces=true, % si lo comentas queda algo mas bonito
+    sensitive=true,
+    aboveskip=\baselineskip,
+    belowskip=\baselineskip,
+    frame=lines,
+    xleftmargin=\parindent,
+    belowcaptionskip=1\baselineskip,
+    basicstyle=\color{sbase00}\ttfamily,
+    keywordstyle=\color{scyan},
+    commentstyle=\color{sbase1},
+    stringstyle=\color{sblue},
+    numberstyle=\color{sviolet},
+    identifierstyle=\color{sbase00},
+    breaklines=true,
+    showstringspaces=false,
+    tabsize=2
+}
 
 \lstdefinestyle{java}{
 	inputencoding=utf8/latin1,
@@ -67,7 +105,7 @@
     tabsize=2
 }
 
-\lstset{style=java} % configuramos el estilo creado por defecto
+\lstset{style=default} % configuramos el estilo creado por defecto
 
 % Paquetes para el manejo de la disposición de los elementos en la página
 \usepackage{float} % Para centrar las imágenes 
@@ -76,14 +114,14 @@
 \usepackage{chngcntr} % Desvincula el contador de las figuras del contador de las secciones
 \counterwithout{figure}{chapter}
 
-% Paquetes que no se que hacen
-\usepackage{pict2e}
-\usepackage{tikz}
-\usepackage{changepage} 
+% Paquetes para la creación de la portada
+\usepackage{tikz} % para crear gráficos y figuras mas complejos. figura azul de portada
+\usepackage{changepage} % para editar margenes y otras dimensiones de la pagina
 
 % Paquetes deshabilitados
-% \usepackage{wasysym}
-% \usepackage{latexsym}
+% \usepackage{pict2e} % mejora del paquete picture. Para cosas mas complejas usar tikz
+% \usepackage{wasysym} % da conflictos con amsmath
+% \usepackage{latexsym} 
 % \usepackage[utf8]{inputenc} % ya no hace falta desde 2018
 % \usepackage{pdfpages} % Para insertar pdf en el documento
 % \usepackage{awesomebox} % Bloques de texto más molones
@@ -92,6 +130,9 @@
 % Título y autor del documento
 \title{Análisis y procesamiento de información textual utilizando generadores de compiladores}
 \author{Miguel Amarís Martos}
+
+% Comando para escribir PFG
+\newcommand{\pfg}{Proyecto Fin de Grado }
 
 \begin{document}
 
