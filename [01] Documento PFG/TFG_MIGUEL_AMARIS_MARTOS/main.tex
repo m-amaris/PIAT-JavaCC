@@ -10,8 +10,9 @@
 \usepackage{xcolor} % Mejoras sobre el paquete color
 \usepackage{amsmath} % para poner flechas dentro del código
 \usepackage[a4paper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry} % para la portada. REVISAR QUE HACE
-% \usepackage[protrusion=false, expansion=true]{microtype} % mejora la justificación del documento
+\usepackage[protrusion=false, expansion=true]{microtype} % mejora la justificación del documento
 \usepackage[pdfpagelabels,colorlinks=true, allcolors=black]{hyperref} %pone los links en negro
+\usepackage{parskip} % si no pones esto, el titulo de la portada sale mal
 
 % Paquetes que no se que hacen
 \usepackage{color,pxfonts,fix-cm}
@@ -20,26 +21,26 @@
 \usepackage{tikz}
 \usepackage{changepage}
 
-%% Para poder poner los número en el código y que no se copien al seleccionar el código
-% \usepackage{accsupp} 
-% \newcommand{\noncopynumber}[1]{%
-% \BeginAccSupp{method=escape,ActualText={}}%
-% #1%
-% \EndAccSupp{}%
-% }
+% Para poder poner los número en el código y que no se copien al seleccionar el código
+\usepackage{accsupp} 
+\newcommand{\noncopynumber}[1]{%
+\BeginAccSupp{method=escape,ActualText={}}%
+#1%
+\EndAccSupp{}%
+}
 
 
 %% Paquetes deshabilitados
 % \usepackage{latexsym}
-\usepackage{parskip}
-\usepackage[utf8]{inputenc} % ya no hace falta desde 2018
+% \usepackage[utf8]{inputenc} % ya no hace falta desde 2018
 % \usepackage{pdfpages} % Para insertar pdf en el documento
 % \usepackage{awesomebox} % Bloques de texto más molones
 % \usepackage[none]{hyphenat} %evitamos que rompa las palabras
 
+% Aquí se aplican las configuraciones globales de parskip y parindent
 % \setlength{\parskip}{0pt} % definimos la separación entre párrafos
 % \setlength{\parindent}{15pt} % definimos la identación de los párrafos
-
+ 
 % CONFIGURACIÓN DE LA BIBLIOGRAFÍA
 \addbibresource{export.bib}
 \setcounter{biburlnumpenalty}{9000} % If you want to break on URL numbers
@@ -67,7 +68,7 @@
     captionpos=b,            
     frame=single, % Añade un marco alrededor del código
     numbers=left, % Añade números de línea en el lado izquierdo
-    % numberstyle=\tiny\noncopynumber,      
+    numberstyle=\tiny\noncopynumber,      
     keepspaces=true,    
     language=Java,                 
     showspaces=false,                
