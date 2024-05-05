@@ -38,28 +38,12 @@
 }
 
 % Configuración de la presentación del código
-\definecolor{codegreen}{rgb}{0,0.6,0}
-\definecolor{codegray}{rgb}{0.5,0.5,0.5}
-\definecolor{codepurple}{rgb}{0.58,0,0.82}
-\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
-\definecolor{sbase03}{HTML}{002B36}
-\definecolor{sbase02}{HTML}{073642}
-\definecolor{sbase01}{HTML}{586E75}
-\definecolor{sbase00}{HTML}{657B83}
-\definecolor{sbase0}{HTML}{839496}
-\definecolor{sbase1}{HTML}{93A1A1}
-\definecolor{sbase2}{HTML}{EEE8D5}
-\definecolor{sbase3}{HTML}{FDF6E3}
-\definecolor{syellow}{HTML}{B58900}
-\definecolor{sorange}{HTML}{CB4B16}
-\definecolor{sred}{HTML}{DC322F}
-\definecolor{smagenta}{HTML}{D33682}
 \definecolor{sviolet}{HTML}{6C71C4}
+\definecolor{sbase1}{HTML}{93A1A1}
 \definecolor{sblue}{HTML}{268BD2}
 \definecolor{scyan}{HTML}{2AA198}
-\definecolor{sgreen}{HTML}{859900}
-
-\lstdefinestyle{default}{
+\definecolor{sbase00}{HTML}{657B83}
+\lstset{
     inputencoding=utf8/latin1,
     language=Java, 
     columns=fullflexible, % si lo comentas queda algo mas bonito
@@ -79,44 +63,22 @@
     breaklines=true,
     showstringspaces=false,
     tabsize=2
-}
-
-\lstdefinestyle{java}{
-	inputencoding=utf8/latin1,
-	extendedchars=true,
-    backgroundcolor=\color{backcolour},   
-    commentstyle=\color{codegreen},
-    keywordstyle=\color{magenta},
-    numberstyle=\tiny\color{codegray},
-    stringstyle=\color{codepurple},
-    basicstyle=\ttfamily\footnotesize,
-    breakatwhitespace=false,         
-    breaklines=true,                 
-    captionpos=b,            
-    frame=single, % Añade un marco alrededor del código
-    numbers=left, % Añade números de línea en el lado izquierdo
-    numberstyle=\tiny\noncopynumber,      
-    keepspaces=true,    
-    language=Java,                 
-    showspaces=false,                
-    showstringspaces=false,
-    showtabs=false,
-    columns=fullflexible,   
-    tabsize=2
-}
-
-\lstset{style=default} % configuramos el estilo creado por defecto
+} % configuramos el estilo creado por defecto
 
 % Paquetes para el manejo de la disposición de los elementos en la página
 \usepackage{float} % Para centrar las imágenes 
 \usepackage{parskip} % si no pones esto, el titulo de la portada sale mal
 \usepackage[all]{hypcap} % Ajusta los enlaces para que apunten a la parte superior de las figuras y tablas
 \usepackage{chngcntr} % Desvincula el contador de las figuras del contador de las secciones
-\counterwithout{figure}{chapter}
+\counterwithout{figure}{chapter} % para que la numeración de las figuras no siga la de la sección en la que esta
+\usepackage{awesomebox} % Bloques de texto más molones
+
 
 % Paquetes para la creación de la portada
 \usepackage{tikz} % para crear gráficos y figuras mas complejos. figura azul de portada
 \usepackage{changepage} % para editar margenes y otras dimensiones de la pagina
+\definecolor{color_29791}{rgb}{0,0,0} % color para la figura de la portada
+\definecolor{color_104998}{rgb}{0.290196,0.494118,0.733333} % color para la figura de la portada
 
 % Paquetes deshabilitados
 % \usepackage{pict2e} % mejora del paquete picture. Para cosas mas complejas usar tikz
@@ -124,7 +86,6 @@
 % \usepackage{latexsym} 
 % \usepackage[utf8]{inputenc} % ya no hace falta desde 2018
 % \usepackage{pdfpages} % Para insertar pdf en el documento
-% \usepackage{awesomebox} % Bloques de texto más molones
 % \usepackage[none]{hyphenat} %evitamos que rompa las palabras
 
 % Título y autor del documento
@@ -135,10 +96,6 @@
 \newcommand{\pfg}{Proyecto Fin de Grado }
 
 \begin{document}
-
-\definecolor{color_29791}{rgb}{0,0,0}
-\definecolor{color_104998}{rgb}{0.290196,0.494118,0.733333}
-\selectlanguage{spanish}
 
 % Primera hoja (obligatorio)
 \hypersetup{pageanchor=false}
@@ -180,19 +137,25 @@ Quiero agradecer...
 
 % Contenidos
 \chapter{Introducción}
+\label{sec:cap1}
 \pagenumbering{arabic} % cambiamos la numeración de las páginas
 \input{capitulos/introduccion}
 \chapter{Estado del arte}
+\label{sec:cap2}
 \input{capitulos/estadodelarte}
 \chapter{Desarrollo}
+\label{sec:cap3}
 \input{capitulos/desarrollo}
 \chapter{Resultados}
+\label{sec:cap4}
 \input{capitulos/resultados}
 \chapter{Conclusiones}
+\label{sec:cap5}
 \input{capitulos/conclusiones}
 
 % Apéndice
 \appendix
+\label{sec:apendice}
 \chapter{Preguntas Frecuentes}
 \input{capitulos/preguntasfrecuentes}
 \chapter{Herramientas utilizadas}
