@@ -1,28 +1,45 @@
 \documentclass[12pt]{report}
 
 \usepackage{listingsutf8}
-\usepackage[spanish,english]{babel}
-\usepackage{parskip}
-\usepackage{float}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{graphicx}
+\usepackage[spanish]{babel} %Para tener los elementos de texto en español
+\usepackage{float} % Para centrar las imágenes 
+\usepackage[T1]{fontenc} % Set the font (output) encodings for español
+\usepackage{graphicx} % Mejoras sobre el paquete graphics
 \usepackage[style=ieee]{biblatex}
-\usepackage{csquotes}
-\usepackage{pdfpages}
-\usepackage{xcolor}
-\usepackage{hyphenat}
-\usepackage{accsupp}
-\usepackage{amsmath}
-\usepackage[a4paper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
-\usepackage[pdfpagelabels,colorlinks=true, allcolors=black]{hyperref}
+\usepackage{csquotes} % Facilitar el trabajo con citas
+\usepackage{xcolor} % Mejoras sobre el paquete color
+\usepackage{amsmath} % para poner flechas dentro del código
+\usepackage[a4paper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry} % para la portada. REVISAR QUE HACE
+% \usepackage[protrusion=false, expansion=true]{microtype} % mejora la justificación del documento
+\usepackage[pdfpagelabels,colorlinks=true, allcolors=black]{hyperref} %pone los links en negro
+
+% Paquetes que no se que hacen
 \usepackage{color,pxfonts,fix-cm}
-\usepackage{latexsym}
 \usepackage{pict2e}
 \usepackage{wasysym}
 \usepackage{tikz}
 \usepackage{changepage}
- 
+
+%% Para poder poner los número en el código y que no se copien al seleccionar el código
+% \usepackage{accsupp} 
+% \newcommand{\noncopynumber}[1]{%
+% \BeginAccSupp{method=escape,ActualText={}}%
+% #1%
+% \EndAccSupp{}%
+% }
+
+
+%% Paquetes deshabilitados
+% \usepackage{latexsym}
+\usepackage{parskip}
+\usepackage[utf8]{inputenc} % ya no hace falta desde 2018
+% \usepackage{pdfpages} % Para insertar pdf en el documento
+% \usepackage{awesomebox} % Bloques de texto más molones
+% \usepackage[none]{hyphenat} %evitamos que rompa las palabras
+
+% \setlength{\parskip}{0pt} % definimos la separación entre párrafos
+% \setlength{\parindent}{15pt} % definimos la identación de los párrafos
+
 % CONFIGURACIÓN DE LA BIBLIOGRAFÍA
 \addbibresource{export.bib}
 \setcounter{biburlnumpenalty}{9000} % If you want to break on URL numbers
@@ -35,6 +52,7 @@
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 
+% definimos el estilo que queremos que tenga el código
 \lstdefinestyle{java}{
 	inputencoding=utf8/latin1,
 	extendedchars=true,
@@ -46,9 +64,12 @@
     basicstyle=\ttfamily\footnotesize,
     breakatwhitespace=false,         
     breaklines=true,                 
-    captionpos=b,                    
+    captionpos=b,            
+    frame=single, % Añade un marco alrededor del código
+    numbers=left, % Añade números de línea en el lado izquierdo
+    % numberstyle=\tiny\noncopynumber,      
     keepspaces=true,    
-    language=Java,                
+    language=Java,                 
     showspaces=false,                
     showstringspaces=false,
     showtabs=false,
@@ -56,15 +77,14 @@
     tabsize=2
 }
 
-\lstset{style=java}
+\lstset{style=java} % configuramos el estilo creado por defecto
 
 
-\graphicspath{ {imagenes/} } 
-\pdfminorversion=6
+\graphicspath{ {imagenes/} } % carpeta en la que va a buscar por imágenes
 \title{Análisis y procesamiento de información textual utilizando generadores de compiladores}
 \author{Miguel Amarís Martos}
 
-\begin{document}
+\begin{document} 
 
 \definecolor{color_29791}{rgb}{0,0,0}
 \definecolor{color_104998}{rgb}{0.290196,0.494118,0.733333}
@@ -72,11 +92,11 @@
 
 % PRIMERA HOJA (OBLIGATORIO)
 \hypersetup{pageanchor=false}
-%\includepdf[]{imagenes/primerapagina.pdf}
 \begin{titlepage}
     \thispagestyle{empty}
     \input{capitulos/portada}
 \end{titlepage}
+\pagenumbering{Roman} % para comenzar la numeración de paginas en números romanos
 
 % RESUMEN (OBLIGATORIO)
 \begin{abstract}
@@ -85,14 +105,16 @@
     Este proyecto se enfoca en explorar el potencial de JavaCC y su aplicación en la asignatura Procesamiento de la Información en Aplicaciones Telemáticas (PIAT). El objetivo principal es aprender a utilizar JavaCC, aplicarlo en prácticas de PIAT y crear una documentación que respalde su versatilidad para el análisis de gramáticas y el procesamiento de información.
 \end{abstract}
 
+
 % ABSTRACT (OBLIGATORIO)
-\selectlanguage{english}
+% \selectlanguage{english}
+\renewcommand{\abstractname}{Abstract}
 \begin{abstract}
     In the current landscape, processing information in various formats has become a common practice. To address this task, different tools specifically designed to parse data in various programming languages or formats such as JSON or XML are used. However, the need for a generic solution that allows the parsing of a wide variety of grammars has become evident.
     In this context, grammar recogniser generators have been developed, such as Java Compiler Compiler (JavaCC). JavaCC is a tool that allows the generation of lexical and syntactic parsers from a user-defined grammar. Its versatility and ability to adapt to diverse grammars make it an attractive choice for structured information processing.
     This project focuses on exploring the potential of JavaCC and its application in the subject Information Processing in Telematics Applications (PIAT). The main objective is to learn how to use JavaCC, apply it in PIAT practices and create documentation that supports its versatility for grammar parsing and information processing.
 \end{abstract}
-\selectlanguage{spanish}
+% \selectlanguage{spanish}
 
 % AGRADECIMIENTOS
 \chapter*{Agradecimientos}
@@ -108,6 +130,7 @@ Quiero agradecer...
 
 % CONTENIDOS
 \chapter{Introducción}
+\pagenumbering{arabic}
 \input{capitulos/introduccion}
 \chapter{Estado del arte}
 \input{capitulos/estadodelarte}
