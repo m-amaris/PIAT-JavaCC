@@ -1,5 +1,4 @@
-void Expression() :
-{}
+void Expression() : {}
 {
-Term() ( "+" Term() | "-" Term() )*
+    Term() ( "+" Term() | "-" Term() )*
 }

@@ -1,18 +1,15 @@
 // Define la gramática para analizar una simple expresión matemática.
-void Expression() :
-{}
+void Expression() : {}
 {
   Term() ( "+" Term() | "-" Term() )*
 }
 
-void Term() :
-{}
+void Term() : {}
 {
   Factor() ( "*" Factor() | "/" Factor() )*
 }
 
-void Factor() :
-{}
+void Factor() : {}
 {
   <NUMBER>
   | "(" Expression() ")"

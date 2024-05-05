@@ -1,6 +1,5 @@
-void Factor() :
-{}
+void Factor() : {}
 {
-<NUMBER>
-| "(" Expression() ")"
+    <NUMBER>
+    | "(" Expression() ")"
 }
