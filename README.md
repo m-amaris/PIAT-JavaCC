@@ -1,6 +1,6 @@
-# GramáticasPIAT-JavaCC
+# PIAT-JavaCC
 
-Este repositorio contiene las gramáticas desarrolladas con JavaCC para las prácticas de PIAT de una asignatura escolar. Cada gramática corresponde a una práctica específica y está documentada para facilitar su uso y comprensión.
+Este repositorio contiene las gramáticas desarrolladas con JavaCC para las prácticas de PIAT. Cada gramática corresponde a una práctica específica y está documentada para facilitar su uso y comprensión. El documento completo del proyecto se encuentra en /docs/TFG_MIGUEL_AMARIS_MARTOS
 
 ## Estructura del Repositorio
 
