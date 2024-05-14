@@ -1,0 +1,20 @@
+# Archivos compilados
+/build/
+
+# Dependencias
+/lib/
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de configuración IDE
+/.idea/
+*.iml
+*.ipr
+*.iws
+
+# Archivos de paquetes
+*.jar
+*.war
+*.ear
