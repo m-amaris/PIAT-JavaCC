@@ -1,4 +1,0 @@
-https://www.w3.org/TR/REC-xml-names/
-https://www.w3.org/TR/xmlschema-0/
-https://www.w3.org/TR/xmlschema-1/
-https://www.w3.org/TR/xmlschema-2/
