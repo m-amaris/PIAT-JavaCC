@@ -99,7 +99,7 @@ JavaCC producirá un mensaje de error si tiene producciones recursivas a la izqu
 \section{JavaCC}
 En relación con lo anterior, aclaremos a qué hace referencia el concepto de JavaCC y los analizadores semánticos y sintácticos, y como se interrelacionan:
 Java Compiler Compiler, comúnmente conocido como JavaCC, es una poderosa herramienta ampliamente utilizada para generar analizadores sintácticos en aplicaciones Java. Su función principal es transformar una especificación gramatical en un programa Java capaz de reconocer y analizar la sintaxis según la gramática proporcionada.
-JavaCC se diferencia de otras herramientas similares al generar analizadores sintácticos de arriba hacia abajo (descenso recursivo) en lugar de analizadores de abajo hacia arriba. Esta característica permite el uso de gramáticas más generales y facilita la depuración, además de permitir el análisis en cualquier elemento no terminal de la gramática y la transferencia de valores (atributos) en ambas direcciones en el árbol de análisis.
+JavaCC se diferencia de otras herramientas similares al generar analizadores sintácticos de arriba hacia abajo ---descenso recursivo, o LL--- en lugar de analizadores de abajo hacia arriba. Esta característica permite el uso de gramáticas más generales y facilita la depuración, además de permitir el análisis en cualquier elemento no terminal de la gramática y la transferencia de valores (atributos) en ambas direcciones en el árbol de análisis.
 
 \section{Funciones principales de JavaCC}
 JavaCC ofrece una serie de características y funcionalidades clave que lo hacen destacar como un generador de analizadores sintácticos:
@@ -126,7 +126,7 @@ A continuación, se presenta un ejemplo de cómo JavaCC puede utilizarse para ge
 \lstinputlisting{code/expression.jj}
 
 La función \textit{Expression()} define la estructura general de una expresión. Una expresión consiste en un término seguido de cero o más términos conectados por operadores aritméticos. La función Expression() comienza con la función Term(). Esto significa que la primera parte de cualquier expresión debe ser un término. A continuación, la función Expression() utiliza la regla )* para especificar que puede seguir cero o más términos. Esto significa que las expresiones pueden tener cualquier longitud, desde una sola palabra hasta una expresión compleja con muchos términos.
-Los términos están conectados por operadores aritméticos. La regla Expression() utiliza la regla )* para especificar que puede seguir cualquier número de operadores aritméticos. Esto significa que las expresiones pueden tener cualquier cantidad de operadores aritméticos, desde ninguno hasta muchos. Para más información acerca de operadores en JavaCC, vaya al anexo Operadores en JavaCC.
+Los términos están conectados por operadores aritméticos. La regla Expression() utiliza la regla )* para especificar que puede seguir cualquier número de operadores aritméticos. Esto significa que las expresiones pueden tener cualquier cantidad de operadores aritméticos, desde ninguno hasta muchos. Para más información acerca de operadores en JavaCC, vaya al anexo \hyperref[sec:simbolosdeexpresionesregulares]{\textit{Símbolos de Expresiones regulares en JavaCC}}.
 Los operadores aritméticos permitidos son la suma (+), la resta (-), la multiplicación (*) y la división (/).
 
 \textbf{Función Term()}

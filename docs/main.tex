@@ -72,8 +72,8 @@
 \usepackage{chngcntr} % Desvincula el contador de las figuras del contador de las secciones
 \counterwithout{figure}{chapter} % para que la numeración de las figuras no siga la de la sección en la que esta
 \usepackage{awesomebox} % Bloques de texto más molones
-\setlength{\parskip}{0pt} % definimos la separación entre párrafos
-\setlength{\parindent}{15pt} % definimos la identación de los párrafos
+% \setlength{\parskip}{0pt} % definimos la separación entre párrafos
+% \setlength{\parindent}{15pt} % definimos la identación de los párrafos
 
 
 % Paquetes para la creación de la portada
@@ -151,23 +151,13 @@ Quiero agradecer...
 \chapter{Resultados}
 \label{sec:cap4}
 \input{capitulos/resultados}
+% PRESUPUESTO (OBLIGATORIO)
+% IMPACTO DEL PROYECTO (OBLIGATORIO)
 \chapter{Conclusiones}
 \label{sec:cap5}
 \input{capitulos/conclusiones}
 
-% Apéndice
-\appendix
-\label{sec:apendice}
-\chapter{Preguntas Frecuentes}
-\input{capitulos/preguntasfrecuentes}
-\chapter{Herramientas utilizadas}
-\input{capitulos/herramientas}
-\chapter{Código Fuente}
-\label{sec:codigofuente}
-\input{capitulos/codigofuente}
-
-
-% Bibliografía (no referenciada directamente)
+% Referencias (OBLIGATORIO)
 \nocite{librodeldragon}
 \nocite{ide}
 \nocite{intro}
@@ -177,5 +167,16 @@ Quiero agradecer...
 \nocite{oracle}
 \nocite{netbeans}
 \printbibliography
+
+% Anexo (OBLIGATORIO)
+\appendix
+\label{sec:apendice}
+\chapter{Preguntas Frecuentes}
+\input{capitulos/preguntasfrecuentes}
+\chapter{Herramientas utilizadas}
+\input{capitulos/herramientas}
+\chapter{Código Fuente}
+\label{sec:codigofuente}
+\input{capitulos/codigofuente}
 
 \end{document}
