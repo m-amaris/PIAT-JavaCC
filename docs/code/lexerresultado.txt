@@ -1,0 +1,1 @@
+suma,=,10,+,20,resta,=,30,-,15,multiplicacion,=,5,*,6,division,=,24,/,4
