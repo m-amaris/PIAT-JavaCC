@@ -1,4 +1,0 @@
-void Term() : {}
-{
-    Factor() ( "*" Factor() | "/" Factor() )*
-}

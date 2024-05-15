@@ -4,6 +4,9 @@
 # Dependencias
 /lib/
 
+# Omitido por ahora
+/src/
+
 # Archivos de sistema
 .DS_Store
 Thumbs.db
