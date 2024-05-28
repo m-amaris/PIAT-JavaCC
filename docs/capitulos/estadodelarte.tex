@@ -58,8 +58,6 @@ Además de todas las funciones mencionadas, si encuentra errores sintácticos, c
 	\caption{\label{fig:analizadorsintactico}Funcionamiento del Analizador Sintáctico en JavaCC\cite{ytanalizadorsintactico}}
 \end{figure}
 
-
-
 \section{Estados Léxicos}
 \noindent Los estados léxicos permiten efectuar un conjunto diferente de producciones de expresiones regulares en un caso concreto. Dicho de otra manera, los estados léxicos sirven para que un token este definido de una forma, y en cierto momento del análisis, pueda estar definido de otra forma.
 
@@ -117,8 +115,11 @@ JavaCC se diferencia de otras herramientas similares al generar analizadores sin
 \section{Ejemplo de gramática en JavaCC}
 \noindent A continuación, se presenta un ejemplo de cómo JavaCC puede utilizarse para generar un analizador sintáctico en Java. En este ejemplo se define un lenguaje para analizar expresiones matemáticas simples. Partiendo de este ejemplo, seremos capaz de ampliar las funcionalidades del programa, y realizar una calculadora. El resultado final se encuentra en el archivo \hyperref[sec:mathexp]{Mathexp.jj}, que se encuentra en el apéndice \hyperref[sec:codigofuente]{\textit{Código fuente}}.
 
+\phantom{text}
 
 \noindent \textbf{Función Expression()}
+
+\phantom{text}
 
 \lstset{inputencoding=utf8/latin1}
 \lstinputlisting{code/expression.jj}
@@ -127,7 +128,12 @@ JavaCC se diferencia de otras herramientas similares al generar analizadores sin
 Los términos están conectados por operadores aritméticos. La regla Expression() utiliza la regla )* para especificar que puede seguir cualquier número de operadores aritméticos. Esto significa que las expresiones pueden tener cualquier cantidad de operadores aritméticos, desde ninguno hasta muchos. Para más información acerca de operadores en JavaCC, vaya al anexo \hyperref[sec:simbolosdeexpresionesregulares]{\textit{Símbolos de Expresiones regulares en JavaCC}}.
 Los operadores aritméticos permitidos son la suma (+), la resta (-), la multiplicación (*) y la división (/).
 
+\phantom{text}
+
 \noindent \textbf{Función Term()}
+
+\phantom{text}
+
 \lstset{inputencoding=utf8/latin1}
 \lstinputlisting{code/term.jj}
 
@@ -135,12 +141,21 @@ Los operadores aritméticos permitidos son la suma (+), la resta (-), la multipl
 Los factores están conectados por operadores aritméticos. La regla \textit{Term()} utiliza la regla \lstinline|)*| para especificar que puede seguir cualquier número de operadores aritméticos. Esto significa que los términos pueden tener cualquier cantidad de operadores aritméticos, desde ninguno hasta muchos.
 Los operadores aritméticos permitidos son la suma \lstinline|+|, la resta \lstinline|-|, la multiplicación \lstinline|*| y la división \lstinline|/|
 
+\phantom{text}
+
 \noindent \textbf{Función Factor()}
+
+\phantom{text}
+
 \lstset{inputencoding=utf8/latin1}
 \lstinputlisting{code/factor.jj}
 \noindent La regla \textit{Factor()} define la estructura de un factor. Un factor puede ser un número o una expresión entre paréntesis. La regla \textit{Factor()} tiene dos opciones. La primera opción es un número. La segunda opción es una expresión entre paréntesis. Si la opción elegida es un número, la regla \textit{Factor()} utiliza la regla \lstinline|<NUMBER>| para especificar que el factor debe ser un número. Si la opción elegida es una expresión entre paréntesis, la regla Factor() utiliza la regla ``('' \textit{Expression()} ``)'' para especificar que la expresión debe estar entre paréntesis.
 
+\phantom{text}
+
 \noindent \textbf{Ejemplos}
+
+\phantom{text}
 
 \noindent Aquí hay algunos ejemplos de expresiones que pueden ser analizadas por esta gramática:
 
@@ -159,7 +174,11 @@ Aunque también se puede analizar expresiones más complejas, como:
 	\lstinline|(5 * 6) / (7 + 8)|
 \end{center}
 
+\phantom{text}
+
 \noindent \textbf{Ampliación de la funcionalidad a Calculadora}
+
+\phantom{text}
 
 \noindent A continuación, vamos a ampliar las capacidades de nuestro programa, para analizar las expresiones y hacer las operaciones de una calculadora: \hyperref[sec:nlxlator]{NL\_Xlator.jj}
 
@@ -168,31 +187,59 @@ Aunque también se puede analizar expresiones más complejas, como:
 
 Esta clase traduce expresiones matemáticas válidas en sus valores numéricos correspondientes. El usuario puede ingresar las expresiones matemáticas una por una, separándolas por punto y coma. La clase lee las expresiones del flujo de entrada estándar y las traduce a sus valores numéricos correspondientes. El resultado de la traducción se muestra en la salida estándar.
 
+\phantom{text}
+
 \noindent \textbf{Análisis sintáctico}
+
+\phantom{text}
 
 \noindent La clase utiliza JavaCC para analizar las expresiones matemáticas ingresadas por el usuario. JavaCC es una herramienta de generación de analizadores de sintaxis que permite crear analizadores personalizados para lenguajes de programación o lenguajes de dominio específicos.
 
+\phantom{text}
+
 \noindent \textbf{Expresión raíz}
+
+\phantom{text}
 
 \noindent La expresión raíz de la gramática es \textit{ExpressionList()}. Esta producción analiza una lista de expresiones matemáticas separadas por punto y coma. Cada expresión matemática es analizada por la producción Expression().
 
+\phantom{text}
+
 \noindent \textbf{Expresión}
+
+\phantom{text}
 
 \noindent La producción \textit{Expression()} analiza una expresión matemática completa. Esta producción analiza un término (Term()) seguido de cero o más operadores de suma o resta (+ o -) y términos.
 
+\phantom{text}
+
 \noindent \textbf{Término}
+
+\phantom{text}
 
 \noindent La producción \textit{Term()} analiza un término matemático. Esta producción analiza un factor (\textit{Factor()}) seguido de cero o más operadores de multiplicación o división (* o /) y factores.
 
+\phantom{text}
+
 \noindent \textbf{Factor}
+
+\phantom{text}
 
 \noindent La producción \textit{Factor()} analiza un factor matemático. Esta producción analiza un número (NUM) o un par de paréntesis ((, )) que encierran una expresión matemática.
 
+\phantom{text}
+
 \noindent \textbf{Errores}
+
+\phantom{text}
 
 \noindent La clase también maneja errores sintácticos. Cuando ocurre un error sintáctico, la clase muestra un mensaje de error en la salida estándar y termina la ejecución.
 
+\phantom{text}
+
 \noindent \textbf{Ejemplo de uso}
+
+\phantom{text}
 
 \noindent Para utilizar la clase, simplemente ejecute el archivo NL\_Xlator.java. A continuación, se le pedirá que ingrese expresiones matemáticas una por una, separándolas por punto y coma. La clase le mostrará el resultado de la traducción de cada expresión.
 Aquí hay un ejemplo de cómo utilizar la clase:
@@ -207,7 +254,11 @@ Otra aplicación en la que JavaCC se puede desenvolver con comodidad es el anál
 
 Si nos centramos en el marco actual, hay un gran repertorio de aplicaciones comerciales que hacen uso de JavaCC. Un buen ejemplo de ello es el proyecto de Apache.
 
+\phantom{text}
+
 \noindent \textbf{Apache}
+
+\phantom{text}
 
 \noindent Apache Software Foundation es una comunidad descentralizada de desarrolladores que trabajan en sus propios proyectos de código abierto. Los proyectos Apache se caracterizan por un modelo de desarrollo basado en el consenso, la colaboración y una licencia de software abierta y pragmática\cite{apachepaginaoficial}. Uno de los proyectos notables dentro de la Apache Software Foundation es el servidor web Apache HTTP, que consiste en un servidor web HTTP de código abierto utilizado para crear páginas y servicios web. Es multiplataforma, gratuito, robusto y se destaca por su seguridad y rendimiento\cite{apachehttp}.
 
@@ -217,11 +268,19 @@ Como se ha mencionado antes, en el proyecto de Apache Ant se utiliza JavaCC para
 
 JavaCC también se utiliza en el parseo de archivos desarrollados en Java, como puede ser la librería JavaParser\cite{javaparser}. Otros proyectos en los que se utilice JavaCC, aparte de Apache, son JFlex y ANTLR.
 
+\phantom{text}
+
 \noindent \textbf{JFlex}
+
+\phantom{text}
 
 \noindent JFlex es una herramienta para la construcción de analizadores léxicos. Este está escrito en Java y se utiliza junto con JavaCC para analizar la sintaxis de las reglas léxicas. Por una parte, JFlex se encarga de generar el analizador léxico que escanea el código fuente y produce tokens. Posteriormente, se utiliza JavaCC para generar el analizador sintáctico que procesa los tokens generados por el escáner léxico y aplica las reglas gramaticales
 
+\phantom{text}
+
 \noindent \textbf{ANTLR}
+
+\phantom{text}
 
 \noindent ANTLR (\textit{ANother Tool for Language Recognition}) es una herramienta para la construcción de analizadores léxicos y sintácticos. En términos de funcionalidades, es una herramienta más completa que abarca tanto el análisis léxico como el sintáctico. Sin embargo, JavaCC es más rápido y más fácil de aprender para un desarrollador Java, ya que la sintaxis es muy parecida, ademas de que ofrece una buena integración con IDEs\cite{antlr}. Además de generar analizadores sintácticos, también crea analizadores léxicos (escáneres) y árboles de sintaxis abstracta (AST).
 ANTLR está escrito en Java y se puede utilizar junto con JavaCC para analizar la sintaxis de las gramáticas.
