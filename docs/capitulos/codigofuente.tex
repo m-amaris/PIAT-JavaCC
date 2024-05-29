@@ -25,6 +25,30 @@ La realización de las prácticas y de todos los ejemplos mostrados en este docu
 \lstinputlisting[language=java]{code/NL_Xlator.jj}
 
 \newpage
+\section{Descripción general del sistema de correo electrónico}
+\label{sec:P2SistemaCorreo}
+
+\noindent Esta sección se ha extraído del enunciado de la Práctica 2 de PIAT.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{imagenes/P2SistemaCorreo.jpg}
+	\caption{\label{fig:P2SistemaCorreo.jpg}Arquitectura del sistema de correo electrónico\cite{pdfpractica2} }
+\end{figure}
+
+\noindent Los mensajes entrantes desde Internet son recibidos inicialmente por los servidores smtp-in, los cuales se los pasan a los servidores security-in que actúan de filtros de antispam y virus entrantes. Si estos filtros detectan un virus, descartan el mensaje y no lo reenvían. En otro caso, se los pasan a los servidores de almacenamiento de correos user-mailbox. Los mensajes que se consideren spam se etiquetan con una marca que sirve a los servidores user-mailbox para almacenarlos en la carpeta de posible spam de la cuenta del usuario.
+
+Los servidores security-in generan mensajes automáticos de notificación de error para correos que no pueden llegar al destino. Esto sucede cuando intentan entregar un mensaje a un user-mailbox y éste responde que la dirección de destino es inexistente o bien que la cuenta de destino ya ha alcanzado su cuota máxima de espacio de almacenamiento de mensajes. En ese momento envía un mensaje a smtp-in y se notifica este error al remitente través de los servidores smtp-out.
+
+Los usuarios del servicio de correo electrónico envían nuevos mensajes, y respuestas a los mensajes recibidos, por medio de los servidores msa (mail submission agent). Estos pasan los mensajes a los servidores security-out que actúan de filtros de spam y virus salientes. En el caso de que estos filtros detecten algún mensaje de spam o que contenga un virus, lo bloquean con objeto de salvaguardar la reputación del sistema. Finalmente, los mensajes son entregados a los smtp-out para que estos los envíen a la estafeta de destino.
+
+\newpage
+\section{Parser.jj}
+\label{sec:P2Parser}
+\lstset{inputencoding=utf8/latin1}
+\lstinputlisting[language=java]{code/Parser.jj}
+
+\newpage
 \section{Catalogo.xml (Simplificado)}
 \label{sec:catalogoxml}
 \lstset{inputencoding=utf8/latin1}
