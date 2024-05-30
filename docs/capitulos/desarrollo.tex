@@ -147,7 +147,6 @@ No se promueve el plagio y la realización de las prácticas, este simplemente e
 \hyperref[sec:P2Parser]{Parser.jj}
 
 \section{Análisis de archivos XML. Práctica 3}
-\subsection{Introducción}
 
 \noindent La práctica 3 de PIAT, centrada en el procesamiento de documentos XML, representa un hito significativo en el marco de este proyecto. En esta etapa, se aborda la implementación de un analizador de documentos XML utilizando la tecnología SAX. El objetivo principal es familiarizar a los estudiantes con SAX y fortalecer sus habilidades en el diseño de algoritmos eficientes para la extracción y transformación de información a partir de fuentes de contenidos estructurados.
 
@@ -248,27 +247,12 @@ La Figura 2 muestra un ejemplo de búsqueda del concept con código 0097-022 y l
 \noindent A alLa implementación de la Práctica 3 se basa en la creación de un analizador de documentos XML denominado XMLParser, desarrollado en JavaCC. Este analizador se ha diseñado para procesar documentos XML que contienen datos publicados en el Portal de Datos Abiertos del Ayuntamiento de Madrid (http://datos.madrid.es).
 Los documentos XML que se procesan a través de esta herramienta presentan ciertas características clave, como la identificación de recursos mediante URI, la asociación a categorías, la agrupación en conjuntos de datos y una clasificación jerárquica basada en características temáticas. La tarea principal del analizador es extraer información específica relacionada con códigos de categorías y, posteriormente, generar un nuevo documento XML que contiene los resultados deseados.
 
-\subsection{Herramienta}
-\noindent Como se ha comentado en la sección anterior, la principal herramienta desarrollada en esta práctica es el analizador XMLParser. Este analizador es capaz de llevar a cabo varias tareas esenciales:
-
-\begin{itemize}
-    \item Validación de argumentos de entrada para garantizar que los parámetros cumplan con las especificaciones requeridas.
-    \item Extracción de información relevante de los documentos XML, siguiendo las reglas y estructuras definidas en la gramática.
-    \item Generación de documentos de resultados que cumplen con un esquema específico.
-\end{itemize}
-El analizador XMLParser representa una contribución significativa en términos de procesamiento y manipulación de documentos XML.
-
-\subsection{Conclusiones}
-
-\noindent La Práctica 3 ha brindado a los estudiantes una experiencia valiosa en el manejo de tecnologías de análisis de documentos XML. A través del uso de JavaCC y la tecnología SAX, se ha proporcionado una base sólida para procesar información estructurada de manera eficiente. Los estudiantes han tenido la oportunidad de aplicar conceptos relacionados con la validación de argumentos, el análisis de elementos XML y la generación de documentos de resultados.
-Uno de los aspectos más destacados de esta práctica es la capacidad de filtrar y seleccionar información relevante basada en códigos de categorías. Esta habilidad es fundamental en situaciones donde la extracción selectiva de datos es esencial.
-
-\subsection{Preguntas Frecuentes}
+\subsubsection{Preguntas Frecuentes}
 
 \noindent ¿Qué sentido tiene utilizar la clase ManejadorXML, si el parser ya busca lo que quiere?
 Tiene sentido cronológico, ya que primero el parser realiza el análisis del documento y devuelve los datos, si se llama a una función que devuelva los datos es posible que se llamen a estas funciones antes de que se llame a la función de análisis
 
-\subsection{Notas}
+\subsubsection{Notas}
 
 \tipbox{
 hacer clase concept con atributos code y label, hacer lista concepts de concept. hacer lo mismo con dataset. recoger los datos al igual que hacíamos en NXCalculator
@@ -277,6 +261,22 @@ No hace falta un estado léxico, simplemente crear un objeto nuevo ya que son co
 String id -> idConcepts
 XMLParser devuelve un objeto que tenga implementado la interfaz ParserCatalogo
 }
+
+% \noindent Como se ha comentado en la sección anterior, la principal herramienta desarrollada en esta práctica es el analizador XMLParser. Este analizador es capaz de llevar a cabo varias tareas esenciales:
+
+% \begin{itemize}
+%     \item Validación de argumentos de entrada para garantizar que los parámetros cumplan con las especificaciones requeridas.
+%     \item Extracción de información relevante de los documentos XML, siguiendo las reglas y estructuras definidas en la gramática.
+%     \item Generación de documentos de resultados que cumplen con un esquema específico.
+% \end{itemize}
+% El analizador XMLParser representa una contribución significativa en términos de procesamiento y manipulación de documentos XML.
+
+\subsection{Validación de resultados}
+
+\subsection{Conclusiones}
+
+\noindent La Práctica 3 ha brindado a los estudiantes una experiencia valiosa en el manejo de tecnologías de análisis de documentos XML. A través del uso de JavaCC y la tecnología SAX, se ha proporcionado una base sólida para procesar información estructurada de manera eficiente. Los estudiantes han tenido la oportunidad de aplicar conceptos relacionados con la validación de argumentos, el análisis de elementos XML y la generación de documentos de resultados.
+Uno de los aspectos más destacados de esta práctica es la capacidad de filtrar y seleccionar información relevante basada en códigos de categorías. Esta habilidad es fundamental en situaciones donde la extracción selectiva de datos es esencial.
 
 
 \subsection{Código Fuente}
@@ -289,8 +289,6 @@ No se promueve el plagio y la realización de las prácticas, este simplemente e
 %\href{https://shorturl.at/alqN6}{XMLParser.jj}
 
 \section{Análisis de archivos JSON. Práctica 4}
-
-\subsection{Introducción}
 
 \noindent La Práctica 4 se centra en la exploración y aplicación de la tecnología GSON Streaming para el análisis y procesamiento eficiente de documentos JSON. El objetivo principal de esta etapa es familiarizar a los estudiantes con la API GSON Streaming y desarrollar un analizador de documentos JSON basado en esta tecnología. Como objetivo secundario, se busca capacitar a los estudiantes en el diseño de algoritmos eficientes para la extracción y transformación de información proveniente de fuentes de contenidos estructurados.
 
@@ -318,18 +316,7 @@ La generación del documento XML (indicado por ARG2) será similar al proceso de
 \subsection{Desarrollo de la práctica}
 
 
-
-\subsection{Herramienta}
-
-\noindent La herramienta principal desarrollada en esta práctica es la extensión de la herramienta de búsqueda del Portal de Datos Abiertos, ahora mejorada con la capacidad de analizar y procesar datos JSON mediante la API GSON Streaming. La clase JSONDatasetParser representa la implementación de este analizador GSON Streaming. La herramienta final permite la extracción selectiva de información de archivos JSON, generando un documento XML conforme al esquema ResultadosBusquedaP4.xsd que incluye el nuevo elemento resources.
-
-\subsection{Conclusiones}
-
-\noindent La Práctica 4 ha proporcionado a los estudiantes una oportunidad única para aplicar sus conocimientos adquiridos en la Práctica 3 y explorar en profundidad la API GSON Streaming. La capacidad de extender la funcionalidad de la herramienta existente para manejar datos JSON y generar documentos XML enriquecidos demuestra una comprensión avanzada de las tecnologías de procesamiento de datos estructurados.
-
-El uso de GSON Streaming versión 2.9.0 ha permitido a los estudiantes implementar un analizador eficiente para manejar grandes conjuntos de datos JSON, cumpliendo así con los requisitos de la práctica.
-
-\subsection{Preguntas Frecuentes}
+\subsubsection{Preguntas Frecuentes}
 
 \noindent Pregunta 1: ¿Cuál es el propósito principal de la Práctica 4 en términos de procesamiento de información JSON?
 Respuesta: El objetivo principal es extender la herramienta de búsqueda para extraer información sobre recursos asociados a categorías específicas en el Portal de Datos Abiertos, utilizando la tecnología GSON Streaming.
@@ -340,7 +327,16 @@ Respuesta: Se introduce el elemento resources, que contendrá información sobre
 Pregunta 3: ¿Cuál es la versión de la API GSON Streaming utilizada en esta práctica?
 Respuesta: Se utiliza la versión 2.9.0 de la API GSON Streaming, disponible en este enlace.
 
-\subsection{Notas}
+
+\noindent La herramienta principal desarrollada en esta práctica es la extensión de la herramienta de búsqueda del Portal de Datos Abiertos, ahora mejorada con la capacidad de analizar y procesar datos JSON mediante la API GSON Streaming. La clase JSONDatasetParser representa la implementación de este analizador GSON Streaming. La herramienta final permite la extracción selectiva de información de archivos JSON, generando un documento XML conforme al esquema ResultadosBusquedaP4.xsd que incluye el nuevo elemento resources.
+
+\subsection{Validación de resultados}
+
+\subsection{Conclusiones}
+
+\noindent La Práctica 4 ha proporcionado a los estudiantes una oportunidad única para aplicar sus conocimientos adquiridos en la Práctica 3 y explorar en profundidad la API GSON Streaming. La capacidad de extender la funcionalidad de la herramienta existente para manejar datos JSON y generar documentos XML enriquecidos demuestra una comprensión avanzada de las tecnologías de procesamiento de datos estructurados.
+
+El uso de GSON Streaming versión 2.9.0 ha permitido a los estudiantes implementar un analizador eficiente para manejar grandes conjuntos de datos JSON, cumpliendo así con los requisitos de la práctica.
 
 \subsection{Código Fuente}
 
@@ -353,14 +349,9 @@ No se promueve el plagio y la realización de las prácticas, este simplemente e
 
 \section{Análisis de archivos XML (2). Práctica 5}
 
-\subsection{Introducción}
 La Práctica 5 representa una etapa crucial en el proyecto, enfocándose en la familiarización con la tecnología de transformación de documentos XML mediante el Lenguaje de Rutas de XML (XPath), basado en el Modelo de Objetos de Documento (DOM). El objetivo principal es extraer información del documento XML generado en la Práctica 4 utilizando expresiones XPath y almacenarla en un nuevo documento en formato JSON. Esta práctica permite a los estudiantes explorar técnicas avanzadas de manipulación de datos estructurados.
 
-\phantom{text}
-
-\noindent \textbf{XPATH}
-
-\phantom{text}
+\subsection{XPATH}
 
 XPath, abreviatura de XML Path Language, es un lenguaje de consulta para documentos XML. Se utiliza para seleccionar partes de un documento XML, como elementos, atributos, texto y datos binarios.
 
@@ -374,7 +365,6 @@ Selección de texto: XPath se puede utilizar para seleccionar texto de un elemen
 Selección de datos binarios: XPath se puede utilizar para seleccionar datos binarios de un elemento o atributo.
 
 XPath se utiliza en una variedad de aplicaciones, incluyendo el procesamiento de XML, el desarrollo web, y la integración de datos. Esto permite que se utilize para procesar documentos XML, extraer datos, validar documentos y transformar documentos. Además, se utiliza en aplicaciones web para acceder a datos XML, como datos de formularios o datos de un servicio web. Por último, también se puede emplear para integrar datos de diferentes fuentes, como datos XML y datos de bases de datos.
-
 
 \subsection{JavaCC vs. XPath}
 
@@ -399,17 +389,9 @@ Se requerirá la introducción de expresiones XPath para identificar y seleccion
 
 \subsection{Desarrollo de la práctica}
 
-\subsection{Herramienta}
-
 \noindent La herramienta principal desarrollada en esta práctica es una extensión del código existente en la Práctica 4, ahora mejorado con la capacidad de utilizar expresiones XPath para extraer información específica del documento XML resultante. La información extraída se guarda en un nuevo documento en formato JSON, ofreciendo una representación alternativa y flexible de los datos.
 
-\subsection{Conclusiones}
-
-\noindent La Práctica 5 proporciona a los estudiantes una valiosa experiencia en la utilización de XPath para la extracción selectiva de información de documentos XML. La capacidad de integrar esta tecnología con el código existente de la Práctica 4 demuestra la versatilidad en el manejo de datos estructurados.
-
-El proceso de transformación a JSON destaca la flexibilidad de las tecnologías utilizadas, permitiendo la representación de datos en diferentes formatos según las necesidades del proyecto.
-
-\subsection{Preguntas Frecuentes}
+\subsubsection{Preguntas Frecuentes}
 
 \noindent Pregunta 1: ¿Cuál es el propósito principal de la Práctica 5 en términos de transformación de datos?
 Respuesta: El objetivo principal es la extracción de información específica del documento XML mediante expresiones XPath y la posterior representación de esta información en un nuevo documento en formato JSON.
@@ -420,7 +402,13 @@ Respuesta: La transformación se realiza mediante la utilización de expresiones
 Pregunta 3: ¿Cómo se integra la funcionalidad XPath en el código existente de la Práctica 4?
 Respuesta: Se realizarán modificaciones en el código de la Práctica 4 para incorporar expresiones XPath que seleccionen la información deseada. La información extraída se utilizará para generar un nuevo documento en formato JSON
 
-\subsection{Notas}
+\subsection{Validación de resultados}
+
+\subsection{Conclusiones}
+
+\noindent La Práctica 5 proporciona a los estudiantes una valiosa experiencia en la utilización de XPath para la extracción selectiva de información de documentos XML. La capacidad de integrar esta tecnología con el código existente de la Práctica 4 demuestra la versatilidad en el manejo de datos estructurados.
+
+El proceso de transformación a JSON destaca la flexibilidad de las tecnologías utilizadas, permitiendo la representación de datos en diferentes formatos según las necesidades del proyecto.
 
 \section{Evolutivo de las prácticas}
 

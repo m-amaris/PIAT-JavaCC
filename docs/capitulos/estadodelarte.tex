@@ -6,7 +6,7 @@ En este contexto, los generadores de reconocedores gramaticales, como JavaCC, of
 
 La aplicación de JavaCC en la asignatura Procesamiento de la Información en Aplicaciones Telemáticas (PIAT) es una idea muy acertada. PIAT es una asignatura que se centra en el procesamiento de información en diversos formatos. El uso de JavaCC podría proporcionar a los estudiantes una herramienta muy valiosa para abordar las prácticas de la asignatura.
 
-\section{Analizador Léxico}
+\subsection{Analizador Léxico}
 
 \noindent En el contexto de los analizadores de compiladores, un \textbf{analizador léxico} (del griego \lstinline|lexis|, palabra) ---también conocido como \textit{lexer}--- es la \textbf{primera fase} del proceso de \textbf{compilación}. Su función es analizar el código fuente de un programa escrito en un lenguaje de programación y producir una secuencia de tokens o componentes léxicos\cite{lexer}. Con esto conseguimos reconocer tokens ---hablaremos de ellos más adelante--, ya que el analizador léxico divide la sintaxis del programa en una serie de tokens ---palabras clave, identificadores, operadores...--- y es capaz de eliminar cualquier información no relevante para el análisis posterior, como espacios adicionales o comentarios. 
 
@@ -39,13 +39,13 @@ En este caso, el analizador léxico se encargaría de escanear este código fuen
 \lstset{inputencoding=utf8/latin1}
 \lstinputlisting{code/lexerresultado.txt}
 
-\section{Token}
+\subsection{Token}
 \noindent Un token es una unidad léxica o componente básico del código fuente de un programa. Se trata de una cadena de caracteres con un significado específico asignado. Está estructurado como un par que consta de un nombre de token y un valor de token opcional. El nombre del token representa una categoría o tipo de unidad léxica, como palabras clave, identificadores, operadores, entre otros\cite{token}.
 
 En el ejemplo de la sección anterior, el analizador léxico generaba una secuencia de tokens, cada token tenía sus características propias, dependiendo de si eran identificadores, operadores o signos de puntuación, u otros ---se pueden especificar tokens que hagan referencias a comentarios dentro del código, o palabras reservadas del lenguaje, como \lstinline[keywordstyle=\color{black}]|if| o \lstinline[keywordstyle=\color{black}]|while|---.
 
 
-\section{Analizador Sintáctico o Semántico}
+\subsection{Analizador Sintáctico o Semántico}
 \noindent Un \textbf{analizador sintáctico} es una parte fundamental de un \textbf{compilador} o intérprete. Su función es verificar si un programa fuente ---escrito en un lenguaje de programación--- sigue las reglas gramaticales definidas para ese lenguaje\cite{analizadorsintactico}. En otras palabras, nos indica la disposición correcta de los elementos en el código fuente para que se convierta en un programa válido.
 
 Comúnmente conocido como \textit{parser}, el analizador sintáctico verifica la \textbf{estructura} del programa fuente. Este hace uso de una gramática (generalmente una gramática libre de contexto) para definir las reglas sintácticas del lenguaje. El objetivo del parser es reconocer la secuencia de \textit{tokens} ---unidades léxicas como palabras clave, identificadores, operadores--- y construir un \textbf{árbol sintáctico} que represente la estructura jerárquica del programa. Si el archivo fuente es válido, el analizador sintáctico proporciona el árbol sintáctico correspondiente.
@@ -58,14 +58,7 @@ Además de todas las funciones mencionadas, si encuentra errores sintácticos, c
 	\caption{\label{fig:analizadorsintactico}Funcionamiento del Analizador Sintáctico en JavaCC\cite{ytanalizadorsintactico}}
 \end{figure}
 
-\section{Estados Léxicos}
-\noindent Los estados léxicos permiten efectuar un conjunto diferente de producciones de expresiones regulares en un caso concreto. Dicho de otra manera, los estados léxicos sirven para que un token este definido de una forma, y en cierto momento del análisis, pueda estar definido de otra forma.
-
-Supongamos que desea escribir un procesador JavaDoc para extraer los comentarios JavaDoc de un documento. La mayor parte de Java está tokenizada de acuerdo con las reglas ordinarias regulares de Java. Pero dentro de los comentarios JavaDoc, se aplica un conjunto diferente de reglas en las que las palabras clave deben ser reconocidas y donde las nuevas líneas son significativas ---como las palabras y símbolos \lstinline|/***/| , \lstinline|@param|, entre otros---.
-
-Para resolver este problema, podríamos usar dos estados léxicos: uno para la tokenización regular de Java y otro para la tokenización dentro de los comentarios de JavaDoc.
-
-\section{Recursividad}
+\subsection{Recursividad}
 
 \noindent En el ámbito de los compiladores, la recursividad es una técnica que se utiliza para definir una estructura gramatical que se repite en sí misma.
 
@@ -73,31 +66,33 @@ Esto permite resolver problemas complejos dividiéndolos en subproblemas más pe
 
 En JavaCC, la recursividad se utiliza para definir producciones gramaticales que pueden analizar expresiones complejas.
 
-\subsection{Recursividad a derechas (LR)}
+\subsubsection{Recursividad a derechas (LR)}
 \noindent En la recursividad a derechas, la llamada recursiva se realiza al final de la definición de la estructura gramatical. Por ejemplo, la gramática para la expresión aritmética básica se puede definir recursivamente a la derecha de la siguiente manera:
 
 \lstset{inputencoding=utf8/latin1}
 \lstinputlisting{code/LR.jj}
 
-\subsection{Recursividad a izquierdas (LL)}
+\subsubsection{Recursividad a izquierdas (LL)}
 
 \noindent En la recursividad a izquierdas, la llamada recursiva se realiza al principio de la definición de la estructura gramatical. Por ejemplo, la gramática para la expresión aritmética básica se puede definir recursivamente a la izquierda de la siguiente manera:
 
 \lstset{inputencoding=utf8/latin1}
 \lstinputlisting{code/LL.jj}
 
-\subsection{¿Por qué no se puede utilizar la recursividad a izquierdas en JavaCC?}
+\subsubsection{¿Por qué no se puede utilizar la recursividad a izquierdas en JavaCC?}
 \noindent La clase de analizador sintáctico producida por JavaCC funciona por descenso recursivo. La recursión a la izquierda está prohibida para evitar que las subrutinas generadas se llamen a sí mismas recursivamente de forma infinita.
 
 Si considerásemos una producción recursiva a la izquierda, en caso de que la  condición fuera verdadera alguna vez, tendríamos una recursión infinita.
 JavaCC producirá un mensaje de error si tiene producciones recursivas a la izquierda.
+
+\subsection{Analizadores que se usan en la actualidad (TITULO PROVISIONAL)}
 
 \section{JavaCC}
 \noindent En relación con lo anterior, aclaremos a qué hace referencia el concepto de JavaCC y los analizadores semánticos y sintácticos, y como se interrelacionan:
 Java Compiler Compiler, comúnmente conocido como JavaCC, es una poderosa herramienta ampliamente utilizada para generar analizadores sintácticos en aplicaciones Java. Su función principal es transformar una especificación gramatical en un programa Java capaz de reconocer y analizar la sintaxis según la gramática proporcionada.
 JavaCC se diferencia de otras herramientas similares al generar analizadores sintácticos de arriba hacia abajo ---descenso recursivo, o LL--- en lugar de analizadores de abajo hacia arriba. Esta característica permite el uso de gramáticas más generales y facilita la depuración, además de permitir el análisis en cualquier elemento no terminal de la gramática y la transferencia de valores (atributos) en ambas direcciones en el árbol de análisis.
 
-\section{Funciones principales de JavaCC}
+\subsection{Funciones principales de JavaCC}
 \noindent JavaCC ofrece una serie de características y funcionalidades clave que lo hacen destacar como un generador de analizadores sintácticos:
 \begin{itemize}
 	\item Generación de analizadores sintácticos de arriba hacia abajo.
@@ -112,7 +107,14 @@ JavaCC se diferencia de otras herramientas similares al generar analizadores sin
 	\item Informes de errores de alta calidad y mensajes de diagnóstico completos.
 \end{itemize}
 
-\section{Ejemplo de gramática en JavaCC}
+\subsection{Estados Léxicos}
+\noindent Los estados léxicos permiten efectuar un conjunto diferente de producciones de expresiones regulares en un caso concreto. Dicho de otra manera, los estados léxicos sirven para que un token este definido de una forma, y en cierto momento del análisis, pueda estar definido de otra forma.
+
+Supongamos que desea escribir un procesador JavaDoc para extraer los comentarios JavaDoc de un documento. La mayor parte de Java está tokenizada de acuerdo con las reglas ordinarias regulares de Java. Pero dentro de los comentarios JavaDoc, se aplica un conjunto diferente de reglas en las que las palabras clave deben ser reconocidas y donde las nuevas líneas son significativas ---como las palabras y símbolos \lstinline|/***/| , \lstinline|@param|, entre otros---.
+
+Para resolver este problema, podríamos usar dos estados léxicos: uno para la tokenización regular de Java y otro para la tokenización dentro de los comentarios de JavaDoc.
+
+\subsection{Ejemplo de gramática en JavaCC}
 \noindent A continuación, se presenta un ejemplo de cómo JavaCC puede utilizarse para generar un analizador sintáctico en Java. En este ejemplo se define un lenguaje para analizar expresiones matemáticas simples. Partiendo de este ejemplo, seremos capaz de ampliar las funcionalidades del programa, y realizar una calculadora. El resultado final se encuentra en el archivo \hyperref[sec:mathexp]{Mathexp.jj}, que se encuentra en el apéndice \hyperref[sec:codigofuente]{\textit{Código fuente}}.
 
 \phantom{text}
