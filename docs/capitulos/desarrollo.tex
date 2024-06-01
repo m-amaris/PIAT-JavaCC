@@ -1,18 +1,52 @@
 \section{Introducción}
-\noindent En el capítulo anterior se han expuesto las principales tecnologías que forman parte del proyecto de evaluación de la viabilidad de JavaCC para el procesamiento de información en la asignatura PIAT. En este capítulo se desarrollarán los aspectos relativos a la implementación del proyecto, los procedimientos seguidos y el entorno utilizado para los desarrollos y las pruebas.
+\noindent En el capítulo anterior, exploramos las bases tecnológicas y funcionalidades que sustentan el proyecto de evaluación de la viabilidad de JavaCC para el procesamiento de información en la asignatura PIAT. En este nuevo capítulo, nos embarcaremos en un viaje más profundo, adentrándonos en los detalles de la implementación del proyecto, los procedimientos meticulosamente seguidos y el entorno cuidadosamente seleccionado para los desarrollos y las pruebas.
+
+A lo largo de las siguientes secciones, desentrañaremos el proceso de implementación, desglosando los pasos específicos emprendidos durante el desarrollo y revelando el entorno de trabajo cuidadosamente diseñado para garantizar una integración y ejecución exitosas del proyecto. Este recorrido nos permitirá comprender cómo se ha dado vida a esta iniciativa, proporcionando una visión completa de los esfuerzos realizados para alcanzar sus objetivos.
+
+Preparémonos para sumergirnos en el corazón del proyecto, explorando las decisiones tomadas, las herramientas utilizadas y los desafíos superados en el camino hacia la implementación exitosa de JavaCC en PIAT.
 
 \section{Implementación}
-\noindent La implementación del proyecto se ha realizado en Java, utilizando la herramienta JavaCC para la generación de los analizadores léxico y sintáctico. Para la creación de las gramáticas se ha utilizado el lenguaje EBNF.
+\noindent La implementación del proyecto se ha llevado a cabo utilizando el lenguaje de programación Java, aprovechando las capacidades y herramientas que nos proporciona para lograr un desarrollo eficiente y robusto. En esta sección, se profundizará en los detalles de la implementación, destacando las tecnologías clave utilizadas y las decisiones de diseño tomadas para alcanzar los objetivos del proyecto. 
+
+Las tecnologías clave son JavaCC, que nos va a permitir crear analizadores para lenguajes formales; Java, que nos ofrece características como la portabilidad, orientación a objetos y gestión automática de memoria; y un Entorno de desarrollo Integrado (IDE), que nos va a proporcionar las herramientas para desarrollar las prácticas, como el editor de código, compilador, depurador. Hablaremos del entorno utilizado más adelante.
 
 \section{Procedimientos}
 
 \noindent El proceso de implementación se ha dividido en las siguientes fases:
-\begin{itemize}
-    \item Fase 1: Aprendizaje de los conceptos básicos de JavaCC.
-    \item Fase 2: Práctica con JavaCC para crear analizadores léxicos y sintácticos para gramáticas simples.
-    \item Fase 3: Aplicación de JavaCC en prácticas de PIAT.
-    \item Fase 4: Generación de documentación.
-\end{itemize}
+
+\phantom{text}
+
+\noindent \textbf{Fase 1: Aprendizaje de los conceptos básicos de JavaCC.}
+
+\phantom{text}
+
+\noindent La primera fase consiste en adquirir los conocimientos básicos sobre el funcionamiento de JavaCC, sus conceptos ---qué es un token, un estado léxico, un no-terminal...--- y su sintaxis, incluyendo la definición de gramáticas, la creación de los analizadores léxicos y sintácticos y la generación del código Java. Está fase es considerablemente amplia, ya que hay que dedicarle el tiempo necesario a aprender e interiorizar todos los conceptos y el funcionamiento con esta herramienta.
+
+\phantom{text}
+
+\noindent \textbf{Fase 2: Práctica con JavaCC para crear analizadores léxicos y sintácticos para gramáticas simples.}
+
+\phantom{text}
+    
+\noindent En la siguiente fase, se realizan ejercicios prácticos para familiarizarse con la herramienta JavaCC y desarrollar la habilidad de crear analizadores léxicos y sintácticos para gramáticas simples. Uno de los ejemplos fue el presentado en la sección \textbf{CALCULADORA}. Realizar estos ejercicios es esencial antes de intentar realizar prácticas más elaboradas, ya que permiten poner en práctica las funcionalidades aprendidas de una manera mas simple y práctica.
+
+\phantom{text}
+
+\noindent \textbf{Fase 3: Aplicación de JavaCC en prácticas de PIAT.}
+
+\phantom{text}
+
+\noindent Una vez se tiene un grado notable de experiencia utilizando la herramienta, en esta fase se aplica JavaCC para desarrollar los analizadores léxicos y sintácticos necesarios para resolver las prácticas de la asignatura PIAT. Esta fase es la más importante y la que más tiempo requiere, ya que se realiza una reingeniería de la práctica ... 
+
+
+\phantom{text}
+
+\noindent \textbf{Fase 4: Generación de documentación.}
+
+\phantom{text}
+
+\noindent Por último, en la fase 4 se refleja todo el trabajo realizado en las fases anteriores, desde la generación de las gramáticas y su aplicación hasta la validación de resultados y las conclusiones extraídas en cada ejercicio.
+
 
 \section{Entorno}
 \noindent Los desarrollos y las pruebas se han realizado en un entorno de desarrollo integrado (IDE) de Java. En concreto, se ha empleado Eclipse IDE ya que, además de ser el IDE principal con el que se realizan las prácticas de PIAT ---y en general, cualquier práctica relacionada con la programación dentro de la escuela---, existe un plugin de JavaCC que realiza la compilación de los archivos y facilita enormemente el desarrollo. Dicho esto, el lector puede optar por elegir otros editores como Visual Studio Code o Jetbrains, incluso editores de texto como Notepad++, Vim o  nano. Este aspecto queda a gusto del desarrollador. Para la depuración de los analizadores se ha utilizado el debugger del IDE.
@@ -26,7 +60,7 @@ Para saber mas acerca de la instalación y configuración de Elipse IDE con Java
 
 \noindent El mundo digital genera una gran cantidad de datos, y los logs de sistemas son una fuente importante de información para comprender el comportamiento y el rendimiento de estos sistemas. La práctica 2 de PIAT nos invita a explorar este mundo de datos mediante el análisis de logs de un sistema de correo electrónico. El objetivo de esta práctica es el de aplicar los conocimientos adquiridos sobre expresiones regulares y hacer uso de la programación Java para analizar y extraer información de logs de dicho sistema.
 
-Concretamente, el objetivo de la practica es utilizar expresiones regulares para extraer información estadística y generar informes a partir de los archivos de log del sistema de correo electrónico. La arquitectura del sistema y el formato de los logs se detallan en un \textbf{documento anexo}.
+Concretamente, el objetivo de la practica es utilizar expresiones regulares para extraer información estadística y generar informes a partir de los archivos de log del sistema de correo electrónico. La arquitectura del sistema y el formato de los logs se detallan en los anexos \hyperref[sec:P2SistemaCorreo]{\textit{Descripción general del sistema de correo electrónico}} y \hyperref[sec:logscorreo]{\textit{Formato de logs. Sistema de correo electrónico}}.
 
 
 \subsection{Expresiones Regulares. RegEx}
@@ -35,7 +69,7 @@ Concretamente, el objetivo de la practica es utilizar expresiones regulares para
 
 En esta práctica, las expresiones regulares serán nuestras aliadas para navegar por el laberinto de los logs, desentrañando los mensajes y eventos registrados por el sistema de correo electrónico. Definiremos expresiones regulares para identificar diferentes tipos de registros, como mensajes entrantes, mensajes salientes, mensajes infectados, códigos de error y mucho más.
 
-En este contexto, aplicaremos las expresiones regulares para definir los distintos tokens que queremos reconocer y asi conformar la gramatica que analizará JavaCC.
+En este contexto, aplicaremos las expresiones regulares para definir los distintos tokens que queremos reconocer y asi conformar la gramática que analizará JavaCC.
 
 \subsection{Descripción de la práctica}
 
@@ -70,14 +104,14 @@ El primer paso para resolver la práctica es definir la estructura de árbol que
     \label{fig:arboltraza}
 \end{figure}
 
-Esta figura refleja la estructura del analisis sintáctico, en la que se observa toda la estructura definida a la hora de reconocer las trazas. Se observa como se contemplan cinco tipos de trazas, las \lstinline|msa|, \lstinline|smpt-in|, \lstinline|smpt-out|, \lstinline|security| y otros tipos de servidores. Para cada tipo de traza se definen las distintas posibilidades que puede haber dentro de cada tipo de traza, de tal forma que se describe la estructura de forma detallada. En aquellas ``ramas'' en las que queramos ejecutar alguna acción, como puede ser añadir los valores a un estadístico, se define una acción léxica dentro del no-terminal, como por ejemplo:
+Esta figura refleja la estructura del análisis sintáctico, en la que se observa toda la estructura definida a la hora de reconocer las trazas. Se observa como se contemplan cinco tipos de trazas, las \lstinline|msa|, \lstinline|smpt-in|, \lstinline|smpt-out|, \lstinline|security| y otros tipos de servidores. Para cada tipo de traza se definen las distintas posibilidades que puede haber dentro de cada tipo de traza, de tal forma que se describe la estructura de forma detallada. En aquellas ``ramas'' en las que queramos ejecutar alguna acción, como puede ser añadir los valores a un estadístico, se define una acción léxica dentro del no-terminal, como por ejemplo:
 
 \lstset{inputencoding=utf8/latin1}
 \lstinputlisting{code/overload.jj}
 
 El archivo Parser.jj define el analizador léxico y sintáctico para procesar los logs. A continuación, se detalla la estructura y las funciones más relevantes del archivo.
 
-En las opciones del analizador se definen configuraciones importantes como la concurrencia, ya que la gramática generada en JavaCC debe tener la capacidad de ejecutarse de forma concurrente para distintas entradas ---en este caso, varios ficheros de log---
+En las opciones del analizador se definen configuraciones importantes como la concurrencia, ya que la gramática generada en JavaCC debe tener la capacidad de ejecutarse de forma concurrente para distintas entradas ---en este caso, varios ficheros de log---.
 
 \lstset{inputencoding=utf8/latin1}
 \lstinputlisting{code/p2static.jj}
@@ -92,7 +126,7 @@ Los tokens y estados léxicos se definen para identificar y manejar las distinta
 \lstset{inputencoding=utf8/latin1}
 \lstinputlisting{code/p2tokens.jj}
 
-Cabe destacar que se utilizan estados léxicos como \lstinline|SERVER|, \lstinline|LEX_MSA|, \lstinline|LEX_IN|, \lstinline|LEX_OUT|... que permiten analizar unicámente ciertos tokens cuando el analizador se encuentra en dicho estado, lo que acelera de forma desmesurada la rapidez del analizador ---lo veremos en la sección de validación de resultados---.
+Cabe destacar que se utilizan estados léxicos como \lstinline|SERVER|, \lstinline|LEX_MSA|, \lstinline|LEX_IN|, \lstinline|LEX_OUT|... que permiten analizar unicamente ciertos tokens cuando el analizador se encuentra en dicho estado, lo que acelera de forma desmesurada la rapidez del analizador ---lo veremos en la sección de validación de resultados---.
 
 Por último, las producciones definen las reglas sintácticas que el analizador seguirá. A continuación se muestra una producción principal y una producción para manejar trazas del tipo MSA. Estas producciones se corresponden con la estructura mencionada anteriormente (Figura \ref{fig:arboltraza}):
 
@@ -120,7 +154,7 @@ Esta mejora se debe a varios factores:
 
 \begin{itemize}
 \item Eficiencia en la Compilación de Gramáticas: JavaCC permite definir gramáticas de manera más estructurada y eficiente, optimizando el proceso de análisis léxico y sintáctico.
-\item Menor Sobrecarga de Procesamiento: Las expresiones regulares, aunque poderosas, son costosas en términos de tiempo de procesamiento, especialmente cuando se aplican repetidamente a grandes volúmenes de datos. JavaCC, al generar analizadores más optimizados, reduce esta sobrecarga. Además, en este práctica, todas las expresiones regulares definidas son ejecutadas por cada traza ---si se definen siete expresiones regulares a analizar, por cada traza que se quiera comprobar, habrá que ejecutar las siete expresiones para comprobar si coincide o no--- , mientras que empleando JavaCC, cada traza es analizada una unica vez, siguiedo la estructura de árbol presentada en la Figura \ref{fig:comparacion_tiempos_ejecucion.png}. Este es el motivo principal por el que se observa una gran diferencia entre los dos tiempos de ejecución.
+\item Menor Sobrecarga de Procesamiento: Las expresiones regulares, aunque poderosas, son costosas en términos de tiempo de procesamiento, especialmente cuando se aplican repetidamente a grandes volúmenes de datos. JavaCC, al generar analizadores más optimizados, reduce esta sobrecarga. Además, en este práctica, todas las expresiones regulares definidas son ejecutadas por cada traza ---si se definen siete expresiones regulares a analizar, por cada traza que se quiera comprobar, habrá que ejecutar las siete expresiones para comprobar si coincide o no--- , mientras que empleando JavaCC, cada traza es analizada una única vez, siguiendo la estructura de árbol presentada en la Figura \ref{fig:comparacion_tiempos_ejecucion.png}. Este es el motivo principal por el que se observa una gran diferencia entre los dos tiempos de ejecución.
 \item Optimización del Código Generado: El código generado por JavaCC está específicamente optimizado para el reconocimiento y procesamiento de patrones definidos en la gramática, lo que resulta en una ejecución más rápida.
 \end{itemize}
 
@@ -148,12 +182,12 @@ No se promueve el plagio y la realización de las prácticas, este simplemente e
 
 \section{Análisis de archivos XML. Práctica 3}
 
-\noindent La práctica 3 de PIAT, centrada en el procesamiento de documentos XML, representa un hito significativo en el marco de este proyecto. En esta etapa, se aborda la implementación de un analizador de documentos XML utilizando la tecnología SAX. El objetivo principal es familiarizar a los estudiantes con SAX y fortalecer sus habilidades en el diseño de algoritmos eficientes para la extracción y transformación de información a partir de fuentes de contenidos estructurados.
+\noindent La práctica 3 de PIAT, centrada en el procesamiento de documentos XML, representa un hito significativo en el marco de este proyecto. En esta etapa, se aborda la implementación de un analizador de documentos XML utilizando la tecnología SAX. El objetivo principal aprender la estructura de XML y su funcionamiento, familiarizando a los estudiantes con SAX y fortaleciendo sus habilidades en el diseño de algoritmos eficientes para la extracción y transformación de información a partir de fuentes de contenidos estructurados.
 
 La práctica 3 de PIAT se centra en familiarizarse con la tecnología SAX y desarrollar un analizador de documentos XML basado en esta tecnología. Además, el objetivo secundario es diseñar algoritmos eficientes que permitan la extracción y transformación de información a partir de fuentes de contenidos estructurados.
 
 \subsection{SAX}
-\noindent La tecnología SAX (Simple API for XML) es una API que se encarga de procesar documentos XML. Está basada en eventos, lo que quiere decir que el analizador XML notifica al programa cuando encuentra un evento especifico en el documento. El programa puede tomar medidas en función del evento. Los eventos que puede notificar SAX son:
+\noindent La tecnología SAX (\textit{Simple API for XML}) es una API que se encarga de procesar documentos XML. Está basada en eventos, lo que quiere decir que el analizador XML notifica al programa cuando encuentra un evento especifico en el documento. El programa puede tomar medidas en función del evento. Los eventos que puede notificar SAX son:
 \begin{itemize}
     \item Inicio de documento: Se produce cuando el analizador comienza a procesar el documento.
     \item Fin de documento: Se produce cuando el analizador finaliza el procesamiento del documento.
@@ -165,7 +199,7 @@ La práctica 3 de PIAT se centra en familiarizarse con la tecnología SAX y desa
 
 SAX es una buena opción para procesar documentos XML grandes o complejos. Esto se debe a que el analizador XML no necesita cargar todo el documento en memoria a la vez. En cambio, el analizador puede procesar el documento de forma secuencial, lo que puede ahorrar memoria.
 
-SAX también es una buena opción para procesar documentos XML que se actualizan con frecuencia. Esto se debe a que el analizador XML puede procesar solo los cambios en el documento, lo que puede ahorrar tiempo.
+La tecnología SAX también es una buena opción para procesar documentos XML que se actualizan con frecuencia. Esto se debe a que el analizador XML puede procesar solo los cambios en el documento, lo que puede ahorrar tiempo.
 
 Algunos ejemplos de cómo se puede utilizar SAX para procesar documentos XML incluyen:
 \begin{itemize}
@@ -176,7 +210,7 @@ Algunos ejemplos de cómo se puede utilizar SAX para procesar documentos XML inc
 
 \subsection{JavaCC vs. SAX}
 
-\noindent JavaCC y SAX son dos herramientas relativamente diferentes a la hora de procesar documentos XML. JavaCC es una herramienta de generación de analizadores que permite crear analizadores XML personalizados, mientras que SAX es una API estándar que proporciona un conjunto de métodos para procesar documentos XML.
+\noindent JavaCC y SAX son dos herramientas relativamente diferentes a la hora de procesar documentos XML. Como hemos estudiado en el capítulo anterior, JavaCC es una herramienta de generación de analizadores que permite crear analizadores personalizados, mientras que SAX es una API estándar que proporciona un conjunto de métodos para procesar documentos XML.
 Son varias las razones por la que es más conveniente usar JavaCC en vez de SAX:
 \begin{itemize}
     \item Control: JavaCC ofrece un mayor control sobre el proceso de análisis que SAX. Esto permite al desarrollador crear analizadores que se adapten a sus necesidades específicas.
@@ -200,7 +234,7 @@ En general, JavaCC es una buena opción para procesar documentos XML cuando se n
 
 \subsection{Descripción de la práctica}
 
-\noindent A continuación se presenta el enunciado de la práctica propuesta del año 2022:
+\noindent Una vez conocido la herramienta SAX para analizar archivos XML y visto el contexto de esta práctica, a continuación se presenta el enunciado de la práctica propuesta del año 2022:
 Se desea desarrollar una aplicación que extraiga cierta información de un fichero XML obtenido a partir de los datos publicados en el Portal de Datos Abiertos del Ayuntamiento de Madrid (http://datos.madrid.es).
 
 La información (organismos, eventos, actividades, …) publicada a través del Portal de Datos Abiertos presenta las siguientes características:
@@ -244,13 +278,330 @@ La Figura 2 muestra un ejemplo de búsqueda del concept con código 0097-022 y l
 
 \subsection{Desarrollo de la práctica}
 
-\noindent A alLa implementación de la Práctica 3 se basa en la creación de un analizador de documentos XML denominado XMLParser, desarrollado en JavaCC. Este analizador se ha diseñado para procesar documentos XML que contienen datos publicados en el Portal de Datos Abiertos del Ayuntamiento de Madrid (http://datos.madrid.es).
+\noindent La implementación de la Práctica 3 se basa en la creación de un analizador de documentos XML denominado XMLParser, desarrollado en JavaCC. Este analizador se ha diseñado para procesar documentos XML que contienen datos publicados en el Portal de Datos Abiertos del Ayuntamiento de Madrid (http://datos.madrid.es).
 Los documentos XML que se procesan a través de esta herramienta presentan ciertas características clave, como la identificación de recursos mediante URI, la asociación a categorías, la agrupación en conjuntos de datos y una clasificación jerárquica basada en características temáticas. La tarea principal del analizador es extraer información específica relacionada con códigos de categorías y, posteriormente, generar un nuevo documento XML que contiene los resultados deseados.
 
-\subsubsection{Preguntas Frecuentes}
+El primer paso para resolver la práctica es definir la estructura del analizador que seguirá el procesamiento de los documentos XML. Esta estructura determina cómo se identifican y extraen los datos de los documentos, así como las acciones correspondientes a realizar en cada caso. La siguiente figura ilustra esta estructura:
 
-\noindent ¿Qué sentido tiene utilizar la clase ManejadorXML, si el parser ya busca lo que quiere?
-Tiene sentido cronológico, ya que primero el parser realiza el análisis del documento y devuelve los datos, si se llama a una función que devuelva los datos es posible que se llamen a estas funciones antes de que se llame a la función de análisis
+Figura 1: Estructura del analizador XML. Procesamiento de conceptos y datasets.
+
+Esta figura refleja la estructura del análisis sintáctico, en la que se observa cómo se procesan los elementos concept y dataset. Se observa cómo se manejan los distintos elementos y atributos dentro de cada uno, de tal forma que se describe la estructura de forma detallada. En aquellos no-terminales en los que se quiera ejecutar alguna acción, como puede ser añadir los conceptos y datasets a las listas pertinentes, o crear nuevos objetos de tipo Concept o Dataset, se define una acción léxica dentro del no-terminal, como por ejemplo:
+
+\begin{lstlisting}
+
+Concept concept() : {}
+{
+  <OPEN_CONCEPT> <ID> idValue = <STRING> <END_ELEMENT>
+  <OPEN_CODE> codeValue = getCode() <CLOSE_CODE>
+  <OPEN_LABEL> labelValue = getValue() <CLOSE_LABEL>
+  (
+    <OPEN_CONCEPTS>
+    (
+      childConcept = concept()
+      {
+        concepts.add(childConcept);
+      }
+    )+
+    <CLOSE_CONCEPTS>
+  )?
+  <CLOSE_CONCEPT>
+  {
+    if(codeValue.equals(nombreCategoria)) {
+      conceptLabel = idValue.image;
+      conceptsList.add(new Concept(idValue.image, codeValue, labelValue, concepts));
+    }
+    return new Concept(idValue.image, codeValue, labelValue, concepts);
+  }
+}
+
+\end{lstlisting}
+
+En este fragmento de código se observa el no-terminal Concept(), el cual define la estructura XML que debe tener un <concept>. Si nos fijamos detenidamente en el procesamiento del no-terminal, podemos apreciar que se realizan dos acciones léxicas: una para añadir a una lista de concepts un concepto hijo (concepts.add(childConcept);), y otra que realiza la comparación del valor de <code> con el nombre de la categoría para crear un objeto concept con los campos extraídos.
+
+\phantom{text}
+
+\noindent \textbf{Estructura del Analizador XMLParser}
+
+\phantom{text}
+
+\noindent El archivo XMLParser.jj define la estructura y funcionamiento del analizador XML mediante JavaCC. A continuación, se describe detalladamente cada componente y su función, proporcionando una comprensión completa del desarrollo y el diseño del analizador.
+
+En las opciones del analizador se definen configuraciones importantes como la concurrencia:
+
+\lstset{inputencoding=utf8/latin1}
+\begin{lstlisting}
+    
+options
+{
+  STATIC = false;
+  JAVA_TEMPLATE_TYPE = "modern";
+}
+\end{lstlisting}
+
+Estas opciones configuran el analizador para que no genere métodos estáticos, permitiendo la concurrencia y el procesamiento de múltiples entradas de manera eficiente.
+
+Una vez definidas las opciones del analizador, comienza la declaración del parser y la definición de la clase XMLParser:
+
+\lstset{inputencoding=utf8/latin1}
+\begin{lstlisting}
+    
+    PARSER_BEGIN(XMLParser)
+    package piat.opendatasearch;
+    import java.util.List;
+    import java.util.ArrayList;
+    public class XMLParser {
+        private List<Concept> conceptsList;
+        private List<Dataset> datasetsList;
+        private String conceptLabel;
+        private String nombreCategoria;
+    }
+    PARSER_END(XMLParser)
+    
+\end{lstlisting}
+
+en la que se observa que se instacia una lista de objetos Concept, en la que se almacenarán todos los Concept cuyo código coincida con el criterio de la búsqueda, así como los Concept recursivos que puedan tener.
+Además se observa otra lista, en este caso de objetos Dataset, en la que igualmente se almacenarán aquellos objetos Dataset que contengan algún un elemento concept con el atributo id igual al atributo id del algún elemento concept de conceptsList.
+También se observa la creación de los atributos conceptLabel y nombreCategoría, encargados de almacenar el valor de <label> en cada concept, y de almacenar el valor del nombre de la categoría pasado como argumento al programa principal, respectivamente.
+
+Acto seguido, se definen los tokens que identifican las diferentes etiquetas y elementos del documento XML, así como las reglas para omitir espacios en blanco y caracteres irrelevantes:
+
+\lstset{inputencoding=utf8/latin1}
+\begin{lstlisting}
+    
+    SKIP :
+    {
+      " "
+    | "\t"
+    | "\r"
+    | "\n"
+    }
+    
+    TOKEN :
+    {
+      < OPEN_CONCEPTS : "<concepts>" >
+    | < OPEN_DATASETS : "<datasets>" >
+    | < CATALOG : "<catalog" >
+    | < XMLNS : "xmlns=" >
+    | < XMNLNS_XSI : "xmlns:xsi=" >
+    | < XSI_SCHEMA_LOCATION : "xsi:schemaLocation=" >
+    | < HEADER : "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" >
+    | < OPEN_CONCEPT : "<concept" >
+    | < OPEN_DATASET : "<dataset" >
+    | < CLOSE_CONCEPTS : "</concepts>" >
+    | < CLOSE_DATASETS : "</datasets>" >
+    | < CLOSE_CATALOG : "</catalog>" >
+    | < CLOSE_CONCEPT : "</concept>" >
+    | < CLOSE_DATASET : "</dataset>" >
+    | < OPEN_CODE : "<code" >
+    | < CLOSE_CODE : "/code>" >
+    | < OPEN_LABEL : "<label>" >
+    | < OPEN_TITLE : "<title>" >
+    | < OPEN_DESCRIPTION : "<description>" >
+    | < OPEN_KEYWORD : "<keyword>" >
+    | < OPEN_THEME : "<theme>" >
+    | < OPEN_PUBLISHER : "<publisher>" >
+    | < CLOSE_LABEL : "</label>" >
+    | < CLOSE_TITLE : "</title>" >
+    | < CLOSE_DESCRIPTION : "</description>" >
+    | < CLOSE_KEYWORD : "</keyword>" >
+    | < CLOSE_THEME : "</theme>" >
+    | < CLOSE_PUBLISHER : "</publisher>" >
+    | < ID : "id=" >
+    | < VALUE_CODE : ">" (~[ "\"", "\n", "\r", "<", ">", "=" ])+ "<" >
+    | < VALUE_LABEL : "<![CDATA[" (~[ "\"", "\n", "\r", "<", ">", "=" ])+ "]]>" >
+    | < STRING : "\"" (~[ "\"", "\n", "\r" ])+ "\"" >
+    | < END_ELEMENT : ">" >
+    }
+    
+    SKIP :
+    {
+      < ~[ ] >
+    }
+    
+    
+\end{lstlisting}
+
+Las reglas de omisión aseguran que los espacios en blanco, tabulaciones y saltos de línea no interfieran con el análisis, permitiendo que el analizador se concentre únicamente en los elementos significativos del XML.
+
+\tipbox{En este caso se observa que no se ha empleado ningún estado léxico, esto es debido a que se ha preferido realizar una comprobación estructural del documento ---asi como haría un xsd, aunque de forma mucho mas limitada---. En la practica 5 veremos un analizador XML en el que se sí se hace uso de estados léxicos, y veremos como esta funcionalidad acelera en gran medida el procesamiento.
+}
+
+Una vez visto el analisis léxico, toca centrarse en el analizador sintáctico. Este comienza con el método processFile, que recibe como argumento un código de categoría y procesa el archivo XML, extrayendo los conceptos y conjuntos de datos pertinentes:
+
+\lstset{inputencoding=utf8/latin1}
+\begin{lstlisting}
+    ManejadorXML processFile(String code) :
+    {
+      conceptsList = new ArrayList<Concept>();
+      datasetsList = new ArrayList<Dataset>();
+      nombreCategoria = code;
+    }
+    {
+      < HEADER > 
+      < CATALOG > < XMLNS > < STRING > < XMNLNS_XSI > < STRING > < XSI_SCHEMA_LOCATION > < STRING > < END_ELEMENT >
+      (< OPEN_CONCEPTS > (concept())+ < CLOSE_CONCEPTS >)+
+      (< OPEN_DATASETS > (dataset())+ < CLOSE_DATASETS >)+
+      < CLOSE_CATALOG >
+      {
+        return new ManejadorXML(datasetsList, conceptsList);
+      }
+    }
+    
+\end{lstlisting}
+
+Este método inicializa las listas de conceptos y conjuntos de datos, y establece el nombre de la categoría que se utilizará como criterio de búsqueda. Luego, procesa el documento XML siguiendo la estructura definida, identificando y extrayendo los conceptos y conjuntos de datos pertinentes. Al finalizar el procesamiento, retorna un objeto ManejadorXML que contiene las listas de conceptos y conjuntos de datos extraídos.
+\tipbox{
+    El lector se preguntará qué sentido tiene utilizar la clase ManejadorXML, si el parser que estamos desarrollando ya busca lo que quiere. El sentido que tiene es cronológico, ya que primero el parser realiza el análisis del documento y devuelve los datos, si se llama a una función que devuelva los datos es posible que se llamen a estas funciones antes de que se llame a la función de análisis.
+}
+Como se puede observar en el método, hace referencia a dos no-terminales, los métodos concept() y dataset().
+El método concept() procesa cada concepto, extrayendo su código, label y posibles conceptos hijos. Utiliza recursividad para manejar estructuras jerárquicas de conceptos, asegurando que se capturen todas las relaciones parentales y de descendencia.
+
+\lstset{inputencoding=utf8/latin1}
+\begin{lstlisting}
+    
+Concept concept() :
+{
+  Token idValue;
+  String codeValue, labelValue;
+  Concept childConcept; 
+  List < Concept > concepts = new ArrayList < Concept > ();
+}
+{
+  < OPEN_CONCEPT > < ID > idValue = < STRING > < END_ELEMENT > 
+  < OPEN_CODE > codeValue = getCode() < CLOSE_CODE > 
+  < OPEN_LABEL > labelValue = getValue() < CLOSE_LABEL >
+  (
+    < OPEN_CONCEPTS >
+    (
+      childConcept = concept()
+      {
+        concepts.add(childConcept);
+      }
+    )+
+    < CLOSE_CONCEPTS >
+  )?
+  < CLOSE_CONCEPT >
+  {
+    if(codeValue.equals(nombreCategoria)) {
+      conceptLabel = idValue.image;
+      conceptsList.add(new Concept(idValue.image, codeValue, labelValue, concepts));
+	}
+	return new Concept(idValue.image, codeValue, labelValue, concepts);
+  }
+}
+\end{lstlisting}
+
+Concretamente, el método concept se encarga de identificar cada elemento <concept> en el documento XML. Extrae el valor del atributo id, el código del concepto y el label del concepto. Si el código del concepto coincide con el criterio de búsqueda (nombreCategoria), se agrega a la lista de conceptos pertinentes (conceptsList). Además, si el concepto contiene conceptos hijos, el método se llama recursivamente para procesar estos hijos y construir una estructura jerárquica completa.
+
+Por otra parte, si nos centramos en el método dataset(), este  procesa cada conjunto de datos, extrayendo su título, descripción y conceptos asociados. Es responsable de identificar los conjuntos de datos que contienen información relevante para los conceptos identificados previamente.
+
+\lstset{inputencoding=utf8/latin1}
+\begin{lstlisting}
+    
+    void dataset() :
+    {
+      Token idDataset, idConcept;
+      String title;
+      String description = "";
+      String keyword = "";
+      String theme = "";
+      String publisher = "";
+      List < IdConcept > idConcepts = new ArrayList < IdConcept > ();
+    } 
+    {
+      < OPEN_DATASET > < ID > idDataset = < STRING > < END_ELEMENT > 
+      < OPEN_TITLE > title = getValue() < CLOSE_TITLE > 
+      (< OPEN_DESCRIPTION > description = getValue() < CLOSE_DESCRIPTION >)?
+      (< OPEN_KEYWORD >  keyword = getValue() < CLOSE_KEYWORD >)?
+      (< OPEN_THEME > theme = getValue() < CLOSE_THEME >)?
+      (< OPEN_PUBLISHER > publisher = getValue() < CLOSE_PUBLISHER >)?
+      (
+        < OPEN_CONCEPTS >
+        (
+           < OPEN_CONCEPT > < ID > idConcept = < STRING > < END_ELEMENT >
+          {
+            idConcepts.add(new IdConcept(idConcept.image));
+          }
+        )+
+        < CLOSE_CONCEPTS >
+      )?
+      < CLOSE_DATASET >
+      {
+        for(IdConcept ic : idConcepts) {
+          if(ic.getId().equals(conceptLabel)) {
+            datasetsList.add(new Dataset(idDataset.image, title, description, keyword,theme,publisher,idConcepts));
+          }
+        }
+      }
+    }   
+\end{lstlisting}
+
+Como se puede observar, este no-terminal se encarga de procesar los elementos <dataset> en el documento XML. Extrae el id, el título y otros atributos opcionales como descripción, keyword, theme y publisher. También identifica los conceptos asociados a cada conjunto de datos y los agrega a una lista de identificadores de conceptos (idConcepts). Si alguno de estos identificadores coincide con el conceptLabel pertinente, el conjunto de datos se agrega a la lista de conjuntos de datos pertinentes (datasetsList).
+
+Además, el analizador cuenta con los métodos auxiliares getCode()  y getLabel(). Estos métodos auxiliares extraen el valor de los códigos y labels de los elementos XML. Son utilizados por los métodos concept y dataset para obtener los valores necesarios de los elementos XML.
+
+\lstset{inputencoding=utf8/latin1}
+\begin{lstlisting}
+
+    String getCode() :
+    {
+      Token t = new Token();
+    }
+    {
+      (t = < VALUE_CODE >)?
+      {
+        return t.image.substring(1, t.image.length() - 1);
+      }
+    }
+    
+    String getValue() :
+    {
+      Token t = new Token();
+    }
+    {
+      (t = < VALUE_LABEL >)?
+      {
+        return t.image;
+      }
+    }  
+\end{lstlisting}
+
+El método getCode extrae el valor del código de un elemento $<$code$>$ eliminandvo los caracteres $<$ y $>$, mientras que el método getValue extrae el valor de un elemento <label> utilizando la sintaxis CDATA.
+
+
+
+\phantom{text}
+
+\noindent \textbf{Funcionalidad del Analizador}
+
+\phantom{text}
+
+% Como se ha visto, XMLParser está diseñado para cumplir con los siguientes requisitos específicos de la práctica:
+
+% Extracción de conceptos relevantes: Identificar y extraer los conceptos cuyo código coincide con el criterio de búsqueda proporcionado, así como todos los conceptos descendientes de estos.
+% Identificación de conjuntos de datos pertinentes: Determinar los conjuntos de datos que contienen información relacionada con los conceptos relevantes y extraer esta información.
+% Generación de resultados en XML: Crear un nuevo documento XML que incluya los conceptos y conjuntos de datos extraídos, estructurados de manera que faciliten la búsqueda y el análisis posterior.
+
+% El uso de JavaCC para desarrollar este analizador permite una mayor precisión y eficiencia en el procesamiento de documentos XML complejos. JavaCC, al ser una herramienta de generación de compiladores, permite definir de manera precisa las reglas de análisis sintáctico y léxico necesarias para interpretar documentos XML de forma efectiva. Esto es particularmente útil para manejar la complejidad y la jerarquía de los datos XML, asegurando que todos los elementos y relaciones se procesen correctamente.
+
+% Además, la implementación en Java facilita la integración del analizador con otros sistemas y aplicaciones, permitiendo reutilizar el código y extender la funcionalidad según sea necesario. La capacidad de Java para manejar grandes volúmenes de datos y su amplia biblioteca estándar proporcionan una base robusta para el desarrollo de herramientas de análisis de datos.
+
+% En resumen, la implementación de esta práctica proporciona una herramienta poderosa para analizar y extraer información de documentos XML, cumpliendo con los objetivos establecidos y demostrando la efectividad del uso de JavaCC en el desarrollo de analizadores de documentos XML. Esta herramienta no solo cumple con los requisitos de la práctica, sino que también ofrece un ejemplo claro de cómo utilizar técnicas avanzadas de análisis sintáctico y léxico para resolver problemas complejos de procesamiento de datos.
+
+Como se ha visto, XMLParser se ha diseñado para cumplir con los requisitos específicos de la práctica, que incluyen la extracción de conceptos relevantes y la identificación de conjuntos de datos pertinentes.
+
+Una de las funciones principales del analizador es extraer los conceptos que coinciden con el criterio de búsqueda proporcionado, así como todos sus conceptos descendientes. Además, determina los conjuntos de datos que contienen información relacionada con estos conceptos y los extrae para su posterior procesamiento.
+
+Para facilitar la manipulación y el análisis de los datos extraídos, el analizador genera resultados en XML. Esto se realiza creando un nuevo documento XML estructurado de manera que facilite la búsqueda y el análisis posterior de los conceptos y conjuntos de datos.
+
+La implementación del analizador se realiza utilizando JavaCC, lo que permite una mayor precisión y eficiencia en el procesamiento de documentos XML complejos. JavaCC es una herramienta de generación de compiladores que permite definir con precisión las reglas de análisis sintáctico y léxico necesarias para interpretar los documentos XML de manera efectiva. Esta capacidad es crucial para manejar la complejidad y la jerarquía de los datos XML, asegurando un procesamiento correcto de todos los elementos y relaciones.
+
+Además, la implementación en Java facilita la integración del analizador con otros sistemas y aplicaciones. Esto permite reutilizar el código y extender la funcionalidad según sea necesario. La capacidad de Java para manejar grandes volúmenes de datos y su amplia biblioteca estándar proporcionan una base sólida para el desarrollo de herramientas de análisis de datos.
+
+En conclusión, la implementación de esta práctica proporciona una herramienta poderosa para analizar y extraer información de documentos XML. No solo cumple con los objetivos establecidos, sino que también demuestra la efectividad del uso de JavaCC en el desarrollo de analizadores de documentos XML. Esta herramienta ofrece un ejemplo claro de cómo utilizar técnicas avanzadas de análisis sintáctico y léxico para resolver problemas complejos de procesamiento de datos.
+
+% \subsubsection{Preguntas Frecuentes}
+
 
 \subsubsection{Notas}
 

@@ -43,6 +43,12 @@ Los servidores security-in generan mensajes automáticos de notificación de err
 Los usuarios del servicio de correo electrónico envían nuevos mensajes, y respuestas a los mensajes recibidos, por medio de los servidores msa (mail submission agent). Estos pasan los mensajes a los servidores security-out que actúan de filtros de spam y virus salientes. En el caso de que estos filtros detecten algún mensaje de spam o que contenga un virus, lo bloquean con objeto de salvaguardar la reputación del sistema. Finalmente, los mensajes son entregados a los smtp-out para que estos los envíen a la estafeta de destino.
 
 \newpage
+\section{Formato de logs. Sistema de correo electrónico (Simplificado)}
+\label{sec:logscorreo}
+\lstset{inputencoding=utf8/latin1}
+\lstinputlisting[language=java]{code/msa1.2020022016.log}
+
+\newpage
 \section{Parser.jj}
 \label{sec:P2Parser}
 \lstset{inputencoding=utf8/latin1}
