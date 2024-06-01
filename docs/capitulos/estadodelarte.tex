@@ -107,12 +107,49 @@ JavaCC se diferencia de otras herramientas similares al generar analizadores sin
 	\item Informes de errores de alta calidad y mensajes de diagnóstico completos.
 \end{itemize}
 
+\subsection{Tokens en JavaCC}
+
+**Vamos a ver ahora las tres reglas que hay que seguir, muy importantes:
+
+There are three rules for picking which regular expression to use to identify the next token:
+
+The regular expression must describe a prefix of the remaining input stream.
+If more than one regular expression describes a prefix, then a regular expression that describes the longest prefix of the input stream is used (this is called the maximal munch rule).
+If more than one regular expression describes the longest possible prefix, then the regular expression that comes first in the .jj file is used.
+
+How do I match any character?
+
+Use ~[].
+
+Se puede definir al final de la gramática un toque categorizado como inesperado, para que nos ayude en el proceso de definir la gramática y los tokens que va recogiendo el analizador. Bastaría con añadir esta línea al final del documento.
+
+\lstset{inputencoding=utf8/latin1}
+\begin{lstlisting}
+	<*> TOKEN : { <UNEXPECTED: ~[] > }     
+\end{lstlisting}
+
+De tal forma que si el analizador recoge una secuencia de caracteres que no hayamos definido como token, este será recogido por el token UNEXPECTED y el analizador probablemente enviará una excepcion sintáctica.
+
+Este modo de depuración nos puede servir en función de la gramática y del archivo que queramos analizar. Habrá casos que nos interese mantenerlo en la gramática ---lo veremos mas adelante en el desarrollo de la práctica 2(insertar enlace)---, mientras que en otros casos aplicaremos este concepto para omitir cualquier secuencia de caracteres que no hayamos definido como token ---lo estudiaremos en el desarrollo de la práctica 3(insertar enlace)---.
+
+
 \subsection{Estados Léxicos}
 \noindent Los estados léxicos permiten efectuar un conjunto diferente de producciones de expresiones regulares en un caso concreto. Dicho de otra manera, los estados léxicos sirven para que un token este definido de una forma, y en cierto momento del análisis, pueda estar definido de otra forma.
 
 Supongamos que desea escribir un procesador JavaDoc para extraer los comentarios JavaDoc de un documento. La mayor parte de Java está tokenizada de acuerdo con las reglas ordinarias regulares de Java. Pero dentro de los comentarios JavaDoc, se aplica un conjunto diferente de reglas en las que las palabras clave deben ser reconocidas y donde las nuevas líneas son significativas ---como las palabras y símbolos \lstinline|/***/| , \lstinline|@param|, entre otros---.
 
 Para resolver este problema, podríamos usar dos estados léxicos: uno para la tokenización regular de Java y otro para la tokenización dentro de los comentarios de JavaDoc.
+
+** En la definicion de los estados léxicos, si no se pone nada se define para el estado lexico por defecto DEFAULT, que es el estado lexico en el que siempre comienza todo analizador desarrollado en JavaCC. 
+
+**Añadir ejemplos de definion de estados lexicos y como pasar entre estados.
+
+** Si se quiere definir un token que pueda ser reconocido en un estado lexico, se hace.... <LEX1>
+** De igual manera, si queremos que un token esté definido en varios estados lexicos, se hace ... <LEX1, LEX2,...>
+*** Puede haber casos que nos interese definir tokens para cualquier estado léxico, como por ejemplo para omitir los espacios en blanco o para realizar un control de tokens como veiamos en la seccion anterior, en este caso se hace ... <*>
+
+Si se define algun token en la parte sintactica , dentro de algun no -terminal(PONER EJEMPLO)..
+Este será lo mismo que definirlo en el estado DEFAUTL (PONER EJEMPLO), por lo que tengalo en cuenta a la hora de desarrollar una gramatica propia. Desde aqui recomendamos encaricadeente definir la parte lexica del analizador por un lado, y la parte sintáctica por otro, ya que facilita tanto al desarrollador ---a la hora de depurar y realizar la gramatica--- como al lector ---a la hora de comprender la gramatica---.
 
 \subsection{Ejemplo de gramática en JavaCC}
 \noindent A continuación, se presenta un ejemplo de cómo JavaCC puede utilizarse para generar un analizador sintáctico en Java. En este ejemplo se define un lenguaje para analizar expresiones matemáticas simples. Partiendo de este ejemplo, seremos capaz de ampliar las funcionalidades del programa, y realizar una calculadora. El resultado final se encuentra en el archivo \hyperref[sec:mathexp]{Mathexp.jj}, que se encuentra en el apéndice \hyperref[sec:codigofuente]{\textit{Código fuente}}.

@@ -51,10 +51,14 @@ Las tecnologías clave son JavaCC, que nos va a permitir crear analizadores para
 \section{Entorno}
 \noindent Los desarrollos y las pruebas se han realizado en un entorno de desarrollo integrado (IDE) de Java. En concreto, se ha empleado Eclipse IDE ya que, además de ser el IDE principal con el que se realizan las prácticas de PIAT ---y en general, cualquier práctica relacionada con la programación dentro de la escuela---, existe un plugin de JavaCC que realiza la compilación de los archivos y facilita enormemente el desarrollo. Dicho esto, el lector puede optar por elegir otros editores como Visual Studio Code o Jetbrains, incluso editores de texto como Notepad++, Vim o  nano. Este aspecto queda a gusto del desarrollador. Para la depuración de los analizadores se ha utilizado el debugger del IDE.
 
-Para saber mas acerca de la instalación y configuración de Elipse IDE con JavaCC, puede consultar el anexo \hyperref[sec:instalaciondejavacc]{\textit{Instalación de JavaCC}}.
+Además, para poder realizar los desarrollos necesarios se necesita descargar e instalar la herramienta JavaCC en el equipo. Para saber mas acerca de la instalación y configuración de Elipse IDE con JavaCC, puede consultar el anexo \hyperref[sec:instalaciondejavacc]{\textit{Instalación de JavaCC}}.
+
+En cuanto al equipo de pruebas, se ha elegido un procesador Intel de 8ª generación, el cual cuenta con 6 núcleos y 12 hilos ---este dato es importante a la hora de realizar la validación de resultados en las diferentes prácticas-- con una memoria RAM de 16GB. Estos datos se proporcionan de tal forma que el lector tenga conocimiento del rendimiento de los distintos analizadores en función de  las especificaciones del equipo utilizadas.
 
 \section{Objetivos de la implementación}
 \noindent Entre los objetivos principales de la implementación se encuentran el implementar los analizadores léxico y sintáctico para las gramáticas de las prácticas de PIAT, el evaluar la viabilidad de utilizar JavaCC para abordar las prácticas de PIAT, y generar documentación que sirva como recurso para estudiantes y profesores interesados en utilizar JavaCC en proyectos relacionados con el procesamiento de información.
+
+**Una vez claros el entorno utilizado, las especificaciones y configuraciones implementadas en el proyecto, y vistos los objetivos a conseguir en las prácticas, vamos a estudiar el primer caso práctico en el que se puede aplicar JavaCC.
 
 \section{Análisis de ficheros de \textit{log}. Práctica 2}
 
@@ -174,11 +178,11 @@ En conclusión, la implementación de esta práctica ha demostrado que JavaCC no
 
 \subsection{Código Fuente}
 
-\noindent El código fuente de los archivos elaborados en esta practica se encuentra a continuación para su estudio y aprendizaje. Cabe destacar que se proporcionan dicho código para que el lector sea capaz de probar las funcionalidades con el objetivo de aprender mas acerca de las aplicaciones de JavaCC.
+\noindent El código fuente de los archivos elaborados en esta practica se encuentra a continuación para su estudio y aprendizaje. Cabe destacar que se proporcionan dicho código para que el lector sea capaz de probar las funcionalidades con el objetivo de aprender más acerca de las aplicaciones de JavaCC.
 
-No se promueve el plagio y la realización de las prácticas, este simplemente es una de las muchas formas en las que se podría realizar la práctica.
+No se promueve el plagio y la no-realización de las prácticas por parte del alumnado, esta es simplemente una de las muchas formas en las que se podría realizar la práctica utilizando JavaCC.
 
-\hyperref[sec:P2Parser]{Parser.jj}
+\hyperref[sec:P2Parser]{\textbf{Parser.jj}}
 
 \section{Análisis de archivos XML. Práctica 3}
 
@@ -334,7 +338,6 @@ En las opciones del analizador se definen configuraciones importantes como la co
 options
 {
   STATIC = false;
-  JAVA_TEMPLATE_TYPE = "modern";
 }
 \end{lstlisting}
 
@@ -387,26 +390,7 @@ Acto seguido, se definen los tokens que identifican las diferentes etiquetas y e
     | < HEADER : "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" >
     | < OPEN_CONCEPT : "<concept" >
     | < OPEN_DATASET : "<dataset" >
-    | < CLOSE_CONCEPTS : "</concepts>" >
-    | < CLOSE_DATASETS : "</datasets>" >
-    | < CLOSE_CATALOG : "</catalog>" >
-    | < CLOSE_CONCEPT : "</concept>" >
-    | < CLOSE_DATASET : "</dataset>" >
-    | < OPEN_CODE : "<code" >
-    | < CLOSE_CODE : "/code>" >
-    | < OPEN_LABEL : "<label>" >
-    | < OPEN_TITLE : "<title>" >
-    | < OPEN_DESCRIPTION : "<description>" >
-    | < OPEN_KEYWORD : "<keyword>" >
-    | < OPEN_THEME : "<theme>" >
-    | < OPEN_PUBLISHER : "<publisher>" >
-    | < CLOSE_LABEL : "</label>" >
-    | < CLOSE_TITLE : "</title>" >
-    | < CLOSE_DESCRIPTION : "</description>" >
-    | < CLOSE_KEYWORD : "</keyword>" >
-    | < CLOSE_THEME : "</theme>" >
-    | < CLOSE_PUBLISHER : "</publisher>" >
-    | < ID : "id=" >
+    ...
     | < VALUE_CODE : ">" (~[ "\"", "\n", "\r", "<", ">", "=" ])+ "<" >
     | < VALUE_LABEL : "<![CDATA[" (~[ "\"", "\n", "\r", "<", ">", "=" ])+ "]]>" >
     | < STRING : "\"" (~[ "\"", "\n", "\r" ])+ "\"" >
@@ -421,7 +405,11 @@ Acto seguido, se definen los tokens que identifican las diferentes etiquetas y e
     
 \end{lstlisting}
 
-Las reglas de omisión aseguran que los espacios en blanco, tabulaciones y saltos de línea no interfieran con el análisis, permitiendo que el analizador se concentre únicamente en los elementos significativos del XML.
+Las reglas de omisión aseguran que los espacios en blanco, tabulaciones y saltos de línea no interfieran con el análisis, permitiendo que el analizador se concentre únicamente en los elementos significativos del XML. Se observa también que en caso de que el analizador detecte cualquier cosa que no sea un token que hayamos definido
+
+SKIP
+
+Se omite dicho elemento. De esta forma, cualquier token que no hayamos definido se omitirá. Como se estudio en **Estado del arte. javacc.tokens. Se define este token el último ya que este token acepta cualquier carácter, por lo que si no lo ponemos como el último token, se aplicaría la regla 2 y se omitiría todo carácter en el documento, lo que no nos permitiría recoger los token que hemos definido.
 
 \tipbox{En este caso se observa que no se ha empleado ningún estado léxico, esto es debido a que se ha preferido realizar una comprobación estructural del documento ---asi como haría un xsd, aunque de forma mucho mas limitada---. En la practica 5 veremos un analizador XML en el que se sí se hace uso de estados léxicos, y veremos como esta funcionalidad acelera en gran medida el procesamiento.
 }
@@ -603,15 +591,15 @@ En conclusión, la implementación de esta práctica proporciona una herramienta
 % \subsubsection{Preguntas Frecuentes}
 
 
-\subsubsection{Notas}
+% \subsubsection{Notas}
 
-\tipbox{
-hacer clase concept con atributos code y label, hacer lista concepts de concept. hacer lo mismo con dataset. recoger los datos al igual que hacíamos en NXCalculator
-Concepts, son objetos distintos, se tienen que reconocer de manera diferente. -> Nuevo objeto conceptInDataset
-No hace falta un estado léxico, simplemente crear un objeto nuevo ya que son cosas diferentes, -> IncludedConcepts
-String id -> idConcepts
-XMLParser devuelve un objeto que tenga implementado la interfaz ParserCatalogo
-}
+% \tipbox{
+% hacer clase concept con atributos code y label, hacer lista concepts de concept. hacer lo mismo con dataset. recoger los datos al igual que hacíamos en NXCalculator
+% Concepts, son objetos distintos, se tienen que reconocer de manera diferente. -> Nuevo objeto conceptInDataset
+% No hace falta un estado léxico, simplemente crear un objeto nuevo ya que son cosas diferentes, -> IncludedConcepts
+% String id -> idConcepts
+% XMLParser devuelve un objeto que tenga implementado la interfaz ParserCatalogo
+% }
 
 % \noindent Como se ha comentado en la sección anterior, la principal herramienta desarrollada en esta práctica es el analizador XMLParser. Este analizador es capaz de llevar a cabo varias tareas esenciales:
 
@@ -623,6 +611,11 @@ XMLParser devuelve un objeto que tenga implementado la interfaz ParserCatalogo
 % El analizador XMLParser representa una contribución significativa en términos de procesamiento y manipulación de documentos XML.
 
 \subsection{Validación de resultados}
+
+En cuanto a tiempo de ejecución no hay muchas diferencia, el principal aspecto a destacar en esta práctica es la simplicidad con la que se genera el analizador y el potencial de recursividad que este tiene. 
+Suponga que se encuentra desarrollando esta práctica utilizando la herramienta SAX. Si la prácticas se modificase ---ligeramente--- y el catalogo.xml tuviese una recursividad mas profunda, esto complicaría mucho el procesamiento Java para algo que a priori no cambia mucho el formato del fichero que se quiere analizar. En otras palabras, un pequeño cambio en el documento a analizar implicaría un gran cambio del programa principal o clase encargada de analizar dicho fichero utilizando SAX.
+Sin embargo, empleando JavaCC este problema no existiría. Esto es debido a la recursividad inherente que proporciona la plataforma, permitiendo que dentro de un no-terminal se encuentre especificado ese mismo no-terminal ---lo hemos visto en este capítulo con el método concept(), y lo vimos también en el ejemplo de Calculadora explicado en **estado del arte** con los métodos Expression() y Factor()---. Esto significa que el grado de complejidad del archivo a analizar es inversamente proporcional al grado de complejidad de la gramática a desarollar en JavaCC.
+Además, JavaCC permite definir de manera sintáctica el documento objetivo, funcionalidad que SAX no implementa.
 
 \subsection{Conclusiones}
 
@@ -770,6 +763,12 @@ El proceso de transformación a JSON destaca la flexibilidad de las tecnologías
 Es por ello que en esta sección se plantea unos ejercicios a modo de evolutivo, que amplían los requerimientos y complejidad del análisis. Además se observará que, gracias al incremento en la complejidad de los ejercicios, aumenta en proporción la sencillez con la que se resuelven dichos problemas empleando JavaCC.
 
 De esta forma, se podrá observar lo ventajoso de crear un analizador a la medida de usuario, y como JavaCC es una herramienta versátil y muy potente.
+
+\tipbox{
+    plantear un problema mas interesante y hacer un archivo mas complejo
+-las practicas son aburridas, proponer practicas mas interesantes, potentes, versátiles…para demostrar lo fácil que es con javacc, para que se vea la ventaja
+
+}
 
 \subsection{Evolutivo 1. XML}
 
