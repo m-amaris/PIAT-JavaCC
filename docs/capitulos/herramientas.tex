@@ -1,16 +1,16 @@
 \section{Manual de instalación y configuración}
 
-En este apartado vamos a desarrollar los manuales necesarios para la instalación de la herramienta de JavaCC, el IDE de desarrollo que queramos utilizar, y el plugin de JavaCC para el IDE correspondiente.
+\noindent En este apartado vamos a desarrollar los manuales necesarios para la instalación de la herramienta de JavaCC, el IDE de desarrollo que queramos utilizar, y el plugin de JavaCC para el IDE correspondiente.
 
 \subsection{Instalación de JavaCC}
 \label{sec:instalaciondejavacc}
-Se puede utilizar JavaCC directamente desde la línea de comandos, o puede optar por utilizar un IDE, que permite desarrollar proyectos con rapidez \cite{ide} e integra varias herramientas para desarrollar proyectos de forma más eficiente y productiva.
+\noindent Se puede utilizar JavaCC directamente desde la línea de comandos, o puede optar por utilizar un IDE, que permite desarrollar proyectos con rapidez \cite{ide} e integra varias herramientas para desarrollar proyectos de forma más eficiente y productiva.
 
 \subsubsection{Descarga e Instalación de JavaCC desde línea de comandos}
 \label{sec:descargaeinstalaciondejavaccdesdelineadecomandos}
 \textbf{Descarga}
 
-Descargue la última versión estable (al menos el código fuente y los binarios). Actualmente la versión estable más reciente es la 7.0.13, por lo que la descarga del binario se accedería a través de:
+\noindent Descargue la última versión estable (al menos el código fuente y los binarios). Actualmente la versión estable más reciente es la 7.0.13, por lo que la descarga del binario se accedería a través de:
 
 \href{https://repo1.maven.org/maven2/net/java/dev/javacc/javacc/7.0.13/javacc-7.0.13.jar}{https://repo1.maven.org/maven2/net/java/dev/javacc/javacc/7.0.13/javacc.jar}
 
@@ -22,7 +22,7 @@ La descarga del código fuente se realiza a través del repositorio oficial de J
 
 \textbf{Instalación}
 
-Una vez que haya descargado los archivos, navegue hasta el directorio de descarga y descomprima el archivo fuente, creando así el llamado directorio de instalación de JavaCC:
+\noindent Una vez que haya descargado los archivos, navegue hasta el directorio de descarga y descomprima el archivo fuente, creando así el llamado directorio de instalación de JavaCC:
 
 \begin{center}
     \lstinline|unzip javacc-7.0.13.zip |
@@ -51,7 +51,7 @@ En caso de tener un sistema operativo macOS, la instalación de javacc se facili
 
 \subsubsection{Descarga e Instalación de JavaCC desde un IDE}
 
-Para poder usar JavaCC en un IDE se necesita como mínimo que el IDE tenga soporte para Java, y soporte para Maven con Java. IDEs como IntelliJ o Eclipse son compatibles con JavaCC mediante la instalación de un complemento para su desarrollo.
+\noindent Para poder usar JavaCC en un IDE se necesita como mínimo que el IDE tenga soporte para Java, y soporte para Maven con Java. IDEs como IntelliJ o Eclipse son compatibles con JavaCC mediante la instalación de un complemento para su desarrollo.
 
 Descarga de IntelliJ: \href{https://www.jetbrains.com/idea/}{https://www.jetbrains.com/idea/}
 
@@ -71,7 +71,7 @@ En el caso de utilizar un IDE, deberá descargarse el binario, al igual que si d
 
 \subsubsection{Configuración de JavaCC en Eclipse}
 
-Una vez instalado JavaCC, para poder desarrollar proyectos utilizando la JavaCC en Eclipse hay que seguir los siguientes pasos:
+\noindent Una vez instalado JavaCC, para poder desarrollar proyectos utilizando la JavaCC en Eclipse hay que seguir los siguientes pasos:
 \begin{enumerate}
     \item Crear un proyecto nuevo o elegir uno existente.
     \item Abrir las propiedades del proyecto (Alt+Enter) (cmd+Enter en macOS)
@@ -91,7 +91,8 @@ Si la configuración se ha realizado correctamente, a la hora de guardar los arc
 \emergencystretch=1em
 \section{Símbolos de Expresiones regulares en JavaCC}
 \label{sec:simbolosdeexpresionesregulares}
-\lstinline[basicstyle=\large\ttfamily]|+| : El símbolo \lstinline[basicstyle=\large\ttfamily]|+| se usa para indicar que \textbf{un elemento puede aparecer una o más veces}. Por ejemplo, si tienes \lstinline[basicstyle=\large\ttfamily]|A+|, significa que se espera que haya al menos una instancia de \lstinline[basicstyle=\large\ttfamily]|A|, pero puede haber más.
+
+\noindent \lstinline[basicstyle=\large\ttfamily]|+| : El símbolo \lstinline[basicstyle=\large\ttfamily]|+| se usa para indicar que \textbf{un elemento puede aparecer una o más veces}. Por ejemplo, si tienes \lstinline[basicstyle=\large\ttfamily]|A+|, significa que se espera que haya al menos una instancia de \lstinline[basicstyle=\large\ttfamily]|A|, pero puede haber más.
 
 \lstinline[basicstyle=\large\ttfamily]|*| : El símbolo \lstinline[basicstyle=\large\ttfamily]|*| se usa para indicar que \textbf{un elemento puede aparecer cero o más veces}. Por ejemplo, si tienes \lstinline[basicstyle=\large\ttfamily]|B*|, significa que \lstinline[basicstyle=\large\ttfamily]|B| es opcional y puede aparecer cero o más veces.
 

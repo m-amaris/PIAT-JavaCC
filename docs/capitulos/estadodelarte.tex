@@ -79,8 +79,7 @@ En JavaCC, la recursividad se utiliza para definir producciones gramaticales que
 \lstset{inputencoding=utf8/latin1}
 \lstinputlisting{code/LL.jj}
 
-\subsubsection{¿Por qué no se puede utilizar la recursividad a izquierdas en JavaCC?}
-\noindent La clase de analizador sintáctico producida por JavaCC funciona por descenso recursivo. La recursión a la izquierda está prohibida para evitar que las subrutinas generadas se llamen a sí mismas recursivamente de forma infinita.
+
 
 Si considerásemos una producción recursiva a la izquierda, en caso de que la  condición fuera verdadera alguna vez, tendríamos una recursión infinita.
 JavaCC producirá un mensaje de error si tiene producciones recursivas a la izquierda.
@@ -128,7 +127,7 @@ Se puede definir al final de la gramática un toque categorizado como inesperado
 	<*> TOKEN : { <UNEXPECTED: ~[] > }     
 \end{lstlisting}
 
-De tal forma que si el analizador recoge una secuencia de caracteres que no hayamos definido como token, este será recogido por el token UNEXPECTED y el analizador probablemente enviará una excepcion sintáctica.
+De tal forma que si el analizador recoge una secuencia de caracteres que no hayamos definido como token, este será recogido por el token UNEXPECTED y el analizador probablemente enviará una excepción sintáctica.
 
 Este modo de depuración nos puede servir en función de la gramática y del archivo que queramos analizar. Habrá casos que nos interese mantenerlo en la gramática ---lo veremos mas adelante en el desarrollo de la práctica 2(insertar enlace)---, mientras que en otros casos aplicaremos este concepto para omitir cualquier secuencia de caracteres que no hayamos definido como token ---lo estudiaremos en el desarrollo de la práctica 3(insertar enlace)---.
 
@@ -140,16 +139,21 @@ Supongamos que desea escribir un procesador JavaDoc para extraer los comentarios
 
 Para resolver este problema, podríamos usar dos estados léxicos: uno para la tokenización regular de Java y otro para la tokenización dentro de los comentarios de JavaDoc.
 
-** En la definicion de los estados léxicos, si no se pone nada se define para el estado lexico por defecto DEFAULT, que es el estado lexico en el que siempre comienza todo analizador desarrollado en JavaCC. 
+** En la definición de los estados léxicos, si no se pone nada se define para el estado léxico por defecto DEFAULT, que es el estado léxico en el que siempre comienza todo analizador desarrollado en JavaCC. 
 
-**Añadir ejemplos de definion de estados lexicos y como pasar entre estados.
+**Añadir ejemplos de definición de estados léxicos y como pasar entre estados.
 
-** Si se quiere definir un token que pueda ser reconocido en un estado lexico, se hace.... <LEX1>
-** De igual manera, si queremos que un token esté definido en varios estados lexicos, se hace ... <LEX1, LEX2,...>
-*** Puede haber casos que nos interese definir tokens para cualquier estado léxico, como por ejemplo para omitir los espacios en blanco o para realizar un control de tokens como veiamos en la seccion anterior, en este caso se hace ... <*>
+** Si se quiere definir un token que pueda ser reconocido en un estado léxico, se hace.... <LEX1>
+** De igual manera, si queremos que un token esté definido en varios estados léxicos, se hace ... <LEX1, LEX2,...>
+*** Puede haber casos que nos interese definir tokens para cualquier estado léxico, como por ejemplo para omitir los espacios en blanco o para realizar un control de tokens como veíamos en la sección anterior, en este caso se hace ... <*>
 
-Si se define algun token en la parte sintactica , dentro de algun no -terminal(PONER EJEMPLO)..
-Este será lo mismo que definirlo en el estado DEFAUTL (PONER EJEMPLO), por lo que tengalo en cuenta a la hora de desarrollar una gramatica propia. Desde aqui recomendamos encaricadeente definir la parte lexica del analizador por un lado, y la parte sintáctica por otro, ya que facilita tanto al desarrollador ---a la hora de depurar y realizar la gramatica--- como al lector ---a la hora de comprender la gramatica---.
+Si se define algún token en la parte sintactica , dentro de algun no -terminal(PONER EJEMPLO)..
+Este será lo mismo que definirlo en el estado DEFAUTL (PONER EJEMPLO), por lo que téngalo en cuenta a la hora de desarrollar una gramática propia. Desde aquí recomendamos encarecidamente definir la parte léxica del analizador por un lado, y la parte sintáctica por otro, ya que facilita tanto al desarrollador ---a la hora de depurar y realizar la gramática--- como al lector ---a la hora de comprender la gramática---.
+
+\subsection{Recursividad en JavaCC}
+
+% \subsubsection{¿Por qué no se puede utilizar la recursividad a izquierdas en JavaCC?}
+\noindent La clase de analizador sintáctico producida por JavaCC funciona por descenso recursivo. La recursión a la izquierda está prohibida para evitar que las subrutinas generadas se llamen a sí mismas recursivamente de forma infinita.
 
 \subsection{Ejemplo de gramática en JavaCC}
 \noindent A continuación, se presenta un ejemplo de cómo JavaCC puede utilizarse para generar un analizador sintáctico en Java. En este ejemplo se define un lenguaje para analizar expresiones matemáticas simples. Partiendo de este ejemplo, seremos capaz de ampliar las funcionalidades del programa, y realizar una calculadora. El resultado final se encuentra en el archivo \hyperref[sec:mathexp]{Mathexp.jj}, que se encuentra en el apéndice \hyperref[sec:codigofuente]{\textit{Código fuente}}.
