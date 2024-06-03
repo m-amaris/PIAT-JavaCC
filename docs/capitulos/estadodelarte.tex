@@ -84,8 +84,6 @@ En JavaCC, la recursividad se utiliza para definir producciones gramaticales que
 Si considerásemos una producción recursiva a la izquierda, en caso de que la  condición fuera verdadera alguna vez, tendríamos una recursión infinita.
 JavaCC producirá un mensaje de error si tiene producciones recursivas a la izquierda.
 
-\subsection{Analizadores que se usan en la actualidad (TITULO PROVISIONAL)}
-
 \section{JavaCC}
 \noindent En relación con lo anterior, aclaremos a qué hace referencia el concepto de JavaCC y los analizadores semánticos y sintácticos, y como se interrelacionan:
 Java Compiler Compiler, comúnmente conocido como JavaCC, es una poderosa herramienta ampliamente utilizada para generar analizadores sintácticos en aplicaciones Java. Su función principal es transformar una especificación gramatical en un programa Java capaz de reconocer y analizar la sintaxis según la gramática proporcionada.
@@ -106,19 +104,31 @@ JavaCC se diferencia de otras herramientas similares al generar analizadores sin
 	\item Informes de errores de alta calidad y mensajes de diagnóstico completos.
 \end{itemize}
 
+La estructura si sigue todo programa en JavaCC es el siguiente:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{imagenes/estructuraprogramajavacc.png}
+	\caption{\label{fig:estructuraprogramajavacc}Estructura de un programa en JavaCC \cite{estructuraprogramajavacc}}
+\end{figure}
+
+\textbf{...DIAGRAMA CON ESTRUCTURA DE UN ANALIZADOR JAVACC...EXPLICAR QUE SOLO GENERAS UNA GRAMATICA, EXPLICAR LAS CLASES...AÑADIRLO EN UNA SUBSECCION...}
+
 \subsection{Tokens en JavaCC}
 
 **Vamos a ver ahora las tres reglas que hay que seguir, muy importantes:
 
-There are three rules for picking which regular expression to use to identify the next token:
+\textbf{...explicar...agregar ejemplos..}
 
-The regular expression must describe a prefix of the remaining input stream.
-If more than one regular expression describes a prefix, then a regular expression that describes the longest prefix of the input stream is used (this is called the maximal munch rule).
-If more than one regular expression describes the longest possible prefix, then the regular expression that comes first in the .jj file is used.
+% There are three rules for picking which regular expression to use to identify the next token:
 
-How do I match any character?
+% The regular expression must describe a prefix of the remaining input stream.
+% If more than one regular expression describes a prefix, then a regular expression that describes the longest prefix of the input stream is used (this is called the maximal munch rule).
+% If more than one regular expression describes the longest possible prefix, then the regular expression that comes first in the .jj file is used.
 
-Use ~[].
+% How do I match any character?
+
+% Use ~[].
 
 Se puede definir al final de la gramática un toque categorizado como inesperado, para que nos ayude en el proceso de definir la gramática y los tokens que va recogiendo el analizador. Bastaría con añadir esta línea al final del documento.
 
@@ -141,11 +151,12 @@ Para resolver este problema, podríamos usar dos estados léxicos: uno para la t
 
 ** En la definición de los estados léxicos, si no se pone nada se define para el estado léxico por defecto DEFAULT, que es el estado léxico en el que siempre comienza todo analizador desarrollado en JavaCC. 
 
-**Añadir ejemplos de definición de estados léxicos y como pasar entre estados.
+\textbf{**Añadir ejemplos de definición de estados léxicos y como pasar entre estados.}
 
-** Si se quiere definir un token que pueda ser reconocido en un estado léxico, se hace.... <LEX1>
-** De igual manera, si queremos que un token esté definido en varios estados léxicos, se hace ... <LEX1, LEX2,...>
-*** Puede haber casos que nos interese definir tokens para cualquier estado léxico, como por ejemplo para omitir los espacios en blanco o para realizar un control de tokens como veíamos en la sección anterior, en este caso se hace ... <*>
+\textbf{** Si se quiere definir un token que pueda ser reconocido en un estado léxico, se hace.... <LEX1>}
+\textbf{** De igual manera, si queremos que un token esté definido en varios estados léxicos, se hace ... <LEX1, LEX2,...>}
+
+\textbf{Puede haber casos que nos interese definir tokens para cualquier estado léxico, como por ejemplo para omitir los espacios en blanco o para realizar un control de tokens como veíamos en la sección anterior, en este caso se hace  }
 
 Si se define algún token en la parte sintactica , dentro de algun no -terminal(PONER EJEMPLO)..
 Este será lo mismo que definirlo en el estado DEFAUTL (PONER EJEMPLO), por lo que téngalo en cuenta a la hora de desarrollar una gramática propia. Desde aquí recomendamos encarecidamente definir la parte léxica del analizador por un lado, y la parte sintáctica por otro, ya que facilita tanto al desarrollador ---a la hora de depurar y realizar la gramática--- como al lector ---a la hora de comprender la gramática---.
@@ -154,6 +165,8 @@ Este será lo mismo que definirlo en el estado DEFAUTL (PONER EJEMPLO), por lo q
 
 % \subsubsection{¿Por qué no se puede utilizar la recursividad a izquierdas en JavaCC?}
 \noindent La clase de analizador sintáctico producida por JavaCC funciona por descenso recursivo. La recursión a la izquierda está prohibida para evitar que las subrutinas generadas se llamen a sí mismas recursivamente de forma infinita.
+
+\textbf{...explicar con un poco más de detalle por qué la recursión a la izquierda está prohibida y cómo JavaCC previene este problema....}
 
 \subsection{Ejemplo de gramática en JavaCC}
 \noindent A continuación, se presenta un ejemplo de cómo JavaCC puede utilizarse para generar un analizador sintáctico en Java. En este ejemplo se define un lenguaje para analizar expresiones matemáticas simples. Partiendo de este ejemplo, seremos capaz de ampliar las funcionalidades del programa, y realizar una calculadora. El resultado final se encuentra en el archivo \hyperref[sec:mathexp]{Mathexp.jj}, que se encuentra en el apéndice \hyperref[sec:codigofuente]{\textit{Código fuente}}.
@@ -327,6 +340,10 @@ JavaCC también se utiliza en el parseo de archivos desarrollados en Java, como 
 
 \noindent ANTLR (\textit{ANother Tool for Language Recognition}) es una herramienta para la construcción de analizadores léxicos y sintácticos. En términos de funcionalidades, es una herramienta más completa que abarca tanto el análisis léxico como el sintáctico. Sin embargo, JavaCC es más rápido y más fácil de aprender para un desarrollador Java, ya que la sintaxis es muy parecida, ademas de que ofrece una buena integración con IDEs\cite{antlr}. Además de generar analizadores sintácticos, también crea analizadores léxicos (escáneres) y árboles de sintaxis abstracta (AST).
 ANTLR está escrito en Java y se puede utilizar junto con JavaCC para analizar la sintaxis de las gramáticas.
+
+\subsection{Alternativas a JavaCC}
+
+\textbf{...integrar con la seccion anterior, hablar de JFLEX y ANTLR}
 
 \section{Procesamiento de la Información en Aplicaciones Telemáticas (PIAT)}
 \subsection{Introducción}

@@ -132,6 +132,27 @@ Los tokens y estados léxicos se definen para identificar y manejar las distinta
 
 Cabe destacar que se utilizan estados léxicos como \lstinline|SERVER|, \lstinline|LEX_MSA|, \lstinline|LEX_IN|, \lstinline|LEX_OUT|... que permiten analizar unicamente ciertos tokens cuando el analizador se encuentra en dicho estado, lo que acelera de forma desmesurada la rapidez del analizador ---lo veremos en la sección de validación de resultados---.
 
+% \textbf{...diagrama o tabla que resuma los estados léxicos y su función...
+% }
+%  Esto facilitaría la comprensión de la estructura del analizador
+
+% El analizador léxico utiliza diferentes estados para reconocer los tokens de entrada de manera eficiente y precisa.
+El estado inicial es DEFAULT, donde se reconocen tokens comunes como espacios en blanco, saltos de línea y fechas.
+
+Al encontrar un token que indica el inicio de un tipo específico de servidor, el analizador cambia a un estado léxico específico para ese servidor. Por ejemplo, al encontrar el token "msa", el analizador cambia al estado LEX\_MSA. Dentro de cada estado de servidor (LEX\_MSA, LEX\_IN, LEX\_OUT, LEX\_SEC), se reconocen tokens específicos relacionados con ese tipo de servidor, como ``message from:'' en LEX\_MSA o ``bounced from:'' en LEX\_IN.
+
+El estado VALIDA se utiliza para reconocer componentes de identificadores de servidor válidos, como letras, números y ciertos caracteres especiales. Este estado se utiliza junto con los estados de servidor para asegurar que los identificadores de servidor se analizan correctamente.
+
+Además de los estados de servidor, el analizador también utiliza estados léxicos para manejar casos especiales dentro de ciertos servidores. Por ejemplo, LEX\_IN tiene tokens específicos para manejar mensajes rebotados, mientras que LEX\_SEC tiene tokens para identificar mensajes infectados o spam.
+
+Finalmente, el estado UNEXPECTED captura cualquier carácter que no coincida con ningún otro token definido, lo que permite al analizador manejar errores de sintaxis de manera más robusta.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{imagenes/tablaestadoslexicosp2.png}
+	\caption{\label{fig:tablaestadoslexicosp2}Práctica 2. Estados léxicos del analizador}
+\end{figure}
+
 Por último, las producciones definen las reglas sintácticas que el analizador seguirá. A continuación se muestra una producción principal y una producción para manejar trazas del tipo MSA. Estas producciones se corresponden con la estructura mencionada anteriormente (Figura \ref{fig:arboltraza}):
 
 \lstset{inputencoding=utf8/latin1}
@@ -287,7 +308,7 @@ Los documentos XML que se procesan a través de esta herramienta presentan ciert
 
 El primer paso para resolver la práctica es definir la estructura del analizador que seguirá el procesamiento de los documentos XML. Esta estructura determina cómo se identifican y extraen los datos de los documentos, así como las acciones correspondientes a realizar en cada caso. La siguiente figura ilustra esta estructura:
 
-Figura 1: Estructura del analizador XML. Procesamiento de conceptos y datasets.
+\textbf{Figura 1: Estructura del analizador XML. Procesamiento de conceptos y datasets.}
 
 Esta figura refleja la estructura del análisis sintáctico, en la que se observa cómo se procesan los elementos concept y dataset. Se observa cómo se manejan los distintos elementos y atributos dentro de cada uno, de tal forma que se describe la estructura de forma detallada. En aquellos no-terminales en los que se quiera ejecutar alguna acción, como puede ser añadir los conceptos y datasets a las listas pertinentes, o crear nuevos objetos de tipo Concept o Dataset, se define una acción léxica dentro del no-terminal, como por ejemplo:
 
@@ -334,12 +355,10 @@ En las opciones del analizador se definen configuraciones importantes como la co
 
 \lstset{inputencoding=utf8/latin1}
 \begin{lstlisting}
-
 options
 {
   STATIC = false;
 }
-
 \end{lstlisting}
 
 Estas opciones configuran el analizador para que no genere métodos estáticos, permitiendo la concurrencia y el procesamiento de múltiples entradas de manera eficiente.
@@ -492,6 +511,8 @@ Concept concept() :
 
 Concretamente, el método concept se encarga de identificar cada elemento <concept> en el documento XML. Extrae el valor del atributo id, el código del concepto y el label del concepto. Si el código del concepto coincide con el criterio de búsqueda (nombreCategoria), se agrega a la lista de conceptos pertinentes (conceptsList). Además, si el concepto contiene conceptos hijos, el método se llama recursivamente para procesar estos hijos y construir una estructura jerárquica completa.
 
+\textbf{...mencionar explícitamente que la recursividad se utiliza para manejar la estructura jerárquica de los conceptos....}
+
 Por otra parte, si nos centramos en el método dataset(), este  procesa cada conjunto de datos, extrayendo su título, descripción y conceptos asociados. Es responsable de identificar los conjuntos de datos que contienen información relevante para los conceptos identificados previamente.
 
 \lstset{inputencoding=utf8/latin1}
@@ -626,6 +647,9 @@ En conclusión, la implementación de esta práctica proporciona una herramienta
 En cuanto a tiempo de ejecución no hay muchas diferencia, el principal aspecto a destacar en esta práctica es la simplicidad con la que se genera el analizador y el potencial de recursividad que este tiene. 
 Suponga que se encuentra desarrollando esta práctica utilizando la herramienta SAX. Si la prácticas se modificase ---ligeramente--- y el catalogo.xml tuviese una recursividad mas profunda, esto complicaría mucho el procesamiento Java para algo que a priori no cambia mucho el formato del fichero que se quiere analizar. En otras palabras, un pequeño cambio en el documento a analizar implicaría un gran cambio del programa principal o clase encargada de analizar dicho fichero utilizando SAX.
 Sin embargo, empleando JavaCC este problema no existiría. Esto es debido a la recursividad inherente que proporciona la plataforma, permitiendo que dentro de un no-terminal se encuentre especificado ese mismo no-terminal ---lo hemos visto en este capítulo con el método concept(), y lo vimos también en el ejemplo de Calculadora explicado en **estado del arte** con los métodos Expression() y Factor()---. Esto significa que el grado de complejidad del archivo a analizar es inversamente proporcional al grado de complejidad de la gramática a desarollar en JavaCC.
+
+\textbf{...mencionar ejemplos concretos de las ventajas de JavaCC sobre SAX en términos de recursividad y manejo de cambios en la estructura del XML...}
+
 Además, JavaCC permite definir de manera sintáctica el documento objetivo, funcionalidad que SAX no implementa.
 
 \subsection{Conclusiones}
@@ -701,15 +725,33 @@ La implementación con JavaCC se basa en la definición de una gramática que re
 
 La validación de los resultados se realizará contrastando la información extraída con la información original de los archivos JSON. Se prestará especial atención a la precisión y completitud de los datos extraídos, así como al rendimiento del analizador implementado con JavaCC.
 
-INSERTAR IMAGEN JSON Y XML
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{imagenes/p4jsonvalidacion2.png}
+	\caption{\label{fig:p4jsonvalidacion2}Práctica 4. Fichero JSON que analiza JavaCC}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{imagenes/p4xmlvalidacion.png}
+	\caption{\label{fig:p4jsonvalidacion2}Práctica 4. Fichero XML que genera el programa}
+\end{figure}
+
+
+\textbf{INSERTAR IMAGEN JSON Y XML}
 
 Se espera que la utilización de JavaCC en lugar de GSON Streaming demuestre las ventajas de esta herramienta en términos de eficiencia, flexibilidad y control sobre el proceso de análisis de datos JSON.
 
-INSERTAR IMAGEN FICHEROS FUENTE PARA VER LO SIMPLE QUE ES
+\textbf{INSERTAR IMAGEN FICHEROS FUENTE PARA VER LO SIMPLE QUE ES
+}
+\textbf{TIEMPOS...}
+\textbf{INSERTAR IMAGEN TIEMPOS...EXPLICAR}
 
-TIEMPOS...
-INSERTAR IMAGEN TIEMPOS
-
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{imagenes/comparacion_tiempos_ejecucion_p4.png}
+	\caption{\label{fig:comparacion_tiempos_ejecucion_p4}Comparación de Tiempos de Ejecución: GSON vs JavaCC}
+\end{figure}
 
 
 \subsection{Conclusiones}
@@ -726,7 +768,7 @@ La elección de JavaCC como herramienta principal para el análisis de datos en 
 
 No se promueve el plagio y la realización de las prácticas, este simplemente es una de las muchas formas en las que se podría realizar la práctica.
 
-\hyperref[sec:JSONParser]{JSONParser.jj}
+\hyperref[sec:JSONParser]{\textbf{JSONParser.jj}}
 %\href{https://shorturl.at/wFG45}{JSONParser.jj}
 
 \section{Análisis de archivos XML (2). Práctica 5}
@@ -737,7 +779,7 @@ No se promueve el plagio y la realización de las prácticas, este simplemente e
 
 Sin embargo, en lugar de depender de XPath para la extracción de datos, en este proyecto se propone la utilización de JavaCC como herramienta única para el análisis y procesamiento del documento XML. Esta elección se justifica por la eficiencia, flexibilidad y control que ofrece JavaCC, permitiéndonos prescindir de herramientas adicionales como XPath, SAX o GSON.
 
-\subsection{XPATH}
+\subsection{XPath}
 
 XPath, abreviatura de XML Path Language, es un lenguaje de consulta para documentos XML. Se utiliza para seleccionar partes de un documento XML, como elementos, atributos, texto y datos binarios.
 
@@ -747,7 +789,6 @@ Para ilustrar su uso, consideremos el siguiente fragmento de XML:
 
 \lstset{inputencoding=utf8/latin1}
 \begin{lstlisting}
-    
 <catalog>
     <concepts>
         <concept
@@ -764,9 +805,7 @@ Si nuestro objetivo fuera seleccionar el código del primer concept, la expresi�
 
 \lstset{inputencoding=utf8/latin1}
 \begin{lstlisting}
-
 /catalog/concepts/concept/code
-
 \end{lstlisting}
 
 Esta expresión realiza un recorrido por el documento desde la raíz (/) hasta el elemento catalog, para luego buscar el elemento concepts, el elemento concept y finalmente seleccionar su hijo code.
@@ -833,20 +872,17 @@ Se mantienen las opciones del analizador utilizadas en las prácticas anteriores
 
 \lstset{inputencoding=utf8/latin1}
 \begin{lstlisting}
-    
 options
 {
     STATIC = false; // para permitir entradas de manera dinámica
     JAVA_TEMPLATE_TYPE = "modern"; // uso de plantilla moderna de Java
 }
-    
 \end{lstlisting}
 
 
 Además, también hay que declarar del parser y la definir la clase XMLParser2:
 \lstset{inputencoding=utf8/latin1}
 \begin{lstlisting}
-
 PARSER_BEGIN(XMLParser2)
 package piat.opendatasearch;
 import java.util.List;
@@ -858,7 +894,6 @@ public class XMLParser2 {
   private List<String> titleList;
 }
 PARSER_END(XMLParser2)
-
 \end{lstlisting}
 
 Esta clase contiene un mapa para almacenar los datasets (datasetsMap), una variable para contar el número de datasets (numDatasets), y una lista para almacenar los títulos (titleList). La estructura de esta clase es fundamental para organizar y gestionar los datos extraídos de los documentos XML de manera eficiente.
@@ -868,7 +903,6 @@ La parte mas relevante de este ejercicio con JavaCC es la definición de los tok
 
 \lstset{inputencoding=utf8/latin1}
 \begin{lstlisting}
-
 < DEFAULT, QUERY2>
 SKIP :
 {
@@ -957,7 +991,6 @@ SKIP :
 {
   < ~[ ] >
 }
-
 \end{lstlisting}
 
 Como en las prácticas anteriores, omitimos los espacios en blanco, tabulaciones y saltos de linea. En este caso, incorporamos estados léxicos, que nos permiten reconocer un grupo de tokens en un punto específico del análisis. 
@@ -972,6 +1005,8 @@ Los estados léxicos definidos, además del estado DEFAULT son:
     \item IN\_RESOURCES: Estado utilizado para reconocer el id de los recursos y el valor del elemento title dentro de la estructura de un resource
 \end{itemize}
 
+\textbf{...explicar con más detalle la lógica detrás de la elección de cada estado y su función específica en el análisis del XML...DIAGRAMA-TABLA...}
+
 \tipbox{
     Cabe destacar que se definen los estados lexicos mencionados para omitir el resto de caracteres o token que el analizador pueda reconocer en un momento dado. Por ejemplo, después de la cabera solo nos interesa el elemento query, por lo que definimos un estado lexico IN\_QUERY en el que definimos los tokens que nos permiten reconocer el valor de la query. De esta forma, se definen ciertos tokens que unicamente pueden o deben ser analizados en un punto concreto del analisis.
 }
@@ -980,7 +1015,6 @@ Una vez se definen los tokens, resta generar el análisis sintáctico. El métod
 
 \lstset{inputencoding=utf8/latin1}
 \begin{lstlisting}
-
 void processFile() : { String s; datasetsMap = new HashMap<>(); titleList = new ArrayList<String>(); }
 {
   < HEADER > 
@@ -1013,7 +1047,6 @@ void dataset() : { Token idDataset; }
     numDatasets++;
   }
 }
-
 \end{lstlisting}
 
 El método dataset identifica cada elemento <dataset> en el documento XML, extrae su id y lo agrega al mapa de datasets, incrementando el contador de datasets.
@@ -1022,7 +1055,6 @@ Además, también se cuenta con el método resource(), que procesa cada recurso,
 
 \lstset{inputencoding=utf8/latin1}
 \begin{lstlisting}
-
 void resource() : { Token idResource, idConcept; String title; } 
 {
   < OPEN_RESOURCE >  idResource = < STRING > 
@@ -1038,7 +1070,6 @@ void resource() : { Token idResource, idConcept; String title; }
     } 
   }
 }
-
 \end{lstlisting}
 
 
@@ -1057,17 +1088,30 @@ void resource() : { Token idResource, idConcept; String title; }
 
 Para validar los resultados de la Práctica 5, se llevan a cabo diversas comprobaciones. Se realiza una comparación visual del JSON generado para verificar que la información extraída del XML se haya almacenado correctamente, con la estructura y los valores esperados. Se presta especial atención a la correspondencia entre los elementos del XML y las claves del JSON, así como a la integridad de los datos.
 
+\textbf{INSERTAR IMAGEN XML Y JSON}
+
 Se valida el formato JSON utilizando un validador online o una herramienta de desarrollo para asegurar que el JSON generado cumple con la sintaxis correcta y no contiene errores.
 
-INSERTAR IMAGEN XML Y JSON
+\textbf{INSERTAR IMAGEN VALIDADOR ONLINE. añadir texto explicativo}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{imagenes/p5validacionjsonrfc.png}
+	\caption{\label{fig:p5validacionjsonrfc}Práctica 5. Comprobación del archivo JSON generado en la herramienta online \textit{JSON Formatter \& Validator} }
+\end{figure}
 
 Para garantizar la robustez de la solución, se prueba la aplicación con diferentes archivos XML de entrada, con diferentes estructuras y contenidos, asegurando así que la extracción de información mediante XPath funciona correctamente en diferentes escenarios.
 
-INSERTAR IMAGEN VALIDADOR ONLINE
-
 Finalmente, se analiza el tiempo de ejecución de la aplicación con archivos XML de diferentes tamaños para comprobar que la extracción de información mediante XPath se realiza de forma eficiente. En aspecto no se observa una diferencia notable entre las dos herramientas.
 
-INSERTAR GRÁFICO TIEMPOS JAVACC Y XPATH
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{imagenes/p5tiemposejecucion.png}
+	\caption{\label{fig:p5tiemposejecucion}Comparación de Tiempos de Ejecución: XPath vs JavaCC}
+\end{figure}
+
+\textbf{INSERTAR GRÁFICO TIEMPOS JAVACC Y XPATH. COMPLETAR CON TEXTO
+}
 
 \subsection{Conclusiones}
 
