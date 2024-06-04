@@ -42,7 +42,7 @@ En este caso, el analizador léxico se encargaría de escanear este código fuen
 \subsection{Token}
 \noindent Un token es una unidad léxica o componente básico del código fuente de un programa. Se trata de una cadena de caracteres con un significado específico asignado. Está estructurado como un par que consta de un nombre de token y un valor de token opcional. El nombre del token representa una categoría o tipo de unidad léxica, como palabras clave, identificadores, operadores, entre otros\cite{token}.
 
-En el ejemplo de la sección anterior, el analizador léxico generaba una secuencia de tokens, cada token tenía sus características propias, dependiendo de si eran identificadores, operadores o signos de puntuación, u otros ---se pueden especificar tokens que hagan referencias a comentarios dentro del código, o palabras reservadas del lenguaje, como \lstinline[keywordstyle=\color{black}]|if| o \lstinline[keywordstyle=\color{black}]|while|---.
+En el ejemplo de la sección anterior, el analizador léxico generaba una secuencia de tokens, cada token tenía sus características propias, dependiendo de si eran identificadores, operadores o signos de puntuación, u otros ---se pueden especificar tokens que hagan referencias a comentarios dentro del código, o palabras reservadas del lenguaje, como \lstinline[keywordstyle=\color{black}]|if| o \lstinline[keywordstyle=\color{black}]|while|---. Estudiaremos más sobre los tokens y su funcionamiento en la sección \hyperref[sec:tokensenjavacc]{\textit{2.2.2. Tokens en JavaCC}}.
 
 
 \subsection{Analizador Sintáctico o Semántico}
@@ -90,21 +90,39 @@ Java Compiler Compiler, comúnmente conocido como JavaCC, es una poderosa herram
 JavaCC se diferencia de otras herramientas similares al generar analizadores sintácticos de arriba hacia abajo ---descenso recursivo, o LL--- en lugar de analizadores de abajo hacia arriba. Esta característica permite el uso de gramáticas más generales y facilita la depuración, además de permitir el análisis en cualquier elemento no terminal de la gramática y la transferencia de valores (atributos) en ambas direcciones en el árbol de análisis.
 
 \subsection{Funciones principales de JavaCC}
-\noindent JavaCC ofrece una serie de características y funcionalidades clave que lo hacen destacar como un generador de analizadores sintácticos:
-\begin{itemize}
-	\item Generación de analizadores sintácticos de arriba hacia abajo.
-	\item Resolución de ambigüedades de cambio de turno localmente.
-	\item Generación de analizadores 100\% Java puro.
-	\item Especificaciones BNF extendidas.
-	\item Integración de especificaciones léxicas y gramaticales en un solo archivo.
-	\item Manejo de la entrada Unicode completa.
-	\item Soporte para tokens no distinguibles entre mayúsculas y minúsculas.
-	\item Herramientas adicionales como JJTree para construir árboles y JJDoc para generar documentación.
-	\item Personalización a través de numerosas opciones.
-	\item Informes de errores de alta calidad y mensajes de diagnóstico completos.
-\end{itemize}
+% \noindent JavaCC ofrece una serie de características y funcionalidades clave que lo hacen destacar como un generador de analizadores sintácticos:
+% \begin{itemize}
+% 	\item Generación de analizadores sintácticos de arriba hacia abajo.
+% 	\item Resolución de ambigüedades de cambio de turno localmente.
+% 	\item Generación de analizadores 100\% Java puro.
+% 	\item Especificaciones BNF extendidas.
+% 	\item Integración de especificaciones léxicas y gramaticales en un solo archivo.
+% 	\item Manejo de la entrada Unicode completa.
+% 	\item Soporte para tokens no distinguibles entre mayúsculas y minúsculas.
+% 	\item Herramientas adicionales como JJTree para construir árboles y JJDoc para generar documentación.
+% 	\item Personalización a través de numerosas opciones.
+% 	\item Informes de errores de alta calidad y mensajes de diagnóstico completos.
+% \end{itemize}
 
-La estructura si sigue todo programa en JavaCC es el siguiente:
+% La estructura si sigue todo programa en JavaCC es el siguiente:
+
+% \begin{figure}[H]
+% 	\centering
+% 	\includegraphics[width=\textwidth]{imagenes/estructuraprogramajavacc.png}
+% 	\caption{\label{fig:estructuraprogramajavacc}Estructura de un programa en JavaCC \cite{estructuraprogramajavacc}}
+% \end{figure}
+
+% % \textbf{...DIAGRAMA CON ESTRUCTURA DE UN ANALIZADOR JAVACC...EXPLICAR QUE SOLO GENERAS UNA GRAMATICA, EXPLICAR LAS CLASES...AÑADIRLO EN UNA SUBSECCION...}
+
+\noindent JavaCC se distingue como una herramienta potente para la generación de analizadores sintácticos gracias a un conjunto de características y funcionalidades clave. En primer lugar, su capacidad para generar analizadores sintácticos descendentes (\textit{top-down}) lo diferencia de otras herramientas y facilita la depuración, permitiendo un análisis más general de las estructuras gramaticales. Además, JavaCC destaca por su capacidad para resolver ambigüedades de cambio de turno de forma local, lo que simplifica el proceso de análisis.
+
+Otro aspecto importante es que JavaCC genera analizadores escritos completamente en Java, lo que facilita su integración en proyectos Java y aprovecha las ventajas de este lenguaje. Además, JavaCC soporta especificaciones BNF extendidas, lo que permite definir gramáticas complejas con mayor flexibilidad.
+
+A diferencia de otras herramientas, JavaCC integra las especificaciones léxicas y gramaticales en un único archivo, simplificando la gestión del código. También destaca su capacidad para manejar la entrada Unicode completa, lo que lo hace adecuado para proyectos internacionales.
+
+JavaCC ofrece soporte para tokens que no distinguen entre mayúsculas y minúsculas, lo que puede ser útil en ciertos contextos. Además, se complementa con herramientas adicionales como JJTree para la construcción de árboles de análisis y JJDoc para generar documentación del código.
+
+La personalización es otro punto fuerte de JavaCC, ya que ofrece numerosas opciones para adaptar su funcionamiento a las necesidades del proyecto. Finalmente, JavaCC proporciona informes de errores de alta calidad y mensajes de diagnóstico completos, lo que facilita la identificación y corrección de errores en la gramática.
 
 \begin{figure}[H]
 	\centering
@@ -112,13 +130,21 @@ La estructura si sigue todo programa en JavaCC es el siguiente:
 	\caption{\label{fig:estructuraprogramajavacc}Estructura de un programa en JavaCC \cite{estructuraprogramajavacc}}
 \end{figure}
 
-\textbf{...DIAGRAMA CON ESTRUCTURA DE UN ANALIZADOR JAVACC...EXPLICAR QUE SOLO GENERAS UNA GRAMATICA, EXPLICAR LAS CLASES...AÑADIRLO EN UNA SUBSECCION...}
+La creación de un programa con JavaCC implica una estructura específica que involucra diversos archivos y herramientas. El proceso comienza con la definición de la gramática en un archivo con extensión ``.jj''. Este archivo contiene las reglas léxicas y sintácticas que definen el lenguaje a analizar.
+
+JavaCC, actuando como un compilador, procesa este archivo ``.jj'' y genera un conjunto de archivos Java que conforman el analizador léxico y sintáctico. Entre estos archivos se encuentran ``Gramática.java'', ``GramáticaConstants.java'' y ``GramáticaTokenManager.java''. Estos archivos contienen las clases Java necesarias para realizar el análisis léxico y sintáctico del lenguaje definido en la gramática.
+
+Para utilizar el analizador generado, se necesita un compilador Java que compile estos archivos y genere los correspondientes archivos ``.class''. Estos archivos ``.class'' contienen el código ejecutable del analizador léxico y sintáctico.
+
+El resultado final es un conjunto de archivos ``.class'' que representan un analizador léxico y sintáctico portable, capaz de analizar cualquier entrada que siga las reglas definidas en la gramática original. Este analizador se compone de varias clases, incluyendo ``Gramática.class'', ``GramáticaConstants.class'', ``GramáticaTokenManager.class'', ``ParseException.class'', ``SimpleCharStream.class'', ``Token.class'' y ``TokenMgrError.class''. Cada una de estas clases cumple una función específica en el proceso de análisis léxico y sintáctico.
+
+Con todo lo mencionado, JavaCC proporciona un marco de trabajo estructurado para la creación de analizadores léxicos y sintácticos a partir de una gramática definida por el usuario. La generación automática de código Java simplifica el proceso de desarrollo y facilita la creación de analizadores eficientes y portables.
 
 \subsection{Tokens en JavaCC}
+\label{sec:tokensenjavacc}
+% **Vamos a ver ahora las tres reglas que hay que seguir, muy importantes:
 
-**Vamos a ver ahora las tres reglas que hay que seguir, muy importantes:
-
-\textbf{...explicar...agregar ejemplos..}
+% \textbf{...explicar...agregar ejemplos..}
 
 % There are three rules for picking which regular expression to use to identify the next token:
 
@@ -130,43 +156,204 @@ La estructura si sigue todo programa en JavaCC es el siguiente:
 
 % Use ~[].
 
-Se puede definir al final de la gramática un toque categorizado como inesperado, para que nos ayude en el proceso de definir la gramática y los tokens que va recogiendo el analizador. Bastaría con añadir esta línea al final del documento.
+% Se puede definir al final de la gramática un toque categorizado como inesperado, para que nos ayude en el proceso de definir la gramática y los tokens que va recogiendo el analizador. Bastaría con añadir esta línea al final del documento.
+
+% \lstset{inputencoding=utf8/latin1}
+% \begin{lstlisting}
+% 	<*> TOKEN : { <UNEXPECTED: ~[] > }     
+% \end{lstlisting}
+
+% De tal forma que si el analizador recoge una secuencia de caracteres que no hayamos definido como token, este será recogido por el token UNEXPECTED y el analizador probablemente enviará una excepción sintáctica.
+
+% Este modo de depuración nos puede servir en función de la gramática y del archivo que queramos analizar. Habrá casos que nos interese mantenerlo en la gramática ---lo veremos mas adelante en el desarrollo de la práctica 2(insertar enlace)---, mientras que en otros casos aplicaremos este concepto para omitir cualquier secuencia de caracteres que no hayamos definido como token ---lo estudiaremos en el desarrollo de la práctica 3(insertar enlace)---.
+
+JavaCC, al igual que otros generadores de analizadores léxicos, se basa en el concepto de ``tokens'' para descomponer el texto de entrada en unidades significativas. Un token en JavaCC se define mediante una expresión regular y se asocia a un nombre simbólico, el cual se utiliza posteriormente en la definición de la gramática para representar todas las secuencias de caracteres que coincidan con la expresión regular asociada. A diferencia de otros generadores, JavaCC no separa la definición léxica de la sintáctica, sino que las integra en un único archivo, simplificando la gestión del código y facilitando la comprensión global de la gramática.
+
+Para definir un token en JavaCC, se utiliza la palabra clave TOKEN, seguida de dos puntos (:), la expresión regular que define el token entre comillas dobles (`` '') y finalmente el nombre simbólico del token entre llaves ({ }). Por ejemplo, la siguiente línea define un token llamado NUMERO que reconoce cualquier secuencia de dígitos:
 
 \lstset{inputencoding=utf8/latin1}
 \begin{lstlisting}
-	<*> TOKEN : { <UNEXPECTED: ~[] > }     
+TOKEN : { <NUMERO: (["0"-"9"])+ > } 
 \end{lstlisting}
 
-De tal forma que si el analizador recoge una secuencia de caracteres que no hayamos definido como token, este será recogido por el token UNEXPECTED y el analizador probablemente enviará una excepción sintáctica.
+Aunque se pueden especificar varios tokens de la siguiente manera:
 
-Este modo de depuración nos puede servir en función de la gramática y del archivo que queramos analizar. Habrá casos que nos interese mantenerlo en la gramática ---lo veremos mas adelante en el desarrollo de la práctica 2(insertar enlace)---, mientras que en otros casos aplicaremos este concepto para omitir cualquier secuencia de caracteres que no hayamos definido como token ---lo estudiaremos en el desarrollo de la práctica 3(insertar enlace)---.
+\lstset{inputencoding=utf8/latin1}
+\begin{lstlisting}
+TOKEN : {
+	<NUMERO: (["0"-"9"])+>
+|	<LETRA: (["a"-"z","A"-"Z"])>
+}
+\end{lstlisting}
 
+Para conocer más acerca de los operadores de expresiones que se pueden utilizar, puede consultar el apéndice \hyperref[sec:simbolosdeexpresionesregulares]{\textit{B.2. Símbolos de Expresiones regulares en JavaCC}}.
+
+JavaCC ofrece una gran flexibilidad a la hora de definir tokens. Permite, por ejemplo, definir tokens que abarquen diferentes estados léxicos. Esto resulta especialmente útil al procesar lenguajes con diferentes contextos de análisis, como los comentarios dentro del código fuente. Para especificar a qué estados léxicos pertenece un token, se incluye una lista de los mismos entre los signos de mayor que (<) y menor que (>), separados por comas. Si no se especifica ningún estado léxico, el token se asocia al estado léxico por defecto (DEFAULT). Veremos más acerca de este tema en la siguiente sección.
+
+Un aspecto crucial en la definición de tokens es la gestión de caracteres especiales o secuencias que no se desean reconocer como tokens individuales. JavaCC proporciona la posibilidad de descartar estos elementos mediante la palabra clave SKIP. Por ejemplo, para ignorar los espacios en blanco y las tabulaciones, se puede utilizar la siguiente definición:
+
+\lstset{inputencoding=utf8/latin1}
+\begin{lstlisting}
+SKIP : { " " | "\t" }
+\end{lstlisting}
+
+Para determinar qué expresión regular se utiliza para identificar el siguiente token, JavaCC sigue \textbf{tres reglas fundamentales}: coincidencia de prefijo, máxima coincidencia (\textit{Maximal munch rule}) y prioridad por orden de aparición. La regla de coincidencia de prefijo establece que la expresión regular debe describir un prefijo del flujo de entrada restante, es decir, debe coincidir con una secuencia de caracteres desde el punto actual del análisis en adelante. La regla de máxima coincidencia indica que si varias expresiones regulares coinciden con un prefijo del flujo de entrada, se elige la que describa el prefijo más largo. JavaCC intenta consumir la mayor cantidad de caracteres posible para formar un token válido. Finalmente, la regla de prioridad por orden de aparición establece que si varias expresiones regulares describen el prefijo más largo posible, se utiliza la que aparece primero en el archivo ``.jj''. El orden de definición de las reglas léxicas determina su prioridad en caso de ambigüedad.
+
+Para ilustrar estas reglas, consideremos un ejemplo sencillo. Supongamos que queremos definir tokens para los números enteros y los identificadores en un lenguaje de programación. Las expresiones regulares podrían ser las siguientes:
+
+\lstset{inputencoding=utf8/latin1}
+\begin{lstlisting}
+<NUMERO: (["0"-"9"])+>
+<IDENTIFICADOR: (["a"-"z","A"-"Z"])(["a"-"z","A"-"Z","0"-"9"])*>
+\end{lstlisting}
+
+En este caso, si el flujo de entrada contiene la cadena ``123abc'', la regla <NUMERO> coincidiría con el prefijo ``123'', que es el prefijo más largo posible. Si el flujo de entrada fuera ``abc123', la regla <IDENTIFICADOR> coincidiría con el prefijo ``abc'.
+
+También se podría definir un token especial llamado <UNEXPECTED> para capturar cualquier secuencia de caracteres que no coincida con ninguna de las reglas definidas. Esto resulta útil para detectar errores léxicos durante el análisis. La definición de este token se suele colocar al final del archivo ``'.jj'' ---por lo comentado en la regla de prioridad--- y suele tener la siguiente forma:
+
+\lstset{inputencoding=utf8/latin1}
+\begin{lstlisting}
+<*> TOKEN: { <UNEXPECTED: ~[]> }
+\end{lstlisting}
+
+Esta regla indica que cualquier carácter (~[]) que no haya sido reconocido por las reglas anteriores se considerará un token <UNEXPECTED>.
+
+La definición de tokens en JavaCC es un proceso iterativo que requiere un análisis cuidadoso del lenguaje que se quiere analizar. Una buena definición de tokens es crucial para el correcto funcionamiento del analizador léxico y, por ende, del analizador sintáctico.
 
 \subsection{Estados Léxicos}
-\noindent Los estados léxicos permiten efectuar un conjunto diferente de producciones de expresiones regulares en un caso concreto. Dicho de otra manera, los estados léxicos sirven para que un token este definido de una forma, y en cierto momento del análisis, pueda estar definido de otra forma.
+% \noindent Los estados léxicos permiten efectuar un conjunto diferente de producciones de expresiones regulares en un caso concreto. Dicho de otra manera, los estados léxicos sirven para que un token este definido de una forma, y en cierto momento del análisis, pueda estar definido de otra forma.
 
-Supongamos que desea escribir un procesador JavaDoc para extraer los comentarios JavaDoc de un documento. La mayor parte de Java está tokenizada de acuerdo con las reglas ordinarias regulares de Java. Pero dentro de los comentarios JavaDoc, se aplica un conjunto diferente de reglas en las que las palabras clave deben ser reconocidas y donde las nuevas líneas son significativas ---como las palabras y símbolos \lstinline|/***/| , \lstinline|@param|, entre otros---.
+% Supongamos que desea escribir un procesador JavaDoc para extraer los comentarios JavaDoc de un documento. La mayor parte de Java está tokenizada de acuerdo con las reglas ordinarias regulares de Java. Pero dentro de los comentarios JavaDoc, se aplica un conjunto diferente de reglas en las que las palabras clave deben ser reconocidas y donde las nuevas líneas son significativas ---como las palabras y símbolos \lstinline|/***/| , \lstinline|@param|, entre otros---.
 
-Para resolver este problema, podríamos usar dos estados léxicos: uno para la tokenización regular de Java y otro para la tokenización dentro de los comentarios de JavaDoc.
+% Para resolver este problema, podríamos usar dos estados léxicos: uno para la tokenización regular de Java y otro para la tokenización dentro de los comentarios de JavaDoc.
 
-** En la definición de los estados léxicos, si no se pone nada se define para el estado léxico por defecto DEFAULT, que es el estado léxico en el que siempre comienza todo analizador desarrollado en JavaCC. 
+% ** En la definición de los estados léxicos, si no se pone nada se define para el estado léxico por defecto DEFAULT, que es el estado léxico en el que siempre comienza todo analizador desarrollado en JavaCC. 
 
-\textbf{**Añadir ejemplos de definición de estados léxicos y como pasar entre estados.}
+% \textbf{**Añadir ejemplos de definición de estados léxicos y como pasar entre estados.}
 
-\textbf{** Si se quiere definir un token que pueda ser reconocido en un estado léxico, se hace.... <LEX1>}
-\textbf{** De igual manera, si queremos que un token esté definido en varios estados léxicos, se hace ... <LEX1, LEX2,...>}
+% \textbf{** Si se quiere definir un token que pueda ser reconocido en un estado léxico, se hace.... <LEX1>}
+% \textbf{** De igual manera, si queremos que un token esté definido en varios estados léxicos, se hace ... <LEX1, LEX2,...>}
 
-\textbf{Puede haber casos que nos interese definir tokens para cualquier estado léxico, como por ejemplo para omitir los espacios en blanco o para realizar un control de tokens como veíamos en la sección anterior, en este caso se hace  }
+% \textbf{Puede haber casos que nos interese definir tokens para cualquier estado léxico, como por ejemplo para omitir los espacios en blanco o para realizar un control de tokens como veíamos en la sección anterior, en este caso se hace  }
 
-Si se define algún token en la parte sintactica , dentro de algun no -terminal(PONER EJEMPLO)..
-Este será lo mismo que definirlo en el estado DEFAUTL (PONER EJEMPLO), por lo que téngalo en cuenta a la hora de desarrollar una gramática propia. Desde aquí recomendamos encarecidamente definir la parte léxica del analizador por un lado, y la parte sintáctica por otro, ya que facilita tanto al desarrollador ---a la hora de depurar y realizar la gramática--- como al lector ---a la hora de comprender la gramática---.
+% Si se define algún token en la parte sintactica , dentro de algun no -terminal(PONER EJEMPLO)..
+% Este será lo mismo que definirlo en el estado DEFAUTL (PONER EJEMPLO), por lo que téngalo en cuenta a la hora de desarrollar una gramática propia. Desde aquí recomendamos encarecidamente definir la parte léxica del analizador por un lado, y la parte sintáctica por otro, ya que facilita tanto al desarrollador ---a la hora de depurar y realizar la gramática--- como al lector ---a la hora de comprender la gramática---.
+
+\noindent Los estados léxicos son una característica poderosa de JavaCC que permite definir diferentes conjuntos de reglas de tokenización para diferentes partes del código fuente. En esencia, un estado léxico representa un ``modo'' de análisis en el que el analizador léxico busca tokens específicos según las reglas definidas para ese estado.
+
+Tomemos como ejemplo el procesamiento de código fuente Java con comentarios JavaDoc. En este caso, se necesitan dos ``modos'' de análisis: uno para el código Java regular y otro para el contenido dentro de los comentarios JavaDoc.
+
+En el modo de código Java, se tokenizan palabras clave como if, else, while, identificadores, operadores, etc.
+En el modo de comentario JavaDoc, se buscan palabras clave específicas de la documentación como @param, @author, @return, además de tener en cuenta los saltos de línea y otros elementos que pueden ser significativos en la documentación.
+Para implementar esto con JavaCC, se definen dos estados léxicos: uno para el código Java regular ---usualmente llamado DEFAULT--- y otro para los comentarios JavaDoc. La sintaxis para definir un estado léxico es simple:
+
+%ARREGLAR!!
+% \lstset{inputencoding=utf8/latin1}
+% \begin{lstlisting}
+% <NOMBRE_DEL_ESTADO>
+% TOKEN: {
+% // Reglas de tokenización para este estado
+% }
+% \end{lstlisting}
+
+Dentro de cada bloque de estado, se definen las reglas de tokenización utilizando la palabra clave TOKEN, igual que en la definición general de tokens.
+
+\phantom{text}
+
+\noindent \textbf{Ejemplo de definición de estados léxicos}
+
+\phantom{text}
+
+%ARREGLAR!!
+% \lstset{inputencoding=utf8/latin1}
+% \begin{lstlisting}
+% <DEFAULT> 
+% TOKEN : {
+%   <KEYWORD_IF: "if">
+% | <IDENTIFIER: ["a"-"z","A"-"Z"](["a"-"z","A"-"Z","0"-"9"])*>
+% // ... otras reglas para código Java regular
+% }	
+
+% <JAVADOC> 
+% TOKEN : {
+%   <JAVADOC_TAG: "@param" | "@author" | "@return">
+% | <TEXT: (~["*"])+> // Cualquier texto excepto "*"
+% // ... otras reglas específicas de JavaDoc
+% }
+% \end{lstlisting}
+
+\phantom{text}
+
+\noindent \textbf{Cambiar entre estados léxicos}
+
+\phantom{text}
+
+Para cambiar de un estado léxico a otro, se utiliza la siguiente sintaxis dentro de las reglas de tokenización:
+
+\lstset{inputencoding=utf8/latin1}
+\begin{lstlisting}
+<ESTADO_ACTUAL> {
+// ... reglas para el estado actual
+
+"/*" : JAVADOC  // Cambiar al estado JAVADOC al encontrar "/*" 
+} 
+
+<JAVADOC> {
+// ... reglas para el estado JAVADOC 
+
+"*/" : DEFAULT // Cambiar al estado DEFAULT al encontrar "*/"
+}
+\end{lstlisting}
+
+En este ejemplo, cuando el analizador léxico encuentra /* en el estado DEFAULT, cambia al estado JAVADOC. Del mismo modo, al encontrar */ en el estado JAVADOC, regresa al estado DEFAULT.
+
+\phantom{text}
+
+\noindent \textbf{Tokens en múltiples estados}
+
+\phantom{text}
+
+Si un token necesita ser reconocido en varios estados léxicos, se pueden listar los estados deseados entre los símbolos < y >. Por ejemplo:
+
+\lstset{inputencoding=utf8/latin1}
+\begin{lstlisting}
+<DEFAULT, JAVADOC>
+TOKEN : {
+	<WHITESPACE: " " | "\t" | "\n" | "\r"> // Espacios en blanco en el estado por defecto y JAVADOC
+}
+\end{lstlisting}
+
+En caso de querer definir un token para todos los estados léxicos, se utilizaría la expresión:
+
+\lstset{inputencoding=utf8/latin1}
+\begin{lstlisting}
+<*>
+TOKEN : {
+	<WHITESPACE: " " | "\t" | "\n" | "\r"> // Espacios en blanco en cualquier estado
+}
+\end{lstlisting}
+
+Como consideraciones adicionales, el estado léxico DEFAULT es el estado inicial del analizador léxico si no se especifica otro.
+Se recomienda definir la parte léxica ---tokens y estados léxicos--- separada de la parte sintáctica para mejorar la legibilidad y el mantenimiento del código.
+La correcta utilización de los estados léxicos en JavaCC permite crear analizadores léxicos más sofisticados y robustos, capaces de manejar las complejidades de diferentes lenguajes y formatos de datos.
 
 \subsection{Recursividad en JavaCC}
 
 % \subsubsection{¿Por qué no se puede utilizar la recursividad a izquierdas en JavaCC?}
-\noindent La clase de analizador sintáctico producida por JavaCC funciona por descenso recursivo. La recursión a la izquierda está prohibida para evitar que las subrutinas generadas se llamen a sí mismas recursivamente de forma infinita.
+% \noindent La clase de analizador sintáctico producida por JavaCC funciona por descenso recursivo. La recursión a la izquierda está prohibida para evitar que las subrutinas generadas se llamen a sí mismas recursivamente de forma infinita.
 
-\textbf{...explicar con un poco más de detalle por qué la recursión a la izquierda está prohibida y cómo JavaCC previene este problema....}
+% \textbf{...explicar con un poco más de detalle por qué la recursión a la izquierda está prohibida y cómo JavaCC previene este problema....}
+
+\noindent La clase de analizador sintáctico producida por JavaCC funciona por descenso recursivo, lo que significa que la estructura del código del analizador refleja la estructura recursiva de la gramática que define. Para ilustrarlo, imaginemos una gramática que define una lista como una secuencia de elementos separados por comas, donde un elemento puede ser un número o una lista. Esta gramática, al ser recursiva, permite listas anidadas. El código generado por JavaCC para esta gramática también sería recursivo, con una función para analizar listas que se llama a sí misma para analizar las sublistas.
+
+JavaCC permite la recursividad a la derecha (LR), donde la llamada recursiva se realiza al final de la definición de la estructura gramatical. Siguiendo con el ejemplo anterior, la llamada a la función que analiza una lista se encontraría al final de la definición de la producción que define una lista.
+
+Sin embargo, JavaCC prohíbe la recursividad a la izquierda (LL), donde la llamada recursiva se realiza al principio de la definición de la estructura gramatical. Esta restricción se debe a que la recursividad a la izquierda puede llevar a bucles infinitos durante el análisis si no se maneja con cuidado. En el ejemplo de la lista, si la llamada a la función que analiza una lista se encontrara al principio de la producción, el analizador entraría en un bucle infinito al intentar analizar una lista, ya que la primera regla que encontraría sería la que llama a la misma función.
+
+Para prevenir este problema, JavaCC realiza un análisis de la gramática durante la generación del código del analizador. Si detecta recursividad a la izquierda, genera un mensaje de error y detiene la generación del código. Esta característica asegura que los analizadores generados por JavaCC sean siempre terminantes y no entren en bucles infinitos durante el análisis.
+
+\textbf{COMPLETAR CON LO QUE HAY DE RECURSIVIDAD ANTES...}
+
 
 \subsection{Ejemplo de gramática en JavaCC}
 \noindent A continuación, se presenta un ejemplo de cómo JavaCC puede utilizarse para generar un analizador sintáctico en Java. En este ejemplo se define un lenguaje para analizar expresiones matemáticas simples. Partiendo de este ejemplo, seremos capaz de ampliar las funcionalidades del programa, y realizar una calculadora. El resultado final se encuentra en el archivo \hyperref[sec:mathexp]{Mathexp.jj}, que se encuentra en el apéndice \hyperref[sec:codigofuente]{\textit{Código fuente}}.
@@ -205,7 +392,7 @@ Los operadores aritméticos permitidos son la suma \lstinline|+|, la resta \lsti
 
 \lstset{inputencoding=utf8/latin1}
 \lstinputlisting{code/factor.jj}
-\noindent La regla \textit{Factor()} define la estructura de un factor. Un factor puede ser un número o una expresión entre paréntesis. La regla \textit{Factor()} tiene dos opciones. La primera opción es un número. La segunda opción es una expresión entre paréntesis. Si la opción elegida es un número, la regla \textit{Factor()} utiliza la regla \lstinline|<NUMBER>| para especificar que el factor debe ser un número. Si la opción elegida es una expresión entre paréntesis, la regla Factor() utiliza la regla ``('' \textit{Expression()} ``)'' para especificar que la expresión debe estar entre paréntesis.
+\noindent La regla \textit{Factor()} define la estructura de un factor. Un factor puede ser un número o una expresión entre paréntesis. La regla \textit{Factor()} tiene dos opciones. La primera opción es un número. La segunda opción es una expresión entre paréntesis. Si la opción elegida es un número, la regla \textit{Factor()} utiliza la regla \lstinline[keywordstyle=\color{black}]|<NUMBER>| para especificar que el factor debe ser un número. Si la opción elegida es una expresión entre paréntesis, la regla Factor() utiliza la regla ``('' \textit{Expression()} ``)'' para especificar que la expresión debe estar entre paréntesis.
 
 \phantom{text}
 
@@ -233,6 +420,7 @@ Aunque también se puede analizar expresiones más complejas, como:
 \phantom{text}
 
 \noindent \textbf{Ampliación de la funcionalidad a Calculadora}
+\label{sec:ampliacioncalculadora}
 
 \phantom{text}
 
@@ -302,7 +490,7 @@ Aquí hay un ejemplo de cómo utilizar la clase:
 
 \section{Usos de JavaCC en la actualidad}
 
-\noindent JavaCC es una herramienta muy completa a la hora de construir de analizadores léxicos y sintácticos para lenguajes de programación. Si bien su desarrollo original se centró en Java, su flexibilidad y robustez lo han convertido en una herramienta versátil con aplicaciones en diversos campos.
+\noindent Tras todo lo mencionado, es evidente que JavaCC es una herramienta muy completa a la hora de construir de analizadores léxicos y sintácticos para lenguajes de programación. Si bien su desarrollo original se centró en Java, su flexibilidad y robustez lo han convertido en una herramienta versátil con aplicaciones en diversos campos.
 
 En el contexto de los lenguajes de programación, JavaCC ha tenido varias aplicaciones, como es el caso de Apache. A modo de ejemplo del proyecto Apache, JavaCC se utiliza en el proyecto Apache Ant para analizar archivos  \lstinline|build.xml|, que definen las tareas de construcción de software\cite{apache}, aunque indagaremos en unos momentos en el proyecto Apache. Por otro lado, JavaCC se ha utilizado para construir compiladores e intérpretes para diversos lenguajes de programación, como Python, Ruby, C\#, PHP, y JavaScript\cite{javaccc++preprocessor}.
 
