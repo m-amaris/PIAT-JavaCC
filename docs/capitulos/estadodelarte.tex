@@ -247,14 +247,8 @@ En el modo de código Java, se tokenizan palabras clave como if, else, while, id
 En el modo de comentario JavaDoc, se buscan palabras clave específicas de la documentación como @param, @author, @return, además de tener en cuenta los saltos de línea y otros elementos que pueden ser significativos en la documentación.
 Para implementar esto con JavaCC, se definen dos estados léxicos: uno para el código Java regular ---usualmente llamado DEFAULT--- y otro para los comentarios JavaDoc. La sintaxis para definir un estado léxico es simple:
 
-%ARREGLAR!!
-% \lstset{inputencoding=utf8/latin1}
-% \begin{lstlisting}
-% <NOMBRE_DEL_ESTADO>
-% TOKEN: {
-% // Reglas de tokenización para este estado
-% }
-% \end{lstlisting}
+\lstset{inputencoding=utf8/latin1}
+\lstinputlisting[language=java]{code/definiciontoken.txt}
 
 Dentro de cada bloque de estado, se definen las reglas de tokenización utilizando la palabra clave TOKEN, igual que en la definición general de tokens.
 
@@ -264,23 +258,9 @@ Dentro de cada bloque de estado, se definen las reglas de tokenización utilizan
 
 \phantom{text}
 
-%ARREGLAR!!
-% \lstset{inputencoding=utf8/latin1}
-% \begin{lstlisting}
-% <DEFAULT> 
-% TOKEN : {
-%   <KEYWORD_IF: "if">
-% | <IDENTIFIER: ["a"-"z","A"-"Z"](["a"-"z","A"-"Z","0"-"9"])*>
-% // ... otras reglas para código Java regular
-% }	
+\lstset{inputencoding=utf8/latin1}
+\lstinputlisting[language=java]{code/ejemplodefinicionestadoslexicos.txt}
 
-% <JAVADOC> 
-% TOKEN : {
-%   <JAVADOC_TAG: "@param" | "@author" | "@return">
-% | <TEXT: (~["*"])+> // Cualquier texto excepto "*"
-% // ... otras reglas específicas de JavaDoc
-% }
-% \end{lstlisting}
 
 \phantom{text}
 
