@@ -1006,6 +1006,30 @@ Los estados léxicos definidos, además del estado DEFAULT son:
 
 \textbf{...explicar con más detalle la lógica detrás de la elección de cada estado y su función específica en el análisis del XML...DIAGRAMA-TABLA...}
 
+***
+
+
+
+El estado inicial es DEFAULT, donde se reconocen tokens comunes como espacios en blanco y saltos de línea. Al encontrar un token que indica el inicio de una sección específica, el analizador cambia a un estado léxico específico para esa sección.
+
+Por ejemplo, al encontrar el token <HEADER>, el analizador cambia al estado IN\_HEADER. Dentro de cada estado, se reconocen tokens específicos relacionados con esa sección.
+
+El estado IN\_QUERY se utiliza para capturar el valor de la consulta, mientras que IN\_DATASETS y IN\_RESOURCES se utilizan para extraer información sobre los datasets y recursos, respectivamente.
+
+El estado IN\_TITLE, utilizado dentro de IN\_RESOURCES, permite obtener el título de cada recurso.
+
+La gramática utiliza el token STRING para capturar valores entre comillas y VALUE para obtener texto dentro de etiquetas.
+
+Finalmente, las funciones dataset() y resource() definen la lógica para procesar la información de cada dataset y recurso, almacenándola en las estructuras de datos definidas en la clase XMLParser2.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{imagenes/estadoslexicosp5.jpeg}
+	\caption{\label{fig:estadoslexicosp5}Práctica 5. Estados léxicos del analizador}
+\end{figure}
+
+***
+
 \tipbox{
     Cabe destacar que se definen los estados lexicos mencionados para omitir el resto de caracteres o token que el analizador pueda reconocer en un momento dado. Por ejemplo, después de la cabera solo nos interesa el elemento query, por lo que definimos un estado lexico IN\_QUERY en el que definimos los tokens que nos permiten reconocer el valor de la query. De esta forma, se definen ciertos tokens que unicamente pueden o deben ser analizados en un punto concreto del analisis.
 }
