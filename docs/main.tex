@@ -65,6 +65,22 @@
     tabsize=2
 } % configuramos el estilo creado por defecto
 
+% Configuración para el paquete listings
+\lstdefinestyle{mystyle}{
+    basicstyle=\ttfamily\footnotesize,
+    breaklines=true,
+    columns=fullflexible,
+    frame=single,
+    captionpos=b,
+    keepspaces=true,
+    showspaces=false,
+    showstringspaces=false,
+    numberstyle=\tiny,
+    numbers=left,
+    stepnumber=1,
+    numbersep=5pt
+}
+
 % Paquetes para el manejo de la disposición de los elementos en la página
 \usepackage{float} % Para centrar las imágenes 
 \usepackage{parskip} % si no pones esto, el titulo de la portada sale mal
@@ -85,6 +101,11 @@
 \definecolor{color_104998}{rgb}{0.290196,0.494118,0.733333} % color para la figura de la portada
 \definecolor{AzulCeleste}{RGB}{31, 130, 192} % para la portada
 
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+
 % Paquetes deshabilitados
 % \usepackage{pict2e} % mejora del paquete picture. Para cosas mas complejas usar tikz
 % \usepackage{wasysym} % da conflictos con amsmath
@@ -102,39 +123,39 @@
 
 \begin{document}
 
-% Hacemos la portada
-\begin{titlepage}
-    \pagecolor{AzulCeleste}\afterpage{\nopagecolor}
+% % Hacemos la portada
+% \begin{titlepage}
+%     \pagecolor{AzulCeleste}\afterpage{\nopagecolor}
 
-    \begin{figure}[!htb]
-        \begin{minipage}{0.5\textwidth}
-          \centering
-          \includegraphics[width=1\textwidth]{logo_upm_bn.png}
-        \end{minipage}\hfill
-        \begin{minipage}{0.5\textwidth}
-          \centering
-          \includegraphics[width=1\textwidth]{logo_etsist_bn.png}
-        \end{minipage}
-        % \caption{}
-    \end{figure}
+%     \begin{figure}[!htb]
+%         \begin{minipage}{0.5\textwidth}
+%           \centering
+%           \includegraphics[width=1\textwidth]{logo_upm_bn.png}
+%         \end{minipage}\hfill
+%         \begin{minipage}{0.5\textwidth}
+%           \centering
+%           \includegraphics[width=1\textwidth]{logo_etsist_bn.png}
+%         \end{minipage}
+%         % \caption{}
+%     \end{figure}
     
-    %{\includegraphics[width=0.5\textwidth]{logo_etsisi_bn.png}\par}
-    \noindent {\bfseries\Huge \textcolor{white}{Análisis y procesamiento de información textual utilizando generadores de compiladores} \par}
-    \vfill
-    \noindent {\Large \textcolor{white}{Proyecto Fin de Grado} \par}
-    \vfill
-    \noindent {\Large \textcolor{white}{Grado en Ingeniería Telemática} \par}
-    \vfill
-    \noindent {\Large \textcolor{white}{Autor:} \par}
-    \noindent {\Large \textcolor{white}{Miguel Amarís Martos} \par}
-    \vfill
-    \noindent {\Large \textcolor{white}{Tutores:} \par}
-    \noindent {\Large \textcolor{white}{José Luis López Presa} \par}
-    \noindent {\Large \textcolor{white}{Mario Vega Barbas} \par}
-    \vfill
-    \noindent {\Large \textcolor{white}{2023/2024} \par}
-    \newpage
-\end{titlepage}
+%     %{\includegraphics[width=0.5\textwidth]{logo_etsisi_bn.png}\par}
+%     \noindent {\bfseries\Huge \textcolor{white}{Análisis y procesamiento de información textual utilizando generadores de compiladores} \par}
+%     \vfill
+%     \noindent {\Large \textcolor{white}{Proyecto Fin de Grado} \par}
+%     \vfill
+%     \noindent {\Large \textcolor{white}{Grado en Ingeniería Telemática} \par}
+%     \vfill
+%     \noindent {\Large \textcolor{white}{Autor:} \par}
+%     \noindent {\Large \textcolor{white}{Miguel Amarís Martos} \par}
+%     \vfill
+%     \noindent {\Large \textcolor{white}{Tutores:} \par}
+%     \noindent {\Large \textcolor{white}{José Luis López Presa} \par}
+%     \noindent {\Large \textcolor{white}{Mario Vega Barbas} \par}
+%     \vfill
+%     \noindent {\Large \textcolor{white}{2023/2024} \par}
+%     \newpage
+% \end{titlepage}
 
    
 
@@ -179,33 +200,40 @@ Quiero agradecer... (lo último)
 \tableofcontents
 
 % Contenidos
+\pagenumbering{arabic} % cambiamos la numeración de las páginas
+
 \chapter{Introducción}
 \label{sec:cap1}
-\pagenumbering{arabic} % cambiamos la numeración de las páginas
 \input{capitulos/introduccion}
+
 \chapter{Estado del arte}
 \label{sec:cap2}
 \input{capitulos/estadodelarte}
+
 \chapter{Desarrollo}
 \label{sec:cap3}
 \input{capitulos/desarrollo}
+
 % \chapter{Resultados}
 % \label{sec:cap4}
 % \input{capitulos/resultados}
-% PRESUPUESTO (OBLIGATORIO)
+
+% PRESUPUESTO (obligatorio)
 \chapter{Presupuesto}
-\label{sec:cap5}
+\label{sec:cap4}
 \input{capitulos/presupuesto}
-% IMPACTO DEL PROYECTO (OBLIGATORIO)
+
+% Impacto del proyecto (obligatorio)
 \chapter{Impacto del proyecto}
-\label{sec:cap6}
+\label{sec:cap5}
 \input{capitulos/impactodelproyecto}
-% CONCLUSIONES (OBLIGATORIO)
+
+% Conclusiones (obligatorio)
 \chapter{Conclusiones y trabajo futuro}
-\label{sec:cap7}
+\label{sec:cap6}
 \input{capitulos/conclusiones}
 
-% Referencias (OBLIGATORIO)
+% Referencias (obligatorio)
 \nocite{librodeldragon}
 \nocite{ide}
 \nocite{intro}
@@ -214,9 +242,11 @@ Quiero agradecer... (lo último)
 \nocite{xquery}
 \nocite{oracle}
 \nocite{netbeans}
+\label{sec:bibliografía}
 \printbibliography
 
-% Anexo (OBLIGATORIO)
+
+% Anexo (obligatorio)
 \appendix
 \label{sec:apendice}
 \chapter{Preguntas Frecuentes}
