@@ -176,7 +176,7 @@ Con todo lo mencionado, JavaCC proporciona un marco de trabajo estructurado para
 
 % Este modo de depuración nos puede servir en función de la gramática y del archivo que queramos analizar. Habrá casos que nos interese mantenerlo en la gramática ---lo veremos mas adelante en el desarrollo de la práctica 2(insertar enlace)---, mientras que en otros casos aplicaremos este concepto para omitir cualquier secuencia de caracteres que no hayamos definido como token ---lo estudiaremos en el desarrollo de la práctica 3(insertar enlace)---.
 
-JavaCC, al igual que otros generadores de analizadores léxicos, se basa en el concepto de ``tokens'' para descomponer el texto de entrada en unidades significativas. Un token en JavaCC se define mediante una expresión regular y se asocia a un nombre simbólico, el cual se utiliza posteriormente en la definición de la gramática para representar todas las secuencias de caracteres que coincidan con la expresión regular asociada. \textbf{(} A diferencia de otros generadores, JavaCC no separa la definición léxica de la sintáctica, sino que las integra en un único archivo, simplificando la gestión del código y facilitando la comprensión global de la gramática. \textbf{) REPETIR?}
+JavaCC, al igual que otros generadores de analizadores léxicos, se basa en el concepto de ``tokens'' para descomponer el texto de entrada en unidades significativas. Un token en JavaCC se define mediante una expresión regular y se asocia a un nombre simbólico, el cual se utiliza posteriormente en la definición de la gramática para representar todas las secuencias de caracteres que coincidan con la expresión regular asociada. \textbf{(} A diferencia de otros generadores, JavaCC no separa la definición léxica de la sintáctica, sino que las integra en un único archivo, simplificando la gestión del código y facilitando la comprensión global de la gramática. \textbf{) SUPRIMIR PORQUE SE REPITE?}
 
 Para definir un token en JavaCC, se utiliza la palabra clave TOKEN, seguida de dos puntos (:), la expresión regular que define el token entre comillas dobles (`` '') y finalmente el nombre simbólico del token entre llaves ({ }). Por ejemplo, la siguiente línea define un token llamado NUMERO que reconoce cualquier secuencia de dígitos:
 
@@ -197,7 +197,7 @@ TOKEN : {
 
 Para conocer más acerca de los operadores de expresiones que se pueden utilizar, puede consultar el apéndice \hyperref[sec:simbolosdeexpresionesregulares]{\textit{B.2. Símbolos de Expresiones regulares en JavaCC}}.
 
-JavaCC ofrece una gran flexibilidad a la hora de definir tokens. \textbf{(}Permite, por ejemplo, definir tokens que abarquen diferentes estados léxicos. Esto resulta especialmente útil al procesar lenguajes con diferentes contextos de análisis, como los comentarios dentro del código fuente. Para especificar a qué estados léxicos pertenece un token, se incluye una lista de los mismos entre los signos de mayor que (<) y menor que (>), separados por comas. Si no se especifica ningún estado léxico, el token se asocia al estado léxico por defecto (DEFAULT). Veremos más acerca de este tema en la siguiente sección.\textbf{) REPETIR?}
+JavaCC ofrece una gran flexibilidad a la hora de definir tokens. \textbf{(}Permite, por ejemplo, definir tokens que abarquen diferentes estados léxicos. Esto resulta especialmente útil al procesar lenguajes con diferentes contextos de análisis, como los comentarios dentro del código fuente. Para especificar a qué estados léxicos pertenece un token, se incluye una lista de los mismos entre los signos de mayor que (<) y menor que (>), separados por comas. Si no se especifica ningún estado léxico, el token se asocia al estado léxico por defecto (DEFAULT). Veremos más acerca de este tema en la siguiente sección.\textbf{) SUPRIMIR PORQUE SE REPITE?}
 
 Un aspecto crucial en la definición de tokens es la gestión de caracteres especiales o secuencias que no se desean reconocer como tokens individuales. JavaCC proporciona la posibilidad de descartar estos elementos mediante la palabra clave SKIP. Por ejemplo, para ignorar los espacios en blanco y las tabulaciones, se puede utilizar la siguiente definición:
 
@@ -228,7 +228,7 @@ También se podría definir un token especial llamado \lstinline|<UNEXPECTED>| p
 <*> TOKEN: { <UNEXPECTED: ~[]> }
 \end{lstlisting}
 
-Esta regla indica que cualquier carácter (~[]) que no haya sido reconocido por las reglas anteriores se considerará un token <UNEXPECTED>.
+Esta regla indica que cualquier carácter (\lstinline{~[]}) que no haya sido reconocido por las reglas anteriores se considerará un token \lstinline{<UNEXPECTED>}.
 
 La definición de tokens en JavaCC es un proceso iterativo que requiere un análisis cuidadoso del lenguaje que se quiere analizar. Una buena definición de tokens es crucial para el correcto funcionamiento del analizador léxico y, por ende, del analizador sintáctico.
 
@@ -331,7 +331,39 @@ Como consideraciones adicionales, el estado léxico DEFAULT es el estado inicial
 Se recomienda definir la parte léxica ---tokens y estados léxicos--- separada de la parte sintáctica para mejorar la legibilidad y el mantenimiento del código.
 La correcta utilización de los estados léxicos en JavaCC permite crear analizadores léxicos más sofisticados y robustos, capaces de manejar las complejidades de diferentes lenguajes y formatos de datos.
 
-\textbf{No definir tokens en la parte sintactica}
+% \textbf{\#TODO: No definir tokens en la parte sintactica}
+
+Aunque JavaCC permite definir tokens tanto en la parte léxica como en la sintáctica, se recomienda definirlos únicamente en la parte léxica. 
+
+El principal motivo de esto es debido a que un token definido en la parte sintáctica equivale a un token definido en el estado léxico \lstinline{DEFAULT}, lo que puede llevar a confusiones o malinterpretaciones de dicho token.
+
+Además, esto mejora la legibilidad del código, separa claramente las responsabilidades del analizador léxico y sintáctico, y facilita el mantenimiento y la evolución de la gramática.
+
+\subsection{Incrustación de código Java en la gramatica}
+
+% \textbf{\#TODO: Una de las funcionalidades mas interesantes de javacc es que se puede añadir en cualquier punto de la gramatica código java para completar cualquier funcionalidad que sea necesaria dentro de la gramatica. 
+% Se puede definir en la parte lexica, denominado acción lexica
+% AÑADIR EJEMPLO
+% Asi como en la parte sintáctica, para realizar alguna operativa al reconocer la estructura
+% AÑADIR EJEMPLO
+% ...continuar con los beneficios que tiene esta funcionalidad...
+% añadir en la parte de analisis sintáctico con javaCC que se pueden poner acciones léxicas (o código Java) para ejecutar acciones una vez se reconocen ciertos tipos de estructuras. Poner ejemplos}
+
+Una de las funcionalidades más interesantes de JavaCC es que se puede añadir en cualquier punto de la gramática código Java para completar cualquier funcionalidad que sea necesaria dentro de la gramática. Se puede definir en la parte léxica, denominado acción léxica:
+
+\begin{lstlisting}
+TOKEN: {
+	<NUMERO: (["0"-"9"])+> { System.out.println("Número encontrado: " + image); }
+	}
+\end{lstlisting}
+
+Así como en la parte sintáctica, para realizar alguna operativa al reconocer la estructura:
+
+\lstset{inputencoding=utf8/latin1}
+\lstinputlisting{code/accionlexica.txt}
+
+
+La incrustación de código Java en la gramática de JavaCC ofrece una gran flexibilidad y potencia al desarrollador. Permite realizar acciones específicas al reconocer ciertos tokens o estructuras sintácticas, como por ejemplo: realizar cálculos, manipular variables, generar código intermedio, o interactuar con otros componentes del sistema. Esta característica convierte a JavaCC en una herramienta muy versátil para el desarrollo de analizadores complejos y personalizados.
 
 \subsection{Recursividad en JavaCC}
 
@@ -351,7 +383,7 @@ La correcta utilización de los estados léxicos en JavaCC permite crear analiza
 
 \noindent La recursividad es una técnica esencial en la definición de gramáticas y, por ende, en la creación de analizadores con JavaCC. Permite definir estructuras gramaticales que se repiten a sí mismas, como listas, expresiones anidadas y árboles, de forma concisa y elegante.
 
-JavaCC implementa la \textbf{recursividad a la derecha (LR)}, donde la llamada recursiva se encuentra al final de la definición de la producción. Esto significa que, al analizar una estructura recursiva, JavaCC procesa primero los elementos no recursivos y luego realiza la llamada recursiva para manejar la repetición.
+JavaCC implementa la \textbf{recursividad a la derecha}, donde la llamada recursiva se encuentra al final de la definición de la producción. Esto significa que, al analizar una estructura recursiva, JavaCC procesa primero los elementos no recursivos y luego realiza la llamada recursiva para manejar la repetición.
 
 Consideremos la gramática para una lista de números separados por comas:
 
@@ -373,12 +405,33 @@ En este ejemplo, \lstinline|Lista| se define recursivamente. Primero, se procesa
 
 \phantom{text}
 
-\noindent \textbf{Restricción de la recursividad a la izquierda (LL):}
+\noindent \textbf{Restricción de la recursividad a la izquierda}
 
 \phantom{text}
 
-JavaCC prohíbe la recursividad a la izquierda (LL), donde la llamada recursiva se encuentra al principio de la producción. Esto se debe a que la recursividad a la izquierda puede llevar a bucles infinitos en el proceso de análisis. JavaCC detecta este tipo de recursividad durante la generación del código del analizador y genera un error, previniendo comportamientos inesperados.
+JavaCC prohíbe la recursividad a la izquierda, donde la llamada recursiva se encuentra al principio de la producción. Esto se debe a que la recursividad a la izquierda puede llevar a bucles infinitos en el proceso de análisis. JavaCC detecta este tipo de recursividad durante la generación del código del analizador y genera un error, previniendo comportamientos inesperados.
 
+% \textbf{\#TODO: Hay que completar, poner ejemplos...}
+
+Un ejemplo de esta recursividad sería:
+
+\begin{lstlisting}
+void Expresion(): {}
+{
+    Expresion() "+" Termino()
+  | Termino()
+}
+\end{lstlisting}
+
+En este caso, la producción \lstinline{Expresion()} se llama a sí misma al principio, lo que podría llevar a un bucle infinito al intentar analizar una expresión. JavaCC detecta este tipo de recursividad y genera un error durante la generación del código del analizador. La \autoref{fig:errorrecursividad} ilustra el mensaje de error generado:
+
+\begin{figure}[H]
+\centering
+\begin{lstlisting}
+Error: Line 127, Column 1: Left recursion detected: "Expresion... --> Expresion..."
+\end{lstlisting}
+\caption{\label{fig:errorrecursividad}Error del compilador JavaCC al detectar recursividad a la izquierda}
+\end{figure}
 
 % \noindent La clase de analizador sintáctico producida por JavaCC funciona por descenso recursivo, lo que significa que la estructura del código del analizador refleja la estructura recursiva de la gramática que define. Para ilustrarlo, imaginemos una gramática que define una lista como una secuencia de elementos separados por comas, donde un elemento puede ser un número o una lista. Esta gramática, al ser recursiva, permite listas anidadas. El código generado por JavaCC para esta gramática también sería recursivo, con una función para analizar listas que se llama a sí misma para analizar las sublistas.
 
@@ -474,7 +527,7 @@ Esta clase traduce expresiones matemáticas válidas en sus valores numéricos c
 
 \phantom{text}
 
-\noindent La clase utiliza JavaCC para analizar las expresiones matemáticas ingresadas por el usuario. JavaCC es una herramienta de generación de analizadores de sintaxis que permite crear analizadores personalizados para lenguajes de programación o lenguajes de dominio específicos.
+\noindent La clase utiliza JavaCC para analizar las expresiones matemáticas ingresadas por el usuario. \textbf{(} JavaCC es una herramienta de generación de analizadores de sintaxis que permite crear analizadores personalizados para lenguajes de programación o lenguajes de dominio específicos.\textbf{) repetitivo, explicar que se mantiene la estructura pero se añade código java que permite realizar los cálculos}
 
 \phantom{text}
 
@@ -482,7 +535,10 @@ Esta clase traduce expresiones matemáticas válidas en sus valores numéricos c
 
 \phantom{text}
 
-\noindent La expresión raíz de la gramática es \textit{ExpressionList()}. Esta producción analiza una lista de expresiones matemáticas separadas por punto y coma. Cada expresión matemática es analizada por la producción Expression().
+\lstset{inputencoding=utf8/latin1}
+\lstinputlisting{code/ExpressionList.txt}
+
+\noindent La expresión principal de la gramática es \textit{ExpressionList()}. Esta producción analiza una lista de expresiones matemáticas separadas por punto y coma. Cada expresión matemática es analizada por la producción Expression().
 
 \phantom{text}
 
@@ -490,13 +546,19 @@ Esta clase traduce expresiones matemáticas válidas en sus valores numéricos c
 
 \phantom{text}
 
-\noindent La producción \textit{Expression()} analiza una expresión matemática completa. Esta producción analiza un término (Term()) seguido de cero o más operadores de suma o resta (+ o -) y términos.
+\lstset{inputencoding=utf8/latin1}
+\lstinputlisting{code/Expresion.txt}
+
+\noindent La producción \textit{Expression()} analiza una expresión matemática completa. Esta producción analiza un término (Term()) seguido de cero o más operadores de suma o resta (+ o -) y términos, realizando la operación correspondiente en cada caso.
 
 \phantom{text}
 
 \noindent \textbf{Término}
 
 \phantom{text}
+
+\lstset{inputencoding=utf8/latin1}
+\lstinputlisting{code/Term.txt}
 
 \noindent La producción \textit{Term()} analiza un término matemático. Esta producción analiza un factor (\textit{Factor()}) seguido de cero o más operadores de multiplicación o división (* o /) y factores.
 
@@ -506,7 +568,10 @@ Esta clase traduce expresiones matemáticas válidas en sus valores numéricos c
 
 \phantom{text}
 
-\noindent La producción \textit{Factor()} analiza un factor matemático. Esta producción analiza un número (NUM) o un par de paréntesis ((, )) que encierran una expresión matemática.
+\lstset{inputencoding=utf8/latin1}
+\lstinputlisting{code/Factor.txt}
+
+\noindent La producción \textit{Factor()} analiza un factor matemático. Esta producción analiza un número ---correspondiente al token  \lstinline|<NUM>|--- o un par de paréntesis ((, )) que encierran una expresión matemática.
 
 \phantom{text}
 
@@ -524,6 +589,24 @@ Esta clase traduce expresiones matemáticas válidas en sus valores numéricos c
 
 \noindent Para utilizar la clase, simplemente ejecute el archivo NL\_Xlator.java. A continuación, se le pedirá que ingrese expresiones matemáticas una por una, separándolas por punto y coma. La clase le mostrará el resultado de la traducción de cada expresión.
 Aquí hay un ejemplo de cómo utilizar la clase:
+
+% \textbf{\#TODO: Completar esta parte para probar correctamente como funciona la calculadora}
+
+Para utilizar la calculadora, compile el archivo NL\_Xlator.java y ejecútelo desde la línea de comandos. A continuación, introduzca las expresiones matemáticas que desee evaluar, separadas por punto y coma. Por ejemplo:
+
+\begin{lstlisting}
+1 + 2; 3 * 4; (5 - 6) / 7; (1 + 2) * (3 - 4); (5 * 6) / (7 + 8);
+\end{lstlisting}
+
+La calculadora mostrará el resultado de cada expresión en la salida estándar:
+
+\begin{lstlisting}
+Resultado = 3.0
+Resultado = 12.0
+Resultado = -0.14285714285714285
+Resultado = -3.0
+Resultado = 2.0
+\end{lstlisting}
 
 \section{Usos de JavaCC en la actualidad}
 
@@ -549,6 +632,9 @@ Como se ha mencionado antes, en el proyecto de Apache Ant se utiliza JavaCC para
 
 JavaCC también se utiliza en el parseo de archivos desarrollados en Java, como puede ser la librería JavaParser\cite{javaparser}. Otros proyectos en los que se utilice JavaCC, aparte de Apache, son JFlex y ANTLR.
 
+\textbf{\#TODO: borrar sección de JFlex y ANTLR?}
+
+
 \phantom{text}
 
 \noindent \textbf{JFlex}
@@ -568,7 +654,9 @@ ANTLR está escrito en Java y se puede utilizar junto con JavaCC para analizar l
 
 \subsection{Alternativas a JavaCC}
 
-\textbf{\#TODO: integrar con la seccion anterior, hablar de JFLEX y ANTLR}
+\textbf{\#TODO: investigar si las tecnologias encajan %integrar con la seccion anterior, hablar de JFLEX y ANTLR
+investigar otras tecnologías
+}
 
 \noindent Si bien JavaCC se posiciona como una herramienta robusta y versátil para la creación de analizadores léxicos y sintácticos, un análisis exhaustivo y profesional requiere considerar otras tecnologías existentes en este campo. Explorar estas alternativas, con sus características, ventajas y desventajas particulares, enriquece la perspectiva del proyecto y permite una mejor comprensión del panorama actual.
 
