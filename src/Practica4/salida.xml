@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<searchResults xmlns="http://www.piat.dte.upm.es/practica4"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.piat.dte.upm.es/practica4 ResultadosBusquedaP4.xsd">
+	<summary>
+		<query>0016-018</query>
+		<numConcepts>6</numConcepts>
+		<numDatasets>2</numDatasets>
+	</summary>
+	<results>
+		<concepts>
+			<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile"/>
+			<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile/ClasicaEspanola"/>
+			<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile/ContemporaneaBreakdanceHipHop"/>
+			<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile/Flamenco"/>
+			<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile/FolcloreEtnica"/>
+			<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile/SalonTango"/>
+		</concepts>
+		<datasets>
+			<dataset id="https://datos.madrid.es/egob/catalogo/206974-0-agenda-eventos-culturales-100.json">
+				<title><![CDATA[Actividades Culturales y de Ocio Municipal en los próximos 100 días]]></title>
+				<description><![CDATA[Relación de actividades de carácter cultural y de ocio, que se van a celebrar en los próximos 100 días y/o que se están celebrando, en centros Municipales . Podrá encontrar así las actividades de Centros Culturales, Socioculturales, Centros Juveniles, Bibliotecas, Centros de Mayores, Museos, Juntas de Distrito, etc. En este Portal, existen otros conjuntos de datos donde puede ver la relación de los diversos centros anteriores. Tenga en cuenta que hay ciertas actividades que aunque son gratuitas , requieren inscripción previa. En el campo 'CONTENT-URL', esta la url donde puede obtener información adicional de la actividad y donde se especifica si se requiere inscripción y como realizarla . Hay otras actividades, que si tienen un coste asociado, igualmente tiene la información en la url anterior. En el apartado 'Documentación asociada', hay un documento con la estructura del fichero y las recomendaciones y/o advertencias, que le permitirá usar y comprender mejor los datos.]]></description>
+				<theme><![CDATA[http://datos.gob.es/kos/sector-publico/sector/cultura-ocio]]></theme>
+			</dataset>
+			<dataset id="https://datos.madrid.es/egob/catalogo/300107-0-agenda-actividades-eventos.json">
+				<title><![CDATA[Agenda de actividades y eventos]]></title>
+				<description><![CDATA[Relación de actividades de distinto tipo que se van a celebrar o que se están celebrando, en centros municipales o asociados la actividad gestionada por el Ayuntamiento. Podrá encontrar así las actividades de Centros Culturales, Socioculturales, Centros Juveniles, Bibliotecas, Centros de Mayores, Museos, Juntas de Distrito, etc. En la columna P del fichero descargable, puede ver en que centro se realiza dicha actividad (puede ser en centros del ayuntamiento o no) No se trata de una relación exhaustiva de toda la actividad del Ayuntamiento de Madrid, sino solamente de aquellos que ya se encuentran incluidos en la página web www.madrid.es . Asi mismo pueden existir eventos, que por motivos de temática, pueden incluso estar duplicados. En este Portal, existen otros conjuntos de datos donde puede ver la relación de los diversos centros anteriores. Tenga en cuenta que hay ciertas actividades que aunque son gratuitas , requieren inscripción previa. En el campo 'CONTENT-URL', esta la url donde puede obtener información adicional de la actividad y donde se especifica si se requiere inscripción y como realizarla . Hay otras actividades, que si tienen un coste asociado, igualmente tiene la información en la url anterior. En la página siguiente tiene un buscador para poder encontrar una actividad en particular. En el apartado 'Documentación asociada', hay un documento con la estructura del fichero y las recomendaciones y/o advertencias, que le permitirá usar y comprender mejor los datos.]]></description>
+				<theme><![CDATA[http://datos.gob.es/kos/sector-publico/sector/cultura-ocio]]></theme>
+			</dataset>
+		</datasets>
+		<resources>
+			<resource id="https://datos.madrid.es/egob/catalogo/206974-0-agenda-eventos-culturales-100.json">
+				<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile"/>
+				<link><![CDATA[http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=16ba754adf429810VgnVCM1000001d4a900aRCRD]]></link>
+				<title>33 CERTAMEN DE COREOGRAFÍA DE DANZA ESPAÑOLA Y FLAMENCO</title>
+				<location>
+					<eventLocation>Fernán Gómez Centro Cultural de la Villa</eventLocation>
+					<area>https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Salamanca/Barrio/Recoletos</area>
+					<timetable>
+						<start>2024-07-02 00:00:00.0</start>
+						<end>2024-07-07 23:59:00.0</end></timetable>
+					<georeference>40.4249721516942 -3.689948085098791</georeference>
+				</location>
+				<organization>
+					<accesibility>1,6</accesibility>
+					<organizationName>Fernán Gómez Centro Cultural de la Villa</organizationName>
+				</organization>
+				<description></description>
+			</resource>
+			<resource id="https://datos.madrid.es/egob/catalogo/206974-0-agenda-eventos-culturales-100.json">
+				<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile/FolcloreEtnica"/>
+				<link><![CDATA[http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=7d254c920addf810VgnVCM1000001d4a900aRCRD]]></link>
+				<title>Actividades en el centro juvenil 'Ouka Leele'. Junio 2024.</title>
+				<location>
+					<eventLocation>Centro Juvenil Ouka Leele</eventLocation>
+					<area>https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Arganzuela/Barrio/Legazpi</area>
+					<timetable>
+						<start>2024-06-01 00:00:00.0</start>
+						<end>2024-06-30 23:59:00.0</end></timetable>
+					<georeference>40.389367699255175 -3.6884383126394686</georeference>
+				</location>
+				<organization>
+					<accesibility>1</accesibility>
+					<organizationName>Centro Juvenil Ouka Leele</organizationName>
+				</organization>
+				<description></description>
+			</resource>
+			<resource id="https://datos.madrid.es/egob/catalogo/206974-0-agenda-eventos-culturales-100.json">
+				<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile/FolcloreEtnica"/>
+				<link><![CDATA[http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=1e8a4b7e6ee5d810VgnVCM2000001f4a900aRCRD]]></link>
+				<title>Actividades en el centro juvenil 'Pipo Velasco'. Junio 2024.</title>
+				<location>
+					<eventLocation>Centro Juvenil Pipo Velasco (Usera)</eventLocation>
+					<area>https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Usera/Barrio/Zofio</area>
+					<timetable>
+						<start>2024-06-01 00:00:00.0</start>
+						<end>2024-06-30 23:59:00.0</end></timetable>
+					<georeference>40.37738097077752 -3.715659887802671</georeference>
+				</location>
+				<organization>
+					<accesibility>1</accesibility>
+					<organizationName>Centro Juvenil Pipo Velasco (Usera)</organizationName>
+				</organization>
+				<description></description>
+			</resource>
+			<resource id="https://datos.madrid.es/egob/catalogo/206974-0-agenda-eventos-culturales-100.json">
+				<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile"/>
+				<link><![CDATA[http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=f648efb96075f810VgnVCM1000001d4a900aRCRD]]></link>
+				<title>Bailar la tarde: Mucha Muchacha Mix 2024 -  Retiro</title>
+				<location>
+					<eventLocation>Centro Cultural Casa de Vacas (Retiro)</eventLocation>
+					<area>https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Retiro/Barrio/LosJeronimos</area>
+					<timetable>
+						<start>2024-05-19 19:00:00.0</start>
+						<end>2024-07-07 23:59:00.0</end></timetable>
+					<georeference>40.41906571939961 -3.684053112760816</georeference>
+				</location>
+				<organization>
+					<accesibility>1</accesibility>
+					<organizationName>Centro Cultural Casa de Vacas (Retiro)</organizationName>
+				</organization>
+				<description>19 de mayo, 1 y 23 de junio, y 7 de julio a las 19 horas. Duración 2 horas 30 minutos. Accesible a personas en silla de ruedas</description>
+			</resource>
+			<resource id="https://datos.madrid.es/egob/catalogo/206974-0-agenda-eventos-culturales-100.json">
+				<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile"/>
+				<link><![CDATA[http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=beaf2f9cb66d1610VgnVCM2000001f4a900aRCRD]]></link>
+				<title>Baile de Mayores en Centros Culturales Distrito Latina</title>
+				<location>
+					<eventLocation>Centro Sociocultural Almirante Churruca (Latina)</eventLocation>
+					<area>https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Latina/Barrio/LasAguilas</area>
+					<timetable>
+						<start>2023-10-06 16:30:00.0</start>
+						<end>2024-06-28 23:59:00.0</end></timetable>
+					<georeference>40.3829835905706 -3.7800890564106613</georeference>
+				</location>
+				<organization>
+					<accesibility>1</accesibility>
+					<organizationName>Centro Sociocultural Almirante Churruca (Latina)</organizationName>
+				</organization>
+				<description>Durante los meses de octubre 2023 a junio 2024, todos los viernes no festivos, en horario de 16:30 horas a 19:00 horas. ¡No te lo pierdas!</description>
+			</resource>
+			<resource id="https://datos.madrid.es/egob/catalogo/300107-0-agenda-actividades-eventos.json">
+				<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile"/>
+				<link><![CDATA[http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=16ba754adf429810VgnVCM1000001d4a900aRCRD]]></link>
+				<title>33 CERTAMEN DE COREOGRAFÍA DE DANZA ESPAÑOLA Y FLAMENCO</title>
+				<location>
+					<eventLocation>Fernán Gómez Centro Cultural de la Villa</eventLocation>
+					<area>https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Salamanca/Barrio/Recoletos</area>
+					<timetable>
+						<start>2024-07-02 00:00:00.0</start>
+						<end>2024-07-07 23:59:00.0</end></timetable>
+					<georeference>40.4249721516942 -3.689948085098791</georeference>
+				</location>
+				<organization>
+					<accesibility>1,6</accesibility>
+					<organizationName>Fernán Gómez Centro Cultural de la Villa</organizationName>
+				</organization>
+				<description></description>
+			</resource>
+			<resource id="https://datos.madrid.es/egob/catalogo/300107-0-agenda-actividades-eventos.json">
+				<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile/FolcloreEtnica"/>
+				<link><![CDATA[http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=7d254c920addf810VgnVCM1000001d4a900aRCRD]]></link>
+				<title>Actividades en el centro juvenil 'Ouka Leele'. Junio 2024.</title>
+				<location>
+					<eventLocation>Centro Juvenil Ouka Leele</eventLocation>
+					<area>https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Arganzuela/Barrio/Legazpi</area>
+					<timetable>
+						<start>2024-06-01 00:00:00.0</start>
+						<end>2024-06-30 23:59:00.0</end></timetable>
+					<georeference>40.389367699255175 -3.6884383126394686</georeference>
+				</location>
+				<organization>
+					<accesibility>1</accesibility>
+					<organizationName>Centro Juvenil Ouka Leele</organizationName>
+				</organization>
+				<description></description>
+			</resource>
+			<resource id="https://datos.madrid.es/egob/catalogo/300107-0-agenda-actividades-eventos.json">
+				<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile/FolcloreEtnica"/>
+				<link><![CDATA[http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=1e8a4b7e6ee5d810VgnVCM2000001f4a900aRCRD]]></link>
+				<title>Actividades en el centro juvenil 'Pipo Velasco'. Junio 2024.</title>
+				<location>
+					<eventLocation>Centro Juvenil Pipo Velasco (Usera)</eventLocation>
+					<area>https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Usera/Barrio/Zofio</area>
+					<timetable>
+						<start>2024-06-01 00:00:00.0</start>
+						<end>2024-06-30 23:59:00.0</end></timetable>
+					<georeference>40.37738097077752 -3.715659887802671</georeference>
+				</location>
+				<organization>
+					<accesibility>1</accesibility>
+					<organizationName>Centro Juvenil Pipo Velasco (Usera)</organizationName>
+				</organization>
+				<description></description>
+			</resource>
+			<resource id="https://datos.madrid.es/egob/catalogo/300107-0-agenda-actividades-eventos.json">
+				<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile"/>
+				<link><![CDATA[http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=6ea8efb96075f810VgnVCM1000001d4a900aRCRD]]></link>
+				<title>Al Son - Ciudad Lineal</title>
+				<location>
+					<eventLocation>Centro Cultural la Elipa (Ciudad Lineal)</eventLocation>
+					<area>https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/CiudadLineal/Barrio/Ventas</area>
+					<timetable>
+						<start>2024-11-09 18:00:00.0</start>
+						<end>2024-11-09 23:59:00.0</end></timetable>
+					<georeference>40.42446957496409 -3.6504201407465917</georeference>
+				</location>
+				<organization>
+					<accesibility>1</accesibility>
+					<organizationName>Centro Cultural la Elipa (Ciudad Lineal)</organizationName>
+				</organization>
+				<description></description>
+			</resource>
+			<resource id="https://datos.madrid.es/egob/catalogo/300107-0-agenda-actividades-eventos.json">
+				<concept id="https://datos.madrid.es/egob/kos/actividades/DanzaBaile"/>
+				<link><![CDATA[http://www.madrid.es/sites/v/index.jsp?vgnextchannel=ca9671ee4a9eb410VgnVCM100000171f5a0aRCRD&vgnextoid=c3d02f72f42ad810VgnVCM1000001d4a900aRCRD]]></link>
+				<title>Aletas - (Fuencarral - El Pardo)</title>
+				<location>
+					<eventLocation>Centro Cultural Alfredo Kraus (Fuencarral - El Pardo)</eventLocation>
+					<area>https://datos.madrid.es/egob/kos/Provincia/Madrid/Municipio/Madrid/Distrito/Fuencarral-ElPardo/Barrio/Mirasierra</area>
+					<timetable>
+						<start>2024-09-28 18:30:00.0</start>
+						<end>2024-09-28 23:59:00.0</end></timetable>
+					<georeference>40.49082275610172 -3.7216054330053647</georeference>
+				</location>
+				<organization>
+					<accesibility>1</accesibility>
+					<organizationName>Centro Cultural Alfredo Kraus (Fuencarral - El Pardo)</organizationName>
+				</organization>
+				<description></description>
+			</resource>
+		</resources>
+	</results>
+</searchResults>

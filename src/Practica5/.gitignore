@@ -1,0 +1,9 @@
+.vscode
+bin
+catalogo/output*
+# catalogo/ResultadosBusquedaP4.xsd
+lib
+output.xml
+outputPFG.xml
+salida.xml
+/src/piat/opendatasearch/
