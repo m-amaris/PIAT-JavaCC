@@ -6,7 +6,7 @@ A lo largo de las siguientes secciones, desentrañaremos el proceso de implement
 Preparémonos para sumergirnos en el corazón del proyecto, explorando las decisiones tomadas, las herramientas utilizadas y los desafíos superados en el camino hacia la implementación exitosa de JavaCC en PIAT.
 
 \section{Implementación}
-\noindent La implementación del proyecto se ha llevado a cabo utilizando el lenguaje de programación Java, aprovechando las capacidades y herramientas que nos proporciona para lograr un desarrollo eficiente y robusto. En esta sección, se profundizará en los detalles de la implementación, destacando las tecnologías clave utilizadas y las decisiones de diseño tomadas para alcanzar los objetivos del proyecto. 
+\noindent La implementación del proyecto se ha llevado a cabo utilizando el lenguaje de programación Java, aprovechando las capacidades y herramientas que nos proporciona para lograr un desarrollo eficiente y robusto. En esta sección y en las posteriores, se profundizará en los detalles de la implementación, destacando las tecnologías clave utilizadas y las decisiones de diseño tomadas para alcanzar los objetivos del proyecto. 
 
 Las tecnologías clave son JavaCC, que nos va a permitir crear analizadores para lenguajes formales; Java, que nos ofrece características como la portabilidad, orientación a objetos y gestión automática de memoria; y un Entorno de desarrollo Integrado (IDE), que nos va a proporcionar las herramientas para desarrollar las prácticas, como el editor de código, compilador, depurador. Hablaremos del entorno utilizado más adelante.
 
@@ -20,7 +20,7 @@ Las tecnologías clave son JavaCC, que nos va a permitir crear analizadores para
 
 \phantom{text}
 
-\noindent La primera fase consiste en adquirir los conocimientos básicos sobre el funcionamiento de JavaCC, sus conceptos ---qué es un token, un estado léxico, un no-terminal...--- y su sintaxis, incluyendo la definición de gramáticas, la creación de los analizadores léxicos y sintácticos y la generación del código Java. Está fase es considerablemente amplia, ya que hay que dedicarle el tiempo necesario a aprender e interiorizar todos los conceptos y el funcionamiento con esta herramienta.
+\noindent La primera fase consiste en adquirir los conocimientos básicos sobre el funcionamiento de JavaCC, sus conceptos ---qué es un token, un estado léxico, un no-terminal, entre otros--- y su sintaxis, incluyendo la definición de gramáticas, la creación de los analizadores léxicos y sintácticos y la generación del código Java. Esta fase se corresponde con el \hyperref[sec:cap2]{\textit{Capítulo 2. Estado del arte}} de este \pfg. Esta fase es considerablemente amplia, ya que hay que dedicarle el tiempo necesario a aprender e interiorizar todos los conceptos y el funcionamiento con esta herramienta.
 
 \phantom{text}
 
@@ -36,8 +36,7 @@ Las tecnologías clave son JavaCC, que nos va a permitir crear analizadores para
 
 \phantom{text}
 
-\noindent Una vez se tiene un grado notable de experiencia utilizando la herramienta, en esta fase se aplica JavaCC para desarrollar los analizadores léxicos y sintácticos necesarios para resolver las prácticas de la asignatura PIAT. Esta fase es la más importante y la que más tiempo requiere, ya que se realiza una reingeniería de la práctica ... 
-
+\noindent Una vez se tiene un grado notable de experiencia utilizando la herramienta, en esta fase se aplica JavaCC para desarrollar los analizadores léxicos y sintácticos necesarios para resolver las prácticas de la asignatura PIAT. Esta fase es la más importante y la que más tiempo requiere, ya que se realiza una reingeniería de la práctica, adaptando el código original que utilizaba la herramienta actual a una nueva implementación basada en JavaCC. Este proceso implica analizar la lógica a realizar, identificar las reglas gramaticales que definen la estructura del documento o fichero y traducirlas a una gramática JavaCC.
 
 \phantom{text}
 
@@ -82,12 +81,12 @@ En este contexto, aplicaremos las expresiones regulares para definir los distint
 \noindent La práctica se divide en tres partes principales: La obtención de estadísticos generales, cuya función es contabilizar el número de servidores procesados, los  archivos procesados registros procesados y registros con errores de formato; El análisis por tipo de servidor y día, en el que para cada tipo de servidor, se debe calcular y mostrar los siguientes estadísticos por día:
 
 \begin{itemize}
-    \item msgIn: Número de mensajes entrantes.
-    \item msgOut: Número de mensajes salientes.
-    \item msgINFECTED: Número de mensajes infectados con virus.
-    \item msgSPAM: Número de mensajes SPAM no bloqueados.
-    \item code 4.3.2: Número de intentos de entrega con código de estado 4.3.2 (sobrecarga).
-    \item code 5.1.1: Número de intentos de entrega de mensajes  entrantes con código de estado 5.1.1 (dirección de correo electrónico de destino incorrecta).
+    \item \lstinline|msgIn|: Número de mensajes entrantes.
+    \item \lstinline|msgOut|: Número de mensajes salientes.
+    \item \lstinline|msgINFECTED|: Número de mensajes infectados con virus.
+    \item \lstinline|msgSPAM|: Número de mensajes SPAM no bloqueados.
+    \item \lstinline|code 4.3.2|: Número de intentos de entrega con código de estado 4.3.2 (sobrecarga).
+    \item \lstinline|code 5.1.1|: Número de intentos de entrega de mensajes  entrantes con código de estado 5.1.1 (dirección de correo electrónico de destino incorrecta).
 \end{itemize}
 
 ; Y por ultimo, identificar aquellas cuentas de correo internas desde las que se han enviado más de 500 mensajes. Para cada cuenta, se debe mostrar el nombre de usuario y el número de mensajes enviados.
@@ -99,7 +98,7 @@ Un ejemplo del resultado a obtener sería el siguiente:
 
 \subsection{Desarrollo de la práctica}
 
-Una vez comprendido para que se utilizan las expresiones regulares y conocido el contexto de la práctica con el objetivo final, en esta sección se describe cómo se resuelve esta práctica utilizando JavaCC, apoyándonos en el archivo Parser.jj proporcionado.
+Una vez comprendido para que se utilizan las expresiones regulares y conocido el contexto de la práctica con el objetivo final, en esta sección se describe cómo se resuelve esta práctica utilizando JavaCC, apoyándonos en el archivo \hyperref[sec:P2Parser]{Parser.jjz} proporcionado.
 
 El primer paso para resolver la práctica es definir la estructura de árbol que seguirá el analizador sintáctico. Esta estructura determina el tipo de traza que se está analizando y las acciones correspondientes a realizar en cada caso. La \autoref{fig:arboltraza} ilustra esta estructura:
 
@@ -142,7 +141,7 @@ Cabe destacar que se utilizan estados léxicos como \lstinline|SERVER|, \lstinli
 
 La \autoref{fig:tablaestadoslexicosp2} resume los diversos estados léxicos utilizados. El estado inicial es \lstinline|DEFAULT|, donde se reconocen tokens comunes como espacios en blanco, saltos de línea y fechas.
 
-Al encontrar un token que indica el inicio de un tipo específico de servidor, el analizador cambia a un estado léxico específico para ese servidor. Por ejemplo, al encontrar el token ``msa'', el analizador cambia al estado \lstinline|LEX_MSA|. Dentro de cada estado de servidor (\lstinline|LEX_MSA|, \lstinline|LEX_IN|, \lstinline|LEX_OUT|, \lstinline|LEX_SEC|), se reconocen tokens específicos relacionados con ese tipo de servidor, como ``message from:'' en \lstinline|LEX_MSA| o ``bounced from:'' en \lstinline|LEX_IN|.
+Al encontrar un token que indica el inicio de un tipo específico de servidor, el analizador cambia a un estado léxico específico para ese servidor. Por ejemplo, al encontrar el token \lstinline|msa|, el analizador cambia al estado \lstinline|LEX_MSA|. Dentro de cada estado de servidor (\lstinline|LEX_MSA|, \lstinline|LEX_IN|, \lstinline|LEX_OUT|, \lstinline|LEX_SEC|), se reconocen tokens específicos relacionados con ese tipo de servidor, como \lstinline|message from:| en \lstinline|LEX_MSA| o \lstinline|bounced from:| en \lstinline|LEX_IN|.
 
 El estado \lstinline|VALIDA| se utiliza para reconocer componentes de identificadores de servidor válidos, como letras, números y ciertos caracteres especiales. Este estado se utiliza junto con los estados de servidor para asegurar que los identificadores de servidor se analizan correctamente.
 
@@ -160,24 +159,23 @@ Finalmente, el estado \lstinline|UNEXPECTED| captura cualquier carácter que no 
   \midrule
   SERVER & Activado después de una hora & Reconoce los diferentes tipos de servidores y sus identificadores \\
   \midrule
-  LEX\_MSA & Activado después de ``msa'' & Reconoce tokens específicos de servidores MSA\\
+  LEX\_MSA & Activado después de \lstinline|msa| & Reconoce tokens específicos de servidores \lstinline|MSA|\\
   \midrule
-  LEX\_IN & Activado después de ``smtp-in''& Reconoce tokens específicos de servidores SMTP-IN \\
+  LEX\_IN & Activado después de reconocer \lstinline|smtp-in|& Reconoce tokens específicos de servidores \lstinline|SMTP-IN|\\
   \midrule
-  LEX\_OUT & Activado después de ``smtp-out''& Reconoce tokens específicos de servidores SMTP-OUT \\
+  LEX\_OUT & Activado después de reconocer \lstinline|smtp-out|& Reconoce tokens específicos de servidores \lstinline|SMTP-OUT| \\
   \midrule
-  LEX\_SEC & Activado después de ``security-in'' o ``security-out'' & Reconoce tokens específicos de servidores SEC \\
+  LEX\_SEC & Activado después de reconocer \lstinline|security-in| o \lstinline|security-out| & Reconoce tokens específicos de servidores \lstinline|SEC| \\
   \midrule
   VÁLIDA & Activado después de un identificador de servidor & Reconoce caracteres especiales que pueden formar parte de un identificador \\
-  \\
   \bottomrule
   \end{tabularx}
   % \caption{Descripción de los Estados Léxicos}
   \caption{\label{fig:tablaestadoslexicosp2}Práctica 2. Estados léxicos del analizador}
-  \label{table:lexical_states}
+  \label{table:lexical_statesp2}
   \end{figure}
 
-Por último, las producciones definen las reglas sintácticas que el analizador seguirá. A continuación se muestra una producción principal y una producción para manejar trazas del tipo MSA. Estas producciones se corresponden con la estructura mencionada anteriormente (\autoref{fig:arboltraza}):
+Por último, las producciones definen las reglas sintácticas que el analizador seguirá. A continuación se muestra una producción principal y una producción para manejar trazas del tipo \lstinline|MSA|. Estas producciones se corresponden con la estructura mencionada anteriormente (\autoref{fig:arboltraza}):
 
 \lstset{inputencoding=utf8/latin1}
 \lstinputlisting{code/p2productions.jj}
@@ -195,15 +193,15 @@ De las pruebas realizadas, la más reseñable es la comparativa entre las dos he
 \label{fig:comparacion_tiempos_ejecucion.png}
 \end{figure}
 
-\noindent En la gráfica anterior (\autoref{fig:comparacion_tiempos_ejecucion.png}), se puede observar que se han realizado 100 ejecuciones para determinar el tiempo de ejecución en ambas herramientas. Empleando expresiones regulares tradicionales los valores son de aproximadamente 11 segundos, mientras que utilizando JavaCC el tiempo de ejecución medio se redujo a 2 segundos.
+\noindent En la gráfica de la \autoref{fig:comparacion_tiempos_ejecucion.png} se puede observar que se han realizado 100 ejecuciones para determinar el tiempo de ejecución en ambas herramientas. Empleando expresiones regulares tradicionales los valores son de aproximadamente 11 segundos, mientras que utilizando JavaCC el tiempo de ejecución medio se redujo a 2 segundos.
 
-La reducción significativa en el tiempo de ejecución al utilizar JavaCC puede cuantificarse de la siguiente manera: JavaCC fue \textbf{aproximadamente un 450\% más rápido} que las expresiones regulares tradicionales.
+La reducción significativa en el tiempo de ejecución al utilizar JavaCC puede cuantificarse de la siguiente manera: JavaCC fue \textbf{aproximadamente un 82\% más rápido} que las expresiones regulares tradicionales.
 
 Esta mejora se debe a varios factores:
 
 \begin{itemize}
 \item Eficiencia en la Compilación de Gramáticas: JavaCC permite definir gramáticas de manera más estructurada y eficiente, optimizando el proceso de análisis léxico y sintáctico.
-\item Menor Sobrecarga de Procesamiento: Las expresiones regulares, aunque poderosas, son costosas en términos de tiempo de procesamiento, especialmente cuando se aplican repetidamente a grandes volúmenes de datos. JavaCC, al generar analizadores más optimizados, reduce esta sobrecarga. Además, en este práctica, todas las expresiones regulares definidas son ejecutadas por cada traza ---si se definen siete expresiones regulares a analizar, por cada traza que se quiera comprobar, habrá que ejecutar las siete expresiones para comprobar si coincide o no--- , mientras que empleando JavaCC, cada traza es analizada una única vez, siguiendo la estructura de árbol presentada en la Figura \ref{fig:comparacion_tiempos_ejecucion.png}. Este es el motivo principal por el que se observa una gran diferencia entre los dos tiempos de ejecución.
+\item Menor Sobrecarga de Procesamiento: Las expresiones regulares, aunque útiles, son costosas en términos de tiempo de procesamiento, especialmente cuando se aplican repetidamente a grandes volúmenes de datos. JavaCC, al generar analizadores más optimizados, reduce esta sobrecarga. Además, en este práctica, todas las expresiones regulares definidas son ejecutadas por cada traza ---si se definen siete expresiones regulares a analizar, por cada traza que se quiera comprobar, habrá que ejecutar las siete expresiones para comprobar si coincide o no--- , mientras que empleando JavaCC, cada traza es analizada una única vez, siguiendo la estructura de árbol presentada en la Figura \ref{fig:comparacion_tiempos_ejecucion.png}. Este es el motivo principal por el que se observa una gran diferencia entre los dos tiempos de ejecución.
 \item Optimización del Código Generado: El código generado por JavaCC está específicamente optimizado para el reconocimiento y procesamiento de patrones definidos en la gramática, lo que resulta en una ejecución más rápida.
 \end{itemize}
 
@@ -213,7 +211,7 @@ Esta mejora en el rendimiento es especialmente relevante en aplicaciones que req
 
 \noindent La práctica 2 de PIAT ha proporcionado una valiosa oportunidad para aplicar y profundizar en el uso de expresiones regulares y JavaCC en el análisis de archivos de log de un sistema de correo electrónico. A lo largo del desarrollo de esta práctica, se ha demostrado la importancia de las expresiones regulares para la extracción de información específica de los logs, permitiendo la generación de informes estadísticos detallados sobre el tráfico y los eventos registrados en el sistema de correo.
 
-El uso de JavaCC ha sido especialmente destacable en esta práctica. Al implementar un analizador sintáctico con JavaCC, se ha logrado no solo una mayor precisión en la identificación y clasificación de los diferentes tipos de trazas, sino también una optimización significativa en el tiempo de procesamiento. Los resultados obtenidos muestran que el uso de JavaCC ha reducido el tiempo de ejecución de 11 segundos, que era el tiempo necesario al utilizar expresiones regulares, a solo 2 segundos. Esta mejora del 450\% en el rendimiento destaca la eficiencia y la escalabilidad de JavaCC frente a las expresiones regulares tradicionales.
+El uso de JavaCC ha sido especialmente destacable en esta práctica. Al implementar un analizador sintáctico con JavaCC, se ha logrado no solo una mayor precisión en la identificación y clasificación de los diferentes tipos de trazas, sino también una optimización significativa en el tiempo de procesamiento. Los resultados obtenidos muestran que el uso de JavaCC ha reducido el tiempo de ejecución de 11 segundos, que era el tiempo necesario al utilizar expresiones regulares, a solo 2 segundos. Esta mejora del 82\% en el rendimiento destaca la eficiencia y la escalabilidad de JavaCC frente a las expresiones regulares tradicionales.
 
 El proceso de análisis se estructuró en varias etapas, desde la obtención de estadísticas generales hasta el análisis detallado por tipo de servidor y día, culminando en la identificación de cuentas de correo con un alto volumen de mensajes enviados. La estructura de árbol definida para el analizador sintáctico ha sido fundamental para categorizar y procesar adecuadamente las trazas, permitiendo ejecutar acciones específicas según el tipo de traza identificado.
 
@@ -349,9 +347,9 @@ La aplicación a desarrollar debe funcionar como una herramienta de búsqueda qu
   \item Generar un documento XML con los resultados: Este documento debe incluir información sobre los concepts y datasets pertinentes.
 \end{itemize}
 
-Por ejemplo, al buscar el código ``0097-022'', la aplicación debe identificar el concept con ese código, así como todos sus concepts descendientes. A continuación, debe identificar todos los datasets que contienen información sobre cualquiera de estos concepts. Finalmente, debe generar un documento XML que contenga la información de los concepts y datasets pertinentes.
+Por ejemplo, al buscar el código \lstinline|0097-022|, la aplicación debe identificar el concept con ese código, así como todos sus concepts descendientes. A continuación, debe identificar todos los datasets que contienen información sobre cualquiera de estos concepts. Finalmente, debe generar un documento XML que contenga la información de los concepts y datasets pertinentes.
 
-La \autoref{fig:Practica3fig2.jpg} muestra un ejemplo de búsqueda del concept con código 0097-022 y los resultados que se obtendrían.
+La \autoref{fig:Practica3fig2.jpg} muestra un ejemplo de búsqueda del concept con código \lstinline|0097-022| y los resultados que se obtendrían.
 
 \begin{figure}[H]
     \centering
@@ -367,21 +365,25 @@ Esta práctica sienta las bases para las prácticas 4 y 5, donde se profundizar�
 \noindent La implementación de la Práctica 3 se basa en la creación de un analizador de documentos XML denominado XMLParser, desarrollado en JavaCC. Este analizador se ha diseñado para procesar documentos XML que contienen datos publicados en el Portal de Datos Abiertos del Ayuntamiento de Madrid (http://datos.madrid.es).
 Los documentos XML que se procesan a través de esta herramienta presentan ciertas características clave, como la identificación de recursos mediante URI, la asociación a categorías, la agrupación en conjuntos de datos y una clasificación jerárquica basada en características temáticas. La tarea principal del analizador es extraer información específica relacionada con códigos de categorías y, posteriormente, generar un nuevo documento XML que contiene los resultados deseados.
 
-El primer paso para resolver la práctica es definir la estructura del analizador que seguirá el procesamiento de los documentos XML. Esta estructura determina cómo se identifican y extraen los datos de los documentos, así como las acciones correspondientes a realizar en cada caso. La \textbf{FIGURA X} ilustra esta estructura:
+El primer paso para resolver la práctica es definir la estructura del analizador que seguirá el procesamiento de los documentos XML. Esta estructura determina cómo se identifican y extraen los datos de los documentos, así como las acciones correspondientes a realizar en cada caso. La \autoref{fig:estructuraanalizadorp3} ilustra esta estructura:
 
 % \textbf{\#TODO: Terminar foto XML y XML}
 
-% \begin{figure}[H]
-% 	\centering
-% 	\includegraphics[width=\textwidth]{imagenes/p3validacion.png}
-% 	\caption{\label{fig:p3validacion}Estructura del analizador XML. Procesamiento de conceptos y datasets.}
-% \end{figure}
 
 % \textbf{Figura 1: Estructura del analizador XML. Procesamiento de conceptos y datasets.}
 
-\textbf{\#TODO: Crear estructura}
+% \textbf{\#TODO: Crear estructura}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{imagenes/estructuraanalizadorp3.png}
+	\caption{\label{fig:estructuraanalizadorp3}Estructura del analizador XML. Procesamiento de conceptos y datasets.}
+\end{figure}
 
-Esta figura refleja la estructura del análisis sintáctico, en la que se observa cómo se procesan los elementos concept y dataset. Se observa cómo se manejan los distintos elementos y atributos dentro de cada uno, de tal forma que se describe la estructura de forma detallada. En aquellos no-terminales en los que se quiera ejecutar alguna acción, como puede ser añadir los conceptos y datasets a las listas pertinentes, o crear nuevos objetos de tipo Concept o Dataset, se define una acción léxica dentro del no-terminal, como por ejemplo:
+Esta figura es muy similar a la \autoref{fig:analizadorlexico}, que ilustraba el análisis léxico de JavaCC. En este caso, la figura refleja la estructura del análisis al completo para esta práctica, en la que se observa cómo se procesan los elementos concept y dataset. 
+% Se observa cómo se manejan los distintos elementos y atributos dentro de cada uno, de tal forma que se describe la estructura de forma detallada.
+Puede visualizar la extracción de información y validación de los campos resultados en la figura \autoref{fig:p3validacion}. De igual manera, en la sección \hyperref[sec:codigofuentep3]{\textit{3.7.7. Código Fuente}} se visualizan los ficheros \lstinline|catalogo.xml| y \lstinline|XMLParser.jj|
+
+ En aquellos no-terminales en los que se quiera ejecutar alguna acción, como puede ser añadir los conceptos y datasets a las listas pertinentes, o crear nuevos objetos de tipo Concept o Dataset, se define una acción léxica dentro del no-terminal, como por ejemplo:
 
 \begin{lstlisting}
 
@@ -412,7 +414,7 @@ Concept concept() : {}
 
 \end{lstlisting}
 
-En este fragmento de código se observa el no-terminal Concept(), el cual define la estructura XML que debe tener un <concept>. Si nos fijamos detenidamente en el procesamiento del no-terminal, podemos apreciar que se realizan dos acciones léxicas: una para añadir a una lista de concepts un concepto hijo (concepts.add(childConcept);), y otra que realiza la comparación del valor de <code> con el nombre de la categoría para crear un objeto concept con los campos extraídos.
+En este fragmento de código se observa el no-terminal \lstinline|Concept()|, el cual define la estructura XML que debe tener un \lstinline|<concept>|. Si nos fijamos detenidamente en el procesamiento del no-terminal, podemos apreciar que se realizan dos acciones léxicas: una para añadir a una lista de concepts un concepto hijo: \lstinline|concepts.add(childConcept);|, y otra que realiza la comparación del valor de \lstinline|<code>| con el nombre de la categoría para crear un objeto concept con los campos extraídos.
 
 \phantom{text}
 
@@ -434,7 +436,7 @@ options
 
 Estas opciones configuran el analizador para que no genere métodos estáticos, permitiendo la concurrencia y el procesamiento de múltiples entradas de manera eficiente.
 
-Una vez definidas las opciones del analizador, comienza la declaración del parser y la definición de la clase XMLParser:
+Una vez definidas las opciones del analizador, comienza la declaración del parser y la definición de la clase \lstinline|XMLParser|:
 
 \lstset{inputencoding=utf8/latin1}
 \begin{lstlisting}
@@ -453,9 +455,9 @@ PARSER_END(XMLParser)
     
 \end{lstlisting}
 
-en la que se observa que se instacia una lista de objetos Concept, en la que se almacenarán todos los Concept cuyo código coincida con el criterio de la búsqueda, así como los Concept recursivos que puedan tener.
-Además se observa otra lista, en este caso de objetos Dataset, en la que igualmente se almacenarán aquellos objetos Dataset que contengan algún un elemento concept con el atributo id igual al atributo id del algún elemento concept de conceptsList.
-También se observa la creación de los atributos conceptLabel y nombreCategoría, encargados de almacenar el valor de <label> en cada concept, y de almacenar el valor del nombre de la categoría pasado como argumento al programa principal, respectivamente.
+en la que se observa que se instancia una lista de objetos \lstinline|Concept|, en la que se almacenarán todos los Concept cuyo código coincida con el criterio de la búsqueda, así como los \lstinline|Concept| recursivos que puedan tener.
+Además se observa otra lista, en este caso de objetos \lstinline|Dataset|, en la que igualmente se almacenarán aquellos objetos Dataset que contengan algún un elemento concept con el atributo id igual al atributo \lstinline|id| del algún elemento concept de \lstinline|conceptsList|.
+También se observa la creación de los atributos \lstinline|\lstinline|conceptLabel| y \lstinline|nombreCategoría|, encargados de almacenar el valor de \lstinline|<label>| en cada concept, y de almacenar el valor del nombre de la categoría pasado como argumento al programa principal, respectivamente.
 
 Acto seguido, se definen los tokens que identifican las diferentes etiquetas y elementos del documento XML, así como las reglas para omitir espacios en blanco y caracteres irrelevantes:
 
@@ -533,12 +535,13 @@ ManejadorXML processFile(String code) :
     
 \end{lstlisting}
 
-Este método inicializa las listas de conceptos y conjuntos de datos, y establece el nombre de la categoría que se utilizará como criterio de búsqueda. Luego, procesa el documento XML siguiendo la estructura definida, identificando y extrayendo los conceptos y conjuntos de datos pertinentes. Al finalizar el procesamiento, retorna un objeto ManejadorXML que contiene las listas de conceptos y conjuntos de datos extraídos.
+Este método inicializa las listas de conceptos y conjuntos de datos, y establece el nombre de la categoría que se utilizará como criterio de búsqueda. Luego, procesa el documento XML siguiendo la estructura definida, identificando y extrayendo los conceptos y conjuntos de datos pertinentes. Al finalizar el procesamiento, retorna un objeto \lstinline|ManejadorXML| que contiene las listas de conceptos y conjuntos de datos extraídos.
 \tipbox{
     Es importante destacar el sentido que tiene utilizar la clase ManejadorXML, si el parser que estamos desarrollando ya busca lo que quiere. El sentido que tiene es cronológico, ya que primero el parser realiza el análisis del documento y devuelve los datos, si se llama a una función que devuelva los datos es posible que se llamen a estas funciones antes de que se llame a la función de análisis.
 }
-Como se puede observar en el método, hace referencia a dos no-terminales, los métodos concept() y dataset().
-El método concept() procesa cada concepto, extrayendo su código, label y posibles conceptos hijos. Utiliza recursividad para manejar estructuras jerárquicas de conceptos, asegurando que se capturen todas las relaciones parentales y de descendencia.
+
+Como se puede observar en el método, hace referencia a dos no-terminales, los métodos \lstinline|concept()| y \lstinline|dataset()|.
+El método \lstinline|concept()| procesa cada concepto, extrayendo su código, label y posibles conceptos hijos. Utiliza recursividad para manejar estructuras jerárquicas de conceptos, asegurando que se capturen todas las relaciones parentales y de descendencia.
 
 \lstset{inputencoding=utf8/latin1}
 \begin{lstlisting}
@@ -576,11 +579,11 @@ Concept concept() :
 
 \end{lstlisting}
 
-Concretamente, el método concept se encarga de identificar cada elemento <concept> en el documento XML. Extrae el valor del atributo id, el código del concepto y el label del concepto. Si el código del concepto coincide con el criterio de búsqueda (nombreCategoria), se agrega a la lista de conceptos pertinentes (conceptsList). Además, si el concepto contiene conceptos hijos, el método se llama recursivamente para procesar estos hijos y construir una estructura jerárquica completa.
+Concretamente, el método concept se encarga de identificar cada elemento \lstinline|<concept>| en el documento XML. Extrae el valor del atributo \lstinline|id|, el código del concepto y el label del concepto. Si el código del concepto coincide con el criterio de búsqueda \lstinline|nombreCategoria|, se agrega a la lista de conceptos pertinentes \lstinline|conceptsList|. Además, si el concepto contiene conceptos hijos, el método se llama recursivamente para procesar estos hijos y construir una estructura jerárquica completa.
 
-La recursividad se utiliza en el método concept() para manejar la estructura jerárquica de los conceptos. Al encontrar un elemento <concepts> dentro de un <concept>, el método se llama a sí mismo para procesar cada <concept> hijo. Este proceso se repite recursivamente hasta que se hayan procesado todos los conceptos descendientes, construyendo así una representación completa de la jerarquía de conceptos en el documento XML.
+La recursividad se utiliza en el método \lstinline|concept()| para manejar la estructura jerárquica de los conceptos. Al encontrar un elemento \lstinline|<concepts>| dentro de un \lstinline|<concept>|, el método se llama a sí mismo para procesar cada \lstinline|<concept>| hijo. Este proceso se repite recursivamente hasta que se hayan procesado todos los conceptos descendientes, construyendo así una representación completa de la jerarquía de conceptos en el documento XML.
 
-Por otra parte, si nos centramos en el método dataset(), este  procesa cada conjunto de datos, extrayendo su título, descripción y conceptos asociados. Es responsable de identificar los conjuntos de datos que contienen información relevante para los conceptos identificados previamente.
+Por otra parte, si nos centramos en el método \lstinline|dataset()|, este  procesa cada conjunto de datos, extrayendo su título, descripción y conceptos asociados. Es responsable de identificar los conjuntos de datos que contienen información relevante para los conceptos identificados previamente.
 
 \lstset{inputencoding=utf8/latin1}
 \begin{lstlisting}
@@ -624,9 +627,9 @@ void dataset() :
 
 \end{lstlisting}
 
-Como se puede observar, este no-terminal se encarga de procesar los elementos <dataset> en el documento XML. Extrae el id, el título y otros atributos opcionales como descripción, keyword, theme y publisher. También identifica los conceptos asociados a cada conjunto de datos y los agrega a una lista de identificadores de conceptos (idConcepts). Si alguno de estos identificadores coincide con el conceptLabel pertinente, el conjunto de datos se agrega a la lista de conjuntos de datos pertinentes (datasetsList).
+Como se puede observar, este no-terminal se encarga de procesar los elementos \lstinline|<dataset>| en el documento XML. Extrae el id, el título y otros atributos opcionales como \lstinline|description|, \lstinline|keyword|, theme y publisher. También identifica los conceptos asociados a cada conjunto de datos y los agrega a una lista de identificadores de conceptos \lstinline|idConcepts|. Si alguno de estos identificadores coincide con el conceptLabel pertinente, el conjunto de datos se agrega a la lista de conjuntos de datos pertinentes \lstinline|datasetsList|.
 
-Además, el analizador cuenta con los métodos auxiliares getCode()  y getLabel(). Estos métodos auxiliares extraen el valor de los códigos y labels de los elementos XML. Son utilizados por los métodos concept y dataset para obtener los valores necesarios de los elementos XML.
+Además, el analizador cuenta con los métodos auxiliares \lstinline|getCode()| y \lstinline|getLabel()|. Estos métodos auxiliares extraen el valor de los códigos y labels de los elementos XML. Son utilizados por los métodos concept y dataset para obtener los valores necesarios de los elementos XML.
 
 \lstset{inputencoding=utf8/latin1}
 \begin{lstlisting}
@@ -655,7 +658,7 @@ String getValue() :
 
 \end{lstlisting}
 
-El método getCode extrae el valor del código de un elemento $<$code$>$ eliminandvo los caracteres $<$ y $>$, mientras que el método getValue extrae el valor de un elemento <label> utilizando la sintaxis CDATA.
+El método \lstinline|getCode()| extrae el valor del código de un elemento \lstinline|<code>| eliminando los caracteres \lstinline|<| y \lstinline|>|, mientras que el método \lstinline|getValue()| extrae el valor de un elemento \lstinline|<label>| utilizando la sintaxis CDATA.
 
 \phantom{text}
 
@@ -685,7 +688,7 @@ La implementación del analizador se realiza utilizando JavaCC, lo que permite u
 
 Además, la implementación en Java facilita la integración del analizador con otros sistemas y aplicaciones. Esto permite reutilizar el código y extender la funcionalidad según sea necesario. La capacidad de Java para manejar grandes volúmenes de datos y su amplia biblioteca estándar proporcionan una base sólida para el desarrollo de herramientas de análisis de datos.
 
-En conclusión, la implementación de esta práctica proporciona una herramienta poderosa para analizar y extraer información de documentos XML. No solo cumple con los objetivos establecidos, sino que también demuestra la efectividad del uso de JavaCC en el desarrollo de analizadores de documentos XML. Esta herramienta ofrece un ejemplo claro de cómo utilizar técnicas avanzadas de análisis sintáctico y léxico para resolver problemas complejos de procesamiento de datos.
+En conclusión, la implementación de esta práctica proporciona una herramienta versátil para analizar y extraer información de documentos XML. No solo cumple con los objetivos establecidos, sino que también demuestra la efectividad del uso de JavaCC en el desarrollo de analizadores de documentos XML. Esta herramienta ofrece un ejemplo claro de cómo utilizar técnicas avanzadas de análisis sintáctico y léxico para resolver problemas complejos de procesamiento de datos.
 
 % \subsubsection{Preguntas Frecuentes}
 
@@ -714,7 +717,7 @@ En conclusión, la implementación de esta práctica proporciona una herramienta
 En cuanto a tiempo de ejecución no se aprecian diferencias significativas, el principal aspecto a destacar en esta práctica es la simplicidad con la que se genera el analizador y el potencial de recursividad que este tiene. 
 Suponga que se encuentra desarrollando esta práctica utilizando la herramienta SAX. Si la prácticas se modificase ---ligeramente--- y el catalogo.xml tuviese una recursividad mas profunda, esto complicaría mucho el procesamiento Java para algo que a priori no cambia mucho el formato del fichero que se quiere analizar. En otras palabras, un pequeño cambio en el documento a analizar implicaría un gran cambio del programa principal o clase encargada de analizar dicho fichero utilizando SAX.
 
-Sin embargo, empleando JavaCC este problema no existiría. Esto es debido a la recursividad inherente que proporciona la plataforma, permitiendo que dentro de un no-terminal se encuentre especificado ese mismo no-terminal ---lo hemos visto en este capítulo con el método concept(), y lo vimos también en el ejemplo de Calculadora explicado en \hyperref[sec:cap2]{\textit{Capítulo 2. Estado del arte}}, con los métodos Expression() y Factor()---. Esto significa que el grado de complejidad del archivo a analizar es inversamente proporcional al grado de complejidad de la gramática a desarrollar en JavaCC.
+Sin embargo, empleando JavaCC este problema no existiría. Esto es debido a la recursividad inherente que proporciona la plataforma, permitiendo que dentro de un no-terminal se encuentre especificado ese mismo no-terminal ---lo hemos visto en este capítulo con el método \lstinline|concept()|, y lo vimos también en el ejemplo de Calculadora explicado en \hyperref[sec:cap2]{\textit{Capítulo 2. Estado del arte}}, con los métodos \lstinline|Expression()| y \lstinline|Factor()|---. Esto significa que el grado de complejidad del archivo a analizar es inversamente proporcional al grado de complejidad de la gramática a desarrollar en JavaCC.
 
 Por otra parte, es fundamental realizar una comparación visual del XML generado para verificar que la información extraída del catálogo se haya almacenado correctamente, con la estructura y los valores esperados. La \autoref{fig:p3validacion} muestra el resultado de la transformación, prestando especial atención a la correspondencia de los elementos del XML, así como a la integridad de los datos.
 
@@ -726,9 +729,9 @@ Por otra parte, es fundamental realizar una comparación visual del XML generado
 
 % \textbf{\#TODO: mencionar ejemplos concretos de las ventajas de JavaCC sobre SAX en términos de recursividad y manejo de cambios en la estructura del XML...}
 
-Un ejemplo concreto de las ventajas de JavaCC sobre SAX en términos de recursividad se puede observar en la gestión de los elementos anidados dentro del archivo catalogo.xml. Con JavaCC, la recursividad se maneja de forma natural mediante la definición de una regla gramatical que se llama a sí misma para procesar los elementos hijos. Si la estructura del archivo XML cambiase para incluir un nuevo nivel de anidamiento de , la gramática JavaCC se podría adaptar fácilmente añadiendo una nueva regla recursiva. Con SAX, sin embargo, este cambio requeriría una modificación sustancial del código, con la adición de nuevos bucles y estructuras de control para manejar el nuevo nivel de anidamiento
+Un ejemplo concreto de las ventajas de JavaCC sobre SAX en términos de recursividad se puede observar en la gestión de los elementos anidados dentro del archivo catalogo.xml. Con JavaCC, la recursividad se maneja de forma natural mediante la definición de una regla gramatical que se llama a sí misma para procesar los elementos hijos. Si la estructura del archivo XML cambiase para incluir un nuevo nivel de anidamiento, la gramática JavaCC se podría adaptar fácilmente añadiendo una nueva regla recursiva. Con SAX, sin embargo, este cambio requeriría una modificación sustancial del código, con la adición de nuevos bucles y estructuras de control para manejar el nuevo nivel de anidamiento
 
-\textbf{\#TODO: Añadir grafica comparativa con el cambio que se tendría que hacer en javacc y en sax}
+% \textbf{\#TODO: Añadir gráfica comparativa con el cambio que se tendría que hacer en javacc y en sax}
 
 En cuanto al manejo de cambios en la estructura del XML, JavaCC ofrece una mayor flexibilidad que SAX. Si se añadiera un nuevo atributo a los elementos , por ejemplo, la gramática JavaCC se podría modificar fácilmente para incluir este nuevo atributo en la definición del token correspondiente. Con SAX, este cambio requeriría la modificación del código que procesa los eventos de inicio y fin de elemento, lo que podría ser más complejo y propenso a errores.
 
@@ -741,12 +744,15 @@ Uno de los aspectos más destacados de esta práctica es la capacidad de filtrar
 
 
 \subsection{Código Fuente}
+\label{sec:codigofuentep3}
 
 \noindent El código fuente de los archivos elaborados en esta practica se encuentra a continuación para su estudio y aprendizaje. Cabe destacar que se proporcionan dicho código para que el lector sea capaz de probar las funcionalidades con el objetivo de aprender mas acerca de las aplicaciones de JavaCC.
 
 No se promueve el plagio y la realización de las prácticas, este simplemente es una de las muchas formas en las que se podría realizar la práctica.
 
 \hyperref[sec:XMLParser]{\textbf{XMLParser.jj}}
+
+\hyperref[sec:catalogoxml]{\textbf{Catalogo.xml (Simplificado)}}
 %\href{https://shorturl.at/alqN6}{XMLParser.jj}
 
 \section{Análisis de archivos JSON. Práctica 4}
@@ -771,7 +777,31 @@ Sin embargo, en este proyecto proponemos un enfoque diferente: sustituir GSON St
 
 Las clases principales de la API son JsonReader y JsonWriter, que se utilizan para leer y escribir JSON secuencialmente, respectivamente. GSON Streaming destaca por su eficiencia en términos de memoria y su flexibilidad. Al no requerir la carga completa del modelo de objeto en memoria, resulta más eficiente que la API tradicional de GSON. Además, su capacidad de lectura y escritura secuencial la hace muy flexible.
 
-\textbf{\#TODO: poner algun ejemplo o imagen}
+
+\begin{figure}[H]
+  \centering
+  \begin{lstlisting}
+    // Instanciar un objeto JsonReader
+    JsonReader jsonReader = new JsonReader(new StringReader(json));
+    
+    try {
+    // Mientras haya un elemento...
+    while (jsonReader.hasNext()) {
+      // ...se mira el siguiente token -sin consumirlo-...
+      JsonToken nextToken = jsonReader.peek();
+      // ...y se hacen las comprobaciones
+      if (JsonToken.BEGIN_OBJECT.equals(nextToken)) {
+        jsonReader.beginObject();
+      } else if (JsonToken.NAME.equals(nextToken)) {
+        String name = jsonReader.nextName();
+        System.out.println("Token KEY >>>> " + name);
+      } else if ...
+    \end{lstlisting}
+  \caption{\label{fig:jsonreaderejemplo}Ejemplo de análisis utilizando la clase JsonReader de GSON Streaming API\cite{ejemplojsonreader}}
+  \end{figure}
+
+
+Como se puede observar en la \autoref{fig:jsonreaderejemplo}, el análisis con GSON Streaming implica codificar una lógica muy general y con un alto nivel de bucles y condiciones. Además, este análisis realiza un procesamiento de todos los datos del archivo.
 
 \subsection{JavaCC vs. GSON Streaming}
 
@@ -787,9 +817,14 @@ Las clases principales de la API son JsonReader y JsonWriter, que se utilizan pa
 
 Las ventajas de JavaCC frente a GSON Streaming en este escenario son:
 
-Extracción selectiva: JavaCC permite definir qué elementos y atributos son relevantes, optimizando el proceso de análisis y evitando el procesamiento innecesario de información, a diferencia de GSON Streaming, que procesa todo el flujo de datos.
-Rendimiento: Al evitar el procesamiento innecesario, se reduce el consumo de recursos y se mejora el rendimiento, especialmente al tratar con grandes conjuntos de datos.
-Flexibilidad: JavaCC ofrece un alto grado de flexibilidad para adaptarse a diferentes estructuras de archivos JSON, lo que lo convierte en una herramienta versátil para el análisis de datos.
+\begin{itemize}
+  \item Extracción selectiva: JavaCC permite definir qué elementos y atributos son relevantes, optimizando el proceso de análisis y evitando el procesamiento innecesario de información, a diferencia de GSON Streaming, que procesa todo el flujo de datos.
+  
+  \item Rendimiento: Al evitar el procesamiento innecesario, se reduce el consumo de recursos y se mejora el rendimiento, especialmente al tratar con grandes conjuntos de datos.
+  
+  \item Flexibilidad: JavaCC ofrece un alto grado de flexibilidad para adaptarse a diferentes estructuras de archivos JSON, lo que lo convierte en una herramienta versátil para el análisis de datos.
+\end{itemize}
+
 
 \subsection{Descripción de la práctica}
 
@@ -830,7 +865,7 @@ Para ello, se utilizará JavaCC para crear un analizador sintáctico que, a dife
 
 \noindent La implementación con JavaCC se basa en la definición de una gramática que refleje la estructura de los archivos JSON a analizar. Esta gramática, definida en el archivo JSONParser.jj, permitirá al analizador identificar los elementos relevantes dentro de los datasets JSON del portal de datos abiertos y extraer la información deseada para la generación del XML.
 
-El primer paso consiste en definir los tokens que nos interesan. Dado que solo buscamos información específica dentro de cada recurso del dataset, ignoraremos la mayoría de los elementos del JSON. Para ello, se definen estados léxicos en la gramática que se activarán al encontrar los tokens que marcan el inicio y fin de las secciones relevantes. La figura X resume los diversos estados lexicos utilizados
+El primer paso consiste en definir los tokens que nos interesan. Dado que solo buscamos información específica dentro de cada recurso del dataset, ignoraremos la mayoría de los elementos del JSON. Para ello, se definen estados léxicos en la gramática que se activarán al encontrar los tokens que marcan el inicio y fin de las secciones relevantes. La \autoref{fig:estadoslexicosp4} resume los diversos estados léxicos utilizados.
 
 \begin{lstlisting}
 TOKEN :
@@ -896,36 +931,12 @@ SKIP :
 }
 \end{lstlisting}
 
-% \textbf{\#TODO: AÑADIR TABLA ESTADOS LEXICOS}
+% \textbf{\#TODO: AÑADIR TABLA ESTADOS LÉXICOS}
 
-El análisis comienza en el estado por defecto buscando el token ``@graph''. Una vez encontrado, se activa el estado GRAPH que busca el inicio de un recurso mediante el token ``@id''. Al encontrarlo, se activa el estado RESOURCE y se comienza la extracción de la información.
+El análisis comienza en el estado por defecto buscando el token \lstinline|@graph|. Una vez encontrado, se activa el estado \lstinline|GRAPH| que busca el inicio de un recurso mediante el token \lstinline|@id|. Al encontrarlo, se activa el estado \lstinline|RESOURCE| y se comienza la extracción de la información.
 
-\begin{lstlisting}
-  void processFile(List < String > conceptsList, List < Resource> resourceList) :
-  {
-    int maxObjects = 5;
-    Resource r; 
-  }
-  {
-    (
-      < GRAPHS > < ARRAY_START >
-      (
-        r =  resource()
-        {
-         if (conceptsList.contains(r.getConceptId())){
-            resourceList.add(r);
-          }
-          if (resourceList.size() >= maxObjects){
-           return; // Deja de analizar, termina la funcion processFile()
-          }
-        }
-      )*
-      < ARRAY_END >
-    )
-    < EOF > 
-    
-  }
-\end{lstlisting}
+\lstset{inputencoding=utf8/latin1}
+\lstinputlisting{code/processfile.txt}
 
 Dentro del estado \lstinline{RESOURCE}, se definen los tokens que representan los campos que queremos obtener: \lstinline{title}, \lstinline{description}, \lstinline{dtstart}, \lstinline{dtend}, \lstinline{link}, \lstinline{event-location}, \lstinline{area}, \lstinline{latitude}, \lstinline{longitude}, \lstinline{organization-name} y \lstinline{accesibility}.
 
@@ -958,7 +969,7 @@ Dentro del estado \lstinline{RESOURCE}, se definen los tokens que representan lo
   }
 \end{lstlisting}
 
-Para manejar el valor de estos campos, se utiliza el estado léxico GETVALUE. Este estado se activa al encontrar cualquiera de los tokens mencionados anteriormente y se encarga de capturar el valor asociado, ya sea un STRING, INTEGER, DOUBLE, TRUE, FALSE o NULL.
+Para manejar el valor de estos campos, se utiliza el estado léxico \lstinline|GETVALUE|. Este estado se activa al encontrar cualquiera de los tokens mencionados anteriormente y se encarga de capturar el valor asociado, ya sea un \lstinline|STRING|, \lstinline|INTEGER|, \lstinline|DOUBLE|, \lstinline|TRUE| , \lstinline|FALSE| o \lstinline|NULL|.
 
 \begin{figure}[H]
   \centering
@@ -970,23 +981,23 @@ Para manejar el valor de estos campos, se utiliza el estado léxico GETVALUE. Es
   % \midrule
   % IN\_HEADER & Activado al reconocer el primer elemento de la cabecera & Reconoce los diferentes elementos que componen el encabezado XML \\
   \midrule
-  GRAPH & Activado al encontrar "@graph" & Busca el inicio de un recurso mediante "@id" \\
+  GRAPH & Activado al encontrar \lstinline|@graph| & Busca el inicio de un recurso mediante \lstinline|@id| \\
   \midrule
-  RESOURCE & Activado al encontrar "@id" & Extrae la información del recurso \\
+  RESOURCE & Activado al encontrar \lstinline|@id| & Extrae la información del recurso \\
   \midrule
   GETVALUE & Activado al encontrar un token que requiere obtener su valor & Captura el valor asociado al token \\
   \midrule
-  INAREA & Activado al encontrar "area" & Busca el token "@id" dentro de "area" \\
+  INAREA & Activado al encontrar \lstinline|area| & Busca el token \lstinline|@id| dentro de \lstinline|area| \\
   \bottomrule
   \end{tabularx}
   % \caption{Descripción de los Estados Léxicos}
-  \caption{\label{fig:estadoslexicosp5}Práctica 5. Estados léxicos del analizador}
-  \label{table:lexical_states}
+  \caption{\label{fig:estadoslexicosp4}Práctica 4. Estados léxicos del analizador}
+  \label{table:lexical_statesp4}
   \end{figure}
 
-Un aspecto importante es la gestión del campo ``area''. Este campo contiene a su vez un identificador que nos interesa capturar. Para ello, al encontrar el token ``area'', se activa el estado léxico INAREA que busca específicamente el token ``@id'' para obtener el valor del identificador del área.
+Un aspecto importante es la gestión del campo \lstinline|area|. Este campo contiene a su vez un identificador que nos interesa capturar. Para ello, al encontrar el token \lstinline|area||, se activa el estado léxico \lstinline|INAREA| que busca específicamente el token \lstinline|@id| para obtener el valor del identificador del área.
 
-La gramática utiliza una serie de reglas de producción para definir cómo se combinan los tokens para formar estructuras válidas. La regla principal, processFile, se encarga de iterar sobre la lista de recursos del JSON, extrayendo la información de cada uno y almacenándola en una lista de objetos Resource.
+La gramática utiliza una serie de reglas de producción para definir cómo se combinan los tokens para formar estructuras válidas. La regla principal, \lstinline|processFile()|, se encarga de iterar sobre la lista de recursos del JSON, extrayendo la información de cada uno y almacenándola en una lista de objetos Resource.
 
 Para optimizar el proceso, se ha establecido un límite máximo de objetos a procesar. Una vez alcanzado este límite, la función processFile finaliza, deteniendo el análisis del JSON.
 
@@ -994,7 +1005,7 @@ Para optimizar el proceso, se ha establecido un límite máximo de objetos a pro
 
 % Para evaluar el rendimiento de JavaCC en comparación con GSON Streaming, se han realizado pruebas de análisis con archivos JSON de diferentes tamaños. La figura 10 muestra los tiempos de ejecución obtenidos.
 
-% \textbf{\#TODO: INSERTAR IMAGEN DE TIEMPOS DE EJECUCCION Y AÑADIR EXPLICACION}
+% \textbf{\#TODO: INSERTAR IMAGEN DE TIEMPOS DE EJECUCIÓN Y AÑADIR EXPLICACIÓN}
 
 % Como se puede observar en la figura 10, JavaCC demuestra un mejor rendimiento que GSON Streaming, especialmente al procesar archivos JSON de gran tamaño. Esto se debe a que JavaCC realiza un análisis selectivo del archivo, extrayendo únicamente la información necesaria, mientras que GSON Streaming procesa el flujo completo de datos.
 
@@ -1031,7 +1042,8 @@ La \autoref{fig:p4xmlvalidacion2} muestra un ejemplo de la información extraíd
 
 % Se espera que la utilización de JavaCC en lugar de GSON Streaming demuestre las ventajas de esta herramienta en términos de eficiencia, flexibilidad y control sobre el proceso de análisis de datos JSON.
 
-Para evaluar el rendimiento de JavaCC en comparación con GSON Streaming, se han realizado pruebas de análisis con archivos JSON de diferentes tamaños. La \autoref{fig:comparacion_tiempos_ejecucion_p4} muestra los tiempos de ejecución obtenidos.
+Para evaluar el rendimiento de JavaCC en comparación con GSON Streaming, se han realizado pruebas de análisis con archivos JSON %de diferentes tamaños
+. La \autoref{fig:comparacion_tiempos_ejecucion_p4} muestra los tiempos de ejecución obtenidos.
 
 % \textbf{\#TODO: INSERTAR IMAGEN FICHEROS FUENTE PARA VER LO SIMPLE QUE ES, DECIR QUE PODRÍA HABER MUCHA MAS DIFERENCIA }
 
@@ -1045,13 +1057,21 @@ Para evaluar el rendimiento de JavaCC en comparación con GSON Streaming, se han
 \end{figure}
 
 % La figura 10 muestra una comparativa de tiempos de ejecución entre GSON Streaming y JavaCC para esta tarea.
- Como se puede observar, JavaCC ofrece un rendimiento significativamente superior, especialmente al procesar archivos JSON de gran tamaño. Esto se debe a que JavaCC realiza un análisis selectivo del archivo, extrayendo únicamente la información necesaria, mientras que GSON Streaming procesa el flujo completo de datos. 
+%  Como 
+% %  se puede observar
+% hemos comentado anteriormente
+%  , JavaCC ofrece un rendimiento significativamente superior, especialmente al procesar archivos JSON de gran tamaño. Esto se debe a que JavaCC realiza un análisis selectivo del archivo, extrayendo únicamente la información necesaria, mientras que GSON Streaming procesa el flujo completo de datos. 
  
-%  \textbf{\#TODO: Añadir porcentajes, explicar porque es asi la grafica.}
+%  \textbf{\#TODO: Añadir porcentajes, explicar porque es asi la gráfica.}
 
- En la gráfica de la \autoref{fig:comparacion_tiempos_ejecucion_p4}, se observa que JavaCC es aproximadamente un 200\% más rápido que GSON Streaming al procesar archivos JSON de gran tamaño. Esta diferencia se debe a que JavaCC realiza un análisis selectivo del archivo, extrayendo únicamente la información necesaria, mientras que GSON Streaming procesa todo el flujo de datos. La gráfica muestra una tendencia lineal en el tiempo de ejecución de ambas herramientas, pero la pendiente de la línea de JavaCC es significativamente menor que la de GSON Streaming, lo que indica una mayor eficiencia en el procesamiento de grandes volúmenes de datos.
+ Como 
+%  se puede observar
+hemos comentado anteriormente
+, JavaCC ofrece un rendimiento significativamente superior, especialmente al procesar archivos JSON de gran tamaño.
+ En la gráfica de la \autoref{fig:comparacion_tiempos_ejecucion_p4}, se observa que JavaCC es aproximadamente un 57\% más rápido que GSON Streaming al procesar archivos JSON de gran tamaño. Esta diferencia se debe a que JavaCC realiza un análisis selectivo del archivo, extrayendo únicamente la información necesaria, mientras que GSON Streaming procesa todo el flujo de datos. La gráfica compara la ejecución de esta práctica utilizando la herramienta correspondiente, en la que se observa %muestra la tendencia lineal en el tiempo de ejecución de ambas herramientas, pero la pendiente de 
+ que la línea de JavaCC es significativamente menor que la de GSON Streaming, lo que indica una mayor eficiencia en el procesamiento de grandes volúmenes de datos.
 
- \textbf{\#TODO: arreglar sección}
+%  \textbf{\#TODO: arreglar sección}
 
 
 \subsection{Conclusiones}
@@ -1111,14 +1131,16 @@ Si nuestro objetivo fuera seleccionar el código del primer concept, la expresi�
 /catalog/concepts/concept/code
 \end{lstlisting}
 
-Esta expresión realiza un recorrido por el documento desde la raíz (/) hasta el elemento catalog, para luego buscar el elemento concepts, el elemento concept y finalmente seleccionar su hijo code.
+Esta expresión realiza un recorrido por el documento desde la raíz \lstinline|/| hasta el elemento \lstinline|catalog|, para luego buscar el elemento \lstinline|concepts|, el elemento \lstinline|concept| y finalmente seleccionar su hijo \lstinline|code|.
 
 Las principales características de XPath son las siguientes:
 
-Selección de elementos: XPath se puede utilizar para seleccionar elementos individuales o conjuntos de elementos en un documento XML.
-Selección de atributos: XPath se puede utilizar para seleccionar atributos individuales o conjuntos de atributos de un elemento.
-Selección de texto: XPath se puede utilizar para seleccionar texto de un elemento o atributo.
-Selección de datos binarios: XPath se puede utilizar para seleccionar datos binarios de un elemento o atributo.
+\begin{itemize}
+  \item Selección de elementos: XPath se puede utilizar para seleccionar elementos individuales o conjuntos de elementos en un documento XML.
+  \item Selección de atributos: XPath se puede utilizar para seleccionar atributos individuales o conjuntos de atributos de un elemento.
+  \item Selección de texto: XPath se puede utilizar para seleccionar texto de un elemento o atributo.
+  \item Selección de datos binarios: XPath se puede utilizar para seleccionar datos binarios de un elemento o atributo.
+\end{itemize}
 
 XPath se utiliza en una variedad de aplicaciones, incluyendo el procesamiento de XML, el desarrollo web, y la integración de datos. Esto permite que se utilize para procesar documentos XML, extraer datos, validar documentos y transformar documentos. Además, se utiliza en aplicaciones web para acceder a datos XML, como datos de formularios o datos de un servicio web. Por último, también se puede emplear para integrar datos de diferentes fuentes, como datos XML y datos de bases de datos.
 
@@ -1136,7 +1158,7 @@ Las principales ventajas de XPath son su sencillez, ya que es una herramienta re
 
 Las principales desventajas de XPath son su eficiencia, debido a que es menos eficiente en términos de memoria que JavaCC, y sus limitaciones, como la imposibilidad de procesar datos binarios.
 
-% \textbf{[COMPLETAR]...en xpath se procesa muchas veces el fichero...xpath: procesa muchas veces el fichero. contar el numero de recursos a cada identificardor, varias expresiones xpath , que te va a obligar a ejecutar el fichero cada vez...
+% \textbf{[COMPLETAR]...en xpath se procesa muchas veces el fichero...xpath: procesa muchas veces el fichero. contar el numero de recursos a cada identificador, varias expresiones xpath , que te va a obligar a ejecutar el fichero cada vez...
 % }
 
 En XPath, para obtener información específica, se deben ejecutar múltiples expresiones de consulta sobre el documento XML. Cada expresión XPath recorre el árbol del documento, lo que implica un acceso repetitivo al fichero. Por ejemplo, para contar el número de recursos asociados a cada identificador, además del contenido del título de cada recurso, se necesitarían ejecutar dos expresiones XPath. Este proceso puede resultar ineficiente en términos de rendimiento, especialmente al tratar con documentos XML grandes, o si se quiere extraer bastante información. JavaCC, por otro lado, analiza el documento una sola vez, extrayendo la información necesaria de forma estructurada y eficiente.
@@ -1147,9 +1169,12 @@ En XPath, para obtener información específica, se deben ejecutar múltiples ex
 
 Para lograr este objetivo, se implementará un nuevo analizador léxico y sintáctico en JavaCC que nos permita:
 
-Identificar los elementos relevantes: El analizador debe ser capaz de reconocer las etiquetas y atributos específicos del documento XML que contienen la información a extraer.
-Extraer la información: Una vez identificados los elementos relevantes, el analizador debe extraer su contenido y almacenarlo en estructuras de datos apropiadas.
-Generar el documento JSON: Finalmente, el analizador debe utilizar la información extraída para generar un nuevo documento en formato JSON con la estructura deseada.
+\begin{itemize}
+  \item Identificar los elementos relevantes: El analizador debe ser capaz de reconocer las etiquetas y atributos específicos del documento XML que contienen la información a extraer.
+  \item Extraer la información: Una vez identificados los elementos relevantes, el analizador debe extraer su contenido y almacenarlo en estructuras de datos apropiadas.
+  \item Generar el documento JSON: Finalmente, el analizador debe utilizar la información extraída para generar un nuevo documento en formato JSON con la estructura deseada.
+\end{itemize}
+
 
 % \noindent La implementación de la Práctica 5 se basa en extender el código desarrollado en la Práctica 4, integrando la funcionalidad de XPath para extraer información específica del documento XML resultante. El uso del Modelo de Objetos de Documento (DOM) facilita la navegación y manipulación de la estructura jerárquica del documento XML.
 
@@ -1177,7 +1202,7 @@ En esta sección, vamos a describir cómo se resuelve esta práctica utilizando 
 
 \phantom{text}
 
-Se mantienen las opciones del analizador utilizadas en las prácticas anteriores, garantizando la compatibilidad y la posibilidad de analizar las tres gramáticas (P3, P4, P5) con el mismo parser.
+Se mantienen las opciones del analizador utilizadas en las prácticas anteriores, garantizando la compatibilidad y la posibilidad de analizar las tres gramáticas --prácticas 3,4 y 5--- con el mismo parser.
 
 \lstset{inputencoding=utf8/latin1}
 \begin{lstlisting}
@@ -1205,9 +1230,9 @@ public class XMLParser2{
 PARSER_END(XMLParser2) 
 \end{lstlisting}
 
-Esta clase contiene un mapa para almacenar los datasets ---datasetsMap---%, una variable para contar el número de datasets (numDatasets), y 
+Esta clase contiene un mapa para almacenar los datasets ---\lstinline|datasetsMap|---%, una variable para contar el número de datasets (numDatasets), y 
 ,así como
-una lista para almacenar los títulos ---titleList---. La estructura de esta clase es fundamental para organizar y gestionar los datos extraídos de los documentos XML de manera eficiente.
+una lista para almacenar los títulos ---\lstinline|titleList|---. La estructura de esta clase es fundamental para organizar y gestionar los datos extraídos de los documentos XML de manera eficiente.
 
 La parte mas relevante de este ejercicio con JavaCC es la definición de los tokens y los estados léxicos. Estos permiten acotar el reconocimiento de tokens a secciones específicas del documento, optimizando el proceso de análisis.
 
@@ -1269,7 +1294,7 @@ SKIP :
 \end{lstlisting}
 
 Como en las prácticas anteriores, omitimos los espacios en blanco, tabulaciones y saltos de linea. En este caso, incorporamos estados léxicos, que nos permiten reconocer un grupo de tokens en un punto específico del análisis. 
-El uso principal de los estados léxicos en la práctica es para reconocer unicamente lo que nos interesa del documento, que es la cabecera del documento, el valor del elemento <query>, el valor id de cada dataset, y el valor title de cada resource. 
+El uso principal de los estados léxicos en la práctica es para reconocer unicamente lo que nos interesa del documento, que es la cabecera del documento, el valor del elemento \lstinline|<query>|, el valor \lstinline|id| de cada dataset, y el valor \lstinline|title| de cada resource. 
 % Los estados léxicos definidos, además del estado DEFAULT son:
 
 % %% modificar!
@@ -1281,17 +1306,17 @@ El uso principal de los estados léxicos en la práctica es para reconocer unica
 %     \item IN\_RESOURCES: Estado utilizado para reconocer el id de los recursos y el valor del elemento title dentro de la estructura de un resource
 % \end{itemize}
 
-El estado inicial es DEFAULT, donde se reconocen tokens comunes como espacios en blanco y saltos de línea. Al encontrar un token que indica el inicio de una sección específica, el analizador cambia a un estado léxico específico para esa sección.
+El estado inicial es \lstinline|DEFAULT|, donde se reconocen tokens comunes como espacios en blanco y saltos de línea. Al encontrar un token que indica el inicio de una sección específica, el analizador cambia a un estado léxico específico para esa sección.
 
-Por ejemplo, al encontrar el token <OPEN\_QUERY>, que marca el comienzo del del elemento <query>, el analizador cambia al estado LEX\_CONTENT. Dentro de cada estado, se reconocen tokens específicos relacionados con esa sección.
+Por ejemplo, al encontrar el token \lstinline|<OPEN_QUERY>|, que marca el comienzo del del elemento \lstinline|<query>|, el analizador cambia al estado \lstinline|LEX_CONTENT|. Dentro de cada estado, se reconocen tokens específicos relacionados con esa sección.
 
-El estado LEX\_CONTENT se utiliza para capturar el valor de la consulta, mientras que IN\_DATASETS y IN\_RESOURCES se utilizan para extraer información sobre los datasets y recursos, respectivamente.
+El estado \lstinline|LEX_CONTENT| se utiliza para capturar el valor de la consulta, mientras que \lstinline|IN_DATASETS| y \lstinline|IN_RESOURCES| se utilizan para extraer información sobre los datasets y recursos, respectivamente.
 
 % El estado IN\_TITLE, utilizado dentro de IN\_RESOURCES, permite obtener el título de cada recurso.
 
-La gramática utiliza el token STRING para capturar valores entre comillas y VALUE para obtener texto dentro de etiquetas.
+La gramática utiliza el token \lstinline|STRING| para capturar valores entre comillas y \lstinline|VALUE| para obtener texto dentro de etiquetas.
 
-Finalmente, las funciones dataset() y resource() definen la lógica para procesar la información de cada dataset y recurso, almacenándola en las estructuras de datos definidas en la clase XMLParser2.
+Finalmente, las funciones \lstinline|dataset()| y \lstinline|resource()| definen la lógica para procesar la información de cada dataset y recurso, almacenándola en las estructuras de datos definidas en la clase XMLParser2.
 
 %% modificar
 \begin{figure}[H]
@@ -1304,26 +1329,26 @@ Finalmente, las funciones dataset() y resource() definen la lógica para procesa
   % \midrule
   % IN\_HEADER & Activado al reconocer el primer elemento de la cabecera & Reconoce los diferentes elementos que componen el encabezado XML \\
   \midrule
-  LEX\_CONTENT & Activado tras reconocer el comienzo de una etiqueta para obtener el contenido de ella & Reconoce el contenido de la etiqueta \textless code\textgreater \\
+  LEX\_CONTENT & Activado tras reconocer el comienzo de una etiqueta para obtener el contenido de ella & Reconoce el contenido de la etiqueta \\
   \midrule
-  IN\_DATASETS & Activado después de \textless datasets\textgreater & Reconoce tokens específicos de los datasets \\
+  IN\_DATASETS & Activado después de reconocer \lstinline|datasets| & Reconoce tokens específicos de los datasets \\
   \midrule
-  IN\_RESOURCES & Activado después de \textless resources\textgreater & Reconoce tokens específicos de los recursos \\
+  IN\_RESOURCES & Activado después de reconocer \lstinline|resources| & Reconoce tokens específicos de los recursos \\
   % \midrule
   % IN\_TITLE & Activado al encontrar \textless title\textgreater & Reconoce el contenido de la etiqueta \textless title\textgreater \\
   \bottomrule
   \end{tabularx}
   % \caption{Descripción de los Estados Léxicos}
   \caption{\label{fig:estadoslexicosp5}Práctica 5. Estados léxicos del analizador}
-  \label{table:lexical_states}
+  \label{table:lexical_statesp5}
   \end{figure}
 
 % \tipbox{
 %   % \textbf{\#TODO: Completar sección}
-%    Cabe destacar que se definen los estados lexicos mencionados para omitir el resto de caracteres o tokens que el analizador pueda reconocer en un momento dado. Por ejemplo, después de la cabera solo nos interesa el elemento query, por lo que definimos un estado lexico IN\_QUERY en el que definimos los tokens que nos permiten reconocer el valor de la query. De esta forma, se definen ciertos tokens que unicamente pueden o deben ser analizados en un punto concreto del analisis.
+%    Cabe destacar que se definen los estados léxicos mencionados para omitir el resto de caracteres o tokens que el analizador pueda reconocer en un momento dado. Por ejemplo, después de la cabera solo nos interesa el elemento query, por lo que definimos un estado léxico IN\_QUERY en el que definimos los tokens que nos permiten reconocer el valor de la query. De esta forma, se definen ciertos tokens que unicamente pueden o deben ser analizados en un punto concreto del análisis.
 % }
 
-Una vez se definen los tokens, resta generar el análisis sintáctico. El método principal processfile() inicializa las estructuras de datos y procesa el archivo XML, extrayendo la información relevante y almacenándola en las estructuras adecuadas:
+Una vez se definen los tokens, resta generar el análisis sintáctico. El método principal \lstinline|processfile()| inicializa las estructuras de datos y procesa el archivo XML, extrayendo la información relevante y almacenándola en las estructuras adecuadas:
 
 \lstset{inputencoding=utf8/latin1}
 \begin{lstlisting}
@@ -1345,7 +1370,7 @@ ManejadorJSON processFile() : { String query; datasetsMap = new HashMap<String, 
 
 Este procesa el documento XML siguiendo la estructura definida, identificando y extrayendo los datos pertinentes. Al finalizar el procesamiento, imprime el número de datasets, el mapa de datasets, y la lista de títulos extraídos.
 
-Además, se cuenta con el método dataset() que procesa cada dataset, extrayendo su id y actualizando el mapa de datasets:
+Además, se cuenta con el método \lstinline|dataset()| que procesa cada dataset, extrayendo su id y actualizando el mapa de datasets:
 
 % \textbf{\#TODO: atomic integer en vez de integer. (integer es inmutable)...hablar de la concurrencia...}
 
@@ -1361,11 +1386,11 @@ void dataset() : { String idDataset; }
 }
 \end{lstlisting}
 
-El método dataset identifica cada elemento <dataset> en el documento XML, extrae su id y lo agrega al mapa de datasets
-.
+% El método dataset identifica cada elemento \lstinline|<dataset>| en el documento XML, extrae su \lstinline|id| y lo agrega al mapa de datasets
+% .
 % , incrementando el contador de datasets.
 
-Además, también se cuenta con el método resource(), que procesa cada recurso, extrayendo su id, el id del concepto asociado, y el título. Además, actualiza el contador de conceptos en el mapa de datasets:
+Adicionalmente, también se cuenta con el método \lstinline|resource()|, que procesa cada recurso, extrayendo su id, el id del concepto asociado, y el título. Además, actualiza el contador de conceptos en el mapa de datasets:
 
 \lstset{inputencoding=utf8/latin1}
 \begin{lstlisting}
@@ -1460,12 +1485,12 @@ Como se puede observar en la \autoref{fig:p5tiemposejecucion}, el tiempo de ejec
 
 En este caso particular, la ventaja de JavaCC en términos de rendimiento no es tan significativa como en la práctica 2 (análisis de logs). Esto se debe a que la estructura del archivo XML es relativamente simple y XPath puede realizar la extracción de información de forma eficiente.
 
-% \textbf{\#TODO: hacer grafica en P5 en la que se vea que cuantas mas expresiones XPATH se hagan, más tarda en ejecutarse (ya que analiza varias veces el archivo. Hacer una segunda grafica en la que se diga antes que si aumenta el numero de información a analizar, ahí es donde xpath penca.
-% Sin embargo, si se realise un pequeño evolutivo de la práctica en la que se pidiese extraer mas informacion, se notaria en gran medida la diferencia entre herramientas:}
+% \textbf{\#TODO: hacer gráfica en P5 en la que se vea que cuantas mas expresiones XPATH se hagan, más tarda en ejecutarse (ya que analiza varias veces el archivo. Hacer una segunda gráfica en la que se diga antes que si aumenta el numero de información a analizar, ahí es donde xpath penca.
+% Sin embargo, si se realizase un pequeño evolutivo de la práctica en la que se pidiese extraer mas información, se notaria en gran medida la diferencia entre herramientas:}
 
 Como se observa en la \autoref{fig:p5tiemposexpresiones}, si se realizara un evolutivo de la práctica en el que se pidiese extraer más información, la diferencia entre ambas herramientas se haría más evidente, ya que JavaCC solo analiza el documento una vez, mientras que XPath tendría que realizar múltiples recorridos para obtener toda la información necesaria:
 
-% \textbf{\#TODO: insertar grafica}
+% \textbf{\#TODO: insertar gráfica}
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{imagenes/xpathyjavaccexpresiones.png}
@@ -1593,7 +1618,7 @@ Estos evolutivos no solo buscan aumentar la dificultad de las prácticas, sino t
 
 \subsection{Evolutivo para la Práctica 4: Análisis de Datos Geoespaciales en Tiempo Real}
 
-Este evolutivo se basa en la Práctica 4, que se centra en el análisis de archivos JSON. Se propone la creación de un sistema que procese datos geoespaciales en tiempo real provenientes de una fuente de streaming, como un servicio web o una base de datos. Los datos geoespaciales se recibirán en formato JSON y contendrán información sobre la ubicación, el tiempo y otros atributos relevantes de diferentes eventos o entidades.
+Este evolutivo se basa en la Práctica 4, que se centra en el análisis de archivos JSON. Se propone la creación de un sistema que procese datos Geoespaciales en tiempo real provenientes de una fuente de streaming, como un servicio web o una base de datos. Los datos Geoespaciales se recibirán en formato JSON y contendrán información sobre la ubicación, el tiempo y otros atributos relevantes de diferentes eventos o entidades.
 
 \subsubsection{Tareas a realizar}
 

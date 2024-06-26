@@ -64,7 +64,7 @@ Estas producciones definen la sintaxis de una expresión aritmética simple. El 
 \begin{center}
     $S ::= E$
     
-    $E ::= T ``+'' E\: |\: T$
+    $E ::= T + E\: |\: T$
     
     $T ::= id\: |\: num$
 \end{center}
@@ -78,9 +78,9 @@ Estas producciones son equivalentes a las producciones BNF anteriores.
 \phantom{text}
 
 \begin{center}
-    $S \xrightarrow{} "(" E ")" | id$
+    $S \xrightarrow{} ( E )\: |\: id$
     
-    $E \xrightarrow{} E "+" E | E "-" E | E "*" E | E "/" E | id$
+    $E \xrightarrow{} E + E\: |\: E - E\: |\: E * E\: |\: E / E\: |\: id$
 \end{center}
 
 Estas producciones definen la sintaxis de una expresión aritmética más compleja. El símbolo S representa una expresión, el símbolo E representa un término y el símbolo id representa un identificador.
@@ -111,17 +111,27 @@ Esta producción significa que una expresión aritmética (E) puede ser una suma
 
 Los no terminales son importantes porque permiten definir la sintaxis de los lenguajes formales de una manera jerárquica. Esto facilita la comprensión de la sintaxis de un lenguaje y la construcción de analizadores sintácticos que puedan verificar si una cadena de caracteres es válida para un lenguaje determinado.
 
-\textbf{Ejemplos de no terminales}
+\phantom{text}
 
-Aquí hay algunos ejemplos de no terminales:
+\noindent \textbf{Ejemplos de no terminales}
 
-    En la gramática de expresiones aritméticas, el símbolo E representa el conjunto de todas las expresiones aritméticas.
-    En la gramática de oraciones en español, el símbolo SN representa el conjunto de todos los sintagmas nominales.
-    En la gramática de programas en Python, el símbolo stmt representa el conjunto de todas las declaraciones.
+\phantom{text}
 
-\textbf{Conclusiones}
+\noindent Aquí hay algunos ejemplos de no terminales:
 
-Los no terminales son una herramienta fundamental para la definición de la sintaxis de los lenguajes formales. Permiten definir la sintaxis de un lenguaje de una manera jerárquica y facilita la comprensión y la construcción de analizadores sintácticos.
+\begin{itemize}
+    \item En la gramática de expresiones aritméticas, el símbolo E representa el conjunto de todas las expresiones aritméticas.
+    \item En la gramática de oraciones en español, el símbolo SN representa el conjunto de todos los sintagmas nominales.
+    \item En la gramática de programas en Python, el símbolo stmt representa el conjunto de todas las declaraciones.
+\end{itemize}
+
+\phantom{text}
+
+\noindent \textbf{Conclusiones}
+
+\phantom{text}
+
+\noindent Los no terminales son una herramienta fundamental para la definición de la sintaxis de los lenguajes formales. Permiten definir la sintaxis de un lenguaje de una manera jerárquica y facilita la comprensión y la construcción de analizadores sintácticos.
 
 \section{¿Cómo empiezo a desarrollar en JavaCC?}
 
