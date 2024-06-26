@@ -6,9 +6,9 @@ Este repositorio contiene las gramáticas desarrolladas con JavaCC para las prá
 
 - **/docs**: Documentación y guías.
 - **/src**: Código fuente de las gramáticas.
-- **/tests**: Casos de prueba.
-- **/build**: Archivos generados durante la compilación.
-- **/lib**: Bibliotecas y dependencias.
+<!-- - **/tests**: Casos de prueba. -->
+<!-- - **/build**: Archivos generados durante la compilación. -->
+<!-- - **/lib**: Bibliotecas y dependencias. -->
 
 ## Cómo Empezar
 
@@ -22,9 +22,9 @@ Para comenzar a utilizar las gramáticas, sigue estos pasos:
 
 Las contribuciones son bienvenidas. Si tienes alguna sugerencia o mejora, por favor, abre un issue o envía un pull request.
 
-## Licencia
+<!-- ## Licencia
 
-Este proyecto está bajo la Licencia MIT. Para más detalles, ver el archivo `LICENSE`.
+Este proyecto está bajo la Licencia MIT. Para más detalles, ver el archivo `LICENSE`. -->
 
 ## Contacto
 

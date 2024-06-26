@@ -1,0 +1,125 @@
+options
+{
+  STATIC = false;
+  JAVA_TEMPLATE_TYPE = "modern";
+  // DEBUG_PARSER = true; 
+  // DEBUG_TOKEN_MANAGER = true;
+}
+
+PARSER_BEGIN(XMLParser2)
+package piat.opendatasearch;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.concurrent.atomic.AtomicInteger;
+public class XMLParser2{
+  private HashMap <String, AtomicInteger> datasetsMap;
+  private List < String > titleList;
+}
+PARSER_END(XMLParser2) 
+
+< * >
+SKIP :
+{
+  " " 
+| "\t"
+| "\r"
+| "\n"
+} 
+
+TOKEN :
+{
+  < HEADER : "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" > 
+| < XMLNS : "xmlns=" > 
+| < XMNLNS_XSI : "xmlns:xsi=" > 
+| < XSI_SCHEMA_LOCATION : "xsi:schemaLocation=" > 
+| < SEARCH_RESULTS : "<searchResults" >
+| < OPEN_QUERY : "<query>" > : LEX_CONTENT
+| < CLOSE_DATASETS : "</datasets>" > 
+| < OPEN_DATASET : "<dataset id=" > : IN_DATASET
+| < OPEN_DATASETS : "<datasets>" > 
+| < OPEN_RESOURCES : "<resources>" > : IN_RESOURCES
+| < CLOSE_SEARCH_RESULTS : "</searchResults>" >
+}
+
+< IN_RESOURCES >
+TOKEN:
+{
+  < CLOSE_RESOURCES : "</resources>" > : DEFAULT
+| < OPEN_RESOURCE : "<resource id=" > 
+| < CLOSE_RESOURCE : "</resource>" > 
+| < OPEN_TITLE : "<title>" >  : LEX_CONTENT
+}
+
+< IN_DATASET, IN_RESOURCES >
+TOKEN:
+{
+  < STRING : "\"" (~[ "\"", "\n", "\r" ])+ "\">">
+| < CLOSE_DATASET : "</dataset>" > : DEFAULT
+}
+
+< LEX_CONTENT >
+TOKEN:
+{
+ < CLOSE_QUERY : "</query>" > : DEFAULT
+| < CLOSE_TITLE : "</title>" > : IN_RESOURCES
+| < VALUE : (~["<"])+ > 
+}
+
+<*>
+SKIP :
+{
+  < ~[ ] >
+}
+
+ManejadorJSON processFile() : { String query; datasetsMap = new HashMap<String, AtomicInteger>(); titleList = new ArrayList<String>();}
+{
+  < HEADER > 
+  < SEARCH_RESULTS > < XMLNS > < XMNLNS_XSI >  < XSI_SCHEMA_LOCATION > 
+  < OPEN_QUERY > query = getContent() < CLOSE_QUERY > 
+  < OPEN_DATASETS > (dataset())*  < CLOSE_DATASETS >
+  < OPEN_RESOURCES > (resource())* < CLOSE_RESOURCES >
+  < CLOSE_SEARCH_RESULTS >
+  < EOF >
+  {
+    return new ManejadorJSON(query,datasetsMap.size(),datasetsMap,titleList);
+  }
+}
+
+void dataset() : { String idDataset; } 
+{
+  < OPEN_DATASET >  idDataset = getAttribute() 
+  < CLOSE_DATASET >
+  {
+    datasetsMap.put(idDataset, new AtomicInteger(0));
+  }
+}
+
+void resource() : { String title, idResource; } 
+{
+  < OPEN_RESOURCE >  idResource = getAttribute() 
+  < OPEN_TITLE > title = getContent() < CLOSE_TITLE > 
+  < CLOSE_RESOURCE >
+  {
+    titleList.add(title);
+    final AtomicInteger cont = datasetsMap.get(idResource);
+    if(cont != null)
+      cont.incrementAndGet();
+  }
+}
+
+String getContent() : { Token t = new Token(); }
+{
+  (t = < VALUE >)?
+  {
+    return t.image;
+  } 
+}
+
+String getAttribute() : { Token t = new Token(); }
+{
+  t = < STRING > 
+  {
+    return t.image.replace("\"", "");
+  } 
+}
